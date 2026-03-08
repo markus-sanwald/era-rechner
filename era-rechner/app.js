@@ -136,7 +136,28 @@ function loadYear(year) {
 // ---------------------------------------------------------------------------
 
 elJahr.addEventListener("change", () => {
+  // Aktuelle Auswahl merken
+  const prevBundesland = elBundesland.value;
+  const prevEG = elEG.value;
+  const prevStufe = elStufe.value;
+
   loadYear(elJahr.value);
+
+  // Auswahl wiederherstellen, sofern Werte im neuen Tarifjahr existieren
+  if (prevBundesland && [...elBundesland.options].some(o => o.value === prevBundesland)) {
+    elBundesland.value = prevBundesland;
+    elBundesland.dispatchEvent(new Event("change"));
+
+    if (prevEG && [...elEG.options].some(o => o.value === prevEG)) {
+      elEG.value = prevEG;
+      elEG.dispatchEvent(new Event("change"));
+
+      if (prevStufe && [...elStufe.options].some(o => o.value === prevStufe)) {
+        elStufe.value = prevStufe;
+        elStufe.dispatchEvent(new Event("change"));
+      }
+    }
+  }
 });
 
 // ---------------------------------------------------------------------------
