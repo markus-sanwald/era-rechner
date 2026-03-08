@@ -406,9 +406,9 @@ function renderChart(monthly, utMonatlich, urlaubsgeld, weihnachtsgeld, tZugA, t
     const hasBonus = month.segs.length > baseSegCount;
     const totalHtml = hasBonus
       ? `<span class="chart-total">${compactFmt.format(month.total)}</span>`
-      : "";
+      : `<span class="chart-total" style="visibility:hidden">0 €</span>`;
 
-    barsHtml += `<div class="chart-col">${totalHtml}<div class="chart-stack" style="height:${pct.toFixed(1)}%">${segsHtml}</div><span class="chart-lbl">${month.label}</span></div>`;
+    barsHtml += `<div class="chart-col">${totalHtml}<div class="chart-bar-area"><div class="chart-stack" style="height:${pct.toFixed(1)}%">${segsHtml}</div></div><span class="chart-lbl">${month.label}</span></div>`;
   }
 
   elChartArea.innerHTML = barsHtml;
