@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "era-rechner",
+      "runtimeExecutable": "C:\\Program Files\\nodejs\\node.exe",
+      "runtimeArgs": ["-e", "const h=require('http'),f=require('fs'),p=require('path');h.createServer((q,r)=>{let u=q.url==='/'?'/index.html':q.url;let fp=p.join('era-rechner',u);const ext=p.extname(fp);const ct={'.html':'text/html','.css':'text/css','.js':'application/javascript'}[ext]||'text/plain';f.readFile(fp,(e,d)=>{if(e){r.writeHead(404);r.end('Not found');}else{r.writeHead(200,{'Content-Type':ct+';charset=utf-8'});r.end(d);}});}).listen(3000,()=>console.log('Server on 3000'));"],
+      "port": 3000
+    }
+  ]
+}

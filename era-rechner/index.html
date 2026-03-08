@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ERA Entgeltrechner 2025 – Metall- und Elektroindustrie</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+    <header>
+      <h1>ERA Entgeltrechner</h1>
+      <p class="subtitle">Metall- und Elektroindustrie &ndash; g&uuml;ltig ab 01.04.2025</p>
+    </header>
+
+    <section class="calculator" aria-label="Gehaltsrechner">
+      <div class="form-group">
+        <label for="bundesland">Bundesland / Tarifgebiet</label>
+        <select id="bundesland">
+          <option value="">Bitte w&auml;hlen&hellip;</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="eg">Entgeltgruppe (EG)</label>
+        <select id="eg" disabled>
+          <option value="">Bitte w&auml;hlen&hellip;</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="stufe">Stufe</label>
+        <select id="stufe" disabled>
+          <option value="">Bitte w&auml;hlen&hellip;</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="arbeitszeit">W&ouml;chentliche Arbeitszeit</label>
+        <div class="range-group">
+          <input type="range" id="arbeitszeit" min="20" max="42" step="1" value="35">
+          <output for="arbeitszeit" id="arbeitszeit-output">35&nbsp;h</output>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="eintrittsdatum">Eintrittsdatum (optional)</label>
+        <input type="date" id="eintrittsdatum">
+      </div>
+
+      <div class="form-group">
+        <label for="ut-zulage">&Uuml;bertarifliche Zulage</label>
+        <div class="range-group">
+          <input type="range" id="ut-zulage" min="0" max="30" step="1" value="0">
+          <output for="ut-zulage" id="ut-zulage-output">0&nbsp;%</output>
+        </div>
+      </div>
+    </section>
+
+    <section id="result" class="result hidden" aria-live="polite">
+      <div class="result-row">
+        <span class="result-label">Monatsentgelt (brutto)</span>
+        <span class="result-value" id="monthly"></span>
+      </div>
+      <div class="result-row highlight">
+        <span class="result-label">Bruttojahresgehalt (gesamt)</span>
+        <span class="result-value" id="annual"></span>
+      </div>
+
+      <div id="breakdown" class="breakdown hidden">
+        <h3 class="breakdown-title">Aufschl&uuml;sselung</h3>
+        <div class="breakdown-row">
+          <span class="breakdown-label">12 &times; Monatsentgelt</span>
+          <span class="breakdown-value" id="grundgehalt"></span>
+        </div>
+        <div class="breakdown-row hidden" id="ut-zulage-row">
+          <span class="breakdown-label">12 &times; &Uuml;T-Zulage <small id="ut-zulage-pct"></small></span>
+          <span class="breakdown-value" id="ut-zulage-annual"></span>
+        </div>
+        <div class="breakdown-row">
+          <span class="breakdown-label">Urlaubsgeld <small>(50&nbsp;% eines ME)</small></span>
+          <span class="breakdown-value" id="urlaubsgeld"></span>
+        </div>
+        <div class="breakdown-row">
+          <span class="breakdown-label">Weihnachtsgeld <small id="weihnachtsgeld-pct">(55&nbsp;% eines ME)</small></span>
+          <span class="breakdown-value" id="weihnachtsgeld"></span>
+        </div>
+        <div class="breakdown-row">
+          <span class="breakdown-label">T-ZUG A <small>(27,5&nbsp;% eines ME)</small></span>
+          <span class="breakdown-value" id="tzug-a"></span>
+        </div>
+        <div class="breakdown-row">
+          <span class="breakdown-label">T-ZUG B <small>(18,5&nbsp;% v. Eckentgelt)</small></span>
+          <span class="breakdown-value" id="tzug-b"></span>
+        </div>
+      </div>
+
+      <div id="chart" class="chart hidden">
+        <h3 class="chart-title">Bruttoverdienst nach Monaten</h3>
+        <div class="chart-area" id="chart-area"></div>
+        <div class="chart-legend" id="chart-legend"></div>
+      </div>
+
+      <p class="result-note">
+        Die Tabellenwerte basieren auf 35&nbsp;h/Woche (tarifliche Vollzeit).
+        Bei abweichender Arbeitszeit wird das Entgelt anteilig berechnet (Faktor&nbsp;=&nbsp;Wochenstunden&nbsp;/&nbsp;35).
+        Weihnachtsgeld: voller Satz nach 36&nbsp;Mon. Betriebszugeh&ouml;rigkeit.
+        T-ZUG&nbsp;B: Festbetrag auf Basis des Eckentgelts (2025).
+        &Uuml;T-Zulage: freiwillige Arbeitgeberzulage, nicht in Sonderzahlungen enthalten.
+        Schichtzuschl&auml;ge sind nicht enthalten.
+      </p>
+    </section>
+
+    <footer>
+      <p>Quelle: IG Metall ERA-Entgelttabellen, g&uuml;ltig ab 01.04.2025</p>
+      <p>*) Weitere Erh&ouml;hungen vereinbart</p>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
