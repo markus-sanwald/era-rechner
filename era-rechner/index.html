@@ -3,17 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ERA Entgeltrechner 2025 – Metall- und Elektroindustrie</title>
+  <title>ERA Entgeltrechner – Metall- und Elektroindustrie</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <main class="container">
     <header>
       <h1>ERA Entgeltrechner</h1>
-      <p class="subtitle">Metall- und Elektroindustrie &ndash; g&uuml;ltig ab 01.04.2025</p>
+      <p class="subtitle" id="subtitle">Metall- und Elektroindustrie</p>
     </header>
 
     <section class="calculator" aria-label="Gehaltsrechner">
+      <div class="form-group">
+        <label for="jahr">Tarifjahr</label>
+        <select id="jahr"></select>
+      </div>
+
       <div class="form-group">
         <label for="bundesland">Bundesland / Tarifgebiet</label>
         <select id="bundesland">
@@ -90,7 +95,7 @@
           <span class="breakdown-value" id="tzug-a"></span>
         </div>
         <div class="breakdown-row">
-          <span class="breakdown-label">T-ZUG B <small>(18,5&nbsp;% v. Eckentgelt)</small></span>
+          <span class="breakdown-label">T-ZUG B <small id="tzug-b-pct">(18,5&nbsp;% v. Eckentgelt)</small></span>
           <span class="breakdown-value" id="tzug-b"></span>
         </div>
       </div>
@@ -105,18 +110,19 @@
         Die Tabellenwerte basieren auf 35&nbsp;h/Woche (tarifliche Vollzeit).
         Bei abweichender Arbeitszeit wird das Entgelt anteilig berechnet (Faktor&nbsp;=&nbsp;Wochenstunden&nbsp;/&nbsp;35).
         Weihnachtsgeld: voller Satz nach 36&nbsp;Mon. Betriebszugeh&ouml;rigkeit.
-        T-ZUG&nbsp;B: Festbetrag auf Basis des Eckentgelts (2025).
+        T-ZUG&nbsp;B: Festbetrag auf Basis des Eckentgelts.
         &Uuml;T-Zulage: freiwillige Arbeitgeberzulage, nicht in Sonderzahlungen enthalten.
         Schichtzuschl&auml;ge sind nicht enthalten.
       </p>
     </section>
 
     <footer>
-      <p>Quelle: IG Metall ERA-Entgelttabellen, g&uuml;ltig ab 01.04.2025</p>
+      <p>Quelle: IG Metall ERA-Entgelttabellen</p>
       <p>*) Weitere Erh&ouml;hungen vereinbart</p>
     </footer>
   </main>
 
+  <script src="data.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

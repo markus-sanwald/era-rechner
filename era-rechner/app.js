@@ -6,6 +6,7 @@
 //                       bonusData:  Region -> { ... } }
 // ---------------------------------------------------------------------------
 
+let allData = {};
 let salaryData = {};
 let bonusData = {};
 
@@ -13,6 +14,8 @@ let bonusData = {};
 // DOM references
 // ---------------------------------------------------------------------------
 
+const elJahr             = document.getElementById("jahr");
+const elSubtitle         = document.getElementById("subtitle");
 const elBundesland       = document.getElementById("bundesland");
 const elEG               = document.getElementById("eg");
 const elStufe            = document.getElementById("stufe");
@@ -34,6 +37,7 @@ const elWeihnachtsgeld   = document.getElementById("weihnachtsgeld");
 const elWeihnachtsgeldPct = document.getElementById("weihnachtsgeld-pct");
 const elTZugA            = document.getElementById("tzug-a");
 const elTZugB            = document.getElementById("tzug-b");
+const elTZugBPct         = document.getElementById("tzug-b-pct");
 const elChart            = document.getElementById("chart");
 const elChartArea        = document.getElementById("chart-area");
 const elChartLegend      = document.getElementById("chart-legend");
@@ -87,13 +91,33 @@ function resetSelect(el, placeholder = "Bitte wählen\u2026") {
 // Populate Bundesland dropdown on load
 // ---------------------------------------------------------------------------
 
-async function init() {
-  const resp = await fetch("data.json");
-  const allData = await resp.json();
+function init() {
+  allData = ERA_DATA;
 
-  const year = "2025";
+  // Populate year dropdown (descending)
+  const years = Object.keys(allData).sort((a, b) => b.localeCompare(a));
+  for (const y of years) {
+    const opt = document.createElement("option");
+    opt.value = y;
+    opt.textContent = `ab 01.04.${y}`;
+    elJahr.appendChild(opt);
+  }
+
+  loadYear(years[0]);
+}
+
+function loadYear(year) {
   salaryData = allData[year].salaryData;
   bonusData = allData[year].bonusData;
+
+  elSubtitle.textContent = `Metall- und Elektroindustrie \u2013 g\u00fcltig ab 01.04.${year}`;
+
+  // Reset dependent dropdowns
+  resetSelect(elBundesland, "Bitte w\u00e4hlen\u2026");
+  elBundesland.disabled = false;
+  resetSelect(elEG, "Bitte w\u00e4hlen\u2026");
+  resetSelect(elStufe, "Bitte w\u00e4hlen\u2026");
+  hideResult();
 
   const regions = Object.keys(salaryData).sort((a, b) =>
     a.localeCompare(b, "de")
@@ -106,6 +130,14 @@ async function init() {
     elBundesland.appendChild(opt);
   }
 }
+
+// ---------------------------------------------------------------------------
+// Event: Jahr changed → reload data for selected year
+// ---------------------------------------------------------------------------
+
+elJahr.addEventListener("change", () => {
+  loadYear(elJahr.value);
+});
 
 // ---------------------------------------------------------------------------
 // Event: Bundesland changed → populate EG dropdown
@@ -320,6 +352,10 @@ function showResult(tabellenMonthly) {
       ? `(${(wgSatz * 100).toFixed(0).replace(".", ",")}\u00a0% eines ME)`
       : "(kein Anspruch)";
     elWeihnachtsgeldPct.textContent = pctText;
+
+    // T-ZUG B Prozentsatz dynamisch anzeigen
+    const tZugBPct = (bonus.tZugB * 100).toFixed(1).replace(".", ",");
+    elTZugBPct.textContent = `(${tZugBPct}\u00a0% v. Eckentgelt)`;
 
     elBreakdown.classList.remove("hidden");
 
