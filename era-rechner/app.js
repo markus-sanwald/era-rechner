@@ -36,6 +36,7 @@ const elUrlaubsgeld      = document.getElementById("urlaubsgeld");
 const elWeihnachtsgeld   = document.getElementById("weihnachtsgeld");
 const elWeihnachtsgeldPct = document.getElementById("weihnachtsgeld-pct");
 const elTZugA            = document.getElementById("tzug-a");
+const elTGeld            = document.getElementById("tgeld");
 const elTZugB            = document.getElementById("tzug-b");
 const elTZugBPct         = document.getElementById("tzug-b-pct");
 const elChart            = document.getElementById("chart");
@@ -57,33 +58,22 @@ const compactFmt = new Intl.NumberFormat("de-DE", {
 // Chart configuration
 // ---------------------------------------------------------------------------
 
-const MONTH_NAMES = ["Jan", "Feb", "Mär", "Apr", "Mai", "Jun",
-                     "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"];
-
 const CHART_COLORS = {
   monatsentgelt:  "#003d6b",
   utZulage:       "#4a90c4",
   urlaubsgeld:    "#2ecc71",
   tZugA:          "#e67e22",
+  tGeld:          "#9b59b6",
   tZugB:          "#f1c40f",
   weihnachtsgeld: "#e2001a"
-};
-
-const CHART_LABELS = {
-  monatsentgelt:  "Monatsentgelt",
-  utZulage:       "ÜT-Zulage",
-  urlaubsgeld:    "Urlaubsgeld",
-  tZugA:          "T-ZUG A",
-  tZugB:          "T-ZUG B",
-  weihnachtsgeld: "Weihnachtsgeld"
 };
 
 // ---------------------------------------------------------------------------
 // Helper: reset a <select> to its placeholder and disable it
 // ---------------------------------------------------------------------------
 
-function resetSelect(el, placeholder = "Bitte wählen\u2026") {
-  el.innerHTML = `<option value="">${placeholder}</option>`;
+function resetSelect(el) {
+  el.innerHTML = `<option value="">${t("placeholder")}</option>`;
   el.disabled = true;
 }
 
@@ -94,12 +84,16 @@ function resetSelect(el, placeholder = "Bitte wählen\u2026") {
 function init() {
   allData = ERA_DATA;
 
+  // Apply saved language on load
+  document.documentElement.lang = currentLang;
+  applyTranslations();
+
   // Populate year dropdown (descending)
   const years = Object.keys(allData).sort((a, b) => b.localeCompare(a));
   for (const y of years) {
     const opt = document.createElement("option");
     opt.value = y;
-    opt.textContent = `ab 01.04.${y}`;
+    opt.textContent = tReplace("yearOption", { year: y });
     elJahr.appendChild(opt);
   }
 
@@ -110,13 +104,13 @@ function loadYear(year) {
   salaryData = allData[year].salaryData;
   bonusData = allData[year].bonusData;
 
-  elSubtitle.textContent = `Metall- und Elektroindustrie \u2013 g\u00fcltig ab 01.04.${year}`;
+  elSubtitle.textContent = tReplace("subtitleWithYear", { year });
 
   // Reset dependent dropdowns
-  resetSelect(elBundesland, "Bitte w\u00e4hlen\u2026");
+  resetSelect(elBundesland);
   elBundesland.disabled = false;
-  resetSelect(elEG, "Bitte w\u00e4hlen\u2026");
-  resetSelect(elStufe, "Bitte w\u00e4hlen\u2026");
+  resetSelect(elEG);
+  resetSelect(elStufe);
   hideResult();
 
   const regions = Object.keys(salaryData).sort((a, b) =>
@@ -126,10 +120,62 @@ function loadYear(year) {
   for (const region of regions) {
     const opt = document.createElement("option");
     opt.value = region;
-    opt.textContent = region;
+    opt.textContent = tRegion(region);
     elBundesland.appendChild(opt);
   }
 }
+
+// ---------------------------------------------------------------------------
+// Language switch: re-render dynamic content
+// ---------------------------------------------------------------------------
+
+const _origApplyTranslations = applyTranslations;
+applyTranslations = function () {
+  _origApplyTranslations();
+
+  // Re-render year options
+  const selectedYear = elJahr.value;
+  elJahr.innerHTML = "";
+  const years = Object.keys(allData).sort((a, b) => b.localeCompare(a));
+  for (const y of years) {
+    const opt = document.createElement("option");
+    opt.value = y;
+    opt.textContent = tReplace("yearOption", { year: y });
+    elJahr.appendChild(opt);
+  }
+  if (selectedYear) elJahr.value = selectedYear;
+
+  // Re-render subtitle
+  const year = elJahr.value;
+  if (year) {
+    elSubtitle.textContent = tReplace("subtitleWithYear", { year });
+  }
+
+  // Update Bundesland option texts
+  for (const opt of elBundesland.options) {
+    if (opt.value === "") {
+      opt.textContent = t("placeholder");
+    } else {
+      opt.textContent = tRegion(opt.value);
+    }
+  }
+
+  // Update EG placeholder
+  const egFirst = elEG.querySelector('option[value=""]');
+  if (egFirst) egFirst.textContent = t("placeholder");
+
+  // Update Stufe option texts
+  for (const opt of elStufe.options) {
+    if (opt.value === "") {
+      opt.textContent = t("placeholder");
+    } else {
+      opt.textContent = tStep(opt.value);
+    }
+  }
+
+  // Re-render chart and result if visible
+  recalcIfReady();
+};
 
 // ---------------------------------------------------------------------------
 // Event: Jahr changed → reload data for selected year
@@ -165,8 +211,8 @@ elJahr.addEventListener("change", () => {
 // ---------------------------------------------------------------------------
 
 elBundesland.addEventListener("change", () => {
-  resetSelect(elEG, "Bitte wählen\u2026");
-  resetSelect(elStufe, "Bitte wählen\u2026");
+  resetSelect(elEG);
+  resetSelect(elStufe);
   hideResult();
 
   const region = elBundesland.value;
@@ -194,7 +240,7 @@ elBundesland.addEventListener("change", () => {
 // ---------------------------------------------------------------------------
 
 elEG.addEventListener("change", () => {
-  resetSelect(elStufe, "Bitte wählen\u2026");
+  resetSelect(elStufe);
   hideResult();
 
   const region = elBundesland.value;
@@ -209,7 +255,7 @@ elEG.addEventListener("change", () => {
   for (const name of stepNames) {
     const opt = document.createElement("option");
     opt.value = name;
-    opt.textContent = name;
+    opt.textContent = tStep(name);
     elStufe.appendChild(opt);
   }
 
@@ -349,20 +395,24 @@ function showResult(tabellenMonthly) {
     const urlaubsgeld     = hatAnspruch ? monthly * bonus.urlaubsgeld : 0;
     const weihnachtsgeld  = hatAnspruch ? monthly * wgSatz : 0;
     const tZugA           = hatAnspruch ? monthly * bonus.tZugA : 0;
+    const tGeld           = hatAnspruch && bonus.tGeld ? monthly * bonus.tGeld : 0;
     const tZugB           = hatAnspruch ? bonus.eckentgelt * azFaktor * bonus.tZugB : 0;
-    const total           = grundgehalt + utJaehrlich + urlaubsgeld + weihnachtsgeld + tZugA + tZugB;
+    const total           = grundgehalt + utJaehrlich + urlaubsgeld + weihnachtsgeld + tZugA + tGeld + tZugB;
 
     elAnnual.textContent         = currencyFmt.format(total);
     elGrundgehalt.textContent    = currencyFmt.format(grundgehalt);
     elUrlaubsgeld.textContent    = currencyFmt.format(urlaubsgeld);
     elWeihnachtsgeld.textContent = currencyFmt.format(weihnachtsgeld);
     elTZugA.textContent          = currencyFmt.format(tZugA);
+    elTGeld.textContent          = currencyFmt.format(tGeld);
     elTZugB.textContent          = currencyFmt.format(tZugB);
 
     // ÜT-Zulage Zeile ein-/ausblenden
     if (utPct > 0) {
       elUtZulageAnnual.textContent = currencyFmt.format(utJaehrlich);
-      elUtZulagePct.textContent = `(${utPct.toFixed(1).replace(".", ",")}\u00a0% v. ME)`;
+      elUtZulagePct.textContent = tReplace("utZulagePct", {
+        pct: utPct.toFixed(1).replace(".", ",")
+      });
       elUtZulageRow.classList.remove("hidden");
     } else {
       elUtZulageRow.classList.add("hidden");
@@ -370,18 +420,20 @@ function showResult(tabellenMonthly) {
 
     // Dynamische Prozentanzeige im Label
     const pctText = hatAnspruch
-      ? `(${(wgSatz * 100).toFixed(0).replace(".", ",")}\u00a0% eines ME)`
-      : "(kein Anspruch)";
+      ? tReplace("xmasPayPct", {
+          pct: (wgSatz * 100).toFixed(0).replace(".", ",")
+        })
+      : t("xmasPayNone");
     elWeihnachtsgeldPct.textContent = pctText;
 
     // T-ZUG B Prozentsatz dynamisch anzeigen
-    const tZugBPct = (bonus.tZugB * 100).toFixed(1).replace(".", ",");
-    elTZugBPct.textContent = `(${tZugBPct}\u00a0% v. Eckentgelt)`;
+    const tZugBPctVal = (bonus.tZugB * 100).toFixed(1).replace(".", ",");
+    elTZugBPct.textContent = tReplace("tZugBPct", { pct: tZugBPctVal });
 
     elBreakdown.classList.remove("hidden");
 
     // Chart rendern
-    renderChart(monthly, utMonatlich, urlaubsgeld, weihnachtsgeld, tZugA, tZugB);
+    renderChart(monthly, utMonatlich, urlaubsgeld, weihnachtsgeld, tZugA, tGeld, tZugB);
   } else {
     const total = grundgehalt + utJaehrlich;
     elAnnual.textContent = currencyFmt.format(total);
@@ -393,20 +445,23 @@ function showResult(tabellenMonthly) {
 }
 
 // ---------------------------------------------------------------------------
-// Chart: Bruttoverdienst nach Monaten (nur Baden-Württemberg)
+// Chart: Bruttoverdienst nach Monaten
 // Auszahlungsmonate: Feb → T-ZUG B, Jun → Urlaubsgeld,
-//                    Jul → T-ZUG A, Nov → Weihnachtsgeld
+//                    Jul → T-ZUG A + T-Geld, Nov → Weihnachtsgeld
 // ---------------------------------------------------------------------------
 
-function renderChart(monthly, utMonatlich, urlaubsgeld, weihnachtsgeld, tZugA, tZugB) {
+function renderChart(monthly, utMonatlich, urlaubsgeld, weihnachtsgeld, tZugA, tGeld, tZugB) {
+  const monthNames = t("chartMonths");
+  const chartLabels = t("chartLabels");
   const baseSegCount = 1 + (utMonatlich > 0 ? 1 : 0);
 
-  const data = MONTH_NAMES.map((label, i) => {
+  const data = monthNames.map((label, i) => {
     const segs = [{ key: "monatsentgelt", value: monthly }];
     if (utMonatlich > 0) segs.push({ key: "utZulage", value: utMonatlich });
     if (i === 1  && tZugB > 0)          segs.push({ key: "tZugB",          value: tZugB });
     if (i === 5  && urlaubsgeld > 0)     segs.push({ key: "urlaubsgeld",    value: urlaubsgeld });
     if (i === 6  && tZugA > 0)           segs.push({ key: "tZugA",          value: tZugA });
+    if (i === 6  && tGeld > 0)           segs.push({ key: "tGeld",          value: tGeld });
     if (i === 10 && weihnachtsgeld > 0)  segs.push({ key: "weihnachtsgeld", value: weihnachtsgeld });
     const total = segs.reduce((s, seg) => s + seg.value, 0);
     return { label, segs, total };
@@ -421,13 +476,13 @@ function renderChart(monthly, utMonatlich, urlaubsgeld, weihnachtsgeld, tZugA, t
     let segsHtml = "";
     for (const seg of month.segs) {
       const segPct = month.total > 0 ? (seg.value / month.total) * 100 : 0;
-      segsHtml += `<div class="chart-seg" style="height:${segPct.toFixed(1)}%;background:${CHART_COLORS[seg.key]}" title="${CHART_LABELS[seg.key]}: ${currencyFmt.format(seg.value)}"></div>`;
+      segsHtml += `<div class="chart-seg" style="height:${segPct.toFixed(1)}%;background:${CHART_COLORS[seg.key]}" title="${chartLabels[seg.key]}: ${currencyFmt.format(seg.value)}"></div>`;
     }
 
     const hasBonus = month.segs.length > baseSegCount;
     const totalHtml = hasBonus
       ? `<span class="chart-total">${compactFmt.format(month.total)}</span>`
-      : `<span class="chart-total" style="visibility:hidden">0 €</span>`;
+      : `<span class="chart-total" style="visibility:hidden">0 \u20ac</span>`;
 
     barsHtml += `<div class="chart-col">${totalHtml}<div class="chart-bar-area"><div class="chart-stack" style="height:${pct.toFixed(1)}%">${segsHtml}</div></div><span class="chart-lbl">${month.label}</span></div>`;
   }
@@ -439,10 +494,10 @@ function renderChart(monthly, utMonatlich, urlaubsgeld, weihnachtsgeld, tZugA, t
   for (const month of data) {
     for (const seg of month.segs) allKeys.add(seg.key);
   }
-  const legendOrder = ["monatsentgelt", "utZulage", "tZugB", "urlaubsgeld", "tZugA", "weihnachtsgeld"];
+  const legendOrder = ["monatsentgelt", "utZulage", "tZugB", "urlaubsgeld", "tZugA", "tGeld", "weihnachtsgeld"];
   elChartLegend.innerHTML = legendOrder
     .filter(k => allKeys.has(k))
-    .map(k => `<div class="chart-legend-item"><span class="chart-legend-color" style="background:${CHART_COLORS[k]}"></span>${CHART_LABELS[k]}</div>`)
+    .map(k => `<div class="chart-legend-item"><span class="chart-legend-color" style="background:${CHART_COLORS[k]}"></span>${chartLabels[k]}</div>`)
     .join("");
 
   elChart.classList.remove("hidden");

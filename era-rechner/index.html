@@ -9,39 +9,43 @@
 <body>
   <main class="container">
     <header>
-      <h1>ERA Entgeltrechner</h1>
+      <div class="lang-switch">
+        <button class="lang-btn active" data-lang="de" onclick="setLanguage('de')">DE</button>
+        <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+      </div>
+      <h1 data-i18n="title">ERA Entgeltrechner</h1>
       <p class="subtitle" id="subtitle">Metall- und Elektroindustrie</p>
     </header>
 
-    <section class="calculator" aria-label="Gehaltsrechner">
+    <section class="calculator" data-i18n-aria="ariaLabel" aria-label="Gehaltsrechner">
       <div class="form-group">
-        <label for="jahr">Tarifjahr</label>
+        <label for="jahr" data-i18n="labelYear">Tarifjahr</label>
         <select id="jahr"></select>
       </div>
 
       <div class="form-group">
-        <label for="bundesland">Bundesland / Tarifgebiet</label>
+        <label for="bundesland" data-i18n="labelRegion">Bundesland / Tarifgebiet</label>
         <select id="bundesland">
           <option value="">Bitte w&auml;hlen&hellip;</option>
         </select>
       </div>
 
       <div class="form-group">
-        <label for="eg">Entgeltgruppe (EG)</label>
+        <label for="eg" data-i18n="labelGrade">Entgeltgruppe (EG)</label>
         <select id="eg" disabled>
           <option value="">Bitte w&auml;hlen&hellip;</option>
         </select>
       </div>
 
       <div class="form-group">
-        <label for="stufe">Stufe</label>
+        <label for="stufe" data-i18n="labelStep">Stufe</label>
         <select id="stufe" disabled>
           <option value="">Bitte w&auml;hlen&hellip;</option>
         </select>
       </div>
 
       <div class="form-group">
-        <label for="arbeitszeit">W&ouml;chentliche Arbeitszeit</label>
+        <label for="arbeitszeit" data-i18n="labelHours">W&ouml;chentliche Arbeitszeit</label>
         <div class="range-group">
           <input type="range" id="arbeitszeit" min="20" max="42" step="1" value="35">
           <output for="arbeitszeit" id="arbeitszeit-output">35&nbsp;h</output>
@@ -49,12 +53,12 @@
       </div>
 
       <div class="form-group">
-        <label for="eintrittsdatum">Eintrittsdatum (optional)</label>
+        <label for="eintrittsdatum" data-i18n="labelStartDate">Eintrittsdatum (optional)</label>
         <input type="date" id="eintrittsdatum">
       </div>
 
       <div class="form-group">
-        <label for="ut-zulage">&Uuml;bertarifliche Zulage</label>
+        <label for="ut-zulage" data-i18n="labelBonus">&Uuml;bertarifliche Zulage</label>
         <div class="range-group">
           <input type="range" id="ut-zulage" min="0" max="30" step="0.1" value="0">
           <output for="ut-zulage" id="ut-zulage-output">0&nbsp;%</output>
@@ -64,49 +68,65 @@
 
     <section id="result" class="result hidden" aria-live="polite">
       <div class="result-row">
-        <span class="result-label">Monatsentgelt (brutto)</span>
+        <span class="result-label" data-i18n="resultMonthly">Monatsentgelt (brutto)</span>
         <span class="result-value" id="monthly"></span>
       </div>
       <div class="result-row highlight">
-        <span class="result-label">Bruttojahresgehalt (gesamt)</span>
+        <span class="result-label" data-i18n="resultAnnual">Bruttojahresgehalt (gesamt)</span>
         <span class="result-value" id="annual"></span>
       </div>
 
       <div id="breakdown" class="breakdown hidden">
-        <h3 class="breakdown-title">Aufschl&uuml;sselung</h3>
+        <h3 class="breakdown-title" data-i18n="breakdownTitle">Aufschl&uuml;sselung</h3>
         <div class="breakdown-row">
-          <span class="breakdown-label">12 &times; Monatsentgelt</span>
+          <span class="breakdown-label" data-i18n-html="breakdownBase">12 &times; Monatsentgelt</span>
           <span class="breakdown-value" id="grundgehalt"></span>
         </div>
         <div class="breakdown-row hidden" id="ut-zulage-row">
-          <span class="breakdown-label">12 &times; &Uuml;T-Zulage <small id="ut-zulage-pct"></small></span>
+          <span class="breakdown-label">
+            <span data-i18n-html="breakdownUtZulage">12 &times; &Uuml;T-Zulage</span> <small id="ut-zulage-pct"></small>
+          </span>
           <span class="breakdown-value" id="ut-zulage-annual"></span>
         </div>
         <div class="breakdown-row">
-          <span class="breakdown-label">Urlaubsgeld <small>(50&nbsp;% eines ME)</small></span>
+          <span class="breakdown-label">
+            <span data-i18n="breakdownHolidayPay">Urlaubsgeld</span> <small data-i18n-html="breakdownHolidayPayDetail">(50&nbsp;% eines ME)</small>
+          </span>
           <span class="breakdown-value" id="urlaubsgeld"></span>
         </div>
         <div class="breakdown-row">
-          <span class="breakdown-label">Weihnachtsgeld <small id="weihnachtsgeld-pct">(55&nbsp;% eines ME)</small></span>
+          <span class="breakdown-label">
+            <span data-i18n="breakdownXmasPay">Weihnachtsgeld</span> <small id="weihnachtsgeld-pct" data-i18n-html="breakdownXmasPayDetail">(55&nbsp;% eines ME)</small>
+          </span>
           <span class="breakdown-value" id="weihnachtsgeld"></span>
         </div>
         <div class="breakdown-row">
-          <span class="breakdown-label">T-ZUG A <small>(27,5&nbsp;% eines ME)</small></span>
+          <span class="breakdown-label">
+            <span data-i18n="breakdownTZugA">T-ZUG A</span> <small data-i18n-html="breakdownTZugADetail">(27,5&nbsp;% eines ME)</small>
+          </span>
           <span class="breakdown-value" id="tzug-a"></span>
         </div>
         <div class="breakdown-row">
-          <span class="breakdown-label">T-ZUG B <small id="tzug-b-pct">(18,5&nbsp;% v. Eckentgelt)</small></span>
+          <span class="breakdown-label">
+            <span data-i18n="breakdownTGeld">T-Geld</span> <small data-i18n-html="breakdownTGeldDetail">(18,4&nbsp;% eines ME)</small>
+          </span>
+          <span class="breakdown-value" id="tgeld"></span>
+        </div>
+        <div class="breakdown-row">
+          <span class="breakdown-label">
+            <span data-i18n="breakdownTZugB">T-ZUG B</span> <small id="tzug-b-pct" data-i18n-html="breakdownTZugBDetail">(18,5&nbsp;% v. Eckentgelt)</small>
+          </span>
           <span class="breakdown-value" id="tzug-b"></span>
         </div>
       </div>
 
       <div id="chart" class="chart hidden">
-        <h3 class="chart-title">Bruttoverdienst nach Monaten</h3>
+        <h3 class="chart-title" data-i18n="chartTitle">Bruttoverdienst nach Monaten</h3>
         <div class="chart-area" id="chart-area"></div>
         <div class="chart-legend" id="chart-legend"></div>
       </div>
 
-      <p class="result-note">
+      <p class="result-note" data-i18n="resultNote">
         Die Tabellenwerte basieren auf 35&nbsp;h/Woche (tarifliche Vollzeit).
         Bei abweichender Arbeitszeit wird das Entgelt anteilig berechnet (Faktor&nbsp;=&nbsp;Wochenstunden&nbsp;/&nbsp;35).
         Weihnachtsgeld: voller Satz nach 36&nbsp;Mon. Betriebszugeh&ouml;rigkeit.
@@ -117,11 +137,11 @@
     </section>
 
     <footer>
-      <p>Quelle: IG Metall ERA-Entgelttabellen</p>
-      <p>*) Weitere Erh&ouml;hungen vereinbart</p>
+      <p data-i18n="footerSource">Quelle: IG Metall ERA-Entgelttabellen</p>
     </footer>
   </main>
 
+  <script src="i18n.js"></script>
   <script src="data.js"></script>
   <script src="app.js"></script>
 </body>
