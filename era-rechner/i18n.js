@@ -79,6 +79,9 @@ const TRANSLATIONS = {
 
     // Footer
     footerSource: "Quelle: IG Metall ERA-Entgelttabellen",
+    footerImprint: "Impressum",
+    footerPrivacy: "Datenschutz",
+    backToCalculator: "\u2190 Zur\u00fcck zum Rechner",
   },
 
   en: {
@@ -188,6 +191,9 @@ const TRANSLATIONS = {
 
     // Footer
     footerSource: "Source: IG Metall ERA salary tables",
+    footerImprint: "Legal Notice",
+    footerPrivacy: "Privacy Policy",
+    backToCalculator: "\u2190 Back to Calculator",
   }
 };
 
