@@ -807,26 +807,211 @@ const ERA_DATA = {
       "Baden-Württemberg": {
         "urlaubsgeld": 0.5,
         "tZugA": 0.275,
+        "tGeld": 0.184,
         "tZugB": 0.185,
         "eckentgelt": 3197,
         "minMonate": 6,
         "weihnachtsgeldStaffel": [
-          {
-            "monate": 36,
-            "satz": 0.55
-          },
-          {
-            "monate": 24,
-            "satz": 0.45
-          },
-          {
-            "monate": 12,
-            "satz": 0.35
-          },
-          {
-            "monate": 6,
-            "satz": 0.25
-          }
+          { "monate": 36, "satz": 0.55 },
+          { "monate": 24, "satz": 0.45 },
+          { "monate": 12, "satz": 0.35 },
+          { "monate": 6,  "satz": 0.25 }
+        ]
+      },
+      "Bayern": {
+        "urlaubsgeld": 0.5,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.185,
+        "eckentgelt": 3392,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          { "monate": 36, "satz": 0.55 },
+          { "monate": 24, "satz": 0.45 },
+          { "monate": 12, "satz": 0.35 },
+          { "monate": 6,  "satz": 0.25 }
+        ]
+      },
+      "Berlin/Brandenburg": {
+        "urlaubsgeld": 0.5,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.185,
+        "eckentgelt": 3287,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          { "monate": 36, "satz": 0.55 },
+          { "monate": 24, "satz": 0.45 },
+          { "monate": 12, "satz": 0.35 },
+          { "monate": 6,  "satz": 0.25 }
+        ]
+      },
+      "Hamburg/Unterweser": {
+        "urlaubsgeld": 0.5,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.185,
+        "eckentgelt": 3377,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          { "monate": 36, "satz": 0.55 },
+          { "monate": 24, "satz": 0.45 },
+          { "monate": 12, "satz": 0.35 },
+          { "monate": 6,  "satz": 0.25 }
+        ]
+      },
+      "Hessen": {
+        "urlaubsgeld": 0.5,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.185,
+        "eckentgelt": 3189,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          { "monate": 36, "satz": 0.55 },
+          { "monate": 24, "satz": 0.45 },
+          { "monate": 12, "satz": 0.35 },
+          { "monate": 6,  "satz": 0.25 }
+        ]
+      },
+      "Niedersachsen": {
+        "urlaubsgeld": 0.5,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.185,
+        "eckentgelt": 3255,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          { "monate": 36, "satz": 0.55 },
+          { "monate": 24, "satz": 0.45 },
+          { "monate": 12, "satz": 0.35 },
+          { "monate": 6,  "satz": 0.25 }
+        ]
+      },
+      "Nordrhein-Westfalen": {
+        "urlaubsgeld": 0.5,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.185,
+        "eckentgelt": 3454,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          { "monate": 36, "satz": 0.55 },
+          { "monate": 24, "satz": 0.45 },
+          { "monate": 12, "satz": 0.35 },
+          { "monate": 6,  "satz": 0.25 }
+        ]
+      },
+      "Osnabrück-Emsland": {
+        "urlaubsgeld": 0.5,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.185,
+        "eckentgelt": 3566,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          { "monate": 36, "satz": 0.55 },
+          { "monate": 24, "satz": 0.45 },
+          { "monate": 12, "satz": 0.35 },
+          { "monate": 6,  "satz": 0.25 }
+        ]
+      },
+      "Pfalz": {
+        "urlaubsgeld": 0.5,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.185,
+        "eckentgelt": 3189,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          { "monate": 36, "satz": 0.55 },
+          { "monate": 24, "satz": 0.45 },
+          { "monate": 12, "satz": 0.35 },
+          { "monate": 6,  "satz": 0.25 }
+        ]
+      },
+      "Rheinland-Rheinhessen": {
+        "urlaubsgeld": 0.5,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.185,
+        "eckentgelt": 3189,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          { "monate": 36, "satz": 0.55 },
+          { "monate": 24, "satz": 0.45 },
+          { "monate": 12, "satz": 0.35 },
+          { "monate": 6,  "satz": 0.25 }
+        ]
+      },
+      "Saarland": {
+        "urlaubsgeld": 0.5,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.185,
+        "eckentgelt": 3189,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          { "monate": 36, "satz": 0.55 },
+          { "monate": 24, "satz": 0.45 },
+          { "monate": 12, "satz": 0.35 },
+          { "monate": 6,  "satz": 0.25 }
+        ]
+      },
+      "Sachsen": {
+        "urlaubsgeld": 0.5,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.185,
+        "eckentgelt": 3189,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          { "monate": 36, "satz": 0.55 },
+          { "monate": 24, "satz": 0.45 },
+          { "monate": 12, "satz": 0.35 },
+          { "monate": 6,  "satz": 0.25 }
+        ]
+      },
+      "Sachsen-Anhalt": {
+        "urlaubsgeld": 0.5,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.185,
+        "eckentgelt": 3280,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          { "monate": 36, "satz": 0.55 },
+          { "monate": 24, "satz": 0.45 },
+          { "monate": 12, "satz": 0.35 },
+          { "monate": 6,  "satz": 0.25 }
+        ]
+      },
+      "Schleswig-Holstein/MV/NW-Niedersachsen": {
+        "urlaubsgeld": 0.5,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.185,
+        "eckentgelt": 3377,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          { "monate": 36, "satz": 0.55 },
+          { "monate": 24, "satz": 0.45 },
+          { "monate": 12, "satz": 0.35 },
+          { "monate": 6,  "satz": 0.25 }
+        ]
+      },
+      "Thüringen": {
+        "urlaubsgeld": 0.5,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.185,
+        "eckentgelt": 3189,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          { "monate": 36, "satz": 0.55 },
+          { "monate": 24, "satz": 0.45 },
+          { "monate": 12, "satz": 0.35 },
+          { "monate": 6,  "satz": 0.25 }
         ]
       }
     }
@@ -1638,26 +1823,211 @@ const ERA_DATA = {
       "Baden-Württemberg": {
         "urlaubsgeld": 0.5,
         "tZugA": 0.275,
+        "tGeld": 0.184,
         "tZugB": 0.265,
         "eckentgelt": 3296.11,
         "minMonate": 6,
         "weihnachtsgeldStaffel": [
-          {
-            "monate": 36,
-            "satz": 0.55
-          },
-          {
-            "monate": 24,
-            "satz": 0.45
-          },
-          {
-            "monate": 12,
-            "satz": 0.35
-          },
-          {
-            "monate": 6,
-            "satz": 0.25
-          }
+          { "monate": 36, "satz": 0.55 },
+          { "monate": 24, "satz": 0.45 },
+          { "monate": 12, "satz": 0.35 },
+          { "monate": 6,  "satz": 0.25 }
+        ]
+      },
+      "Bayern": {
+        "urlaubsgeld": 0.5,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.265,
+        "eckentgelt": 3497.15,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          { "monate": 36, "satz": 0.55 },
+          { "monate": 24, "satz": 0.45 },
+          { "monate": 12, "satz": 0.35 },
+          { "monate": 6,  "satz": 0.25 }
+        ]
+      },
+      "Berlin/Brandenburg": {
+        "urlaubsgeld": 0.5,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.265,
+        "eckentgelt": 3388.9,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          { "monate": 36, "satz": 0.55 },
+          { "monate": 24, "satz": 0.45 },
+          { "monate": 12, "satz": 0.35 },
+          { "monate": 6,  "satz": 0.25 }
+        ]
+      },
+      "Hamburg/Unterweser": {
+        "urlaubsgeld": 0.5,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.265,
+        "eckentgelt": 3481.69,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          { "monate": 36, "satz": 0.55 },
+          { "monate": 24, "satz": 0.45 },
+          { "monate": 12, "satz": 0.35 },
+          { "monate": 6,  "satz": 0.25 }
+        ]
+      },
+      "Hessen": {
+        "urlaubsgeld": 0.5,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.265,
+        "eckentgelt": 3287.86,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          { "monate": 36, "satz": 0.55 },
+          { "monate": 24, "satz": 0.45 },
+          { "monate": 12, "satz": 0.35 },
+          { "monate": 6,  "satz": 0.25 }
+        ]
+      },
+      "Niedersachsen": {
+        "urlaubsgeld": 0.5,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.265,
+        "eckentgelt": 3355.91,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          { "monate": 36, "satz": 0.55 },
+          { "monate": 24, "satz": 0.45 },
+          { "monate": 12, "satz": 0.35 },
+          { "monate": 6,  "satz": 0.25 }
+        ]
+      },
+      "Nordrhein-Westfalen": {
+        "urlaubsgeld": 0.5,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.265,
+        "eckentgelt": 3561.07,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          { "monate": 36, "satz": 0.55 },
+          { "monate": 24, "satz": 0.45 },
+          { "monate": 12, "satz": 0.35 },
+          { "monate": 6,  "satz": 0.25 }
+        ]
+      },
+      "Osnabrück-Emsland": {
+        "urlaubsgeld": 0.5,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.265,
+        "eckentgelt": 3676.55,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          { "monate": 36, "satz": 0.55 },
+          { "monate": 24, "satz": 0.45 },
+          { "monate": 12, "satz": 0.35 },
+          { "monate": 6,  "satz": 0.25 }
+        ]
+      },
+      "Pfalz": {
+        "urlaubsgeld": 0.5,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.265,
+        "eckentgelt": 3287.86,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          { "monate": 36, "satz": 0.55 },
+          { "monate": 24, "satz": 0.45 },
+          { "monate": 12, "satz": 0.35 },
+          { "monate": 6,  "satz": 0.25 }
+        ]
+      },
+      "Rheinland-Rheinhessen": {
+        "urlaubsgeld": 0.5,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.265,
+        "eckentgelt": 3287.86,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          { "monate": 36, "satz": 0.55 },
+          { "monate": 24, "satz": 0.45 },
+          { "monate": 12, "satz": 0.35 },
+          { "monate": 6,  "satz": 0.25 }
+        ]
+      },
+      "Saarland": {
+        "urlaubsgeld": 0.5,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.265,
+        "eckentgelt": 3287.86,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          { "monate": 36, "satz": 0.55 },
+          { "monate": 24, "satz": 0.45 },
+          { "monate": 12, "satz": 0.35 },
+          { "monate": 6,  "satz": 0.25 }
+        ]
+      },
+      "Sachsen": {
+        "urlaubsgeld": 0.5,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.265,
+        "eckentgelt": 3287.86,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          { "monate": 36, "satz": 0.55 },
+          { "monate": 24, "satz": 0.45 },
+          { "monate": 12, "satz": 0.35 },
+          { "monate": 6,  "satz": 0.25 }
+        ]
+      },
+      "Sachsen-Anhalt": {
+        "urlaubsgeld": 0.5,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.265,
+        "eckentgelt": 3381.68,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          { "monate": 36, "satz": 0.55 },
+          { "monate": 24, "satz": 0.45 },
+          { "monate": 12, "satz": 0.35 },
+          { "monate": 6,  "satz": 0.25 }
+        ]
+      },
+      "Schleswig-Holstein/MV/NW-Niedersachsen": {
+        "urlaubsgeld": 0.5,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.265,
+        "eckentgelt": 3481.69,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          { "monate": 36, "satz": 0.55 },
+          { "monate": 24, "satz": 0.45 },
+          { "monate": 12, "satz": 0.35 },
+          { "monate": 6,  "satz": 0.25 }
+        ]
+      },
+      "Thüringen": {
+        "urlaubsgeld": 0.5,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.265,
+        "eckentgelt": 3287.86,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          { "monate": 36, "satz": 0.55 },
+          { "monate": 24, "satz": 0.45 },
+          { "monate": 12, "satz": 0.35 },
+          { "monate": 6,  "satz": 0.25 }
         ]
       }
     }
