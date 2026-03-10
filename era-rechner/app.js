@@ -22,6 +22,7 @@ const elStufe            = document.getElementById("stufe");
 const elArbeitszeit      = document.getElementById("arbeitszeit");
 const elArbeitszeitOutput = document.getElementById("arbeitszeit-output");
 const elEintrittsdatum   = document.getElementById("eintrittsdatum");
+const elTZugAFrei        = document.getElementById("tzug-a-frei");
 const elUtZulage         = document.getElementById("ut-zulage");
 const elUtZulageOutput   = document.getElementById("ut-zulage-output");
 const elResult           = document.getElementById("result");
@@ -39,6 +40,11 @@ const elTZugA            = document.getElementById("tzug-a");
 const elTGeld            = document.getElementById("tgeld");
 const elTZugB            = document.getElementById("tzug-b");
 const elTZugBPct         = document.getElementById("tzug-b-pct");
+const elSonderzahlung    = document.getElementById("sonderzahlung");
+const elSonderzahlungRow = document.getElementById("sonderzahlung-row");
+const elSonderzahlungAnnual = document.getElementById("sonderzahlung-annual");
+const elHourly           = document.getElementById("hourly");
+const elYearNotice       = document.getElementById("year-notice");
 const elChart            = document.getElementById("chart");
 const elChartArea        = document.getElementById("chart-area");
 const elChartLegend      = document.getElementById("chart-legend");
@@ -88,15 +94,8 @@ function init() {
   document.documentElement.lang = currentLang;
   applyTranslations();
 
-  // Populate year dropdown (descending)
+  // Year dropdown is already populated by applyTranslations() above.
   const years = Object.keys(allData).sort((a, b) => b.localeCompare(a));
-  for (const y of years) {
-    const opt = document.createElement("option");
-    opt.value = y;
-    opt.textContent = tReplace("yearOption", { year: y });
-    elJahr.appendChild(opt);
-  }
-
   loadYear(years[0]);
 }
 
@@ -105,6 +104,13 @@ function loadYear(year) {
   bonusData = allData[year].bonusData;
 
   elSubtitle.textContent = tReplace("subtitleWithYear", { year });
+
+  // Hinweis für vorläufige Werte ein-/ausblenden
+  if (year === "2026") {
+    elYearNotice.classList.remove("hidden");
+  } else {
+    elYearNotice.classList.add("hidden");
+  }
 
   // Reset dependent dropdowns
   resetSelect(elBundesland);
@@ -319,6 +325,22 @@ elUtZulage.addEventListener("input", () => {
 });
 
 // ---------------------------------------------------------------------------
+// Event: T-ZUG A als freie Tage checkbox changed → recalculate
+// ---------------------------------------------------------------------------
+
+elTZugAFrei.addEventListener("change", () => {
+  recalcIfReady();
+});
+
+// ---------------------------------------------------------------------------
+// Event: Sonderzahlung changed → recalculate
+// ---------------------------------------------------------------------------
+
+elSonderzahlung.addEventListener("input", () => {
+  recalcIfReady();
+});
+
+// ---------------------------------------------------------------------------
 // Shared: recalculate if all required fields are filled
 // ---------------------------------------------------------------------------
 
@@ -378,6 +400,14 @@ function showResult(tabellenMonthly) {
 
   elMonthly.textContent = currencyFmt.format(monthly + utMonatlich);
 
+  // Brutto-Stundenlohn: Monatsentgelt / (Wochenstunden × 52 / 12)
+  const monatsStunden = wochenstunden * 52 / 12;
+  const stundenlohn = (monthly + utMonatlich) / monatsStunden;
+  elHourly.textContent = currencyFmt.format(stundenlohn);
+
+  // Optionale Sonderzahlung
+  const sonderzahlung = parseFloat(elSonderzahlung.value) || 0;
+
   if (bonus) {
     const datumStr = elEintrittsdatum.value;
     const monate = datumStr ? berechneMonate(datumStr) : null;
@@ -394,10 +424,11 @@ function showResult(tabellenMonthly) {
     // Sonderzahlungen basieren auf Grundentgelt (ohne ÜT-Zulage)
     const urlaubsgeld     = hatAnspruch ? monthly * bonus.urlaubsgeld : 0;
     const weihnachtsgeld  = hatAnspruch ? monthly * wgSatz : 0;
-    const tZugA           = hatAnspruch ? monthly * bonus.tZugA : 0;
+    const tZugAFreiTage   = elTZugAFrei.checked;
+    const tZugA           = hatAnspruch && !tZugAFreiTage ? monthly * bonus.tZugA : 0;
     const tGeld           = hatAnspruch && bonus.tGeld ? monthly * bonus.tGeld : 0;
     const tZugB           = hatAnspruch ? bonus.eckentgelt * azFaktor * bonus.tZugB : 0;
-    const total           = grundgehalt + utJaehrlich + urlaubsgeld + weihnachtsgeld + tZugA + tGeld + tZugB;
+    const total           = grundgehalt + utJaehrlich + urlaubsgeld + weihnachtsgeld + tZugA + tGeld + tZugB + sonderzahlung;
 
     elAnnual.textContent         = currencyFmt.format(total);
     elGrundgehalt.textContent    = currencyFmt.format(grundgehalt);
@@ -406,6 +437,14 @@ function showResult(tabellenMonthly) {
     elTZugA.textContent          = currencyFmt.format(tZugA);
     elTGeld.textContent          = currencyFmt.format(tGeld);
     elTZugB.textContent          = currencyFmt.format(tZugB);
+
+    // Sonderzahlung Zeile ein-/ausblenden
+    if (sonderzahlung > 0) {
+      elSonderzahlungAnnual.textContent = currencyFmt.format(sonderzahlung);
+      elSonderzahlungRow.classList.remove("hidden");
+    } else {
+      elSonderzahlungRow.classList.add("hidden");
+    }
 
     // ÜT-Zulage Zeile ein-/ausblenden
     if (utPct > 0) {
@@ -435,7 +474,7 @@ function showResult(tabellenMonthly) {
     // Chart rendern
     renderChart(monthly, utMonatlich, urlaubsgeld, weihnachtsgeld, tZugA, tGeld, tZugB);
   } else {
-    const total = grundgehalt + utJaehrlich;
+    const total = grundgehalt + utJaehrlich + sonderzahlung;
     elAnnual.textContent = currencyFmt.format(total);
     elBreakdown.classList.add("hidden");
     elChart.classList.add("hidden");

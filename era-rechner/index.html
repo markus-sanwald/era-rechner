@@ -23,6 +23,10 @@
         <select id="jahr"></select>
       </div>
 
+      <div id="year-notice" class="year-notice hidden" data-i18n="yearNotice2026">
+        Die Werte ab 01.04.2026 sind vorl&auml;ufig (Vorjahreswerte + 3,1&nbsp;%).
+      </div>
+
       <div class="form-group">
         <label for="bundesland" data-i18n="labelRegion">Bundesland / Tarifgebiet</label>
         <select id="bundesland">
@@ -47,14 +51,9 @@
       <div class="form-group">
         <label for="arbeitszeit" data-i18n="labelHours">W&ouml;chentliche Arbeitszeit</label>
         <div class="range-group">
-          <input type="range" id="arbeitszeit" min="20" max="42" step="1" value="35">
+          <input type="range" id="arbeitszeit" min="15" max="42" step="1" value="35">
           <output for="arbeitszeit" id="arbeitszeit-output">35&nbsp;h</output>
         </div>
-      </div>
-
-      <div class="form-group">
-        <label for="eintrittsdatum" data-i18n="labelStartDate">Eintrittsdatum (optional)</label>
-        <input type="date" id="eintrittsdatum">
       </div>
 
       <div class="form-group">
@@ -64,12 +63,36 @@
           <output for="ut-zulage" id="ut-zulage-output">0&nbsp;%</output>
         </div>
       </div>
+
+      <div class="form-group">
+        <label for="eintrittsdatum" data-i18n="labelStartDate">Eintrittsdatum (optional)</label>
+        <input type="date" id="eintrittsdatum">
+      </div>
+
+      <div class="form-group">
+        <label for="sonderzahlung" data-i18n="labelSonderzahlung">Sonderzahlung / Gewinnbeteiligung (optional)</label>
+        <div class="input-euro-group">
+          <input type="number" id="sonderzahlung" min="0" step="1" placeholder="0" value="">
+          <span class="input-euro-suffix">&euro;</span>
+        </div>
+      </div>
+
+      <div class="form-group checkbox-group">
+        <label class="checkbox-label">
+          <input type="checkbox" id="tzug-a-frei">
+          <span data-i18n="labelTZugADaysOff">T-ZUG A als freie Tage nehmen</span>
+        </label>
+      </div>
     </section>
 
     <section id="result" class="result hidden" aria-live="polite">
       <div class="result-row">
         <span class="result-label" data-i18n="resultMonthly">Monatsentgelt (brutto)</span>
         <span class="result-value" id="monthly"></span>
+      </div>
+      <div class="result-row">
+        <span class="result-label" data-i18n="resultHourly">Brutto-Stundenlohn</span>
+        <span class="result-value" id="hourly"></span>
       </div>
       <div class="result-row highlight">
         <span class="result-label" data-i18n="resultAnnual">Bruttojahresgehalt (gesamt)</span>
@@ -78,45 +101,58 @@
 
       <div id="breakdown" class="breakdown hidden">
         <h3 class="breakdown-title" data-i18n="breakdownTitle">Aufschl&uuml;sselung</h3>
-        <div class="breakdown-row">
-          <span class="breakdown-label" data-i18n-html="breakdownBase">12 &times; Monatsentgelt</span>
+        <div class="breakdown-row has-tooltip">
+          <span class="breakdown-label">
+            <span data-i18n-html="breakdownBase">12 &times; Monatsentgelt</span>
+            <span class="tooltip" data-i18n="tooltipBase">Tarifliches Monatsentgelt gem&auml;&szlig; ERA-Entgelttabelle, ggf. angepasst an die individuelle Wochenarbeitszeit.</span>
+          </span>
           <span class="breakdown-value" id="grundgehalt"></span>
         </div>
-        <div class="breakdown-row hidden" id="ut-zulage-row">
+        <div class="breakdown-row has-tooltip hidden" id="ut-zulage-row">
           <span class="breakdown-label">
             <span data-i18n-html="breakdownUtZulage">12 &times; &Uuml;T-Zulage</span> <small id="ut-zulage-pct"></small>
+            <span class="tooltip" data-i18n="tooltipUtZulage">Freiwillige Arbeitgeberzulage oberhalb des Tarifentgelts. Wird nicht bei Sonderzahlungen ber&uuml;cksichtigt.</span>
           </span>
           <span class="breakdown-value" id="ut-zulage-annual"></span>
         </div>
-        <div class="breakdown-row">
+        <div class="breakdown-row has-tooltip">
           <span class="breakdown-label">
             <span data-i18n="breakdownHolidayPay">Urlaubsgeld</span> <small data-i18n-html="breakdownHolidayPayDetail">(50&nbsp;% eines ME)</small>
+            <span class="tooltip" data-i18n="tooltipHolidayPay">Zus&auml;tzliches Urlaubsgeld, das einmal j&auml;hrlich im Juni ausgezahlt wird. Berechnung auf Basis des tariflichen Monatsentgelts.</span>
           </span>
           <span class="breakdown-value" id="urlaubsgeld"></span>
         </div>
-        <div class="breakdown-row">
+        <div class="breakdown-row has-tooltip">
           <span class="breakdown-label">
             <span data-i18n="breakdownXmasPay">Weihnachtsgeld</span> <small id="weihnachtsgeld-pct" data-i18n-html="breakdownXmasPayDetail">(55&nbsp;% eines ME)</small>
+            <span class="tooltip" data-i18n="tooltipXmasPay">Jahressonderzahlung im November. Der volle Satz (55&nbsp;%) wird nach 36 Monaten Betriebszugeh&ouml;rigkeit erreicht. Vorher gestaffelt: 25&nbsp;% (ab 6 Mon.), 35&nbsp;% (ab 12 Mon.), 45&nbsp;% (ab 24 Mon.).</span>
           </span>
           <span class="breakdown-value" id="weihnachtsgeld"></span>
         </div>
-        <div class="breakdown-row">
+        <div class="breakdown-row has-tooltip">
           <span class="breakdown-label">
             <span data-i18n="breakdownTZugA">T-ZUG A</span> <small data-i18n-html="breakdownTZugADetail">(27,5&nbsp;% eines ME)</small>
+            <span class="tooltip" data-i18n="tooltipTZugA">Tarifliches Zusatzgeld A &ndash; Auszahlung im Juli. Kann alternativ in freie Tage umgewandelt werden (bis zu 8 Tage). Wird bei Umwandlung nicht ausgezahlt.</span>
           </span>
           <span class="breakdown-value" id="tzug-a"></span>
         </div>
-        <div class="breakdown-row">
+        <div class="breakdown-row has-tooltip">
           <span class="breakdown-label">
             <span data-i18n="breakdownTGeld">T-Geld</span> <small data-i18n-html="breakdownTGeldDetail">(18,4&nbsp;% eines ME)</small>
+            <span class="tooltip" data-i18n="tooltipTGeld">Transformationsgeld &ndash; Auszahlung im Juli zusammen mit T-ZUG&nbsp;A. Dient der Finanzierung von Qualifizierung und Transformation in der Metall- und Elektroindustrie.</span>
           </span>
           <span class="breakdown-value" id="tgeld"></span>
         </div>
-        <div class="breakdown-row">
+        <div class="breakdown-row has-tooltip">
           <span class="breakdown-label">
             <span data-i18n="breakdownTZugB">T-ZUG B</span> <small id="tzug-b-pct" data-i18n-html="breakdownTZugBDetail">(18,5&nbsp;% v. Eckentgelt)</small>
+            <span class="tooltip" data-i18n="tooltipTZugB">Tarifliches Zusatzgeld B &ndash; fester Betrag auf Basis des Eckentgelts (EG&nbsp;5), unabh&auml;ngig von der pers&ouml;nlichen Entgeltgruppe. Auszahlung im Februar.</span>
           </span>
           <span class="breakdown-value" id="tzug-b"></span>
+        </div>
+        <div class="breakdown-row hidden" id="sonderzahlung-row">
+          <span class="breakdown-label" data-i18n="breakdownSonderzahlung">Sonderzahlung</span>
+          <span class="breakdown-value" id="sonderzahlung-annual"></span>
         </div>
       </div>
 
@@ -138,6 +174,8 @@
 
     <footer>
       <p data-i18n="footerSource">Quelle: IG Metall ERA-Entgelttabellen</p>
+      <p class="footer-disclaimer" data-i18n="footerDisclaimer">Dies ist kein offizielles Angebot der IG Metall. Alle Angaben ohne Gew&auml;hr.</p>
+      <p class="footer-feedback" data-i18n-html="footerFeedback">Anregungen, Fehler oder Feedback? <a href="mailto:info@era-rechner.de">info@era-rechner.de</a></p>
       <p class="footer-links">
         <a href="impressum.html" data-i18n="footerImprint">Impressum</a>
         <span class="footer-sep">&middot;</span>

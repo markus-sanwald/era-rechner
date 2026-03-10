@@ -118,6 +118,28 @@ header h1 {
   letter-spacing: 0.025em;
 }
 
+.checkbox-group {
+  flex-direction: row;
+  align-items: center;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 1rem;
+  height: 1rem;
+  accent-color: var(--color-primary);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
 .form-group select {
   appearance: none;
   -webkit-appearance: none;
@@ -152,6 +174,46 @@ header h1 {
   cursor: not-allowed;
 }
 
+.form-group input[type="number"] {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-family: inherit;
+  color: var(--color-text);
+  background-color: var(--color-card);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.form-group input[type="number"]:hover {
+  border-color: var(--color-primary-light);
+}
+
+.form-group input[type="number"]:focus {
+  outline: none;
+  border-color: var(--color-primary-light);
+  box-shadow: 0 0 0 3px rgba(10, 90, 158, 0.15);
+}
+
+.input-euro-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-euro-group input[type="number"] {
+  padding-right: 2.5rem;
+}
+
+.input-euro-suffix {
+  position: absolute;
+  right: 0.75rem;
+  color: var(--color-text-muted);
+  font-size: 1rem;
+  pointer-events: none;
+}
+
 .form-group input[type="date"] {
   width: 100%;
   padding: 0.75rem;
@@ -173,6 +235,27 @@ header h1 {
   outline: none;
   border-color: var(--color-primary-light);
   box-shadow: 0 0 0 3px rgba(10, 90, 158, 0.15);
+}
+
+/* Year notice banner */
+.year-notice {
+  font-size: 0.8rem;
+  color: #7a5c00;
+  background: #fff8e1;
+  border: 1px solid #ffe082;
+  border-radius: var(--radius);
+  padding: 0.5rem 0.75rem;
+  line-height: 1.5;
+}
+
+.year-notice.hidden {
+  display: none;
+}
+
+/* Footer disclaimer */
+.footer-disclaimer {
+  font-style: italic;
+  margin-top: 0.25rem;
 }
 
 /* Result */
@@ -273,6 +356,35 @@ header h1 {
 .breakdown-label small {
   font-weight: 400;
   opacity: 0.7;
+}
+
+/* Tooltips */
+.breakdown-row.has-tooltip .breakdown-label {
+  position: relative;
+  cursor: help;
+}
+
+.tooltip {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: calc(100% + 6px);
+  width: 280px;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--color-text);
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  z-index: 10;
+  pointer-events: none;
+}
+
+.breakdown-row.has-tooltip .breakdown-label:hover .tooltip {
+  display: block;
 }
 
 .breakdown-value {
