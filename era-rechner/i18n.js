@@ -3,7 +3,7 @@
 const TRANSLATIONS = {
   de: {
     // Page
-    pageTitle: "ERA Entgeltrechner \u2013 Metall- und Elektroindustrie",
+    pageTitle: "ERA Entgeltrechner \u2013 Metall- und Elektroindustrie | Gehaltsrechner 2025/2026",
     title: "ERA Entgeltrechner",
     subtitle: "Metall- und Elektroindustrie",
     subtitleWithYear: "Metall- und Elektroindustrie",
@@ -104,7 +104,7 @@ const TRANSLATIONS = {
 
   en: {
     // Page
-    pageTitle: "ERA Salary Calculator \u2013 Metal and Electrical Industry",
+    pageTitle: "ERA Salary Calculator \u2013 Metal and Electrical Industry | 2025/2026",
     title: "ERA Salary Calculator",
     subtitle: "Metal and Electrical Industry",
     subtitleWithYear: "Metal and Electrical Industry",
