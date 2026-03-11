@@ -21,5 +21,8 @@ python -m http.server 3000
 ```
 Dann im Browser `http://localhost:3000` aufrufen.
 
+## Unterstützung
+Dieses Projekt ist werbefrei und open-source. Wenn es dir weiterhilft, freue ich mich über eine [Spende via PayPal](https://paypal.me/erarechner).
+
 ## Lizenz
-Alle Rechte vorbehalten.
+Dieses Projekt steht unter der [MIT-Lizenz](era-rechner/LICENSE).
