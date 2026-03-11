@@ -93,6 +93,13 @@ const TRANSLATIONS = {
     // Steps (identity mapping for German)
     steps: {},
 
+    // Compare
+    compareSave: "Zum Vergleich merken",
+    compareTitle: "Vergleich",
+    compareDiff: "Differenz",
+    compareCurrent: "Aktuell",
+    compareReset: "Vergleich zur\u00fccksetzen",
+
     // Footer
     footerSource: "Quelle: IG Metall ERA-Entgelttabellen",
     footerDisclaimer: "Dies ist kein offizielles Angebot der IG Metall. Alle Angaben ohne Gew\u00e4hr.",
@@ -224,6 +231,13 @@ const TRANSLATIONS = {
       "Zusatzstufe 2": "Additional Step 2",
       "Zusatzstufe 3": "Additional Step 3"
     },
+
+    // Compare
+    compareSave: "Save for comparison",
+    compareTitle: "Comparison",
+    compareDiff: "Difference",
+    compareCurrent: "Current",
+    compareReset: "Reset comparison",
 
     // Footer
     footerSource: "Source: IG Metall ERA salary tables",

@@ -205,6 +205,45 @@
       </p>
     </section>
 
+    <div class="compare-save-wrapper" style="text-align:center;margin-top:1rem;">
+      <button id="compare-save" class="compare-btn hidden" data-i18n="compareSave">Zum Vergleich merken</button>
+    </div>
+
+    <section id="compare" class="compare hidden">
+      <div id="compare-table" class="compare-table">
+        <div class="compare-header">
+          <h3 data-i18n="compareTitle">Vergleich</h3>
+          <button id="compare-reset" class="compare-reset" data-i18n-aria="compareReset" title="Zur&uuml;cksetzen">&times;</button>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th data-i18n="resultMonthly">Monatsentgelt (brutto)</th>
+              <th data-i18n="resultAnnual">Bruttojahresgehalt</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr id="compare-row-saved">
+              <td id="compare-label-saved" class="compare-label"></td>
+              <td id="compare-monthly-saved"></td>
+              <td id="compare-annual-saved"></td>
+            </tr>
+            <tr id="compare-row-current">
+              <td id="compare-label-current" class="compare-label"></td>
+              <td id="compare-monthly-current"></td>
+              <td id="compare-annual-current"></td>
+            </tr>
+            <tr class="compare-diff-row">
+              <td data-i18n="compareDiff">Differenz</td>
+              <td id="compare-monthly-diff"></td>
+              <td id="compare-annual-diff"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
     <footer>
       <p data-i18n="footerSource">Quelle: IG Metall ERA-Entgelttabellen</p>
       <p class="footer-disclaimer" data-i18n="footerDisclaimer">Dies ist kein offizielles Angebot der IG Metall. Alle Angaben ohne Gew&auml;hr.</p>

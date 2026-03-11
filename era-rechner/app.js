@@ -49,6 +49,22 @@ const elChart            = document.getElementById("chart");
 const elChartArea        = document.getElementById("chart-area");
 const elChartLegend      = document.getElementById("chart-legend");
 
+// Compare DOM references
+const elCompare          = document.getElementById("compare");
+const elCompareSave      = document.getElementById("compare-save");
+const elCompareTable     = document.getElementById("compare-table");
+const elCompareReset     = document.getElementById("compare-reset");
+const elCompareLabelSaved   = document.getElementById("compare-label-saved");
+const elCompareMonthlySaved = document.getElementById("compare-monthly-saved");
+const elCompareAnnualSaved  = document.getElementById("compare-annual-saved");
+const elCompareLabelCurrent = document.getElementById("compare-label-current");
+const elCompareMonthlyCurrent = document.getElementById("compare-monthly-current");
+const elCompareAnnualCurrent  = document.getElementById("compare-annual-current");
+const elCompareMonthlyDiff  = document.getElementById("compare-monthly-diff");
+const elCompareAnnualDiff   = document.getElementById("compare-annual-diff");
+
+let savedComparison = null;  // { label, monthly, annual }
+
 const currencyFmt = new Intl.NumberFormat("de-DE", {
   style: "currency",
   currency: "EUR"
@@ -473,14 +489,18 @@ function showResult(tabellenMonthly) {
 
     // Chart rendern
     renderChart(monthly, utMonatlich, urlaubsgeld, weihnachtsgeld, tZugA, tGeld, tZugB);
+
+    elResult.classList.remove("hidden");
+    updateCompare(monthly + utMonatlich, total);
   } else {
     const total = grundgehalt + utJaehrlich + sonderzahlung;
     elAnnual.textContent = currencyFmt.format(total);
     elBreakdown.classList.add("hidden");
     elChart.classList.add("hidden");
-  }
 
-  elResult.classList.remove("hidden");
+    elResult.classList.remove("hidden");
+    updateCompare(monthly + utMonatlich, total);
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -544,7 +564,110 @@ function renderChart(monthly, utMonatlich, urlaubsgeld, weihnachtsgeld, tZugA, t
 
 function hideResult() {
   elResult.classList.add("hidden");
+  elCompareSave.classList.add("hidden");
+  elCompare.classList.add("hidden");
 }
+
+// ---------------------------------------------------------------------------
+// Compare feature
+// ---------------------------------------------------------------------------
+
+function getCurrentLabel() {
+  const eg = elEG.value;
+  const stufe = elStufe.value;
+  const parts = [eg];
+  if (stufe && stufe !== "Grundentgelt") parts.push(tStep(stufe));
+  return parts.join(", ");
+}
+
+function getCurrentDetails() {
+  const wochenstunden = parseInt(elArbeitszeit.value, 10) || 35;
+  const utPct = parseFloat(elUtZulage.value) || 0;
+  const sonderzahlung = parseFloat(elSonderzahlung.value) || 0;
+  const details = [wochenstunden + "\u00a0h"];
+  if (utPct > 0) details.push("\u00dcT " + utPct.toFixed(1).replace(".", ",") + "\u00a0%");
+  if (sonderzahlung > 0) details.push("SZ " + compactFmt.format(sonderzahlung));
+  return details.join(" \u00b7 ");
+}
+
+function formatDiff(value) {
+  const prefix = value > 0 ? "+" : "";
+  return prefix + currencyFmt.format(value);
+}
+
+function updateCompare(currentMonthly, currentAnnual) {
+  // Always show the save button when result is visible
+  elCompareSave.classList.remove("hidden");
+
+  if (!savedComparison) {
+    elCompare.classList.add("hidden");
+    return;
+  }
+
+  elCompare.classList.remove("hidden");
+
+  // Populate table
+  elCompareLabelSaved.innerHTML = savedComparison.label + ', ' + savedComparison.region
+    + '<span class="compare-details">' + savedComparison.details + '</span>';
+  elCompareMonthlySaved.textContent = currencyFmt.format(savedComparison.monthly);
+  elCompareAnnualSaved.textContent = currencyFmt.format(savedComparison.annual);
+
+  const currentLabel = getCurrentLabel();
+  const currentDetails = getCurrentDetails();
+  elCompareLabelCurrent.innerHTML = t("compareCurrent") + ' (' + currentLabel + ')'
+    + '<span class="compare-details">' + currentDetails + '</span>';
+  elCompareMonthlyCurrent.textContent = currencyFmt.format(currentMonthly);
+  elCompareAnnualCurrent.textContent = currencyFmt.format(currentAnnual);
+
+  // Diff
+  const monthlyDiff = currentMonthly - savedComparison.monthly;
+  const annualDiff = currentAnnual - savedComparison.annual;
+
+  elCompareMonthlyDiff.textContent = formatDiff(monthlyDiff);
+  elCompareAnnualDiff.textContent = formatDiff(annualDiff);
+
+  // Color: black for zero, green for positive, red for negative
+  // Use small threshold to account for floating-point rounding from currency parsing
+  const isZeroMonthly = Math.abs(monthlyDiff) < 0.005;
+  const isZeroAnnual = Math.abs(annualDiff) < 0.005;
+  elCompareMonthlyDiff.className = isZeroMonthly ? "compare-neutral" : monthlyDiff > 0 ? "compare-positive" : "compare-negative";
+  elCompareAnnualDiff.className = isZeroAnnual ? "compare-neutral" : annualDiff > 0 ? "compare-positive" : "compare-negative";
+
+  elCompareTable.classList.remove("hidden");
+}
+
+elCompareSave.addEventListener("click", () => {
+  // Read current values from displayed result
+  const monthlyText = elMonthly.textContent;
+  const annualText = elAnnual.textContent;
+  // Parse currency string back to number
+  const parseDE = str => parseFloat(str.replace(/[^\d,\-]/g, "").replace(",", "."));
+
+  const region = elBundesland.value;
+  const shortRegion = tRegion(region).length > 20
+    ? tRegion(region).substring(0, 18) + "\u2026"
+    : tRegion(region);
+
+  savedComparison = {
+    label: getCurrentLabel(),
+    region: shortRegion,
+    details: getCurrentDetails(),
+    monthly: parseDE(monthlyText),
+    annual: parseDE(annualText)
+  };
+
+  // Update button text to indicate saved
+  elCompareSave.textContent = t("compareSave");
+
+  // Trigger re-render of compare section
+  recalcIfReady();
+});
+
+elCompareReset.addEventListener("click", () => {
+  savedComparison = null;
+  elCompare.classList.add("hidden");
+  elCompareSave.textContent = t("compareSave");
+});
 
 // ---------------------------------------------------------------------------
 // Boot
