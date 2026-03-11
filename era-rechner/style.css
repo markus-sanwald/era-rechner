@@ -587,6 +587,17 @@ footer p + p {
   margin-top: 0.5rem;
 }
 
+.page-content ul {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+}
+
+.page-content li {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
+
 .page-content a {
   color: var(--color-primary-light);
   text-decoration: none;

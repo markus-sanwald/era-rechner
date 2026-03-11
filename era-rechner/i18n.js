@@ -99,6 +99,7 @@ const TRANSLATIONS = {
     footerFeedback: "Anregungen, Fehler oder Feedback? <a href=\"mailto:info@era-rechner.de\">info@era-rechner.de</a>",
     footerImprint: "Impressum",
     footerPrivacy: "Datenschutz",
+    footerGithub: "Quellcode auf GitHub",
     backToCalculator: "\u2190 Zur\u00fcck zum Rechner",
   },
 
@@ -229,6 +230,7 @@ const TRANSLATIONS = {
     footerFeedback: "Suggestions, errors or feedback? <a href=\"mailto:info@era-rechner.de\">info@era-rechner.de</a>",
     footerImprint: "Legal Notice",
     footerPrivacy: "Privacy Policy",
+    footerGithub: "Source Code on GitHub",
     backToCalculator: "\u2190 Back to Calculator",
   }
 };
