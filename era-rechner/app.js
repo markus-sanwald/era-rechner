@@ -21,7 +21,15 @@ const elEG               = document.getElementById("eg");
 const elStufe            = document.getElementById("stufe");
 const elArbeitszeit      = document.getElementById("arbeitszeit");
 const elArbeitszeitOutput = document.getElementById("arbeitszeit-output");
-const elEintrittsdatum   = document.getElementById("eintrittsdatum");
+const elEintrittsdatum   = document.getElementById("eintrittsdatum");   // hidden input (YYYY-MM-DD)
+const elDpDisplay        = document.getElementById("eintrittsdatum-display");
+const elDpDropdown       = document.getElementById("datepicker-dropdown");
+const elDpTitle          = document.getElementById("dp-title");
+const elDpWeekdays       = document.getElementById("dp-weekdays");
+const elDpDays           = document.getElementById("dp-days");
+const elDpMonthSelect    = document.getElementById("dp-month-select");
+const elDpToday          = document.getElementById("dp-today");
+const elDpClear          = document.getElementById("dp-clear");
 const elTZugAFrei        = document.getElementById("tzug-a-frei");
 const elUtZulage         = document.getElementById("ut-zulage");
 const elUtZulageOutput   = document.getElementById("ut-zulage-output");
@@ -195,6 +203,13 @@ applyTranslations = function () {
     }
   }
 
+  // Update datepicker placeholder and re-render if open
+  elDpDisplay.placeholder = currentLang === "de" ? "TT.MM.JJJJ" : "DD.MM.YYYY";
+  const wrapper = elDpDisplay.closest(".datepicker-wrapper");
+  if (wrapper.classList.contains("open")) {
+    datepicker.render();
+  }
+
   // Re-render chart and result if visible
   recalcIfReady();
 };
@@ -323,9 +338,234 @@ elArbeitszeit.addEventListener("input", () => {
 });
 
 // ---------------------------------------------------------------------------
-// Event: Eintrittsdatum changed → recalculate if result is visible
+// Custom Datepicker
 // ---------------------------------------------------------------------------
 
+const datepicker = {
+  viewMonth: new Date().getMonth(),
+  viewYear: new Date().getFullYear(),
+  selectedDate: null,
+  monthSelectMode: false,
+
+  open() {
+    const wrapper = elDpDisplay.closest(".datepicker-wrapper");
+    wrapper.classList.add("open");
+    this.monthSelectMode = false;
+    elDpMonthSelect.classList.add("hidden");
+    elDpWeekdays.style.display = "";
+    elDpDays.style.display = "";
+    this.render();
+  },
+
+  close() {
+    const wrapper = elDpDisplay.closest(".datepicker-wrapper");
+    wrapper.classList.remove("open");
+    this.monthSelectMode = false;
+  },
+
+  toggle() {
+    const wrapper = elDpDisplay.closest(".datepicker-wrapper");
+    if (wrapper.classList.contains("open")) {
+      this.close();
+    } else {
+      this.open();
+    }
+  },
+
+  render() {
+    const months = t("dpMonths");
+    const weekdays = t("dpWeekdays");
+
+    // Title
+    elDpTitle.textContent = `${months[this.viewMonth]} ${this.viewYear}`;
+
+    // Weekday headers
+    elDpWeekdays.innerHTML = weekdays.map(d => `<span>${d}</span>`).join("");
+
+    // Calculate days
+    const firstDay = new Date(this.viewYear, this.viewMonth, 1);
+    // Monday = 0, Sunday = 6
+    let startOffset = (firstDay.getDay() + 6) % 7;
+    const daysInMonth = new Date(this.viewYear, this.viewMonth + 1, 0).getDate();
+    const daysInPrev = new Date(this.viewYear, this.viewMonth, 0).getDate();
+
+    const today = new Date();
+    const todayStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
+    const selStr = this.selectedDate || "";
+
+    let html = "";
+
+    // Previous month days
+    for (let i = startOffset - 1; i >= 0; i--) {
+      const day = daysInPrev - i;
+      const m = this.viewMonth === 0 ? 12 : this.viewMonth;
+      const y = this.viewMonth === 0 ? this.viewYear - 1 : this.viewYear;
+      const dateStr = `${y}-${String(m).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+      html += `<button type="button" class="dp-day other-month" data-date="${dateStr}">${day}</button>`;
+    }
+
+    // Current month days
+    for (let day = 1; day <= daysInMonth; day++) {
+      const dateStr = `${this.viewYear}-${String(this.viewMonth + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+      const classes = ["dp-day"];
+      if (dateStr === todayStr) classes.push("today");
+      if (dateStr === selStr) classes.push("selected");
+      html += `<button type="button" class="${classes.join(" ")}" data-date="${dateStr}">${day}</button>`;
+    }
+
+    // Next month days to fill grid
+    const totalCells = startOffset + daysInMonth;
+    const remaining = totalCells % 7 === 0 ? 0 : 7 - (totalCells % 7);
+    for (let day = 1; day <= remaining; day++) {
+      const m = this.viewMonth + 2 > 12 ? 1 : this.viewMonth + 2;
+      const y = this.viewMonth + 2 > 12 ? this.viewYear + 1 : this.viewYear;
+      const dateStr = `${y}-${String(m).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+      html += `<button type="button" class="dp-day other-month" data-date="${dateStr}">${day}</button>`;
+    }
+
+    elDpDays.innerHTML = html;
+
+    // Render month select if in that mode
+    if (this.monthSelectMode) {
+      this.renderMonthSelect();
+    }
+  },
+
+  renderMonthSelect() {
+    const months = t("dpMonths");
+    elDpMonthSelect.innerHTML = months.map((name, i) => {
+      const cls = i === this.viewMonth ? "dp-month-opt active" : "dp-month-opt";
+      return `<button type="button" class="${cls}" data-month="${i}">${name.substring(0, 3)}</button>`;
+    }).join("");
+    // Add year row
+    const currentYear = new Date().getFullYear();
+    const yearStart = currentYear - 20;
+    let yearHtml = "";
+    for (let y = currentYear; y >= yearStart; y--) {
+      const cls = y === this.viewYear ? "dp-month-opt active" : "dp-month-opt";
+      yearHtml += `<button type="button" class="${cls}" data-year="${y}">${y}</button>`;
+    }
+    elDpMonthSelect.innerHTML += yearHtml;
+  },
+
+  selectDate(dateStr) {
+    this.selectedDate = dateStr;
+    elEintrittsdatum.value = dateStr;
+
+    // Format for display: DD.MM.YYYY
+    const [y, m, d] = dateStr.split("-");
+    elDpDisplay.value = `${d}.${m}.${y}`;
+
+    this.close();
+    elEintrittsdatum.dispatchEvent(new Event("change"));
+  },
+
+  clearDate() {
+    this.selectedDate = null;
+    elEintrittsdatum.value = "";
+    elDpDisplay.value = "";
+    this.close();
+    elEintrittsdatum.dispatchEvent(new Event("change"));
+  },
+
+  goToToday() {
+    const today = new Date();
+    this.viewMonth = today.getMonth();
+    this.viewYear = today.getFullYear();
+    const dateStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
+    this.selectDate(dateStr);
+  },
+
+  prevMonth() {
+    if (this.viewMonth === 0) { this.viewMonth = 11; this.viewYear--; }
+    else { this.viewMonth--; }
+    this.render();
+  },
+
+  nextMonth() {
+    if (this.viewMonth === 11) { this.viewMonth = 0; this.viewYear++; }
+    else { this.viewMonth++; }
+    this.render();
+  },
+
+  prevYear() {
+    this.viewYear--;
+    this.render();
+  },
+
+  nextYear() {
+    this.viewYear++;
+    this.render();
+  },
+
+  toggleMonthSelect() {
+    this.monthSelectMode = !this.monthSelectMode;
+    if (this.monthSelectMode) {
+      elDpMonthSelect.classList.remove("hidden");
+      elDpWeekdays.style.display = "none";
+      elDpDays.style.display = "none";
+      this.renderMonthSelect();
+    } else {
+      elDpMonthSelect.classList.add("hidden");
+      elDpWeekdays.style.display = "";
+      elDpDays.style.display = "";
+    }
+  }
+};
+
+// Open/close
+elDpDisplay.addEventListener("click", () => datepicker.toggle());
+
+// Day click
+elDpDays.addEventListener("click", (e) => {
+  const btn = e.target.closest(".dp-day");
+  if (!btn) return;
+  datepicker.selectDate(btn.dataset.date);
+});
+
+// Navigation
+document.querySelector(".dp-prev-year").addEventListener("click", () => datepicker.prevYear());
+document.querySelector(".dp-prev-month").addEventListener("click", () => datepicker.prevMonth());
+document.querySelector(".dp-next-month").addEventListener("click", () => datepicker.nextMonth());
+document.querySelector(".dp-next-year").addEventListener("click", () => datepicker.nextYear());
+
+// Title click → month/year selector
+elDpTitle.addEventListener("click", () => datepicker.toggleMonthSelect());
+
+// Month/Year select click
+elDpMonthSelect.addEventListener("click", (e) => {
+  e.stopPropagation();
+  const btn = e.target.closest("[data-month]");
+  const ybtn = e.target.closest("[data-year]");
+  if (btn) {
+    datepicker.viewMonth = parseInt(btn.dataset.month, 10);
+    // Switch back to calendar view after selecting month
+    datepicker.monthSelectMode = false;
+    elDpMonthSelect.classList.add("hidden");
+    elDpWeekdays.style.display = "";
+    elDpDays.style.display = "";
+    datepicker.render();
+  }
+  if (ybtn) {
+    datepicker.viewYear = parseInt(ybtn.dataset.year, 10);
+    datepicker.render();
+    datepicker.renderMonthSelect();
+  }
+});
+
+// Footer buttons
+elDpToday.addEventListener("click", () => datepicker.goToToday());
+elDpClear.addEventListener("click", () => datepicker.clearDate());
+
+// Close on outside click
+document.addEventListener("click", (e) => {
+  const wrapper = elDpDisplay.closest(".datepicker-wrapper");
+  if (!wrapper.contains(e.target)) {
+    datepicker.close();
+  }
+});
+
+// Hidden input change → recalculate
 elEintrittsdatum.addEventListener("change", () => {
   recalcIfReady();
 });

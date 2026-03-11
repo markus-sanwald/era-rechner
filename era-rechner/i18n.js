@@ -20,6 +20,13 @@ const TRANSLATIONS = {
     labelBonus: "\u00dcbertarifliche Zulage",
     labelSonderzahlung: "Sonderzahlung / Gewinnbeteiligung (optional)",
 
+    // Datepicker
+    dpMonths: ["Januar", "Februar", "M\u00e4rz", "April", "Mai", "Juni",
+               "Juli", "August", "September", "Oktober", "November", "Dezember"],
+    dpWeekdays: ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"],
+    dpToday: "Heute",
+    dpClear: "L\u00f6schen",
+
     // Placeholders
     placeholder: "Bitte w\u00e4hlen\u2026",
 
@@ -129,6 +136,13 @@ const TRANSLATIONS = {
     labelTZugADaysOff: "Take T-ZUG A as days off",
     labelBonus: "Above-tariff Bonus",
     labelSonderzahlung: "Special Payment / Profit Sharing (optional)",
+
+    // Datepicker
+    dpMonths: ["January", "February", "March", "April", "May", "June",
+               "July", "August", "September", "October", "November", "December"],
+    dpWeekdays: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
+    dpToday: "Today",
+    dpClear: "Clear",
 
     // Placeholders
     placeholder: "Please select\u2026",
