@@ -767,6 +767,104 @@ footer p + p {
   text-decoration: underline;
 }
 
+/* Contact Form */
+.contact-section {
+  margin-top: 2rem;
+  background: var(--color-card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
+}
+
+.contact-section h3 {
+  font-size: 1.1rem;
+  color: var(--color-primary);
+  margin-bottom: 0.25rem;
+}
+
+.contact-intro {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  margin-bottom: 1rem;
+}
+
+.contact-form .form-group {
+  margin-bottom: 0.75rem;
+}
+
+.contact-form label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 0.25rem;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form select,
+.contact-form textarea {
+  width: 100%;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  font-family: inherit;
+  color: var(--color-text);
+  background: var(--color-card);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--color-primary-light);
+  box-shadow: 0 0 0 2px rgba(10, 90, 158, 0.15);
+}
+
+.contact-form textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.contact-submit {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.55rem 1.5rem;
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition), box-shadow var(--transition);
+}
+
+.contact-submit:hover {
+  background: var(--color-primary-light);
+  box-shadow: var(--shadow);
+}
+
+.contact-success {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.contact-success.hidden {
+  display: none;
+}
+
+.contact-form.hidden {
+  display: none;
+}
+
 /* Compare */
 .compare {
   margin-top: 1.5rem;

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kontakt – ERA Entgeltrechner</title>
+  <meta name="description" content="Kontaktformular des ERA Entgeltrechners. Feedback, Fehler oder Verbesserungsvorschl&auml;ge melden.">
+  <meta name="robots" content="noindex, follow">
+  <link rel="canonical" href="https://era-rechner.de/kontakt.html">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+    <header>
+      <div class="lang-switch">
+        <button class="lang-btn active" data-lang="de" onclick="setLanguage('de')">DE</button>
+        <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+      </div>
+      <a href="index.html" class="back-link" data-i18n="backToCalculator">&larr; Zur&uuml;ck zum Rechner</a>
+    </header>
+
+    <section class="page-content">
+      <h1 data-i18n="contactTitle">Kontakt</h1>
+      <p class="contact-intro" data-i18n="contactIntro">Anregungen, Fehler oder Feedback? Schreib mir eine Nachricht:</p>
+      <form id="contact-form" class="contact-form" action="https://formsubmit.co/info@era-rechner.de" method="POST">
+        <!-- FormSubmit.co config -->
+        <input type="hidden" name="_subject" value="ERA-Rechner: Kontaktformular">
+        <input type="hidden" name="_captcha" value="true">
+        <input type="hidden" name="_next" value="https://era-rechner.de/kontakt.html#success">
+        <input type="text" name="_honey" style="display:none">
+        <div class="form-group">
+          <label for="contact-name" data-i18n="contactName">Name</label>
+          <input type="text" id="contact-name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="contact-email" data-i18n="contactEmail">E-Mail</label>
+          <input type="email" id="contact-email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="contact-subject" data-i18n="contactSubject">Betreff</label>
+          <select id="contact-subject" name="subject">
+            <option value="Feedback" data-i18n="contactSubjectFeedback">Feedback</option>
+            <option value="Bug" data-i18n="contactSubjectBug">Fehler melden</option>
+            <option value="Feature" data-i18n="contactSubjectFeature">Verbesserungsvorschlag</option>
+            <option value="Sonstiges" data-i18n="contactSubjectOther">Sonstiges</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="contact-message" data-i18n="contactMessage">Nachricht</label>
+          <textarea id="contact-message" name="message" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="contact-submit" data-i18n="contactSend">Nachricht senden</button>
+      </form>
+      <p class="contact-success hidden" id="contact-success" data-i18n="contactSuccess">Danke f&uuml;r deine Nachricht! Sie wurde erfolgreich gesendet.</p>
+    </section>
+  </main>
+
+  <script src="i18n.js"></script>
+  <script>
+    document.documentElement.lang = currentLang;
+    applyTranslations();
+
+    // Show success message after redirect from FormSubmit.co
+    if (window.location.hash === "#success") {
+      document.getElementById("contact-form").classList.add("hidden");
+      document.getElementById("contact-success").classList.remove("hidden");
+    }
+  </script>
+</body>
+</html>

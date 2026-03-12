@@ -107,11 +107,26 @@ const TRANSLATIONS = {
     compareCurrent: "Aktuell",
     compareReset: "Vergleich zur\u00fccksetzen",
 
+    // Contact Form
+    contactTitle: "Kontakt",
+    contactIntro: "Anregungen, Fehler oder Feedback? Schreib mir eine Nachricht:",
+    contactName: "Name",
+    contactEmail: "E-Mail",
+    contactSubject: "Betreff",
+    contactSubjectFeedback: "Feedback",
+    contactSubjectBug: "Fehler melden",
+    contactSubjectFeature: "Verbesserungsvorschlag",
+    contactSubjectOther: "Sonstiges",
+    contactMessage: "Nachricht",
+    contactSend: "Nachricht senden",
+    contactSuccess: "Danke f\u00fcr deine Nachricht! Sie wurde erfolgreich gesendet.",
+
     // Footer
     footerSource: "Quelle: IG Metall ERA-Entgelttabellen",
     footerDisclaimer: "Dies ist kein offizielles Angebot der IG Metall. Alle Angaben ohne Gew\u00e4hr.",
     footerFeedback: "Anregungen, Fehler oder Feedback? <a href=\"mailto:info@era-rechner.de\">info@era-rechner.de</a>",
     footerDonate: "Dieses Projekt ist werbefrei und open-source. <a href=\"https://paypal.me/erarechner\" target=\"_blank\" rel=\"noopener noreferrer\">Unterstütze es mit einer Spende via PayPal</a>.",
+    footerContact: "Kontakt",
     footerImprint: "Impressum",
     footerPrivacy: "Datenschutz",
     footerGithub: "Quellcode auf GitHub",
@@ -253,11 +268,26 @@ const TRANSLATIONS = {
     compareCurrent: "Current",
     compareReset: "Reset comparison",
 
+    // Contact Form
+    contactTitle: "Contact",
+    contactIntro: "Suggestions, errors or feedback? Send me a message:",
+    contactName: "Name",
+    contactEmail: "Email",
+    contactSubject: "Subject",
+    contactSubjectFeedback: "Feedback",
+    contactSubjectBug: "Report a bug",
+    contactSubjectFeature: "Feature request",
+    contactSubjectOther: "Other",
+    contactMessage: "Message",
+    contactSend: "Send message",
+    contactSuccess: "Thank you for your message! It has been sent successfully.",
+
     // Footer
     footerSource: "Source: IG Metall ERA salary tables",
     footerDisclaimer: "This is not an official IG Metall service. All information without guarantee.",
     footerFeedback: "Suggestions, errors or feedback? <a href=\"mailto:info@era-rechner.de\">info@era-rechner.de</a>",
     footerDonate: "This project is ad-free and open-source. <a href=\"https://paypal.me/erarechner\" target=\"_blank\" rel=\"noopener noreferrer\">Support it with a donation via PayPal</a>.",
+    footerContact: "Contact",
     footerImprint: "Legal Notice",
     footerPrivacy: "Privacy Policy",
     footerGithub: "Source Code on GitHub",
