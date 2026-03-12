@@ -805,7 +805,7 @@ const ERA_DATA = {
     },
     "bonusData": {
       "Baden-Württemberg": {
-        "urlaubsgeld": 0.5,
+        "urlaubsgeld": 0.69,
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.185,
@@ -819,7 +819,7 @@ const ERA_DATA = {
         ]
       },
       "Bayern": {
-        "urlaubsgeld": 0.5,
+        "urlaubsgeld": 0.69,
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.185,
@@ -833,7 +833,7 @@ const ERA_DATA = {
         ]
       },
       "Berlin/Brandenburg": {
-        "urlaubsgeld": 0.5,
+        "urlaubsgeld": 0.69,
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.185,
@@ -847,7 +847,7 @@ const ERA_DATA = {
         ]
       },
       "Hamburg/Unterweser": {
-        "urlaubsgeld": 0.5,
+        "urlaubsgeld": 0.69,
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.185,
@@ -861,7 +861,7 @@ const ERA_DATA = {
         ]
       },
       "Hessen": {
-        "urlaubsgeld": 0.5,
+        "urlaubsgeld": 0.69,
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.185,
@@ -875,7 +875,7 @@ const ERA_DATA = {
         ]
       },
       "Niedersachsen": {
-        "urlaubsgeld": 0.5,
+        "urlaubsgeld": 0.69,
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.185,
@@ -889,7 +889,7 @@ const ERA_DATA = {
         ]
       },
       "Nordrhein-Westfalen": {
-        "urlaubsgeld": 0.5,
+        "urlaubsgeld": 0.69,
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.185,
@@ -903,7 +903,7 @@ const ERA_DATA = {
         ]
       },
       "Osnabrück-Emsland": {
-        "urlaubsgeld": 0.5,
+        "urlaubsgeld": 0.69,
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.185,
@@ -917,7 +917,7 @@ const ERA_DATA = {
         ]
       },
       "Pfalz": {
-        "urlaubsgeld": 0.5,
+        "urlaubsgeld": 0.69,
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.185,
@@ -931,7 +931,7 @@ const ERA_DATA = {
         ]
       },
       "Rheinland-Rheinhessen": {
-        "urlaubsgeld": 0.5,
+        "urlaubsgeld": 0.69,
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.185,
@@ -945,7 +945,7 @@ const ERA_DATA = {
         ]
       },
       "Saarland": {
-        "urlaubsgeld": 0.5,
+        "urlaubsgeld": 0.69,
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.185,
@@ -959,7 +959,7 @@ const ERA_DATA = {
         ]
       },
       "Sachsen": {
-        "urlaubsgeld": 0.5,
+        "urlaubsgeld": 0.69,
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.185,
@@ -973,7 +973,7 @@ const ERA_DATA = {
         ]
       },
       "Sachsen-Anhalt": {
-        "urlaubsgeld": 0.5,
+        "urlaubsgeld": 0.69,
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.185,
@@ -987,7 +987,7 @@ const ERA_DATA = {
         ]
       },
       "Schleswig-Holstein/MV/NW-Niedersachsen": {
-        "urlaubsgeld": 0.5,
+        "urlaubsgeld": 0.69,
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.185,
@@ -1001,7 +1001,7 @@ const ERA_DATA = {
         ]
       },
       "Thüringen": {
-        "urlaubsgeld": 0.5,
+        "urlaubsgeld": 0.69,
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.185,
@@ -1821,7 +1821,7 @@ const ERA_DATA = {
     },
     "bonusData": {
       "Baden-Württemberg": {
-        "urlaubsgeld": 0.5,
+        "urlaubsgeld": 0.69,
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.265,
@@ -1835,7 +1835,7 @@ const ERA_DATA = {
         ]
       },
       "Bayern": {
-        "urlaubsgeld": 0.5,
+        "urlaubsgeld": 0.69,
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.265,
@@ -1849,7 +1849,7 @@ const ERA_DATA = {
         ]
       },
       "Berlin/Brandenburg": {
-        "urlaubsgeld": 0.5,
+        "urlaubsgeld": 0.69,
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.265,
@@ -1863,7 +1863,7 @@ const ERA_DATA = {
         ]
       },
       "Hamburg/Unterweser": {
-        "urlaubsgeld": 0.5,
+        "urlaubsgeld": 0.69,
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.265,
@@ -1877,7 +1877,7 @@ const ERA_DATA = {
         ]
       },
       "Hessen": {
-        "urlaubsgeld": 0.5,
+        "urlaubsgeld": 0.69,
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.265,
@@ -1891,7 +1891,7 @@ const ERA_DATA = {
         ]
       },
       "Niedersachsen": {
-        "urlaubsgeld": 0.5,
+        "urlaubsgeld": 0.69,
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.265,
@@ -1905,7 +1905,7 @@ const ERA_DATA = {
         ]
       },
       "Nordrhein-Westfalen": {
-        "urlaubsgeld": 0.5,
+        "urlaubsgeld": 0.69,
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.265,
@@ -1919,7 +1919,7 @@ const ERA_DATA = {
         ]
       },
       "Osnabrück-Emsland": {
-        "urlaubsgeld": 0.5,
+        "urlaubsgeld": 0.69,
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.265,
@@ -1933,7 +1933,7 @@ const ERA_DATA = {
         ]
       },
       "Pfalz": {
-        "urlaubsgeld": 0.5,
+        "urlaubsgeld": 0.69,
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.265,
@@ -1947,7 +1947,7 @@ const ERA_DATA = {
         ]
       },
       "Rheinland-Rheinhessen": {
-        "urlaubsgeld": 0.5,
+        "urlaubsgeld": 0.69,
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.265,
@@ -1961,7 +1961,7 @@ const ERA_DATA = {
         ]
       },
       "Saarland": {
-        "urlaubsgeld": 0.5,
+        "urlaubsgeld": 0.69,
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.265,
@@ -1975,7 +1975,7 @@ const ERA_DATA = {
         ]
       },
       "Sachsen": {
-        "urlaubsgeld": 0.5,
+        "urlaubsgeld": 0.69,
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.265,
@@ -1989,7 +1989,7 @@ const ERA_DATA = {
         ]
       },
       "Sachsen-Anhalt": {
-        "urlaubsgeld": 0.5,
+        "urlaubsgeld": 0.69,
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.265,
@@ -2003,7 +2003,7 @@ const ERA_DATA = {
         ]
       },
       "Schleswig-Holstein/MV/NW-Niedersachsen": {
-        "urlaubsgeld": 0.5,
+        "urlaubsgeld": 0.69,
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.265,
@@ -2017,7 +2017,7 @@ const ERA_DATA = {
         ]
       },
       "Thüringen": {
-        "urlaubsgeld": 0.5,
+        "urlaubsgeld": 0.69,
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.265,

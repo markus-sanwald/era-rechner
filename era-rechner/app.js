@@ -56,6 +56,15 @@ const elYearNotice       = document.getElementById("year-notice");
 const elChart            = document.getElementById("chart");
 const elChartArea        = document.getElementById("chart-area");
 const elChartLegend      = document.getElementById("chart-legend");
+const elSteuerklasse     = document.getElementById("steuerklasse");
+const elKirchensteuer    = document.getElementById("kirchensteuer");
+const elNettoResult      = document.getElementById("netto-result");
+const elNettoMonthly     = document.getElementById("netto-monthly");
+const elNettoAnnual      = document.getElementById("netto-annual");
+const elNettoToggle      = document.getElementById("netto-toggle");
+const elNettoInputs      = document.getElementById("netto-inputs");
+const elKinderfreibetrag = document.getElementById("kinderfreibetrag");
+const elKVZusatz         = document.getElementById("kv-zusatzbeitrag");
 
 // Compare DOM references
 const elCompare          = document.getElementById("compare");
@@ -597,6 +606,49 @@ elSonderzahlung.addEventListener("input", () => {
 });
 
 // ---------------------------------------------------------------------------
+// Event: Steuerklasse / Kirchensteuer changed → recalculate
+// ---------------------------------------------------------------------------
+
+elSteuerklasse.addEventListener("change", () => {
+  recalcIfReady();
+});
+
+elKirchensteuer.addEventListener("change", () => {
+  recalcIfReady();
+});
+
+elKinderfreibetrag.addEventListener("change", () => {
+  recalcIfReady();
+});
+
+elKVZusatz.addEventListener("input", () => {
+  recalcIfReady();
+});
+
+// ---------------------------------------------------------------------------
+// Event: Netto-Schätzung Toggle
+// ---------------------------------------------------------------------------
+
+elNettoToggle.addEventListener("click", () => {
+  const expanded = elNettoToggle.getAttribute("aria-expanded") === "true";
+  elNettoToggle.setAttribute("aria-expanded", !expanded);
+  elNettoInputs.classList.toggle("hidden");
+
+  if (expanded) {
+    // Collapsed: reset all netto inputs and hide result
+    elSteuerklasse.value = "";
+    elKirchensteuer.checked = false;
+    elKinderfreibetrag.value = "0";
+    elKVZusatz.value = "2.5";
+    elNettoResult.classList.add("hidden");
+    elNettoToggle.querySelector("[data-i18n]").textContent = t("nettoToggle");
+  } else {
+    elNettoToggle.querySelector("[data-i18n]").textContent = t("nettoToggleHide");
+    recalcIfReady();
+  }
+});
+
+// ---------------------------------------------------------------------------
 // Shared: recalculate if all required fields are filled
 // ---------------------------------------------------------------------------
 
@@ -732,6 +784,7 @@ function showResult(tabellenMonthly) {
 
     elResult.classList.remove("hidden");
     updateCompare(monthly + utMonatlich, total);
+    updateNettoEstimate(monthly + utMonatlich, total);
   } else {
     const total = grundgehalt + utJaehrlich + sonderzahlung;
     elAnnual.textContent = currencyFmt.format(total);
@@ -740,7 +793,81 @@ function showResult(tabellenMonthly) {
 
     elResult.classList.remove("hidden");
     updateCompare(monthly + utMonatlich, total);
+    updateNettoEstimate(monthly + utMonatlich, total);
   }
+}
+
+// ---------------------------------------------------------------------------
+// Netto-Schätzung
+// Kombiniert pauschale Lohnsteuer je Steuerklasse mit SV-Beiträgen.
+// Sozialversicherung (AN-Anteil 2025):
+//   Rente 9,3% + Arbeitslosen 1,3% + KV 7,3%+Zusatz/2 + Pflege (variabel)
+// Pflegeversicherung: 1,7% Basis, kinderlose ab 23: +0,6%, ab 2. Kind: -0,25%
+// ---------------------------------------------------------------------------
+
+// Pauschale Lohnsteuer-Sätze (nur Steuer, ohne SV)
+const STEUER_SAETZE = {
+  "1": 0.145,   // ledig
+  "2": 0.115,   // alleinerziehend
+  "3": 0.060,   // verheiratet, Alleinverdiener
+  "4": 0.145,   // verheiratet, Doppelverdiener
+  "5": 0.240,   // verheiratet, Geringverdiener
+  "6": 0.280    // Zweitjob
+};
+
+const KIRCHENSTEUER_ZUSCHLAG = 0.015; // ~1.5% zusätzlich
+const KINDER_STEUER_ABZUG = 0.01;    // ~1% Steuervorteil pro Kinderfreibetrag
+
+// SV-Konstanten (AN-Anteil 2025)
+const SV_RENTE = 0.093;
+const SV_ARBEITSLOSEN = 0.013;
+const SV_KV_BASIS = 0.073;  // AN-Anteil Basis-KV
+const SV_PFLEGE_BASIS = 0.017;
+const SV_PFLEGE_KINDERLOS_ZUSCHLAG = 0.006;
+const SV_PFLEGE_KIND_ABZUG = 0.0025; // pro Kind ab dem 2.
+
+function updateNettoEstimate(bruttoMonatlich, bruttoJaehrlich) {
+  const sk = elSteuerklasse.value;
+  if (!sk || !STEUER_SAETZE[sk]) {
+    elNettoResult.classList.add("hidden");
+    return;
+  }
+
+  const kinder = parseFloat(elKinderfreibetrag.value) || 0;
+  const kvZusatz = (parseFloat(elKVZusatz.value) || 0) / 100;
+
+  // --- Lohnsteuer ---
+  let steuer = STEUER_SAETZE[sk];
+  // Kinder reduzieren Steuerlast
+  steuer = Math.max(0, steuer - kinder * KINDER_STEUER_ABZUG);
+  if (elKirchensteuer.checked) {
+    steuer += KIRCHENSTEUER_ZUSCHLAG;
+  }
+
+  // --- Sozialversicherung (AN-Anteil) ---
+  const kvAnteil = SV_KV_BASIS + kvZusatz / 2;
+
+  // Pflegeversicherung
+  let pflege = SV_PFLEGE_BASIS;
+  if (kinder === 0) {
+    pflege += SV_PFLEGE_KINDERLOS_ZUSCHLAG; // Kinderlosenzuschlag
+  } else if (kinder >= 2) {
+    // Ab 2. Kind Abzug (max bis 5 Kinder = 4 Abzüge)
+    const abzugKinder = Math.min(kinder - 1, 4);
+    pflege = Math.max(0, pflege - abzugKinder * SV_PFLEGE_KIND_ABZUG);
+  }
+
+  const sv = SV_RENTE + SV_ARBEITSLOSEN + kvAnteil + pflege;
+
+  // --- Gesamt-Abzug ---
+  const abzug = steuer + sv;
+
+  const nettoMonatlich = bruttoMonatlich * (1 - abzug);
+  const nettoJaehrlich = bruttoJaehrlich * (1 - abzug);
+
+  elNettoMonthly.textContent = currencyFmt.format(nettoMonatlich);
+  elNettoAnnual.textContent = currencyFmt.format(nettoJaehrlich);
+  elNettoResult.classList.remove("hidden");
 }
 
 // ---------------------------------------------------------------------------

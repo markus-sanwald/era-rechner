@@ -138,6 +138,56 @@
           <span data-i18n="labelTZugADaysOff">T-ZUG A als freie Tage nehmen</span>
         </label>
       </div>
+
+      <button type="button" class="netto-toggle" id="netto-toggle" aria-expanded="false">
+        <span class="netto-toggle-icon">&#9654;</span>
+        <span data-i18n="nettoToggle">Netto-Sch&auml;tzung einblenden</span>
+      </button>
+
+      <div class="netto-inputs hidden" id="netto-inputs">
+        <div class="form-group">
+          <label for="steuerklasse" data-i18n="labelSteuerklasse">Steuerklasse</label>
+          <select id="steuerklasse">
+            <option value="" data-i18n="steuerklasseNone">&ndash; bitte w&auml;hlen &ndash;</option>
+            <option value="1" data-i18n="steuerklasse1">Steuerklasse 1 (ledig)</option>
+            <option value="2" data-i18n="steuerklasse2">Steuerklasse 2 (alleinerziehend)</option>
+            <option value="3" data-i18n="steuerklasse3">Steuerklasse 3 (verheiratet, Alleinverdiener)</option>
+            <option value="4" data-i18n="steuerklasse4">Steuerklasse 4 (verheiratet, Doppelverdiener)</option>
+            <option value="5" data-i18n="steuerklasse5">Steuerklasse 5 (verheiratet, Geringverdiener)</option>
+            <option value="6" data-i18n="steuerklasse6">Steuerklasse 6 (Zweitjob)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="kinderfreibetrag" data-i18n="labelKinder">Kinderfreibetr&auml;ge</label>
+          <select id="kinderfreibetrag">
+            <option value="0">0</option>
+            <option value="0.5">0,5</option>
+            <option value="1">1</option>
+            <option value="1.5">1,5</option>
+            <option value="2">2</option>
+            <option value="2.5">2,5</option>
+            <option value="3">3</option>
+            <option value="3.5">3,5</option>
+            <option value="4">4+</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="kv-zusatzbeitrag" data-i18n="labelKVZusatz">KV-Zusatzbeitrag (%)</label>
+          <div class="input-pct-group">
+            <input type="number" id="kv-zusatzbeitrag" min="0" max="5" step="0.1" value="2.5">
+            <span class="input-pct-suffix">%</span>
+          </div>
+        </div>
+
+        <div class="form-group checkbox-group">
+          <label class="checkbox-label">
+            <input type="checkbox" id="kirchensteuer">
+            <span data-i18n="labelKirchensteuer">Kirchensteuer</span>
+          </label>
+        </div>
+      </div>
     </section>
 
     <section id="result" class="result hidden" aria-live="polite">
@@ -152,6 +202,18 @@
       <div class="result-row highlight">
         <span class="result-label" data-i18n="resultAnnual">Bruttojahresgehalt (gesamt)</span>
         <span class="result-value" id="annual"></span>
+      </div>
+
+      <div id="netto-result" class="netto-result hidden">
+        <div class="result-row netto-row">
+          <span class="result-label" data-i18n="resultNettoMonthly">Gesch&auml;tztes monatliches Netto</span>
+          <span class="result-value" id="netto-monthly"></span>
+        </div>
+        <div class="result-row netto-row">
+          <span class="result-label" data-i18n="resultNettoAnnual">Gesch&auml;tztes Jahresnetto</span>
+          <span class="result-value" id="netto-annual"></span>
+        </div>
+        <p class="netto-hint" data-i18n="nettoHint">&#9432; Grobe Sch&auml;tzung auf Basis pauschaler Abzugss&auml;tze. Kein Ersatz f&uuml;r eine individuelle Steuerberechnung.</p>
       </div>
 
       <div id="breakdown" class="breakdown hidden">
@@ -172,7 +234,7 @@
         </div>
         <div class="breakdown-row has-tooltip">
           <span class="breakdown-label">
-            <span data-i18n="breakdownHolidayPay">Urlaubsgeld</span> <small data-i18n-html="breakdownHolidayPayDetail">(50&nbsp;% eines ME)</small>
+            <span data-i18n="breakdownHolidayPay">Urlaubsgeld</span> <small data-i18n-html="breakdownHolidayPayDetail">(69&nbsp;% eines ME)</small>
             <span class="tooltip" data-i18n="tooltipHolidayPay">Zus&auml;tzliches Urlaubsgeld, das einmal j&auml;hrlich im Juni ausgezahlt wird. Berechnung auf Basis des tariflichen Monatsentgelts.</span>
           </span>
           <span class="breakdown-value" id="urlaubsgeld"></span>
