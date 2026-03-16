@@ -84,7 +84,7 @@ const TRANSLATIONS = {
     tooltipXmasPay: "Jahressonderzahlung im November. Der volle Satz (55\u00a0%) wird nach 36 Monaten Betriebszugeh\u00f6rigkeit erreicht. Vorher gestaffelt: 25\u00a0% (ab 6 Mon.), 35\u00a0% (ab 12 Mon.), 45\u00a0% (ab 24 Mon.).",
     tooltipTZugA: "Tarifliches Zusatzgeld A \u2013 Auszahlung im Juli. Kann alternativ in freie Tage umgewandelt werden (bis zu 8 Tage). Wird bei Umwandlung nicht ausgezahlt.",
     tooltipTGeld: "Transformationsgeld \u2013 Auszahlung im Juli zusammen mit T-ZUG\u00a0A. Dient der Finanzierung von Qualifizierung und Transformation in der Metall- und Elektroindustrie.",
-    tooltipTZugB: "Tarifliches Zusatzgeld B \u2013 fester Betrag auf Basis des Eckentgelts (EG\u00a05), unabh\u00e4ngig von der pers\u00f6nlichen Entgeltgruppe. Auszahlung im Februar.",
+    tooltipTZugB: "Tarifliches Zusatzgeld B \u2013 fester Betrag auf Basis des Eckentgelts (EG\u00a05), unabh\u00e4ngig von der pers\u00f6nlichen Entgeltgruppe. Ab 2026: 26,5\u00a0% (vorher 18,5\u00a0%). Auszahlung im Februar.",
 
     // Chart
     chartTitle: "Bruttoverdienst nach Monaten",
@@ -236,7 +236,7 @@ const TRANSLATIONS = {
     tooltipXmasPay: "Annual bonus paid in November. The full rate (55\u00a0%) is reached after 36 months of tenure. Graduated before: 25\u00a0% (from 6 mo.), 35\u00a0% (from 12 mo.), 45\u00a0% (from 24 mo.).",
     tooltipTZugA: "Additional tariff payment A \u2013 paid in July. Can alternatively be converted into days off (up to 8 days). Not paid out if converted.",
     tooltipTGeld: "Transformation payment \u2013 paid in July together with T-ZUG\u00a0A. Finances qualification and transformation in the metal and electrical industry.",
-    tooltipTZugB: "Additional tariff payment B \u2013 fixed amount based on the reference salary (EG\u00a05), independent of personal pay grade. Paid in February.",
+    tooltipTZugB: "Additional tariff payment B \u2013 fixed amount based on the reference salary (EG\u00a05), independent of personal pay grade. From 2026: 26.5\u00a0% (previously 18.5\u00a0%). Paid in February.",
 
     // Chart
     chartTitle: "Gross Earnings by Month",

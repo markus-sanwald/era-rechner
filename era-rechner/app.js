@@ -762,12 +762,13 @@ function showResult(tabellenMonthly) {
       wgSatz = getWeihnachtsgeldSatz(monate, bonus.weihnachtsgeldStaffel);
     }
 
-    // Sonderzahlungen basieren auf Grundentgelt (ohne ÜT-Zulage)
-    const urlaubsgeld     = hatAnspruch ? monthly * bonus.urlaubsgeld : 0;
-    const weihnachtsgeld  = hatAnspruch ? monthly * wgSatz : 0;
+    // Sonderzahlungen basieren auf Monatsentgelt brutto (inkl. Leistungszulage)
+    const monatsentgeltBrutto = monthly + utMonatlich;
+    const urlaubsgeld     = hatAnspruch ? monatsentgeltBrutto * bonus.urlaubsgeld : 0;
+    const weihnachtsgeld  = hatAnspruch ? monatsentgeltBrutto * wgSatz : 0;
     const tZugAFreiTage   = elTZugAFrei.checked;
-    const tZugA           = hatAnspruch && !tZugAFreiTage ? monthly * bonus.tZugA : 0;
-    const tGeld           = hatAnspruch && bonus.tGeld ? monthly * bonus.tGeld : 0;
+    const tZugA           = hatAnspruch && !tZugAFreiTage ? monatsentgeltBrutto * bonus.tZugA : 0;
+    const tGeld           = hatAnspruch && bonus.tGeld ? monatsentgeltBrutto * bonus.tGeld : 0;
     const tZugB           = hatAnspruch ? bonus.eckentgelt * azFaktor * bonus.tZugB : 0;
     const total           = grundgehalt + utJaehrlich + urlaubsgeld + weihnachtsgeld + tZugA + tGeld + tZugB + sonderzahlung;
 
