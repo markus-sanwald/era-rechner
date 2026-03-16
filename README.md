@@ -25,4 +25,4 @@ Dann im Browser `http://localhost:3000` aufrufen.
 Dieses Projekt ist werbefrei und open-source. Wenn es dir weiterhilft, freue ich mich über eine [Spende via PayPal](https://paypal.me/erarechner).
 
 ## Lizenz
-Dieses Projekt steht unter der [MIT-Lizenz](era-rechner/LICENSE).
+Dieses Projekt steht unter der [MIT-Lizenz](/LICENSE).
