@@ -97,50 +97,57 @@
         </div>
       </div>
 
-      <div class="form-group">
-        <label data-i18n="labelStartDate">Eintrittsdatum (optional)</label>
-        <div class="datepicker-wrapper">
-          <input type="text" id="eintrittsdatum-display" class="datepicker-input" readonly placeholder="TT.MM.JJJJ">
-          <span class="datepicker-icon" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-          </span>
-          <input type="hidden" id="eintrittsdatum">
-          <div class="datepicker-dropdown" id="datepicker-dropdown">
-            <div class="dp-header">
-              <button type="button" class="dp-nav dp-prev-year" aria-label="Vorheriges Jahr">&laquo;</button>
-              <button type="button" class="dp-nav dp-prev-month" aria-label="Vorheriger Monat">&lsaquo;</button>
-              <button type="button" class="dp-title" id="dp-title"></button>
-              <button type="button" class="dp-nav dp-next-month" aria-label="N&auml;chster Monat">&rsaquo;</button>
-              <button type="button" class="dp-nav dp-next-year" aria-label="N&auml;chstes Jahr">&raquo;</button>
-            </div>
-            <div class="dp-month-select hidden" id="dp-month-select"></div>
-            <div class="dp-weekdays" id="dp-weekdays"></div>
-            <div class="dp-days" id="dp-days"></div>
-            <div class="dp-footer">
-              <button type="button" class="dp-footer-btn dp-today" id="dp-today" data-i18n="dpToday">Heute</button>
-              <button type="button" class="dp-footer-btn dp-clear" id="dp-clear" data-i18n="dpClear">L&ouml;schen</button>
+      <button type="button" class="section-toggle" id="optional-toggle" aria-expanded="false">
+        <span class="section-toggle-icon">&#9654;</span>
+        <span data-i18n="optionalToggle">Weitere Optionen einblenden</span>
+      </button>
+
+      <div class="optional-inputs hidden" id="optional-inputs">
+        <div class="form-group">
+          <label data-i18n="labelStartDate">Eintrittsdatum</label>
+          <div class="datepicker-wrapper">
+            <input type="text" id="eintrittsdatum-display" class="datepicker-input" readonly placeholder="TT.MM.JJJJ">
+            <span class="datepicker-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </span>
+            <input type="hidden" id="eintrittsdatum">
+            <div class="datepicker-dropdown" id="datepicker-dropdown">
+              <div class="dp-header">
+                <button type="button" class="dp-nav dp-prev-year" aria-label="Vorheriges Jahr">&laquo;</button>
+                <button type="button" class="dp-nav dp-prev-month" aria-label="Vorheriger Monat">&lsaquo;</button>
+                <button type="button" class="dp-title" id="dp-title"></button>
+                <button type="button" class="dp-nav dp-next-month" aria-label="N&auml;chster Monat">&rsaquo;</button>
+                <button type="button" class="dp-nav dp-next-year" aria-label="N&auml;chstes Jahr">&raquo;</button>
+              </div>
+              <div class="dp-month-select hidden" id="dp-month-select"></div>
+              <div class="dp-weekdays" id="dp-weekdays"></div>
+              <div class="dp-days" id="dp-days"></div>
+              <div class="dp-footer">
+                <button type="button" class="dp-footer-btn dp-today" id="dp-today" data-i18n="dpToday">Heute</button>
+                <button type="button" class="dp-footer-btn dp-clear" id="dp-clear" data-i18n="dpClear">L&ouml;schen</button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="form-group">
-        <label for="sonderzahlung" data-i18n="labelSonderzahlung">Sonderzahlung / Gewinnbeteiligung (optional)</label>
-        <div class="input-euro-group">
-          <input type="number" id="sonderzahlung" min="0" step="1" placeholder="0" value="">
-          <span class="input-euro-suffix">&euro;</span>
+        <div class="form-group">
+          <label for="sonderzahlung" data-i18n="labelSonderzahlung">Sonderzahlung / Gewinnbeteiligung (j&auml;hrlich)</label>
+          <div class="input-euro-group">
+            <input type="number" id="sonderzahlung" min="0" step="1" placeholder="0" value="">
+            <span class="input-euro-suffix">&euro;</span>
+          </div>
+        </div>
+
+        <div class="form-group checkbox-group">
+          <label class="checkbox-label">
+            <input type="checkbox" id="tzug-a-frei">
+            <span data-i18n="labelTZugADaysOff">T-ZUG A als freie Tage nehmen</span>
+          </label>
         </div>
       </div>
 
-      <div class="form-group checkbox-group">
-        <label class="checkbox-label">
-          <input type="checkbox" id="tzug-a-frei">
-          <span data-i18n="labelTZugADaysOff">T-ZUG A als freie Tage nehmen</span>
-        </label>
-      </div>
-
-      <button type="button" class="netto-toggle" id="netto-toggle" aria-expanded="false">
-        <span class="netto-toggle-icon">&#9654;</span>
+      <button type="button" class="section-toggle" id="netto-toggle" aria-expanded="false">
+        <span class="section-toggle-icon">&#9654;</span>
         <span data-i18n="nettoToggle">Netto-Sch&auml;tzung einblenden</span>
       </button>
 
@@ -278,15 +285,6 @@
         <div class="chart-area" id="chart-area"></div>
         <div class="chart-legend" id="chart-legend"></div>
       </div>
-
-      <p class="result-note" data-i18n="resultNote">
-        Die Tabellenwerte basieren auf 35&nbsp;h/Woche (tarifliche Vollzeit).
-        Bei abweichender Arbeitszeit wird das Entgelt anteilig berechnet (Faktor&nbsp;=&nbsp;Wochenstunden&nbsp;/&nbsp;35).
-        Weihnachtsgeld: voller Satz nach 36&nbsp;Mon. Betriebszugeh&ouml;rigkeit.
-        T-ZUG&nbsp;B: Festbetrag auf Basis des Eckentgelts.
-        &Uuml;T-Zulage: freiwillige Arbeitgeberzulage, nicht in Sonderzahlungen enthalten.
-        Schichtzuschl&auml;ge sind nicht enthalten.
-      </p>
     </section>
 
     <div class="compare-save-wrapper" style="text-align:center;margin-top:1rem;">
@@ -303,8 +301,10 @@
           <thead>
             <tr>
               <th></th>
-              <th data-i18n="resultMonthly">Monatsentgelt (brutto)</th>
-              <th data-i18n="resultAnnual">Bruttojahresgehalt</th>
+              <th data-i18n-html="compareBruttoMonthly">Monatl.<br>Brutto</th>
+              <th data-i18n-html="compareBruttoAnnual">Jahres&shy;brutto</th>
+              <th class="compare-netto-col hidden" data-i18n-html="compareNettoMonthly">Monatl.<br>Netto</th>
+              <th class="compare-netto-col hidden" data-i18n-html="compareNettoAnnual">Jahres&shy;netto</th>
             </tr>
           </thead>
           <tbody>
@@ -312,16 +312,22 @@
               <td id="compare-label-saved" class="compare-label"></td>
               <td id="compare-monthly-saved"></td>
               <td id="compare-annual-saved"></td>
+              <td id="compare-netto-monthly-saved" class="compare-netto-col hidden"></td>
+              <td id="compare-netto-annual-saved" class="compare-netto-col hidden"></td>
             </tr>
             <tr id="compare-row-current">
               <td id="compare-label-current" class="compare-label"></td>
               <td id="compare-monthly-current"></td>
               <td id="compare-annual-current"></td>
+              <td id="compare-netto-monthly-current" class="compare-netto-col hidden"></td>
+              <td id="compare-netto-annual-current" class="compare-netto-col hidden"></td>
             </tr>
             <tr class="compare-diff-row">
               <td data-i18n="compareDiff">Differenz</td>
               <td id="compare-monthly-diff"></td>
               <td id="compare-annual-diff"></td>
+              <td id="compare-netto-monthly-diff" class="compare-netto-col hidden"></td>
+              <td id="compare-netto-annual-diff" class="compare-netto-col hidden"></td>
             </tr>
           </tbody>
         </table>
@@ -334,8 +340,8 @@
       <p class="footer-feedback" data-i18n-html="footerFeedback">Anregungen, Fehler oder Feedback? <a href="mailto:info@era-rechner.de">info@era-rechner.de</a></p>
       <p class="footer-donate" data-i18n-html="footerDonate">Dieses Projekt ist werbefrei und open-source. <a href="https://paypal.me/erarechner" target="_blank" rel="noopener noreferrer">Unterstütze es mit einer Spende via PayPal</a>.</p>
       <p class="footer-links">
-        <a href="kontakt.html" data-i18n="footerContact">Kontakt</a>
-        <span class="footer-sep">&middot;</span>
+        <!-- <a href="kontakt.html" data-i18n="footerContact">Kontakt</a>
+        <span class="footer-sep">&middot;</span> -->
         <a href="impressum.html" data-i18n="footerImprint">Impressum</a>
         <span class="footer-sep">&middot;</span>
         <a href="datenschutz.html" data-i18n="footerPrivacy">Datenschutz</a>

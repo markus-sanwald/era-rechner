@@ -15,10 +15,10 @@ const TRANSLATIONS = {
     labelGrade: "Entgeltgruppe (EG)",
     labelStep: "Stufe",
     labelHours: "W\u00f6chentliche Arbeitszeit",
-    labelStartDate: "Eintrittsdatum (optional)",
+    labelStartDate: "Eintrittsdatum",
     labelTZugADaysOff: "T-ZUG A als freie Tage nehmen",
     labelBonus: "\u00dcbertarifliche Zulage",
-    labelSonderzahlung: "Sonderzahlung / Gewinnbeteiligung (optional)",
+    labelSonderzahlung: "Sonderzahlung / Gewinnbeteiligung (j\u00e4hrlich)",
 
     // Datepicker
     dpMonths: ["Januar", "Februar", "M\u00e4rz", "April", "Mai", "Juni",
@@ -53,6 +53,8 @@ const TRANSLATIONS = {
     labelKinder: "Kinderfreibetr\u00e4ge",
     labelKVZusatz: "KV-Zusatzbeitrag (%)",
     labelKirchensteuer: "Kirchensteuer",
+    optionalToggle: "Weitere Optionen einblenden",
+    optionalToggleHide: "Weitere Optionen ausblenden",
     nettoToggle: "Netto-Sch\u00e4tzung einblenden",
     nettoToggleHide: "Netto-Sch\u00e4tzung ausblenden",
     resultNettoMonthly: "Gesch\u00e4tztes monatliches Netto",
@@ -104,13 +106,6 @@ const TRANSLATIONS = {
     utZulagePct: "(${pct}\u00a0% v. ME)",
     tZugBPct: "(${pct}\u00a0% v. Eckentgelt)",
 
-    // Note
-    resultNote: "Die Tabellenwerte basieren auf 35\u00a0h/Woche (tarifliche Vollzeit). " +
-      "Bei abweichender Arbeitszeit wird das Entgelt anteilig berechnet (Faktor\u00a0=\u00a0Wochenstunden\u00a0/\u00a035). " +
-      "Weihnachtsgeld: voller Satz nach 36\u00a0Mon. Betriebszugeh\u00f6rigkeit. " +
-      "T-ZUG\u00a0B: Festbetrag auf Basis des Eckentgelts. " +
-      "\u00dcT-Zulage: freiwillige Arbeitgeberzulage, nicht in Sonderzahlungen enthalten. " +
-      "Schichtzuschl\u00e4ge sind nicht enthalten.",
 
     // Regions (identity mapping for German)
     regions: {},
@@ -123,6 +118,10 @@ const TRANSLATIONS = {
     compareTitle: "Vergleich",
     compareDiff: "Differenz",
     compareCurrent: "Aktuell",
+    compareBruttoMonthly: "Monatl.<br>Brutto",
+    compareBruttoAnnual: "Jahres\u00ADbrutto",
+    compareNettoMonthly: "Monatl.<br>Netto",
+    compareNettoAnnual: "Jahres\u00ADnetto",
     compareReset: "Vergleich zur\u00fccksetzen",
 
     // Contact Form
@@ -165,10 +164,10 @@ const TRANSLATIONS = {
     labelGrade: "Pay Grade (EG)",
     labelStep: "Step",
     labelHours: "Weekly Working Hours",
-    labelStartDate: "Start Date (optional)",
+    labelStartDate: "Start Date",
     labelTZugADaysOff: "Take T-ZUG A as days off",
     labelBonus: "Above-tariff Bonus",
-    labelSonderzahlung: "Special Payment / Profit Sharing (optional)",
+    labelSonderzahlung: "Special Payment / Profit Sharing (annual)",
 
     // Datepicker
     dpMonths: ["January", "February", "March", "April", "May", "June",
@@ -203,6 +202,8 @@ const TRANSLATIONS = {
     labelKinder: "Child tax allowances",
     labelKVZusatz: "Health ins. surcharge (%)",
     labelKirchensteuer: "Church tax",
+    optionalToggle: "Show more options",
+    optionalToggleHide: "Hide more options",
     nettoToggle: "Show net estimate",
     nettoToggleHide: "Hide net estimate",
     resultNettoMonthly: "Estimated monthly net",
@@ -254,13 +255,6 @@ const TRANSLATIONS = {
     utZulagePct: "(${pct}\u00a0% of monthly)",
     tZugBPct: "(${pct}\u00a0% of base salary)",
 
-    // Note
-    resultNote: "Table values are based on 35\u00a0h/week (standard full-time). " +
-      "For different working hours, pay is calculated proportionally (factor\u00a0=\u00a0weekly hours\u00a0/\u00a035). " +
-      "Christmas bonus: full rate after 36\u00a0months of tenure. " +
-      "T-ZUG\u00a0B: fixed amount based on reference salary. " +
-      "Above-tariff bonus: voluntary employer bonus, not included in special payments. " +
-      "Shift premiums are not included.",
 
     // Regions
     regions: {
@@ -302,6 +296,10 @@ const TRANSLATIONS = {
     compareTitle: "Comparison",
     compareDiff: "Difference",
     compareCurrent: "Current",
+    compareBruttoMonthly: "Monthly<br>Gross",
+    compareBruttoAnnual: "Annual<br>Gross",
+    compareNettoMonthly: "Monthly<br>Net",
+    compareNettoAnnual: "Annual<br>Net",
     compareReset: "Reset comparison",
 
     // Contact Form

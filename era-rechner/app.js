@@ -63,6 +63,8 @@ const elNettoMonthly     = document.getElementById("netto-monthly");
 const elNettoAnnual      = document.getElementById("netto-annual");
 const elNettoToggle      = document.getElementById("netto-toggle");
 const elNettoInputs      = document.getElementById("netto-inputs");
+const elOptionalToggle   = document.getElementById("optional-toggle");
+const elOptionalInputs   = document.getElementById("optional-inputs");
 const elKinderfreibetrag = document.getElementById("kinderfreibetrag");
 const elKVZusatz         = document.getElementById("kv-zusatzbeitrag");
 
@@ -79,8 +81,15 @@ const elCompareMonthlyCurrent = document.getElementById("compare-monthly-current
 const elCompareAnnualCurrent  = document.getElementById("compare-annual-current");
 const elCompareMonthlyDiff  = document.getElementById("compare-monthly-diff");
 const elCompareAnnualDiff   = document.getElementById("compare-annual-diff");
+const elCompareNettoCols    = document.querySelectorAll(".compare-netto-col");
+const elCompareNettoMonthlySaved   = document.getElementById("compare-netto-monthly-saved");
+const elCompareNettoAnnualSaved    = document.getElementById("compare-netto-annual-saved");
+const elCompareNettoMonthlyCurrent = document.getElementById("compare-netto-monthly-current");
+const elCompareNettoAnnualCurrent  = document.getElementById("compare-netto-annual-current");
+const elCompareNettoMonthlyDiff    = document.getElementById("compare-netto-monthly-diff");
+const elCompareNettoAnnualDiff     = document.getElementById("compare-netto-annual-diff");
 
-let savedComparison = null;  // { label, monthly, annual }
+let savedComparison = null;
 
 const currencyFmt = new Intl.NumberFormat("de-DE", {
   style: "currency",
@@ -629,6 +638,21 @@ elKVZusatz.addEventListener("input", () => {
 // Event: Netto-Schätzung Toggle
 // ---------------------------------------------------------------------------
 
+elOptionalToggle.addEventListener("click", () => {
+  const expanded = elOptionalToggle.getAttribute("aria-expanded") === "true";
+  elOptionalToggle.setAttribute("aria-expanded", !expanded);
+  elOptionalInputs.classList.toggle("hidden");
+
+  const i18nSpan = elOptionalToggle.querySelector("[data-i18n]");
+  if (expanded) {
+    i18nSpan.setAttribute("data-i18n", "optionalToggle");
+    i18nSpan.textContent = t("optionalToggle");
+  } else {
+    i18nSpan.setAttribute("data-i18n", "optionalToggleHide");
+    i18nSpan.textContent = t("optionalToggleHide");
+  }
+});
+
 elNettoToggle.addEventListener("click", () => {
   const expanded = elNettoToggle.getAttribute("aria-expanded") === "true";
   elNettoToggle.setAttribute("aria-expanded", !expanded);
@@ -783,8 +807,8 @@ function showResult(tabellenMonthly) {
     renderChart(monthly, utMonatlich, urlaubsgeld, weihnachtsgeld, tZugA, tGeld, tZugB);
 
     elResult.classList.remove("hidden");
-    updateCompare(monthly + utMonatlich, total);
-    updateNettoEstimate(monthly + utMonatlich, total);
+    const netto = updateNettoEstimate(monthly + utMonatlich, total);
+    updateCompare(monthly + utMonatlich, total, netto);
   } else {
     const total = grundgehalt + utJaehrlich + sonderzahlung;
     elAnnual.textContent = currencyFmt.format(total);
@@ -792,8 +816,8 @@ function showResult(tabellenMonthly) {
     elChart.classList.add("hidden");
 
     elResult.classList.remove("hidden");
-    updateCompare(monthly + utMonatlich, total);
-    updateNettoEstimate(monthly + utMonatlich, total);
+    const netto = updateNettoEstimate(monthly + utMonatlich, total);
+    updateCompare(monthly + utMonatlich, total, netto);
   }
 }
 
@@ -868,6 +892,8 @@ function updateNettoEstimate(bruttoMonatlich, bruttoJaehrlich) {
   elNettoMonthly.textContent = currencyFmt.format(nettoMonatlich);
   elNettoAnnual.textContent = currencyFmt.format(nettoJaehrlich);
   elNettoResult.classList.remove("hidden");
+
+  return { monthly: nettoMonatlich, annual: nettoJaehrlich };
 }
 
 // ---------------------------------------------------------------------------
@@ -962,7 +988,7 @@ function formatDiff(value) {
   return prefix + currencyFmt.format(value);
 }
 
-function updateCompare(currentMonthly, currentAnnual) {
+function updateCompare(currentMonthly, currentAnnual, currentNetto) {
   // Always show the save button when result is visible
   elCompareSave.classList.remove("hidden");
 
@@ -1000,6 +1026,27 @@ function updateCompare(currentMonthly, currentAnnual) {
   elCompareMonthlyDiff.className = isZeroMonthly ? "compare-neutral" : monthlyDiff > 0 ? "compare-positive" : "compare-negative";
   elCompareAnnualDiff.className = isZeroAnnual ? "compare-neutral" : annualDiff > 0 ? "compare-positive" : "compare-negative";
 
+  // Netto columns: show only if both saved and current have netto data
+  const showNetto = savedComparison.nettoMonthly != null && currentNetto;
+  elCompareNettoCols.forEach(col => col.classList.toggle("hidden", !showNetto));
+
+  if (showNetto) {
+    elCompareNettoMonthlySaved.textContent = currencyFmt.format(savedComparison.nettoMonthly);
+    elCompareNettoAnnualSaved.textContent = currencyFmt.format(savedComparison.nettoAnnual);
+    elCompareNettoMonthlyCurrent.textContent = currencyFmt.format(currentNetto.monthly);
+    elCompareNettoAnnualCurrent.textContent = currencyFmt.format(currentNetto.annual);
+
+    const nettoMonthlyDiff = currentNetto.monthly - savedComparison.nettoMonthly;
+    const nettoAnnualDiff = currentNetto.annual - savedComparison.nettoAnnual;
+    elCompareNettoMonthlyDiff.textContent = formatDiff(nettoMonthlyDiff);
+    elCompareNettoAnnualDiff.textContent = formatDiff(nettoAnnualDiff);
+
+    const isZeroNettoMonthly = Math.abs(nettoMonthlyDiff) < 0.005;
+    const isZeroNettoAnnual = Math.abs(nettoAnnualDiff) < 0.005;
+    elCompareNettoMonthlyDiff.className = "compare-netto-col " + (isZeroNettoMonthly ? "compare-neutral" : nettoMonthlyDiff > 0 ? "compare-positive" : "compare-negative");
+    elCompareNettoAnnualDiff.className = "compare-netto-col " + (isZeroNettoAnnual ? "compare-neutral" : nettoAnnualDiff > 0 ? "compare-positive" : "compare-negative");
+  }
+
   elCompareTable.classList.remove("hidden");
 }
 
@@ -1015,12 +1062,19 @@ elCompareSave.addEventListener("click", () => {
     ? tRegion(region).substring(0, 18) + "\u2026"
     : tRegion(region);
 
+  // Netto values (if available)
+  const nettoMonthlyText = elNettoMonthly.textContent;
+  const nettoAnnualText = elNettoAnnual.textContent;
+  const hasNetto = !elNettoResult.classList.contains("hidden") && nettoMonthlyText;
+
   savedComparison = {
     label: getCurrentLabel(),
     region: shortRegion,
     details: getCurrentDetails(),
     monthly: parseDE(monthlyText),
-    annual: parseDE(annualText)
+    annual: parseDE(annualText),
+    nettoMonthly: hasNetto ? parseDE(nettoMonthlyText) : null,
+    nettoAnnual: hasNetto ? parseDE(nettoAnnualText) : null
   };
 
   // Update button text to indicate saved
