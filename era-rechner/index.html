@@ -15,8 +15,16 @@
   <meta property="og:description" content="Berechne dein Bruttojahresgehalt inkl. Weihnachtsgeld, Urlaubsgeld, T-ZUG und T-Geld f&uuml;r alle Tarifgebiete der Metall- und Elektroindustrie.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://era-rechner.de/">
+  <meta property="og:image" content="https://era-rechner.de/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="ERA Entgeltrechner – Gehaltsrechner f&uuml;r die Metall- und Elektroindustrie">
   <meta property="og:locale" content="de_DE">
   <meta property="og:site_name" content="ERA Entgeltrechner">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
 
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
@@ -281,7 +289,13 @@
       </div>
 
       <div id="chart" class="chart hidden">
-        <h3 class="chart-title" data-i18n="chartTitle">Bruttoverdienst nach Monaten</h3>
+        <div class="chart-header">
+          <h3 class="chart-title" id="chart-title" data-i18n="chartTitle">Bruttoverdienst nach Monaten</h3>
+          <div class="chart-view-toggle hidden" id="chart-view-toggle">
+            <button type="button" class="chart-view-btn active" id="chart-view-brutto" data-i18n="chartViewBrutto">Brutto</button>
+            <button type="button" class="chart-view-btn" id="chart-view-netto" data-i18n="chartViewNetto">Netto</button>
+          </div>
+        </div>
         <div class="chart-area" id="chart-area"></div>
         <div class="chart-legend" id="chart-legend"></div>
       </div>

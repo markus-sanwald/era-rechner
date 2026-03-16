@@ -88,6 +88,9 @@ const TRANSLATIONS = {
 
     // Chart
     chartTitle: "Bruttoverdienst nach Monaten",
+    chartTitleNetto: "Nettoverdienst nach Monaten (Sch\u00e4tzung)",
+    chartViewBrutto: "Brutto",
+    chartViewNetto: "Netto",
     chartMonths: ["Jan", "Feb", "M\u00e4r", "Apr", "Mai", "Jun",
                   "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"],
     chartLabels: {
@@ -237,6 +240,9 @@ const TRANSLATIONS = {
 
     // Chart
     chartTitle: "Gross Earnings by Month",
+    chartTitleNetto: "Net Earnings by Month (Estimate)",
+    chartViewBrutto: "Gross",
+    chartViewNetto: "Net",
     chartMonths: ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
                   "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
     chartLabels: {

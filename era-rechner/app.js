@@ -56,6 +56,10 @@ const elYearNotice       = document.getElementById("year-notice");
 const elChart            = document.getElementById("chart");
 const elChartArea        = document.getElementById("chart-area");
 const elChartLegend      = document.getElementById("chart-legend");
+const elChartTitle       = document.getElementById("chart-title");
+const elChartViewToggle  = document.getElementById("chart-view-toggle");
+const elChartViewBrutto  = document.getElementById("chart-view-brutto");
+const elChartViewNetto   = document.getElementById("chart-view-netto");
 const elSteuerklasse     = document.getElementById("steuerklasse");
 const elKirchensteuer    = document.getElementById("kirchensteuer");
 const elNettoResult      = document.getElementById("netto-result");
@@ -90,6 +94,9 @@ const elCompareNettoMonthlyDiff    = document.getElementById("compare-netto-mont
 const elCompareNettoAnnualDiff     = document.getElementById("compare-netto-annual-diff");
 
 let savedComparison = null;
+let chartBruttoParams = null;   // stored brutto chart parameters for re-render
+let currentNettoFaktor = null;  // (1 - abzug) when netto is available
+let chartViewMode = "brutto";   // "brutto" or "netto"
 
 const currencyFmt = new Intl.NumberFormat("de-DE", {
   style: "currency",
@@ -665,6 +672,8 @@ elNettoToggle.addEventListener("click", () => {
     elKinderfreibetrag.value = "0";
     elKVZusatz.value = "2.5";
     elNettoResult.classList.add("hidden");
+    currentNettoFaktor = null;
+    updateChartViewToggle();
     elNettoToggle.querySelector("[data-i18n]").textContent = t("nettoToggle");
   } else {
     elNettoToggle.querySelector("[data-i18n]").textContent = t("nettoToggleHide");
@@ -804,10 +813,12 @@ function showResult(tabellenMonthly) {
     elBreakdown.classList.remove("hidden");
 
     // Chart rendern
+    chartBruttoParams = { monthly, utMonatlich, urlaubsgeld, weihnachtsgeld, tZugA, tGeld, tZugB };
     renderChart(monthly, utMonatlich, urlaubsgeld, weihnachtsgeld, tZugA, tGeld, tZugB);
 
     elResult.classList.remove("hidden");
     const netto = updateNettoEstimate(monthly + utMonatlich, total);
+    updateChartViewToggle();
     updateCompare(monthly + utMonatlich, total, netto);
   } else {
     const total = grundgehalt + utJaehrlich + sonderzahlung;
@@ -854,6 +865,7 @@ function updateNettoEstimate(bruttoMonatlich, bruttoJaehrlich) {
   const sk = elSteuerklasse.value;
   if (!sk || !STEUER_SAETZE[sk]) {
     elNettoResult.classList.add("hidden");
+    currentNettoFaktor = null;
     return;
   }
 
@@ -886,8 +898,10 @@ function updateNettoEstimate(bruttoMonatlich, bruttoJaehrlich) {
   // --- Gesamt-Abzug ---
   const abzug = steuer + sv;
 
-  const nettoMonatlich = bruttoMonatlich * (1 - abzug);
-  const nettoJaehrlich = bruttoJaehrlich * (1 - abzug);
+  currentNettoFaktor = 1 - abzug;
+
+  const nettoMonatlich = bruttoMonatlich * currentNettoFaktor;
+  const nettoJaehrlich = bruttoJaehrlich * currentNettoFaktor;
 
   elNettoMonthly.textContent = currencyFmt.format(nettoMonatlich);
   elNettoAnnual.textContent = currencyFmt.format(nettoJaehrlich);
@@ -954,6 +968,60 @@ function renderChart(monthly, utMonatlich, urlaubsgeld, weihnachtsgeld, tZugA, t
 
   elChart.classList.remove("hidden");
 }
+
+// ---------------------------------------------------------------------------
+// Chart Brutto/Netto-Umschalter
+// ---------------------------------------------------------------------------
+
+function updateChartViewToggle() {
+  const nettoAvailable = currentNettoFaktor != null;
+  elChartViewToggle.classList.toggle("hidden", !nettoAvailable);
+
+  // If netto no longer available but was showing netto, switch back
+  if (!nettoAvailable && chartViewMode === "netto") {
+    switchChartView("brutto");
+  }
+
+  // If netto is available and already in netto mode, re-render with updated factor
+  if (nettoAvailable && chartViewMode === "netto" && chartBruttoParams) {
+    renderChartNetto();
+  }
+}
+
+function renderChartNetto() {
+  if (!chartBruttoParams || !currentNettoFaktor) return;
+  const p = chartBruttoParams;
+  const f = currentNettoFaktor;
+  renderChart(
+    p.monthly * f, p.utMonatlich * f, p.urlaubsgeld * f,
+    p.weihnachtsgeld * f, p.tZugA * f, p.tGeld * f, p.tZugB * f
+  );
+  elChartTitle.setAttribute("data-i18n", "chartTitleNetto");
+  elChartTitle.textContent = t("chartTitleNetto");
+}
+
+function switchChartView(mode) {
+  chartViewMode = mode;
+  elChartViewBrutto.classList.toggle("active", mode === "brutto");
+  elChartViewNetto.classList.toggle("active", mode === "netto");
+
+  if (mode === "netto") {
+    renderChartNetto();
+  } else if (chartBruttoParams) {
+    const p = chartBruttoParams;
+    renderChart(p.monthly, p.utMonatlich, p.urlaubsgeld, p.weihnachtsgeld, p.tZugA, p.tGeld, p.tZugB);
+    elChartTitle.setAttribute("data-i18n", "chartTitle");
+    elChartTitle.textContent = t("chartTitle");
+  }
+}
+
+elChartViewBrutto.addEventListener("click", () => {
+  if (chartViewMode !== "brutto") switchChartView("brutto");
+});
+
+elChartViewNetto.addEventListener("click", () => {
+  if (chartViewMode !== "netto") switchChartView("netto");
+});
 
 function hideResult() {
   elResult.classList.add("hidden");
