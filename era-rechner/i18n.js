@@ -17,7 +17,7 @@ const TRANSLATIONS = {
     labelHours: "W\u00f6chentliche Arbeitszeit",
     labelStartDate: "Eintrittsdatum",
     labelTZugADaysOff: "T-ZUG A als freie Tage nehmen",
-    labelBonus: "\u00dcbertarifliche Zulage",
+    labelBonus: "Leistungszulage",
     labelSonderzahlung: "Sonderzahlung / Gewinnbeteiligung (j\u00e4hrlich)",
 
     // Datepicker
@@ -64,7 +64,7 @@ const TRANSLATIONS = {
     // Breakdown
     breakdownTitle: "Aufschl\u00fcsselung",
     breakdownBase: "12 \u00d7 Monatsentgelt",
-    breakdownUtZulage: "12 \u00d7 \u00dcT-Zulage",
+    breakdownUtZulage: "12 \u00d7 Leistungszulage",
     breakdownHolidayPay: "Urlaubsgeld",
     breakdownHolidayPayDetail: "(69\u00a0% eines ME)",
     breakdownXmasPay: "Weihnachtsgeld",
@@ -79,7 +79,7 @@ const TRANSLATIONS = {
 
     // Tooltips
     tooltipBase: "Tarifliches Monatsentgelt gem\u00e4\u00df ERA-Entgelttabelle, ggf. angepasst an die individuelle Wochenarbeitszeit.",
-    tooltipUtZulage: "Freiwillige Arbeitgeberzulage oberhalb des Tarifentgelts. Wird nicht bei Sonderzahlungen ber\u00fccksichtigt.",
+    tooltipUtZulage: "Freiwillige Leistungszulage des Arbeitgebers oberhalb des Tarifentgelts. Wird nicht bei Sonderzahlungen ber\u00fccksichtigt.",
     tooltipHolidayPay: "Zus\u00e4tzliches Urlaubsgeld, das einmal j\u00e4hrlich im Juni ausgezahlt wird. Berechnung auf Basis des tariflichen Monatsentgelts.",
     tooltipXmasPay: "Jahressonderzahlung im November. Der volle Satz (55\u00a0%) wird nach 36 Monaten Betriebszugeh\u00f6rigkeit erreicht. Vorher gestaffelt: 25\u00a0% (ab 6 Mon.), 35\u00a0% (ab 12 Mon.), 45\u00a0% (ab 24 Mon.).",
     tooltipTZugA: "Tarifliches Zusatzgeld A \u2013 Auszahlung im Juli. Kann alternativ in freie Tage umgewandelt werden (bis zu 8 Tage). Wird bei Umwandlung nicht ausgezahlt.",
@@ -95,7 +95,7 @@ const TRANSLATIONS = {
                   "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"],
     chartLabels: {
       monatsentgelt:  "Monatsentgelt",
-      utZulage:       "\u00dcT-Zulage",
+      utZulage:       "Leistungszulage",
       urlaubsgeld:    "Urlaubsgeld",
       tZugA:          "T-ZUG A",
       tGeld:          "T-Geld",
@@ -169,7 +169,7 @@ const TRANSLATIONS = {
     labelHours: "Weekly Working Hours",
     labelStartDate: "Start Date",
     labelTZugADaysOff: "Take T-ZUG A as days off",
-    labelBonus: "Above-tariff Bonus",
+    labelBonus: "Performance Bonus",
     labelSonderzahlung: "Special Payment / Profit Sharing (annual)",
 
     // Datepicker
@@ -216,7 +216,7 @@ const TRANSLATIONS = {
     // Breakdown
     breakdownTitle: "Breakdown",
     breakdownBase: "12 \u00d7 Monthly Salary",
-    breakdownUtZulage: "12 \u00d7 Above-tariff Bonus",
+    breakdownUtZulage: "12 \u00d7 Performance Bonus",
     breakdownHolidayPay: "Holiday Pay",
     breakdownHolidayPayDetail: "(69\u00a0% of monthly)",
     breakdownXmasPay: "Christmas Bonus",
@@ -231,7 +231,7 @@ const TRANSLATIONS = {
 
     // Tooltips
     tooltipBase: "Tariff monthly salary according to the ERA pay table, adjusted for individual weekly working hours if applicable.",
-    tooltipUtZulage: "Voluntary employer bonus above the tariff salary. Not included in special payment calculations.",
+    tooltipUtZulage: "Voluntary performance bonus from the employer above the tariff salary. Not included in special payment calculations.",
     tooltipHolidayPay: "Additional holiday pay, paid once a year in June. Calculated based on the tariff monthly salary.",
     tooltipXmasPay: "Annual bonus paid in November. The full rate (55\u00a0%) is reached after 36 months of tenure. Graduated before: 25\u00a0% (from 6 mo.), 35\u00a0% (from 12 mo.), 45\u00a0% (from 24 mo.).",
     tooltipTZugA: "Additional tariff payment A \u2013 paid in July. Can alternatively be converted into days off (up to 8 days). Not paid out if converted.",
@@ -247,7 +247,7 @@ const TRANSLATIONS = {
                   "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
     chartLabels: {
       monatsentgelt:  "Monthly Salary",
-      utZulage:       "Above-tariff Bonus",
+      utZulage:       "Performance Bonus",
       urlaubsgeld:    "Holiday Pay",
       tZugA:          "T-ZUG A",
       tGeld:          "T-Geld",

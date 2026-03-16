@@ -16,15 +16,26 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://era-rechner.de/">
   <meta property="og:image" content="https://era-rechner.de/og-image.png">
+  <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="ERA Entgeltrechner – Gehaltsrechner f&uuml;r die Metall- und Elektroindustrie">
   <meta property="og:locale" content="de_DE">
   <meta property="og:site_name" content="ERA Entgeltrechner">
 
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ERA Entgeltrechner – Metall- und Elektroindustrie">
+  <meta name="twitter:description" content="Berechne dein Bruttojahresgehalt inkl. Weihnachtsgeld, Urlaubsgeld, T-ZUG und T-Geld f&uuml;r alle Tarifgebiete.">
+  <meta name="twitter:image" content="https://era-rechner.de/og-image.png">
+
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="apple-touch-icon" href="favicon.png">
+
+  <!-- Resource Hints -->
+  <link rel="dns-prefetch" href="https://formsubmit.co">
+  <link rel="dns-prefetch" href="https://paypal.me">
 
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
@@ -41,7 +52,29 @@
       "price": "0",
       "priceCurrency": "EUR"
     },
-    "inLanguage": ["de", "en"]
+    "inLanguage": ["de", "en"],
+    "author": {
+      "@type": "Organization",
+      "name": "era-rechner.de",
+      "url": "https://era-rechner.de/"
+    }
+  }
+  </script>
+
+  <!-- Organization Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "ERA Entgeltrechner",
+    "url": "https://era-rechner.de/",
+    "logo": "https://era-rechner.de/og-image.png",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "email": "info@era-rechner.de",
+      "contactType": "customer support",
+      "availableLanguage": ["German", "English"]
+    }
   }
   </script>
 
@@ -98,7 +131,7 @@
       </div>
 
       <div class="form-group">
-        <label for="ut-zulage" data-i18n="labelBonus">&Uuml;bertarifliche Zulage</label>
+        <label for="ut-zulage" data-i18n="labelBonus">Leistungszulage</label>
         <div class="range-group">
           <input type="range" id="ut-zulage" min="0" max="30" step="0.1" value="0">
           <output for="ut-zulage" id="ut-zulage-output">0&nbsp;%</output>
@@ -232,7 +265,7 @@
       </div>
 
       <div id="breakdown" class="breakdown hidden">
-        <h3 class="breakdown-title" data-i18n="breakdownTitle">Aufschl&uuml;sselung</h3>
+        <h2 class="breakdown-title" data-i18n="breakdownTitle">Aufschl&uuml;sselung</h2>
         <div class="breakdown-row has-tooltip">
           <span class="breakdown-label">
             <span data-i18n-html="breakdownBase">12 &times; Monatsentgelt</span>
@@ -290,7 +323,7 @@
 
       <div id="chart" class="chart hidden">
         <div class="chart-header">
-          <h3 class="chart-title" id="chart-title" data-i18n="chartTitle">Bruttoverdienst nach Monaten</h3>
+          <h2 class="chart-title" id="chart-title" data-i18n="chartTitle">Bruttoverdienst nach Monaten</h2>
           <div class="chart-view-toggle hidden" id="chart-view-toggle">
             <button type="button" class="chart-view-btn active" id="chart-view-brutto" data-i18n="chartViewBrutto">Brutto</button>
             <button type="button" class="chart-view-btn" id="chart-view-netto" data-i18n="chartViewNetto">Netto</button>
@@ -308,7 +341,7 @@
     <section id="compare" class="compare hidden">
       <div id="compare-table" class="compare-table">
         <div class="compare-header">
-          <h3 data-i18n="compareTitle">Vergleich</h3>
+          <h2 data-i18n="compareTitle">Vergleich</h2>
           <button id="compare-reset" class="compare-reset" data-i18n-aria="compareReset" title="Zur&uuml;cksetzen">&times;</button>
         </div>
         <table>
