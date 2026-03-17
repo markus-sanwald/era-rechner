@@ -2033,3 +2033,10 @@ const ERA_DATA = {
     }
   }
 };
+
+// Beitragsbemessungsgrenzen (monatlich, West) pro Jahr
+// RV/AV = Renten- und Arbeitslosenversicherung, KV/PV = Kranken- und Pflegeversicherung
+const BBG_DATA = {
+  "2025": { rvAv: 7550, kvPv: 5512.50 },
+  "2026": { rvAv: 7800, kvPv: 5687.50 }
+};

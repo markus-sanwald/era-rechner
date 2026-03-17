@@ -184,10 +184,7 @@ function loadYear(year) {
 // Language switch: re-render dynamic content
 // ---------------------------------------------------------------------------
 
-const _origApplyTranslations = applyTranslations;
-applyTranslations = function () {
-  _origApplyTranslations();
-
+onTranslationsApplied(function () {
   // Re-render year options
   const selectedYear = elJahr.value;
   elJahr.innerHTML = "";
@@ -237,7 +234,7 @@ applyTranslations = function () {
 
   // Re-render chart and result if visible
   recalcIfReady();
-};
+});
 
 // ---------------------------------------------------------------------------
 // Event: Jahr changed → reload data for selected year
@@ -583,12 +580,19 @@ elDpToday.addEventListener("click", () => datepicker.goToToday());
 elDpClear.addEventListener("click", () => datepicker.clearDate());
 
 // Close on outside click
-document.addEventListener("click", (e) => {
+const dpOutsideClickHandler = (e) => {
   const wrapper = elDpDisplay.closest(".datepicker-wrapper");
   if (!wrapper.contains(e.target)) {
     datepicker.close();
   }
-});
+};
+document.addEventListener("click", dpOutsideClickHandler);
+
+// Close on Escape key
+const dpEscapeHandler = (e) => {
+  if (e.key === "Escape") datepicker.close();
+};
+document.addEventListener("keydown", dpEscapeHandler);
 
 // Hidden input change → recalculate
 elEintrittsdatum.addEventListener("change", () => {
@@ -704,6 +708,7 @@ function recalcIfReady() {
 function berechneMonate(eintrittsdatum) {
   const heute = new Date();
   const eintritt = new Date(eintrittsdatum);
+  if (isNaN(eintritt.getTime())) return null;
   let monate = (heute.getFullYear() - eintritt.getFullYear()) * 12
              + (heute.getMonth() - eintritt.getMonth());
   if (heute.getDate() < eintritt.getDate()) monate--;
@@ -904,15 +909,8 @@ const SV_PFLEGE_BASIS = 0.017;
 const SV_PFLEGE_KINDERLOS_ZUSCHLAG = 0.006;
 const SV_PFLEGE_KIND_ABZUG = 0.0025; // pro Kind ab dem 2.
 
-// Beitragsbemessungsgrenzen (monatlich, West) pro Jahr
-// RV/AV = Renten- und Arbeitslosenversicherung, KV/PV = Kranken- und Pflegeversicherung
-const BBG = {
-  "2025": { rvAv: 7550, kvPv: 5512.50 },
-  "2026": { rvAv: 7800, kvPv: 5687.50 }
-};
-
 function getBBG(year) {
-  return BBG[year] || BBG[Object.keys(BBG).sort().pop()];
+  return BBG_DATA[year] || BBG_DATA[Object.keys(BBG_DATA).sort().pop()];
 }
 
 function updateNettoEstimate(bruttoMonatlich, bruttoJaehrlich) {
@@ -1130,15 +1128,23 @@ function updateCompare(currentMonthly, currentAnnual, currentNetto) {
   elCompare.classList.remove("hidden");
 
   // Populate table
-  elCompareLabelSaved.innerHTML = savedComparison.label + ', ' + savedComparison.region
-    + '<span class="compare-details">' + savedComparison.details + '</span>';
+  elCompareLabelSaved.textContent = '';
+  elCompareLabelSaved.appendChild(document.createTextNode(savedComparison.label + ', ' + savedComparison.region));
+  const savedDetailsSpan = document.createElement('span');
+  savedDetailsSpan.className = 'compare-details';
+  savedDetailsSpan.textContent = savedComparison.details;
+  elCompareLabelSaved.appendChild(savedDetailsSpan);
   elCompareMonthlySaved.textContent = currencyFmt.format(savedComparison.monthly);
   elCompareAnnualSaved.textContent = currencyFmt.format(savedComparison.annual);
 
   const currentLabel = getCurrentLabel();
   const currentDetails = getCurrentDetails();
-  elCompareLabelCurrent.innerHTML = t("compareCurrent") + ' (' + currentLabel + ')'
-    + '<span class="compare-details">' + currentDetails + '</span>';
+  elCompareLabelCurrent.textContent = '';
+  elCompareLabelCurrent.appendChild(document.createTextNode(t("compareCurrent") + ' (' + currentLabel + ')'));
+  const currentDetailsSpan = document.createElement('span');
+  currentDetailsSpan.className = 'compare-details';
+  currentDetailsSpan.textContent = currentDetails;
+  elCompareLabelCurrent.appendChild(currentDetailsSpan);
   elCompareMonthlyCurrent.textContent = currencyFmt.format(currentMonthly);
   elCompareAnnualCurrent.textContent = currencyFmt.format(currentAnnual);
 

@@ -3,7 +3,7 @@
 const TRANSLATIONS = {
   de: {
     // Page
-    pageTitle: "ERA Entgeltrechner \u2013 Metall- und Elektroindustrie | Gehaltsrechner 2025/2026",
+    pageTitle: "ERA Entgeltrechner \u2013 Kostenloser Open-Source Gehaltsrechner | Metall- und Elektroindustrie 2025/2026",
     title: "ERA Entgeltrechner",
     subtitle: "Metall- und Elektroindustrie",
     subtitleWithYear: "Metall- und Elektroindustrie",
@@ -155,7 +155,7 @@ const TRANSLATIONS = {
 
   en: {
     // Page
-    pageTitle: "ERA Salary Calculator \u2013 Metal and Electrical Industry | 2025/2026",
+    pageTitle: "ERA Salary Calculator \u2013 Free Open-Source Calculator | Metal and Electrical Industry 2025/2026",
     title: "ERA Salary Calculator",
     subtitle: "Metal and Electrical Industry",
     subtitleWithYear: "Metal and Electrical Industry",
@@ -368,6 +368,12 @@ function setLanguage(lang) {
   applyTranslations();
 }
 
+const _translationCallbacks = [];
+
+function onTranslationsApplied(callback) {
+  _translationCallbacks.push(callback);
+}
+
 function applyTranslations() {
   // Page title
   document.title = t("pageTitle");
@@ -394,4 +400,7 @@ function applyTranslations() {
   document.querySelectorAll(".lang-btn").forEach(btn => {
     btn.classList.toggle("active", btn.dataset.lang === currentLang);
   });
+
+  // Notify registered callbacks
+  for (const cb of _translationCallbacks) cb();
 }
