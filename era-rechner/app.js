@@ -109,6 +109,8 @@ const compactFmt = new Intl.NumberFormat("de-DE", {
   maximumFractionDigits: 0
 });
 
+const fmtDE = (num, decimals = 1) => num.toFixed(decimals).replace(".", ",");
+
 // ---------------------------------------------------------------------------
 // Chart configuration
 // ---------------------------------------------------------------------------
@@ -374,8 +376,8 @@ const datepicker = {
     wrapper.classList.add("open");
     this.monthSelectMode = false;
     elDpMonthSelect.classList.add("hidden");
-    elDpWeekdays.style.display = "";
-    elDpDays.style.display = "";
+    elDpWeekdays.classList.remove("hidden");
+    elDpDays.classList.remove("hidden");
     this.render();
   },
 
@@ -524,13 +526,13 @@ const datepicker = {
     this.monthSelectMode = !this.monthSelectMode;
     if (this.monthSelectMode) {
       elDpMonthSelect.classList.remove("hidden");
-      elDpWeekdays.style.display = "none";
-      elDpDays.style.display = "none";
+      elDpWeekdays.classList.add("hidden");
+      elDpDays.classList.add("hidden");
       this.renderMonthSelect();
     } else {
       elDpMonthSelect.classList.add("hidden");
-      elDpWeekdays.style.display = "";
-      elDpDays.style.display = "";
+      elDpWeekdays.classList.remove("hidden");
+      elDpDays.classList.remove("hidden");
     }
   }
 };
@@ -564,8 +566,8 @@ elDpMonthSelect.addEventListener("click", (e) => {
     // Switch back to calendar view after selecting month
     datepicker.monthSelectMode = false;
     elDpMonthSelect.classList.add("hidden");
-    elDpWeekdays.style.display = "";
-    elDpDays.style.display = "";
+    elDpWeekdays.classList.remove("hidden");
+    elDpDays.classList.remove("hidden");
     datepicker.render();
   }
   if (ybtn) {
@@ -605,7 +607,7 @@ elEintrittsdatum.addEventListener("change", () => {
 
 elUtZulage.addEventListener("input", () => {
   const v = parseFloat(elUtZulage.value);
-  elUtZulageOutput.textContent = `${v.toFixed(1).replace(".", ",")}\u00a0%`;
+  elUtZulageOutput.textContent = `${fmtDE(v)}\u00a0%`;
   recalcIfReady();
 });
 
@@ -726,7 +728,7 @@ function getWeihnachtsgeldSatz(monate, staffel) {
 // Display helpers
 // ---------------------------------------------------------------------------
 
-function showResult(tabellenMonthly) {
+function calcSalary(tabellenMonthly) {
   const region = elBundesland.value;
   const bonus = bonusData[region];
 
@@ -744,60 +746,68 @@ function showResult(tabellenMonthly) {
 
   const grundgehalt = monthly * 12;
 
-  elMonthly.textContent = currencyFmt.format(monthly + utMonatlich);
-
   // Brutto-Stundenlohn: Monatsentgelt / (Wochenstunden × 52 / 12)
   const monatsStunden = wochenstunden * 52 / 12;
   const stundenlohn = (monthly + utMonatlich) / monatsStunden;
-  elHourly.textContent = currencyFmt.format(stundenlohn);
 
   // Optionale Sonderzahlung
   const sonderzahlung = parseFloat(elSonderzahlung.value) || 0;
 
-  if (bonus) {
-    const datumStr = elEintrittsdatum.value;
-    const monate = datumStr ? berechneMonate(datumStr) : null;
-    const hatAnspruch = monate === null || monate >= bonus.minMonate;
+  const result = { monthly, utPct, utMonatlich, utJaehrlich, grundgehalt, wochenstunden, stundenlohn, sonderzahlung };
 
-    // Weihnachtsgeld-Satz bestimmen
-    let wgSatz;
-    if (monate === null) {
-      wgSatz = bonus.weihnachtsgeldStaffel[0].satz;
-    } else {
-      wgSatz = getWeihnachtsgeldSatz(monate, bonus.weihnachtsgeldStaffel);
-    }
+  if (!bonus) {
+    result.total = grundgehalt + utJaehrlich + sonderzahlung;
+    return result;
+  }
 
-    // Sonderzahlungen basieren auf Monatsentgelt brutto (inkl. Leistungszulage)
-    const monatsentgeltBrutto = monthly + utMonatlich;
-    const urlaubsgeld     = hatAnspruch ? monatsentgeltBrutto * bonus.urlaubsgeld : 0;
-    const weihnachtsgeld  = hatAnspruch ? monatsentgeltBrutto * wgSatz : 0;
-    const tZugAFreiTage   = elTZugAFrei.checked;
-    const tZugA           = hatAnspruch && !tZugAFreiTage ? monatsentgeltBrutto * bonus.tZugA : 0;
-    const tGeld           = hatAnspruch && bonus.tGeld ? monatsentgeltBrutto * bonus.tGeld : 0;
-    const tZugB           = hatAnspruch ? bonus.eckentgelt * azFaktor * bonus.tZugB : 0;
-    const total           = grundgehalt + utJaehrlich + urlaubsgeld + weihnachtsgeld + tZugA + tGeld + tZugB + sonderzahlung;
+  const datumStr = elEintrittsdatum.value;
+  const monate = datumStr ? berechneMonate(datumStr) : null;
+  const hatAnspruch = monate === null || monate >= bonus.minMonate;
 
-    elAnnual.textContent         = currencyFmt.format(total);
-    elGrundgehalt.textContent    = currencyFmt.format(grundgehalt);
-    elUrlaubsgeld.textContent    = currencyFmt.format(urlaubsgeld);
-    elWeihnachtsgeld.textContent = currencyFmt.format(weihnachtsgeld);
-    elTZugA.textContent          = currencyFmt.format(tZugA);
-    elTGeld.textContent          = currencyFmt.format(tGeld);
-    elTZugB.textContent          = currencyFmt.format(tZugB);
+  // Weihnachtsgeld-Satz bestimmen
+  const wgSatz = monate === null
+    ? bonus.weihnachtsgeldStaffel[0].satz
+    : getWeihnachtsgeldSatz(monate, bonus.weihnachtsgeldStaffel);
+
+  // Sonderzahlungen basieren auf Monatsentgelt brutto (inkl. Leistungszulage)
+  const monatsentgeltBrutto = monthly + utMonatlich;
+  const urlaubsgeld     = hatAnspruch ? monatsentgeltBrutto * bonus.urlaubsgeld : 0;
+  const weihnachtsgeld  = hatAnspruch ? monatsentgeltBrutto * wgSatz : 0;
+  const tZugAFreiTage   = elTZugAFrei.checked;
+  const tZugA           = hatAnspruch && !tZugAFreiTage ? monatsentgeltBrutto * bonus.tZugA : 0;
+  const tGeld           = hatAnspruch && bonus.tGeld ? monatsentgeltBrutto * bonus.tGeld : 0;
+  const tZugB           = hatAnspruch ? bonus.eckentgelt * azFaktor * bonus.tZugB : 0;
+  const total           = grundgehalt + utJaehrlich + urlaubsgeld + weihnachtsgeld + tZugA + tGeld + tZugB + sonderzahlung;
+
+  return { ...result, bonus, hatAnspruch, wgSatz, urlaubsgeld, weihnachtsgeld, tZugA, tGeld, tZugB, total };
+}
+
+function displayResult(r) {
+  elMonthly.textContent = currencyFmt.format(r.monthly + r.utMonatlich);
+  elHourly.textContent = currencyFmt.format(r.stundenlohn);
+  elAnnual.textContent = currencyFmt.format(r.total);
+
+  if (r.bonus) {
+    elGrundgehalt.textContent    = currencyFmt.format(r.grundgehalt);
+    elUrlaubsgeld.textContent    = currencyFmt.format(r.urlaubsgeld);
+    elWeihnachtsgeld.textContent = currencyFmt.format(r.weihnachtsgeld);
+    elTZugA.textContent          = currencyFmt.format(r.tZugA);
+    elTGeld.textContent          = currencyFmt.format(r.tGeld);
+    elTZugB.textContent          = currencyFmt.format(r.tZugB);
 
     // Sonderzahlung Zeile ein-/ausblenden
-    if (sonderzahlung > 0) {
-      elSonderzahlungAnnual.textContent = currencyFmt.format(sonderzahlung);
+    if (r.sonderzahlung > 0) {
+      elSonderzahlungAnnual.textContent = currencyFmt.format(r.sonderzahlung);
       elSonderzahlungRow.classList.remove("hidden");
     } else {
       elSonderzahlungRow.classList.add("hidden");
     }
 
     // ÜT-Zulage Zeile ein-/ausblenden
-    if (utPct > 0) {
-      elUtZulageAnnual.textContent = currencyFmt.format(utJaehrlich);
+    if (r.utPct > 0) {
+      elUtZulageAnnual.textContent = currencyFmt.format(r.utJaehrlich);
       elUtZulagePct.textContent = tReplace("utZulagePct", {
-        pct: utPct.toFixed(1).replace(".", ",")
+        pct: fmtDE(r.utPct)
       });
       elUtZulageRow.classList.remove("hidden");
     } else {
@@ -805,37 +815,37 @@ function showResult(tabellenMonthly) {
     }
 
     // Dynamische Prozentanzeige im Label
-    const pctText = hatAnspruch
+    const pctText = r.hatAnspruch
       ? tReplace("xmasPayPct", {
-          pct: (wgSatz * 100).toFixed(0).replace(".", ",")
+          pct: fmtDE(r.wgSatz * 100, 0)
         })
       : t("xmasPayNone");
     elWeihnachtsgeldPct.textContent = pctText;
 
     // T-ZUG B Prozentsatz dynamisch anzeigen
-    const tZugBPctVal = (bonus.tZugB * 100).toFixed(1).replace(".", ",");
+    const tZugBPctVal = fmtDE(r.bonus.tZugB * 100);
     elTZugBPct.textContent = tReplace("tZugBPct", { pct: tZugBPctVal });
 
     elBreakdown.classList.remove("hidden");
 
     // Chart rendern
-    chartBruttoParams = { monthly, utMonatlich, urlaubsgeld, weihnachtsgeld, tZugA, tGeld, tZugB };
-    renderChart(monthly, utMonatlich, urlaubsgeld, weihnachtsgeld, tZugA, tGeld, tZugB);
-
-    elResult.classList.remove("hidden");
-    const netto = updateNettoEstimate(monthly + utMonatlich, total);
+    chartBruttoParams = { monthly: r.monthly, utMonatlich: r.utMonatlich, urlaubsgeld: r.urlaubsgeld, weihnachtsgeld: r.weihnachtsgeld, tZugA: r.tZugA, tGeld: r.tGeld, tZugB: r.tZugB };
+    renderChart(r.monthly, r.utMonatlich, r.urlaubsgeld, r.weihnachtsgeld, r.tZugA, r.tGeld, r.tZugB);
     updateChartViewToggle();
-    updateCompare(monthly + utMonatlich, total, netto);
   } else {
-    const total = grundgehalt + utJaehrlich + sonderzahlung;
-    elAnnual.textContent = currencyFmt.format(total);
     elBreakdown.classList.add("hidden");
     elChart.classList.add("hidden");
-
-    elResult.classList.remove("hidden");
-    const netto = updateNettoEstimate(monthly + utMonatlich, total);
-    updateCompare(monthly + utMonatlich, total, netto);
   }
+
+  elResult.classList.remove("hidden");
+  const monatsBrutto = r.monthly + r.utMonatlich;
+  const netto = updateNettoEstimate(monatsBrutto, r.total);
+  updateCompare(monatsBrutto, r.total, netto);
+}
+
+function showResult(tabellenMonthly) {
+  const r = calcSalary(tabellenMonthly);
+  displayResult(r);
 }
 
 // ---------------------------------------------------------------------------
@@ -1106,7 +1116,7 @@ function getCurrentDetails() {
   const utPct = parseFloat(elUtZulage.value) || 0;
   const sonderzahlung = parseFloat(elSonderzahlung.value) || 0;
   const details = [wochenstunden + "\u00a0h"];
-  if (utPct > 0) details.push("\u00dcT " + utPct.toFixed(1).replace(".", ",") + "\u00a0%");
+  if (utPct > 0) details.push("\u00dcT " + fmtDE(utPct) + "\u00a0%");
   if (sonderzahlung > 0) details.push("SZ " + compactFmt.format(sonderzahlung));
   return details.join(" \u00b7 ");
 }
