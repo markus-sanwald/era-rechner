@@ -782,12 +782,14 @@ header h1 {
 }
 
 .chart-col {
-  flex: 1;
+  flex: 1 1 0;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
   height: 100%;
+  overflow: visible;
 }
 
 .chart-bar-area {

@@ -2,29 +2,29 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
-    <loc>https://era-rechner.de/</loc>
+    <loc>https://www.era-rechner.de/</loc>
     <lastmod>2026-03-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://era-rechner.de/og-image.png</image:loc>
+      <image:loc>https://www.era-rechner.de/og-image.png</image:loc>
       <image:title>ERA Entgeltrechner – Gehaltsrechner für die Metall- und Elektroindustrie</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://era-rechner.de/impressum.html</loc>
+    <loc>https://www.era-rechner.de/impressum.html</loc>
     <lastmod>2026-03-10</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://era-rechner.de/datenschutz.html</loc>
+    <loc>https://www.era-rechner.de/datenschutz.html</loc>
     <lastmod>2026-03-10</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://era-rechner.de/kontakt.html</loc>
+    <loc>https://www.era-rechner.de/kontakt.html</loc>
     <lastmod>2026-03-16</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>

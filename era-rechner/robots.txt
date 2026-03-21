@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://era-rechner.de/sitemap.xml
+Sitemap: https://www.era-rechner.de/sitemap.xml
