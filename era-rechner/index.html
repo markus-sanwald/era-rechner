@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ERA Entgeltrechner – Kostenloser Open-Source Gehaltsrechner | Metall- und Elektroindustrie 2025/2026</title>
-  <meta name="description" content="Kostenloser Open-Source ERA Entgeltrechner f&uuml;r die Metall- und Elektroindustrie. Berechne dein Bruttojahresgehalt inkl. Weihnachtsgeld, Urlaubsgeld, T-ZUG und T-Geld f&uuml;r alle 15 Tarifgebiete. Werbefrei &amp; ohne Registrierung.">
+  <title>ERA Entgeltrechner – Gehaltsrechner Metall- und Elektroindustrie 2025/2026</title>
+  <meta name="description" content="Kostenloser ERA Entgeltrechner basierend auf den IG Metall ERA-Entgelttabellen. Berechne dein Bruttojahresgehalt inkl. Weihnachtsgeld, Urlaubsgeld, T-ZUG und T-Geld f&uuml;r alle 15 Tarifgebiete. Werbefrei &amp; ohne Registrierung.">
   <meta name="keywords" content="ERA, Entgeltrechner, Gehaltsrechner, Metall, Elektroindustrie, IG Metall, Tarifvertrag, Entgelttabelle, Bruttojahresgehalt, Weihnachtsgeld, Urlaubsgeld, T-ZUG, T-Geld, Entgeltgruppe, Tariflohn, open-source, kostenlos, werbefrei">
   <meta name="robots" content="index, follow">
   <meta name="author" content="era-rechner.de">
   <link rel="canonical" href="https://www.era-rechner.de/">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="ERA Entgeltrechner – Kostenloser Open-Source Gehaltsrechner">
-  <meta property="og:description" content="Kostenloser Open-Source Gehaltsrechner f&uuml;r die Metall- und Elektroindustrie. Werbefrei, ohne Registrierung. Bruttojahresgehalt inkl. aller Sonderzahlungen.">
+  <meta property="og:title" content="ERA Entgeltrechner – Gehaltsrechner Metall- und Elektroindustrie">
+  <meta property="og:description" content="Kostenloser ERA Entgeltrechner basierend auf den IG Metall ERA-Entgelttabellen. Werbefrei, ohne Registrierung. Bruttojahresgehalt inkl. aller Sonderzahlungen.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.era-rechner.de/">
   <meta property="og:image" content="https://www.era-rechner.de/og-image.png">
@@ -25,8 +25,8 @@
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="ERA Entgeltrechner – Kostenloser Open-Source Gehaltsrechner">
-  <meta name="twitter:description" content="Kostenloser Open-Source Gehaltsrechner f&uuml;r die Metall- und Elektroindustrie. Werbefrei, ohne Registrierung.">
+  <meta name="twitter:title" content="ERA Entgeltrechner – Gehaltsrechner Metall- und Elektroindustrie">
+  <meta name="twitter:description" content="Kostenloser ERA Entgeltrechner basierend auf den IG Metall ERA-Entgelttabellen. Werbefrei, ohne Registrierung.">
   <meta name="twitter:image" content="https://www.era-rechner.de/og-image.png">
 
   <!-- Favicon -->
@@ -43,7 +43,7 @@
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "ERA Entgeltrechner",
-    "description": "Gehaltsrechner f\u00fcr die Metall- und Elektroindustrie. Berechnet Bruttojahresgehalt inkl. Weihnachtsgeld, Urlaubsgeld, T-ZUG A, T-Geld und T-ZUG B f\u00fcr alle ERA-Tarifgebiete.",
+    "description": "Kostenloser ERA Entgeltrechner basierend auf den IG Metall ERA-Entgelttabellen. Berechnet Bruttojahresgehalt inkl. Weihnachtsgeld, Urlaubsgeld, T-ZUG A, T-Geld und T-ZUG B f\u00fcr alle ERA-Tarifgebiete.",
     "url": "https://www.era-rechner.de/",
     "applicationCategory": "FinanceApplication",
     "operatingSystem": "All",
@@ -134,7 +134,7 @@
         <label for="ut-zulage" data-i18n="labelBonus">Leistungszulage</label>
         <div class="range-group">
           <input type="range" id="ut-zulage" min="0" max="30" step="0.1" value="0">
-          <output for="ut-zulage" id="ut-zulage-output">0&nbsp;%</output>
+          <output for="ut-zulage" id="ut-zulage-output">0,0&nbsp;%</output>
         </div>
       </div>
 
@@ -201,7 +201,7 @@
             <option value="2" data-i18n="steuerklasse2">Steuerklasse 2 (alleinerziehend)</option>
             <option value="3" data-i18n="steuerklasse3">Steuerklasse 3 (verheiratet, Alleinverdiener)</option>
             <option value="4" data-i18n="steuerklasse4">Steuerklasse 4 (verheiratet, Doppelverdiener)</option>
-            <option value="5" data-i18n="steuerklasse5">Steuerklasse 5 (verheiratet, Geringverdiener)</option>
+            <option value="5" data-i18n="steuerklasse5">Steuerklasse 5 (verheiratet, Zweitverdiener)</option>
             <option value="6" data-i18n="steuerklasse6">Steuerklasse 6 (Zweitjob)</option>
           </select>
         </div>
@@ -387,8 +387,8 @@
       <p class="footer-feedback" data-i18n-html="footerFeedback">Anregungen, Fehler oder Feedback? <a href="mailto:info@era-rechner.de">info@era-rechner.de</a></p>
       <p class="footer-donate" data-i18n-html="footerDonate">Dieses Projekt ist werbefrei und open-source. <a href="https://paypal.me/erarechner" target="_blank" rel="noopener noreferrer">Unterstütze es mit einer Spende via PayPal</a>.</p>
       <p class="footer-links">
-        <!-- <a href="kontakt.html" data-i18n="footerContact">Kontakt</a>
-        <span class="footer-sep">&middot;</span> -->
+        <a href="kontakt.html" data-i18n="footerContact">Kontakt</a>
+        <span class="footer-sep">&middot;</span>
         <a href="impressum.html" data-i18n="footerImprint">Impressum</a>
         <span class="footer-sep">&middot;</span>
         <a href="datenschutz.html" data-i18n="footerPrivacy">Datenschutz</a>

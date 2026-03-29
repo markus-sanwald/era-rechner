@@ -3,7 +3,7 @@
 const TRANSLATIONS = {
   de: {
     // Page
-    pageTitle: "ERA Entgeltrechner \u2013 Kostenloser Open-Source Gehaltsrechner | Metall- und Elektroindustrie 2025/2026",
+    pageTitle: "ERA Entgeltrechner \u2013 Gehaltsrechner Metall- und Elektroindustrie 2025/2026",
     title: "ERA Entgeltrechner",
     subtitle: "Metall- und Elektroindustrie",
     subtitleWithYear: "Metall- und Elektroindustrie",
@@ -48,7 +48,7 @@ const TRANSLATIONS = {
     steuerklasse2: "Steuerklasse 2 (alleinerziehend)",
     steuerklasse3: "Steuerklasse 3 (verheiratet, Alleinverdiener)",
     steuerklasse4: "Steuerklasse 4 (verheiratet, Doppelverdiener)",
-    steuerklasse5: "Steuerklasse 5 (verheiratet, Geringverdiener)",
+    steuerklasse5: "Steuerklasse 5 (verheiratet, Zweitverdiener)",
     steuerklasse6: "Steuerklasse 6 (Zweitjob)",
     labelKinder: "Kinderfreibetr\u00e4ge",
     labelKVZusatz: "KV-Zusatzbeitrag (%)",
@@ -200,7 +200,7 @@ const TRANSLATIONS = {
     steuerklasse2: "Tax class 2 (single parent)",
     steuerklasse3: "Tax class 3 (married, sole earner)",
     steuerklasse4: "Tax class 4 (married, dual income)",
-    steuerklasse5: "Tax class 5 (married, lower earner)",
+    steuerklasse5: "Tax class 5 (married, secondary earner)",
     steuerklasse6: "Tax class 6 (second job)",
     labelKinder: "Child tax allowances",
     labelKVZusatz: "Health ins. surcharge (%)",

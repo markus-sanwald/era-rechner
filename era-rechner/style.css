@@ -217,6 +217,19 @@ header h1 {
   pointer-events: none;
 }
 
+/* Range slider */
+.range-group {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.range-group input[type="range"] {
+  flex: 1;
+  min-width: 0;
+  max-width: 320px;
+}
+
 /* Custom Datepicker */
 .datepicker-wrapper {
   position: relative;
