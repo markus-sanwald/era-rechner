@@ -353,7 +353,32 @@ elStufe.addEventListener("change", () => {
 // ---------------------------------------------------------------------------
 
 elArbeitszeit.addEventListener("input", () => {
-  elArbeitszeitOutput.textContent = `${elArbeitszeit.value}\u00a0h`;
+  elArbeitszeitOutput.value = elArbeitszeit.value;
+  recalcIfReady();
+});
+
+// Keine Nachkommastellen bei Arbeitszeit: Punkt/Komma blockieren
+elArbeitszeitOutput.addEventListener("keydown", (e) => {
+  if (e.key === "." || e.key === ",") e.preventDefault();
+});
+
+elArbeitszeitOutput.addEventListener("input", () => {
+  // Dezimalstellen entfernen falls per Paste eingefügt
+  const raw = elArbeitszeitOutput.value.replace(/[.,]\d*/g, "");
+  if (raw !== elArbeitszeitOutput.value) elArbeitszeitOutput.value = raw;
+  let v = parseInt(elArbeitszeitOutput.value, 10);
+  if (isNaN(v)) return;
+  v = Math.max(15, Math.min(42, v));
+  elArbeitszeit.value = v;
+  recalcIfReady();
+});
+
+elArbeitszeitOutput.addEventListener("blur", () => {
+  let v = parseInt(elArbeitszeitOutput.value, 10);
+  if (isNaN(v)) v = 35;
+  v = Math.max(15, Math.min(42, v));
+  elArbeitszeitOutput.value = v;
+  elArbeitszeit.value = v;
   recalcIfReady();
 });
 
@@ -602,8 +627,33 @@ elEintrittsdatum.addEventListener("change", () => {
 // ---------------------------------------------------------------------------
 
 elUtZulage.addEventListener("input", () => {
-  const v = parseFloat(elUtZulage.value);
-  elUtZulageOutput.textContent = `${fmtDE(v)}\u00a0%`;
+  elUtZulageOutput.value = parseFloat(elUtZulage.value).toFixed(1);
+  recalcIfReady();
+});
+
+// Max. eine Nachkommastelle bei Leistungszulage
+elUtZulageOutput.addEventListener("input", () => {
+  let raw = elUtZulageOutput.value;
+  // Auf eine Nachkommastelle begrenzen (z.B. "12.34" → "12.3")
+  const match = raw.match(/^(\d*[.,]?\d?)/);
+  if (match && match[1] !== raw) {
+    elUtZulageOutput.value = match[1];
+    raw = match[1];
+  }
+  let v = parseFloat(raw.replace(",", "."));
+  if (isNaN(v)) return;
+  v = Math.max(0, Math.min(30, v));
+  elUtZulage.value = v;
+  recalcIfReady();
+});
+
+elUtZulageOutput.addEventListener("blur", () => {
+  let v = parseFloat(elUtZulageOutput.value);
+  if (isNaN(v)) v = 0;
+  v = Math.max(0, Math.min(30, v));
+  v = Math.round(v * 10) / 10;
+  elUtZulageOutput.value = v.toFixed(1);
+  elUtZulage.value = v;
   recalcIfReady();
 });
 
