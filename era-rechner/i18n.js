@@ -161,8 +161,10 @@ const TRANSLATIONS = {
     faq5A: "Nein. Dieser Rechner ist ein unabh\u00e4ngiges, kostenloses und werbefreies Open-Source-Projekt. Er basiert auf den \u00f6ffentlich verf\u00fcgbaren ERA-Entgelttabellen, ist jedoch kein offizielles Angebot der IG Metall oder eines Arbeitgeberverbandes. Alle Angaben ohne Gew\u00e4hr.",
     faq6Q: "Wie genau ist die Netto-Sch\u00e4tzung?",
     faq6A: "Die Netto-Sch\u00e4tzung ist eine N\u00e4herung auf Basis progressiver Lohnsteuers\u00e4tze und der aktuellen Sozialversicherungsbeitr\u00e4ge (inkl. Beitragsbemessungsgrenzen). Sie ersetzt keine individuelle Steuerberechnung \u2013 f\u00fcr verbindliche Werte empfehlen wir den offiziellen Lohnsteuerrechner des Bundesfinanzministeriums.",
-    faq7Q: "Wie kann ich das Projekt unterst\u00fctzen?",
-    faq7A: "Der Rechner ist kostenlos, werbefrei und wird in der Freizeit gepflegt. Wer das Projekt unterst\u00fctzen m\u00f6chte, kann das gerne \u00fcber eine kleine Spende via PayPal tun \u2013 das hilft, den Dienst langfristig am Laufen zu halten.",
+    faq7Q: "F\u00fcr welche Bundesl\u00e4nder und Tarifgebiete gilt der Rechner?",
+    faq7A: "Der Rechner unterst\u00fctzt alle 15 ERA-Tarifgebiete: Baden-W\u00fcrttemberg, Bayern, Berlin/Brandenburg, Hamburg/Unterweser, Hessen, Niedersachsen, Nordrhein-Westfalen, Osnabr\u00fcck-Emsland, Pfalz, Rheinland-Rheinhessen, Saarland, Sachsen, Sachsen-Anhalt, Schleswig-Holstein/MV/NW-Niedersachsen und Th\u00fcringen.",
+    faq8Q: "Wie kann ich das Projekt unterst\u00fctzen?",
+    faq8A: "Der Rechner ist kostenlos, werbefrei und wird in der Freizeit gepflegt. Wer das Projekt unterst\u00fctzen m\u00f6chte, kann das gerne \u00fcber eine kleine Spende via PayPal tun \u2013 das hilft, den Dienst langfristig am Laufen zu halten.",
 
     // Footer
     footerSource: "Quelle: IG Metall ERA-Entgelttabellen",
@@ -365,8 +367,10 @@ const TRANSLATIONS = {
     faq5A: "No. This calculator is an independent, free, and ad-free open-source project. It is based on the publicly available ERA salary tables but is not an official service of IG Metall or any employer association. All information without guarantee.",
     faq6Q: "How accurate is the net salary estimate?",
     faq6A: "The net estimate is an approximation based on progressive income tax rates and current social security contributions (including contribution assessment ceilings). It does not replace an individual tax calculation \u2013 for binding values we recommend the official wage tax calculator of the German Federal Ministry of Finance.",
-    faq7Q: "How can I support this project?",
-    faq7A: "This calculator is free, ad-free, and maintained in spare time. If you find it useful, a small donation via PayPal is very much appreciated \u2013 it helps keep the service running long-term.",
+    faq7Q: "Which federal states and collective bargaining regions does the calculator cover?",
+    faq7A: "The calculator covers all 15 ERA collective bargaining regions: Baden-W\u00fcrttemberg, Bayern, Berlin/Brandenburg, Hamburg/Unterweser, Hessen, Niedersachsen, Nordrhein-Westfalen, Osnabr\u00fcck-Emsland, Pfalz, Rheinland-Rheinhessen, Saarland, Sachsen, Sachsen-Anhalt, Schleswig-Holstein/MV/NW-Niedersachsen and Th\u00fcringen.",
+    faq8Q: "How can I support this project?",
+    faq8A: "This calculator is free, ad-free, and maintained in spare time. If you find it useful, a small donation via PayPal is very much appreciated \u2013 it helps keep the service running long-term.",
 
     // Footer
     footerSource: "Source: IG Metall ERA salary tables",
