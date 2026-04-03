@@ -3,7 +3,7 @@
 const TRANSLATIONS = {
   de: {
     // Page
-    pageTitle: "ERA Entgeltrechner \u2013 Gehaltsrechner Metall- und Elektroindustrie 2025/2026",
+    pageTitle: "ERA Entgeltrechner {year} \u2013 IG Metall Entgelttabelle & Gehaltsrechner Metall- und Elektroindustrie",
     title: "ERA Entgeltrechner",
     subtitle: "Metall- und Elektroindustrie",
     subtitleWithYear: "Metall- und Elektroindustrie",
@@ -141,6 +141,29 @@ const TRANSLATIONS = {
     contactSend: "Nachricht senden",
     contactSuccess: "Danke f\u00fcr deine Nachricht! Sie wurde erfolgreich gesendet.",
 
+    // SEO Content
+    seoTitle: "ERA Entgelttabelle 2026 \u2013 Tariflohn in der Metall- und Elektroindustrie berechnen",
+    seoText1: "Dieser kostenlose Open-Source-Rechner basiert auf den ERA-Entgelttabellen der Metall- und Elektroindustrie und wird nach jeder Tarifrunde aktualisiert. Er unterst\u00fctzt alle 15 Tarifgebiete von Baden-W\u00fcrttemberg bis Th\u00fcringen und berechnet neben dem monatlichen Bruttolohn auch alle tariflichen Sonderzahlungen: Weihnachtsgeld, Urlaubsgeld, T-ZUG\u00a0A, Transformationsgeld und T-ZUG\u00a0B.",
+    seoText2: "Die IG Metall ERA-Entgelttabellen unterscheiden sich je nach Bundesland und Entgeltgruppe (EG\u00a01 bis EG\u00a017). Mit diesem Rechner l\u00e4sst sich das pers\u00f6nliche Jahresbrutto schnell ermitteln \u2013 inkl. anteiliger Berechnung bei Teilzeit und optionaler Leistungszulage.",
+    seoDisclaimer: "Unabh\u00e4ngiges Open-Source-Projekt \u2013 kein offizielles Angebot der IG Metall.",
+
+    // FAQ
+    faqTitle: "H\u00e4ufige Fragen zum ERA Rechner",
+    faq1Q: "Was ist das ERA-Entgeltsystem der Metall- und Elektroindustrie?",
+    faq1A: "Das Entgeltrahmenabkommen (ERA) ist das Entgeltsystem f\u00fcr die Metall- und Elektroindustrie in Deutschland. Es regelt die Eingruppierung in Entgeltgruppen (EG\u00a01\u201317, je nach Tarifgebiet) und wird zwischen den Arbeitgeberverb\u00e4nden und der IG Metall ausgehandelt. Die ERA-Entgelttabellen legen die monatlichen Grundentgelte f\u00fcr jede Entgeltgruppe und jedes Tarifgebiet fest.",
+    faq2Q: "Wie aktuell sind die Entgelttabellen in diesem Rechner?",
+    faq2A: "Der Rechner enth\u00e4lt die offiziellen ERA-Entgelttabellen f\u00fcr 2025 und 2026 (g\u00fcltig ab 01.04.2026) f\u00fcr alle 15 Tarifgebiete. Die Werte werden nach jeder Tarifrunde zeitnah aktualisiert.",
+    faq3Q: "Welche Sonderzahlungen sind im Jahresbrutto enthalten?",
+    faq3A: "Das berechnete Bruttojahresgehalt enth\u00e4lt neben dem monatlichen Entgelt auch: Urlaubsgeld (69\u00a0% eines Monatsentgelts), Weihnachtsgeld (25\u201355\u00a0% je nach Betriebszugeh\u00f6rigkeit), T-ZUG\u00a0A (27,5\u00a0%), Transformationsgeld (18,4\u00a0%) und T-ZUG\u00a0B (fester Betrag auf Basis des Eckentgelts). Alle Sonderzahlungen au\u00dfer T-ZUG\u00a0B berechnen sich auf Basis des Monatsentgelts inkl. Leistungszulage.",
+    faq4Q: "Was ist die Leistungszulage und wie wirkt sie sich aus?",
+    faq4A: "Die Leistungszulage ist ein prozentualer Aufschlag auf das tarifliche Grundentgelt, den der Arbeitgeber individuell gew\u00e4hrt. Sie erh\u00f6ht das monatliche Bruttoentgelt und flie\u00dft in die Berechnung von Urlaubsgeld, Weihnachtsgeld, T-ZUG\u00a0A und Transformationsgeld ein. Der T-ZUG\u00a0B basiert auf dem Eckentgelt (EG\u00a05) und ist unabh\u00e4ngig davon.",
+    faq5Q: "Ist dies ein offizielles Angebot der IG Metall?",
+    faq5A: "Nein. Dieser Rechner ist ein unabh\u00e4ngiges, kostenloses und werbefreies Open-Source-Projekt. Er basiert auf den \u00f6ffentlich verf\u00fcgbaren ERA-Entgelttabellen, ist jedoch kein offizielles Angebot der IG Metall oder eines Arbeitgeberverbandes. Alle Angaben ohne Gew\u00e4hr.",
+    faq6Q: "Wie genau ist die Netto-Sch\u00e4tzung?",
+    faq6A: "Die Netto-Sch\u00e4tzung ist eine N\u00e4herung auf Basis progressiver Lohnsteuers\u00e4tze und der aktuellen Sozialversicherungsbeitr\u00e4ge (inkl. Beitragsbemessungsgrenzen). Sie ersetzt keine individuelle Steuerberechnung \u2013 f\u00fcr verbindliche Werte empfehlen wir den offiziellen Lohnsteuerrechner des Bundesfinanzministeriums.",
+    faq7Q: "Wie kann ich das Projekt unterst\u00fctzen?",
+    faq7A: "Der Rechner ist kostenlos, werbefrei und wird in der Freizeit gepflegt. Wer das Projekt unterst\u00fctzen m\u00f6chte, kann das gerne \u00fcber eine kleine Spende via PayPal tun \u2013 das hilft, den Dienst langfristig am Laufen zu halten.",
+
     // Footer
     footerSource: "Quelle: IG Metall ERA-Entgelttabellen",
     footerDisclaimer: "Dies ist kein offizielles Angebot der IG Metall. Alle Angaben ohne Gew\u00e4hr.",
@@ -155,7 +178,7 @@ const TRANSLATIONS = {
 
   en: {
     // Page
-    pageTitle: "ERA Salary Calculator \u2013 Free Open-Source Calculator | Metal and Electrical Industry 2025/2026",
+    pageTitle: "ERA Salary Calculator {year} \u2013 IG Metall Salary Table & Calculator | Metal and Electrical Industry",
     title: "ERA Salary Calculator",
     subtitle: "Metal and Electrical Industry",
     subtitleWithYear: "Metal and Electrical Industry",
@@ -322,6 +345,29 @@ const TRANSLATIONS = {
     contactSend: "Send message",
     contactSuccess: "Thank you for your message! It has been sent successfully.",
 
+    // SEO Content
+    seoTitle: "ERA Salary Table 2026 \u2013 Calculate Collectively Agreed Pay in the Metal & Electrical Industry",
+    seoText1: "This free calculator is based on the ERA salary tables for the German metal and electrical industry (effective 01.04.2026) and is updated after each wage round. It supports all 15 bargaining regions and calculates monthly gross pay plus all collectively agreed special payments: Christmas bonus, holiday pay, T-ZUG\u00a0A, transformation payment, and T-ZUG\u00a0B.",
+    seoText2: "The IG Metall ERA salary tables vary by federal state and pay group (EG\u00a01 to EG\u00a017). This calculator makes it easy to determine your annual gross salary \u2013 including pro-rata calculation for part-time work and an optional performance allowance.",
+    seoDisclaimer: "Independent open-source project \u2013 not an official IG Metall service.",
+
+    // FAQ
+    faqTitle: "Frequently Asked Questions about ERA Salary Tables",
+    faq1Q: "What is the ERA pay system in the metal and electrical industry?",
+    faq1A: "The ERA (Entgeltrahmenabkommen) is the pay framework agreement for Germany's metal and electrical industry. It regulates the classification into pay groups (EG\u00a01\u201317, depending on the region) and is negotiated between employer associations and IG Metall. The ERA salary tables set the monthly base pay for each pay group and region.",
+    faq2Q: "How up to date are the salary tables in this calculator?",
+    faq2A: "The calculator contains the official ERA salary tables for 2025 and 2026 (effective 01.04.2026) for all 15 bargaining regions. Values are updated promptly after each wage round.",
+    faq3Q: "Which special payments are included in the annual gross salary?",
+    faq3A: "The calculated annual gross includes: holiday pay (69\u00a0% of one monthly salary), Christmas bonus (25\u201355\u00a0% depending on tenure), T-ZUG\u00a0A (27.5\u00a0%), transformation payment (18.4\u00a0%), and T-ZUG\u00a0B (fixed amount based on the reference salary). All special payments except T-ZUG\u00a0B are calculated on the monthly salary including performance allowance.",
+    faq4Q: "What is the performance allowance and how does it affect the result?",
+    faq4A: "The performance allowance (Leistungszulage) is a percentage surcharge on the collectively agreed base pay, granted individually by the employer. It increases the monthly gross and feeds into the calculation of holiday pay, Christmas bonus, T-ZUG\u00a0A, and transformation payment. T-ZUG\u00a0B is based on the reference salary (EG\u00a05) and is unaffected.",
+    faq5Q: "Is this an official IG Metall service?",
+    faq5A: "No. This calculator is an independent, free, and ad-free open-source project. It is based on the publicly available ERA salary tables but is not an official service of IG Metall or any employer association. All information without guarantee.",
+    faq6Q: "How accurate is the net salary estimate?",
+    faq6A: "The net estimate is an approximation based on progressive income tax rates and current social security contributions (including contribution assessment ceilings). It does not replace an individual tax calculation \u2013 for binding values we recommend the official wage tax calculator of the German Federal Ministry of Finance.",
+    faq7Q: "How can I support this project?",
+    faq7A: "This calculator is free, ad-free, and maintained in spare time. If you find it useful, a small donation via PayPal is very much appreciated \u2013 it helps keep the service running long-term.",
+
     // Footer
     footerSource: "Source: IG Metall ERA salary tables",
     footerDisclaimer: "This is not an official IG Metall service. All information without guarantee.",
@@ -375,8 +421,10 @@ function onTranslationsApplied(callback) {
 }
 
 function applyTranslations() {
-  // Page title
-  document.title = t("pageTitle");
+  // Page title (mit aktuellem Tarifjahr)
+  const elJahrSel = document.getElementById("jahr");
+  const currentYear = elJahrSel?.value || new Date().getFullYear();
+  document.title = t("pageTitle").replace("{year}", currentYear);
 
   // All elements with data-i18n attribute
   document.querySelectorAll("[data-i18n]").forEach(el => {

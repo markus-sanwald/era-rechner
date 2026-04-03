@@ -155,6 +155,7 @@ function loadYear(year) {
   bonusData = allData[year].bonusData;
 
   elSubtitle.textContent = tReplace("subtitleWithYear", { year });
+  document.title = t("pageTitle").replace("{year}", year);
 
   // Hinweis für vorläufige Werte ein-/ausblenden
   elYearNotice.classList.add("hidden");

@@ -917,6 +917,119 @@ header h1 {
   flex-shrink: 0;
 }
 
+/* SEO Content Block */
+.seo-content {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: var(--color-card);
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+}
+
+.seo-content h2 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--color-text);
+}
+
+.seo-content p {
+  font-size: 0.9rem;
+  color: var(--color-muted);
+  line-height: 1.65;
+  margin: 0 0 0.6rem;
+}
+
+.seo-content p:last-child {
+  margin-bottom: 0;
+}
+
+.seo-disclaimer {
+  font-size: 0.88rem !important;
+  font-weight: 600;
+  color: var(--color-text) !important;
+  border-top: 1px solid var(--color-border);
+  margin-top: 0.75rem !important;
+  padding-top: 0.75rem;
+}
+
+/* FAQ Section */
+.faq-section {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: var(--color-card);
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+}
+
+.faq-section h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--color-text);
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.faq-item:last-child {
+  border-bottom: none;
+}
+
+.faq-item summary {
+  padding: 0.85rem 0;
+  font-weight: 500;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--color-text);
+  gap: 1rem;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary::after {
+  content: "+";
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--color-muted);
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+
+.faq-item[open] summary::after {
+  transform: rotate(45deg);
+}
+
+.faq-item p {
+  padding: 0 0 1rem 0;
+  color: var(--color-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.faq-donate-link {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: var(--color-primary);
+  color: #fff !important;
+  border-radius: var(--radius);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: opacity 0.2s;
+}
+
+.faq-donate-link:hover {
+  opacity: 0.85;
+}
+
 /* Footer */
 footer {
   margin-top: 2rem;
