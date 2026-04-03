@@ -1,10 +1,15 @@
 # ERA Entgeltrechner
-Webbasierter Rechner zur Berechnung des Entgelts nach dem ERA-Tarifvertrag (Entgeltrahmenabkommen) der Metall- und Elektroindustrie.
+
+**🔗 Live: [era-rechner.de](https://www.era-rechner.de/)**
+
+Kostenloser, werbefreier Gehaltsrechner für die Metall- und Elektroindustrie auf Basis der ERA-Entgelttabellen (Entgeltrahmenabkommen) der IG Metall.
 
 ## Funktionen
-- Berechnung des monatlichen Entgelts basierend auf Entgeltgruppe und -stufe
-- Berücksichtigung von Leistungszulage und tariflicher Sonderzahlung (T-ZUG)
-- Übersichtliche Ergebnisdarstellung mit Balkendiagramm
+- Berechnung des monatlichen Entgelts basierend auf Entgeltgruppe und Stufe
+- Alle 15 ERA-Tarifgebiete: Baden-Württemberg, Bayern, Berlin/Brandenburg, Hamburg/Unterweser, Hessen, Niedersachsen, Nordrhein-Westfalen, Osnabrück-Emsland, Pfalz, Rheinland-Rheinhessen, Saarland, Sachsen, Sachsen-Anhalt, Schleswig-Holstein/MV/NW-Niedersachsen, Thüringen
+- Sonderzahlungen: Urlaubsgeld, Weihnachtsgeld, T-ZUG A, T-ZUG B, Transformationsgeld
+- Leistungszulage und individuelle Betriebszugehörigkeit
+- Netto-Schätzung mit progressiver Lohnsteuer und Sozialversicherung
 - Mehrsprachig (Deutsch / Englisch)
 - Responsives Design für Desktop und Mobilgeräte
 
