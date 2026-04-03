@@ -157,11 +157,7 @@ function loadYear(year) {
   elSubtitle.textContent = tReplace("subtitleWithYear", { year });
 
   // Hinweis für vorläufige Werte ein-/ausblenden
-  if (year === "2026") {
-    elYearNotice.classList.remove("hidden");
-  } else {
-    elYearNotice.classList.add("hidden");
-  }
+  elYearNotice.classList.add("hidden");
 
   // Reset dependent dropdowns
   resetSelect(elBundesland);

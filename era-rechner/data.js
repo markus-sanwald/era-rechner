@@ -1020,802 +1020,802 @@ const ERA_DATA = {
     "salaryData": {
       "Baden-Württemberg": {
         "EG 1": {
-          "Grundentgelt": 2740.4
+          "Grundentgelt": 2740.50
         },
         "EG 2": {
-          "Grundentgelt": 2814.63
+          "Grundentgelt": 2814.50
         },
         "EG 3": {
-          "Grundentgelt": 2962.58
+          "Grundentgelt": 2962.50
         },
         "EG 4": {
-          "Grundentgelt": 3110.53
+          "Grundentgelt": 3111.00
         },
         "EG 5": {
-          "Grundentgelt": 3296.11
+          "Grundentgelt": 3296.00
         },
         "EG 6": {
-          "Grundentgelt": 3481.17
+          "Grundentgelt": 3481.00
         },
         "EG 7": {
-          "Grundentgelt": 3703.35
+          "Grundentgelt": 3703.50
         },
         "EG 8": {
-          "Grundentgelt": 3962.65
+          "Grundentgelt": 3962.50
         },
         "EG 9": {
-          "Grundentgelt": 4221.95
+          "Grundentgelt": 4222.00
         },
         "EG 10": {
-          "Grundentgelt": 4499.28
+          "Grundentgelt": 4499.50
         },
         "EG 11": {
-          "Grundentgelt": 4795.7
+          "Grundentgelt": 4796.00
         },
         "EG 12": {
-          "Grundentgelt": 5129.22
+          "Grundentgelt": 5129.00
         },
         "EG 13": {
-          "Grundentgelt": 5462.24
+          "Grundentgelt": 5462.50
         },
         "EG 14": {
-          "Grundentgelt": 5795.77
+          "Grundentgelt": 5795.50
         },
         "EG 15": {
-          "Grundentgelt": 6128.78
+          "Grundentgelt": 6129.00
         },
         "EG 16": {
-          "Grundentgelt": 6536.54
+          "Grundentgelt": 6536.50
         },
         "EG 17": {
-          "Grundentgelt": 6906.67
+          "Grundentgelt": 6906.50
         }
       },
       "Bayern": {
         "EG 1": {
-          "Stufe A": 2741.43
+          "Stufe A": 2741.00
         },
         "EG 2": {
-          "Stufe A": 2795.04,
-          "Stufe B": 2841.44
+          "Stufe A": 2795.00,
+          "Stufe B": 2841.00
         },
         "EG 3": {
-          "Stufe A": 2935.26,
-          "Stufe B": 3025.98
+          "Stufe A": 2935.00,
+          "Stufe B": 3026.00
         },
         "EG 4": {
-          "Stufe A": 3116.71,
-          "Stufe B": 3207.44,
-          "Stufe C": 3411.58
+          "Stufe A": 3117.00,
+          "Stufe B": 3207.00,
+          "Stufe C": 3412.00
         },
         "EG 5": {
-          "Stufe A": 3497.15,
-          "Stufe B": 3582.73
+          "Stufe A": 3497.00,
+          "Stufe B": 3583.00
         },
         "EG 6": {
-          "Stufe A": 3713.66,
-          "Stufe B": 3842.54
+          "Stufe A": 3714.00,
+          "Stufe B": 3843.00
         },
         "EG 7": {
-          "Stufe A": 4004.4,
-          "Stufe B": 4167.3
+          "Stufe A": 4004.00,
+          "Stufe B": 4167.00
         },
         "EG 8": {
-          "Stufe A": 4343.6,
-          "Stufe B": 4525.06
+          "Stufe A": 4344.00,
+          "Stufe B": 4525.00
         },
         "EG 9": {
-          "Stufe A": 4757.03,
-          "Stufe B": 4991.07
+          "Stufe A": 4757.00,
+          "Stufe B": 4991.00
         },
         "EG 10": {
-          "Stufe A": 5261.19,
-          "Stufe B": 5528.22
+          "Stufe A": 5261.00,
+          "Stufe B": 5528.00
         },
         "EG 11": {
-          "Stufe A": 5817.93,
-          "Stufe B": 6103.52
+          "Stufe A": 5818.00,
+          "Stufe B": 6104.00
         },
         "EG 12": {
-          "Stufe A": 6377.77,
-          "Stufe B": 6649.95
+          "Stufe A": 6378.00,
+          "Stufe B": 6650.00
         }
       },
       "Berlin/Brandenburg": {
         "EG 1": {
-          "Hauptstufe": 2739.37
+          "Hauptstufe": 2740.00
         },
         "EG 2": {
-          "Hauptstufe": 2788.85
+          "Hauptstufe": 2789.00
         },
         "EG 3": {
-          "Eingangsstufe": 2849.68,
-          "Hauptstufe": 2880.61,
-          "1. Zusatzstufe": 2967.22,
-          "2. Zusatzstufe": 3053.82
+          "Eingangsstufe": 2850.00,
+          "Hauptstufe": 2881.00,
+          "1. Zusatzstufe": 2968.00,
+          "2. Zusatzstufe": 3054.00
         },
         "EG 4": {
-          "Eingangsstufe": 3053.82,
-          "Hauptstufe": 3140.43,
-          "1. Zusatzstufe": 3264.15,
-          "2. Zusatzstufe": 3388.9
+          "Eingangsstufe": 3054.00,
+          "Hauptstufe": 3141.00,
+          "1. Zusatzstufe": 3265.00,
+          "2. Zusatzstufe": 3389.00
         },
         "EG 5": {
-          "Eingangsstufe": 3388.9,
-          "Hauptstufe": 3512.62,
-          "1. Zusatzstufe": 3571.38,
-          "2. Zusatzstufe": 3629.12
+          "Eingangsstufe": 3389.00,
+          "Hauptstufe": 3513.00,
+          "1. Zusatzstufe": 3572.00,
+          "2. Zusatzstufe": 3630.00
         },
         "EG 6": {
-          "Eingangsstufe": 3629.12,
-          "Hauptstufe": 3687.89,
-          "1. Zusatzstufe": 3746.65,
-          "2. Zusatzstufe": 3805.42
+          "Eingangsstufe": 3630.00,
+          "Hauptstufe": 3689.00,
+          "1. Zusatzstufe": 3747.00,
+          "2. Zusatzstufe": 3806.00
         },
         "EG 7": {
-          "Eingangsstufe": 3805.42,
-          "Hauptstufe": 3864.19,
-          "1. Zusatzstufe": 3922.95,
-          "2. Zusatzstufe": 3980.69
+          "Eingangsstufe": 3806.00,
+          "Hauptstufe": 3864.00,
+          "1. Zusatzstufe": 3923.00,
+          "2. Zusatzstufe": 3981.00
         },
         "EG 8": {
-          "Eingangsstufe": 3980.69,
-          "Hauptstufe": 4039.46,
-          "1. Zusatzstufe": 4109.57,
-          "2. Zusatzstufe": 4179.67
+          "Eingangsstufe": 3981.00,
+          "Hauptstufe": 4040.00,
+          "1. Zusatzstufe": 4110.00,
+          "2. Zusatzstufe": 4181.00
         },
         "EG 9": {
-          "Eingangsstufe": 4179.67,
-          "Hauptstufe": 4249.78,
-          "1. Zusatzstufe": 4413.71,
-          "2. Zusatzstufe": 4577.64
+          "Eingangsstufe": 4181.00,
+          "Hauptstufe": 4251.00,
+          "1. Zusatzstufe": 4415.00,
+          "2. Zusatzstufe": 4579.00
         },
         "EG 10": {
-          "Eingangsstufe": 4577.64,
-          "Hauptstufe": 4741.57,
-          "1. Zusatzstufe": 4975.61
+          "Eingangsstufe": 4579.00,
+          "Hauptstufe": 4743.00,
+          "1. Zusatzstufe": 4977.00
         },
         "EG 11": {
-          "Eingangsstufe": 5210.67,
-          "Hauptstufe": 5444.71,
-          "1. Zusatzstufe": 5690.09
+          "Eingangsstufe": 5211.00,
+          "Hauptstufe": 5445.00,
+          "1. Zusatzstufe": 5691.00
         },
         "EG 12": {
-          "Eingangsstufe": 5936.5,
-          "Hauptstufe": 6181.88,
-          "1. Zusatzstufe": 6415.91
+          "Eingangsstufe": 5937.00,
+          "Hauptstufe": 6183.00,
+          "1. Zusatzstufe": 6417.00
         },
         "EG 13": {
-          "Eingangsstufe": 6650.98,
-          "Hauptstufe": 6885.02
+          "Eingangsstufe": 6651.00,
+          "Hauptstufe": 6885.00
         }
       },
       "Hamburg/Unterweser": {
         "EG 2": {
-          "Grundstufe": 2908.45,
-          "Hauptstufe": 3014.64
+          "Grundstufe": 2908.00,
+          "Hauptstufe": 3015.00
         },
         "EG 3": {
-          "Grundstufe": 3000.21,
-          "Hauptstufe": 3108.46
+          "Grundstufe": 3000.00,
+          "Hauptstufe": 3108.00
         },
         "EG 4": {
-          "Grundstufe": 3162.08,
-          "Hauptstufe": 3253.84,
-          "Zusatzstufe 1": 3343.53,
-          "Zusatzstufe 2": 3434.26
+          "Grundstufe": 3162.00,
+          "Hauptstufe": 3254.00,
+          "Zusatzstufe 1": 3344.00,
+          "Zusatzstufe 2": 3434.00
         },
         "EG 5": {
-          "Grundstufe": 3481.69,
-          "Hauptstufe": 3572.41,
-          "Zusatzstufe 1": 3663.14,
-          "Zusatzstufe 2": 3749.75,
-          "Zusatzstufe 3": 3842.54
+          "Grundstufe": 3482.00,
+          "Hauptstufe": 3572.00,
+          "Zusatzstufe 1": 3663.00,
+          "Zusatzstufe 2": 3750.00,
+          "Zusatzstufe 3": 3843.00
         },
         "EG 6": {
-          "Grundstufe": 3758,
-          "Hauptstufe": 3847.69,
-          "Zusatzstufe 1": 3985.85,
-          "Zusatzstufe 2": 4073.48,
-          "Zusatzstufe 3": 4163.18
+          "Grundstufe": 3758.00,
+          "Hauptstufe": 3848.00,
+          "Zusatzstufe 1": 3986.00,
+          "Zusatzstufe 2": 4073.00,
+          "Zusatzstufe 3": 4163.00
         },
         "EG 7": {
-          "Grundstufe": 4035.33,
-          "Hauptstufe": 4158.02,
-          "Zusatzstufe 1": 4293.08,
-          "Zusatzstufe 2": 4414.74,
-          "Zusatzstufe 3": 4540.52
+          "Grundstufe": 4035.00,
+          "Hauptstufe": 4158.00,
+          "Zusatzstufe 1": 4293.00,
+          "Zusatzstufe 2": 4415.00,
+          "Zusatzstufe 3": 4541.00
         },
         "EG 8": {
-          "Grundstufe": 4753.94,
-          "Hauptstufe": 4875.6,
-          "Zusatzstufe 1": 5014.78,
-          "Zusatzstufe 2": 5139.54,
-          "Zusatzstufe 3": 5260.16
+          "Grundstufe": 4754.00,
+          "Hauptstufe": 4876.00,
+          "Zusatzstufe 1": 5015.00,
+          "Zusatzstufe 2": 5140.00,
+          "Zusatzstufe 3": 5260.00
         },
         "EG 9": {
-          "Grundstufe": 5504.51,
-          "Hauptstufe": 5664.31,
-          "Zusatzstufe 1": 5800.41,
-          "Zusatzstufe 2": 5962.27
+          "Grundstufe": 5505.00,
+          "Hauptstufe": 5664.00,
+          "Zusatzstufe 1": 5800.00,
+          "Zusatzstufe 2": 5962.00
         },
         "EG 10": {
-          "Grundstufe": 6277.76,
-          "Hauptstufe": 6529.32,
-          "Zusatzstufe 1": 6709.75
+          "Grundstufe": 6278.00,
+          "Hauptstufe": 6529.00,
+          "Zusatzstufe 1": 6710.00
         },
         "EG 11": {
-          "Grundstufe": 7089.16,
-          "Hauptstufe": 7337.63
+          "Grundstufe": 7089.00,
+          "Hauptstufe": 7338.00
         }
       },
       "Hessen": {
         "EG 1": {
-          "Grundentgelt": 2762.05
+          "Grundentgelt": 2762.00
         },
         "EG 2": {
-          "Grundentgelt": 2828.03
+          "Grundentgelt": 2828.00
         },
         "EG 3": {
-          "Grundentgelt": 2925.98
+          "Grundentgelt": 2926.00
         },
         "EG 4": {
-          "Grundentgelt": 3090.94,
-          "Zusatzstufe": 3156.58
+          "Grundentgelt": 3091.00,
+          "Zusatzstufe": 3156.67
         },
         "EG 5": {
-          "Grundentgelt": 3287.86,
-          "Zusatzstufe": 3397.49
+          "Grundentgelt": 3288.00,
+          "Zusatzstufe": 3397.67
         },
         "EG 6": {
-          "Grundentgelt": 3616.75,
-          "Zusatzstufe": 3748.38
+          "Grundentgelt": 3617.00,
+          "Zusatzstufe": 3748.33
         },
         "EG 7": {
-          "Grundentgelt": 4011.62,
-          "Zusatzstufe": 4175.89
+          "Grundentgelt": 4011.00,
+          "Zusatzstufe": 4175.67
         },
         "EG 8": {
-          "Grundentgelt": 4504.44,
-          "Zusatzstufe": 4701.7
+          "Grundentgelt": 4505.00,
+          "Zusatzstufe": 4702.00
         },
         "EG 9": {
-          "Grundentgelt": 5096.23,
-          "Zusatzstufe": 5260.5
+          "Grundentgelt": 5096.00,
+          "Zusatzstufe": 5260.67
         },
         "EG 10": {
-          "Grundentgelt": 5589.05,
-          "Zusatzstufe": 5753.67
+          "Grundentgelt": 5590.00,
+          "Zusatzstufe": 5754.33
         },
         "EG 11": {
-          "Grundentgelt": 6082.9,
-          "Zusatzstufe": 6411.33
+          "Grundentgelt": 6083.00,
+          "Zusatzstufe": 6411.60
         }
       },
       "Niedersachsen": {
         "EG 2": {
-          "Stufe A": 2701.22,
-          "Stufe B": 2785.76,
-          "Stufe C": 2807.41
+          "Stufe A": 2701.00,
+          "Stufe B": 2786.00,
+          "Stufe C": 2807.00
         },
         "EG 3": {
-          "Stufe A": 2829.06,
-          "Stufe B": 2875.46,
-          "Stufe C": 2940.41
+          "Stufe A": 2829.00,
+          "Stufe B": 2875.00,
+          "Stufe C": 2940.00
         },
         "EG 4": {
-          "Stufe A": 2974.44,
-          "Stufe B": 3012.58,
-          "Stufe C": 3166.2
+          "Stufe A": 2974.00,
+          "Stufe B": 3013.00,
+          "Stufe C": 3166.00
         },
         "EG 5": {
-          "Stufe A": 3355.91,
-          "Stufe B": 3569.32,
-          "Stufe C": 3614.69
+          "Stufe A": 3356.00,
+          "Stufe B": 3569.00,
+          "Stufe C": 3615.00
         },
         "EG 6": {
-          "Stufe A": 3656.96,
-          "Stufe B": 3705.41,
-          "Stufe C": 3785.83
+          "Stufe A": 3657.00,
+          "Stufe B": 3705.00,
+          "Stufe C": 3786.00
         },
         "EG 7": {
-          "Stufe A": 3897.18,
-          "Stufe B": 3984.81,
-          "Stufe C": 4079.67
+          "Stufe A": 3897.00,
+          "Stufe B": 3985.00,
+          "Stufe C": 4080.00
         },
         "EG 8": {
-          "Stufe A": 4172.46,
-          "Stufe B": 4308.55,
-          "Stufe C": 4367.32
+          "Stufe A": 4172.00,
+          "Stufe B": 4309.00,
+          "Stufe C": 4367.00
         },
         "EG 9": {
-          "Stufe A": 4393.09,
-          "Stufe B": 4475.57,
-          "Stufe C": 4544.65
+          "Stufe A": 4393.00,
+          "Stufe B": 4476.00,
+          "Stufe C": 4545.00
         },
         "EG 10": {
-          "Stufe A": 4631.25,
-          "Stufe B": 4697.24,
-          "Stufe C": 4749.82
+          "Stufe A": 4631.00,
+          "Stufe B": 4697.00,
+          "Stufe C": 4750.00
         },
         "EG 11": {
-          "Stufe A": 4814.77,
-          "Stufe B": 5040.56,
-          "Stufe C": 5269.44
+          "Stufe A": 4815.00,
+          "Stufe B": 5041.00,
+          "Stufe C": 5269.00
         },
         "EG 12": {
-          "Stufe A": 5492.14,
-          "Stufe B": 5716.9,
-          "Stufe C": 5943.71
+          "Stufe A": 5492.00,
+          "Stufe B": 5717.00,
+          "Stufe C": 5944.00
         },
         "EG 13": {
-          "Stufe A": 6196.31,
-          "Stufe B": 6682.94,
-          "Stufe C": 6881.92
+          "Stufe A": 6196.00,
+          "Stufe B": 6683.00,
+          "Stufe C": 6882.00
         }
       },
       "Nordrhein-Westfalen": {
         "EG 1": {
-          "Grundentgelt": 2788.85
+          "Grundentgelt": 2789.00
         },
         "EG 2": {
-          "Grundentgelt": 2822.88
+          "Grundentgelt": 2823.00
         },
         "EG 3": {
-          "Grundentgelt": 2855.35
+          "Grundentgelt": 2855.50
         },
         "EG 4": {
-          "Grundentgelt": 2899.69
+          "Grundentgelt": 2899.50
         },
         "EG 5": {
-          "Grundentgelt": 2960.52
+          "Grundentgelt": 2960.50
         },
         "EG 6": {
-          "Grundentgelt": 3037.33
+          "Grundentgelt": 3037.50
         },
         "EG 7": {
-          "Grundentgelt": 3132.18
+          "Grundentgelt": 3132.00
         },
         "EG 8": {
-          "Grundentgelt": 3295.08
+          "Grundentgelt": 3295.00
         },
         "EG 9": {
-          "Grundentgelt": 3561.07
+          "Grundentgelt": 3561.00
         },
         "EG 10": {
-          "Grundentgelt": 3914.19
+          "Grundentgelt": 3914.00
         },
         "EG 11": {
-          "Grundentgelt": 4388.97
+          "Grundentgelt": 4389.00
         },
         "EG 12": {
-          "bis 36. Monat": 4523,
-          "nach 36. Monat": 5023.03
+          "bis 36. Monat": 4523.00,
+          "nach 36. Monat": 5023.00
         },
         "EG 13": {
-          "bis 18. Monat": 5053.96,
-          "nach 18. Monat": 5351.41,
-          "nach 36. Monat": 5945.26
+          "bis 18. Monat": 5054.00,
+          "nach 18. Monat": 5351.50,
+          "nach 36. Monat": 5945.50
         },
         "EG 14": {
-          "bis 12. Monat": 5741.12,
-          "nach 12. Monat": 6100.43,
-          "nach 24. Monat": 6459.73,
-          "nach 36. Monat": 7178.34
+          "bis 12. Monat": 5741.00,
+          "nach 12. Monat": 6100.50,
+          "nach 24. Monat": 6459.50,
+          "nach 36. Monat": 7178.50
         }
       },
       "Osnabrück-Emsland": {
         "EG 1": {
-          "Hauptstufe": 2785.76,
-          "Zusatzstufe 1": 2829.06
+          "Hauptstufe": 2786.00,
+          "Zusatzstufe 1": 2829.00
         },
         "EG 2": {
-          "Eingangsstufe": 2829.06,
-          "Hauptstufe": 2875.46,
-          "Zusatzstufe 1": 2916.7,
-          "Zusatzstufe 2": 2960
+          "Eingangsstufe": 2829.00,
+          "Hauptstufe": 2875.00,
+          "Zusatzstufe 1": 2917.00,
+          "Zusatzstufe 2": 2960.00
         },
         "EG 3": {
-          "Eingangsstufe": 2960,
-          "Hauptstufe": 3133.21,
-          "Zusatzstufe 1": 3164.14,
-          "Zusatzstufe 2": 3199.19,
-          "Zusatzstufe 3": 3227.03
+          "Eingangsstufe": 2960.00,
+          "Hauptstufe": 3133.00,
+          "Zusatzstufe 1": 3164.00,
+          "Zusatzstufe 2": 3199.00,
+          "Zusatzstufe 3": 3227.00
         },
         "EG 4": {
-          "Eingangsstufe": 3227.03,
-          "Hauptstufe": 3569.32,
-          "Zusatzstufe 1": 3608.5,
-          "Zusatzstufe 2": 3644.58,
-          "Zusatzstufe 3": 3676.55
+          "Eingangsstufe": 3227.00,
+          "Hauptstufe": 3569.00,
+          "Zusatzstufe 1": 3609.00,
+          "Zusatzstufe 2": 3645.00,
+          "Zusatzstufe 3": 3677.00
         },
         "EG 5": {
-          "Eingangsstufe": 3676.55,
-          "Hauptstufe": 3872.44,
-          "Zusatzstufe 1": 3910.58,
-          "Zusatzstufe 2": 3948.73,
-          "Zusatzstufe 3": 3989.97
+          "Eingangsstufe": 3677.00,
+          "Hauptstufe": 3872.00,
+          "Zusatzstufe 1": 3911.00,
+          "Zusatzstufe 2": 3949.00,
+          "Zusatzstufe 3": 3990.00
         },
         "EG 6": {
-          "Eingangsstufe": 3989.97,
-          "Hauptstufe": 4044.61,
-          "Zusatzstufe 1": 4086.88,
-          "Zusatzstufe 2": 4128.12,
-          "Zusatzstufe 3": 4168.33
+          "Eingangsstufe": 3990.00,
+          "Hauptstufe": 4045.00,
+          "Zusatzstufe 1": 4087.00,
+          "Zusatzstufe 2": 4128.00,
+          "Zusatzstufe 3": 4168.00
         },
         "EG 7": {
-          "Eingangsstufe": 4168.33,
-          "Hauptstufe": 4267.31,
-          "Zusatzstufe 1": 4312.67,
-          "Zusatzstufe 2": 4354.94,
-          "Zusatzstufe 3": 4396.18
+          "Eingangsstufe": 4168.00,
+          "Hauptstufe": 4267.00,
+          "Zusatzstufe 1": 4313.00,
+          "Zusatzstufe 2": 4355.00,
+          "Zusatzstufe 3": 4396.00
         },
         "EG 8": {
-          "Eingangsstufe": 4396.18,
-          "Hauptstufe": 4544.65,
-          "Zusatzstufe 1": 4590.01,
-          "Zusatzstufe 2": 4636.41,
-          "Zusatzstufe 3": 4681.77
+          "Eingangsstufe": 4396.00,
+          "Hauptstufe": 4545.00,
+          "Zusatzstufe 1": 4590.00,
+          "Zusatzstufe 2": 4636.00,
+          "Zusatzstufe 3": 4682.00
         },
         "EG 9": {
-          "Eingangsstufe": 4681.77,
-          "Hauptstufe": 4817.86,
-          "Zusatzstufe 1": 4866.32,
-          "Zusatzstufe 2": 4913.75,
-          "Zusatzstufe 3": 4965.3
+          "Eingangsstufe": 4682.00,
+          "Hauptstufe": 4818.00,
+          "Zusatzstufe 1": 4866.00,
+          "Zusatzstufe 2": 4914.00,
+          "Zusatzstufe 3": 4965.00
         },
         "EG 10": {
-          "Eingangsstufe": 4965.3,
-          "Hauptstufe": 5163.25,
-          "Zusatzstufe 1": 5212.74,
-          "Zusatzstufe 2": 5267.38,
-          "Zusatzstufe 3": 5314.8
+          "Eingangsstufe": 4965.00,
+          "Hauptstufe": 5163.00,
+          "Zusatzstufe 1": 5213.00,
+          "Zusatzstufe 2": 5267.00,
+          "Zusatzstufe 3": 5315.00
         },
         "EG 11": {
-          "Eingangsstufe": 5314.8,
-          "Hauptstufe": 5763.29,
-          "Zusatzstufe 1": 5823.09,
-          "Zusatzstufe 2": 5881.86,
-          "Zusatzstufe 3": 5939.59
+          "Eingangsstufe": 5315.00,
+          "Hauptstufe": 5763.00,
+          "Zusatzstufe 1": 5823.00,
+          "Zusatzstufe 2": 5882.00,
+          "Zusatzstufe 3": 5940.00
         },
         "EG 12": {
-          "Eingangsstufe": 5939.59,
-          "Hauptstufe": 6700.47
+          "Eingangsstufe": 5940.00,
+          "Hauptstufe": 6700.00
         }
       },
       "Pfalz": {
         "EG 1": {
-          "Grundentgelt": 2762.05
+          "Grundentgelt": 2762.00
         },
         "EG 2": {
-          "Grundentgelt": 2828.03
+          "Grundentgelt": 2828.00
         },
         "EG 3": {
-          "Grundentgelt": 2925.98
+          "Grundentgelt": 2926.00
         },
         "EG 4": {
-          "Grundentgelt": 3090.94,
-          "Zusatzstufe": 3156.58
+          "Grundentgelt": 3091.00,
+          "Zusatzstufe": 3156.67
         },
         "EG 5": {
-          "Grundentgelt": 3287.86,
-          "Zusatzstufe": 3397.49
+          "Grundentgelt": 3288.00,
+          "Zusatzstufe": 3397.67
         },
         "EG 6": {
-          "Grundentgelt": 3616.75,
-          "Zusatzstufe": 3748.38
+          "Grundentgelt": 3617.00,
+          "Zusatzstufe": 3748.33
         },
         "EG 7": {
-          "Grundentgelt": 4011.62,
-          "Zusatzstufe": 4153.9
+          "Grundentgelt": 4011.00,
+          "Zusatzstufe": 4153.67
         },
         "EG 8": {
-          "Grundentgelt": 4438.46,
-          "Zusatzstufe": 4603.07
+          "Grundentgelt": 4439.00,
+          "Zusatzstufe": 4603.33
         },
         "EG 9": {
-          "Grundentgelt": 4932.3,
-          "Zusatzstufe": 5151.22
+          "Grundentgelt": 4932.00,
+          "Zusatzstufe": 5151.33
         },
         "EG 10": {
-          "Grundentgelt": 5589.05,
-          "Zusatzstufe": 5753.67
+          "Grundentgelt": 5590.00,
+          "Zusatzstufe": 5754.33
         },
         "EG 11": {
-          "Grundentgelt": 6082.9,
-          "Zusatzstufe": 6411.33
+          "Grundentgelt": 6083.00,
+          "Zusatzstufe": 6411.60
         }
       },
       "Rheinland-Rheinhessen": {
         "EG 1": {
-          "Grundentgelt": 2762.05
+          "Grundentgelt": 2762.00
         },
         "EG 2": {
-          "Grundentgelt": 2828.03
+          "Grundentgelt": 2828.00
         },
         "EG 3": {
-          "Grundentgelt": 2925.98
+          "Grundentgelt": 2926.00
         },
         "EG 4": {
-          "Grundentgelt": 3090.94,
-          "Zusatzstufe": 3156.58
+          "Grundentgelt": 3091.00,
+          "Zusatzstufe": 3156.67
         },
         "EG 5": {
-          "Grundentgelt": 3287.86,
-          "Zusatzstufe": 3397.49
+          "Grundentgelt": 3288.00,
+          "Zusatzstufe": 3397.67
         },
         "EG 6": {
-          "Grundentgelt": 3616.75,
-          "Zusatzstufe": 3748.38
+          "Grundentgelt": 3617.00,
+          "Zusatzstufe": 3748.33
         },
         "EG 7": {
-          "Grundentgelt": 4011.62,
-          "Zusatzstufe": 4175.89
+          "Grundentgelt": 4011.00,
+          "Zusatzstufe": 4175.67
         },
         "EG 8": {
-          "Grundentgelt": 4504.44,
-          "Zusatzstufe": 4701.7
+          "Grundentgelt": 4505.00,
+          "Zusatzstufe": 4702.00
         },
         "EG 9": {
-          "Grundentgelt": 5096.23,
-          "Zusatzstufe": 5260.5
+          "Grundentgelt": 5096.00,
+          "Zusatzstufe": 5260.67
         },
         "EG 10": {
-          "Grundentgelt": 5589.05,
-          "Zusatzstufe": 5753.67
+          "Grundentgelt": 5590.00,
+          "Zusatzstufe": 5754.33
         },
         "EG 11": {
-          "Grundentgelt": 6082.9,
-          "Zusatzstufe": 6585.91
+          "Grundentgelt": 6083.00,
+          "Zusatzstufe": 6586.19
         }
       },
       "Saarland": {
         "EG 1": {
-          "Grundentgelt": 2762.05
+          "Grundentgelt": 2762.00
         },
         "EG 2": {
-          "Grundentgelt": 2828.03
+          "Grundentgelt": 2828.00
         },
         "EG 3": {
-          "Grundentgelt": 2925.98
+          "Grundentgelt": 2926.00
         },
         "EG 4": {
-          "Grundentgelt": 3090.94,
-          "Zusatzstufe": 3156.58
+          "Grundentgelt": 3091.00,
+          "Zusatzstufe": 3156.67
         },
         "EG 5": {
-          "Grundentgelt": 3287.86,
-          "Zusatzstufe": 3397.49
+          "Grundentgelt": 3288.00,
+          "Zusatzstufe": 3397.67
         },
         "EG 6": {
-          "Grundentgelt": 3616.75,
-          "Zusatzstufe": 3748.38
+          "Grundentgelt": 3617.00,
+          "Zusatzstufe": 3748.33
         },
         "EG 7": {
-          "Grundentgelt": 4011.62,
-          "Zusatzstufe": 4175.89
+          "Grundentgelt": 4011.00,
+          "Zusatzstufe": 4175.67
         },
         "EG 8": {
-          "Grundentgelt": 4504.44,
-          "Zusatzstufe": 4701.7
+          "Grundentgelt": 4505.00,
+          "Zusatzstufe": 4702.00
         },
         "EG 9": {
-          "Grundentgelt": 5096.23,
-          "Zusatzstufe": 5260.5
+          "Grundentgelt": 5096.00,
+          "Zusatzstufe": 5260.67
         },
         "EG 10": {
-          "Grundentgelt": 5589.05,
-          "Zusatzstufe": 5753.67
+          "Grundentgelt": 5590.00,
+          "Zusatzstufe": 5754.33
         },
         "EG 11": {
-          "Grundentgelt": 6082.9,
-          "Zusatzstufe": 6411.33
+          "Grundentgelt": 6083.00,
+          "Zusatzstufe": 6411.60
         }
       },
       "Sachsen": {
         "EG 1": {
-          "Grundentgelt": 2762.05,
-          "Zusatzstufe": 2795.04
+          "Grundentgelt": 2762.00,
+          "Zusatzstufe": 2795.00
         },
         "EG 2": {
-          "Grundentgelt": 2828.03,
-          "Zusatzstufe": 2859.99
+          "Grundentgelt": 2828.00,
+          "Zusatzstufe": 2861.00
         },
         "EG 3": {
-          "Grundentgelt": 2925.98,
-          "Zusatzstufe": 2991.96
+          "Grundentgelt": 2926.00,
+          "Zusatzstufe": 2992.00
         },
         "EG 4": {
-          "Grundentgelt": 3090.94,
-          "Zusatzstufe": 3188.88
+          "Grundentgelt": 3091.00,
+          "Zusatzstufe": 3189.00
         },
         "EG 5": {
-          "Grundentgelt": 3287.86,
-          "Zusatzstufe": 3451.79
+          "Grundentgelt": 3288.00,
+          "Zusatzstufe": 3452.00
         },
         "EG 6": {
-          "Grundentgelt": 3616.75,
-          "Zusatzstufe": 3780.68
+          "Grundentgelt": 3617.00,
+          "Zusatzstufe": 3781.00
         },
         "EG 7": {
-          "Grundentgelt": 4011.62,
-          "Zusatzstufe": 4175.55
+          "Grundentgelt": 4011.00,
+          "Zusatzstufe": 4176.00
         },
         "EG 8": {
-          "Grundentgelt": 4504.44,
-          "Zusatzstufe": 4668.37
+          "Grundentgelt": 4505.00,
+          "Zusatzstufe": 4669.00
         },
         "EG 9": {
-          "Grundentgelt": 4932.3,
-          "Zusatzstufe": 5096.23
+          "Grundentgelt": 4932.00,
+          "Zusatzstufe": 5096.00
         },
         "EG 10": {
-          "Grundentgelt": 5260.16,
-          "Zusatzstufe": 5425.12
+          "Grundentgelt": 5261.00,
+          "Zusatzstufe": 5425.00
         },
         "EG 11": {
-          "Grundentgelt": 5754.01,
-          "Zusatzstufe": 5917.94
+          "Grundentgelt": 5754.00,
+          "Zusatzstufe": 5918.00
         },
         "EG 12": {
-          "Grundentgelt": 6082.9,
-          "Zusatzstufe": 6411.79
+          "Grundentgelt": 6083.00,
+          "Zusatzstufe": 6412.00
         }
       },
       "Sachsen-Anhalt": {
         "EG 1": {
-          "Grundstufe": 2785.76,
-          "Zusatzstufe": 2842.47
+          "Grundstufe": 2786.00,
+          "Zusatzstufe": 2842.00
         },
         "EG 2": {
-          "Grundstufe": 2877.52,
-          "Zusatzstufe": 2914.64
+          "Grundstufe": 2878.00,
+          "Zusatzstufe": 2915.00
         },
         "EG 3": {
-          "Grundstufe": 2982.68,
-          "Zusatzstufe": 3044.54
+          "Grundstufe": 2983.00,
+          "Zusatzstufe": 3045.00
         },
         "EG 4": {
-          "Grundstufe": 3144.55,
-          "Zusatzstufe": 3250.74
+          "Grundstufe": 3145.00,
+          "Zusatzstufe": 3251.00
         },
         "EG 5": {
-          "Grundstufe": 3381.68,
-          "Zusatzstufe": 3514.68
+          "Grundstufe": 3382.00,
+          "Zusatzstufe": 3515.00
         },
         "EG 6": {
-          "Grundstufe": 3656.96,
-          "Zusatzstufe": 3907.49
+          "Grundstufe": 3657.00,
+          "Zusatzstufe": 3907.00
         },
         "EG 7": {
-          "Grundstufe": 4138.43,
-          "Zusatzstufe": 4321.95
+          "Grundstufe": 4138.00,
+          "Zusatzstufe": 4322.00
         },
         "EG 8": {
-          "Grundstufe": 4471.45,
-          "Zusatzstufe": 4702.39
+          "Grundstufe": 4471.00,
+          "Zusatzstufe": 4702.00
         },
         "EG 9": {
-          "Grundstufe": 5145.72,
-          "Zusatzstufe": 5382.85
+          "Grundstufe": 5146.00,
+          "Zusatzstufe": 5383.00
         },
         "EG 10": {
-          "Grundstufe": 5838.55,
-          "Zusatzstufe": 6068.47
+          "Grundstufe": 5839.00,
+          "Zusatzstufe": 6068.00
         },
         "EG 11": {
-          "Grundstufe": 6572.62,
-          "Zusatzstufe": 6825.22
+          "Grundstufe": 6573.00,
+          "Zusatzstufe": 6825.00
         }
       },
       "Schleswig-Holstein/MV/NW-Niedersachsen": {
         "EG 2": {
-          "Grundstufe": 2908.45,
-          "Hauptstufe": 3014.64
+          "Grundstufe": 2908.00,
+          "Hauptstufe": 3015.00
         },
         "EG 3": {
-          "Grundstufe": 3000.21,
-          "Hauptstufe": 3108.46,
-          "Zusatzstufe 1": 3216.72
+          "Grundstufe": 3000.00,
+          "Hauptstufe": 3108.00,
+          "Zusatzstufe 1": 3217.00
         },
         "EG 4": {
-          "Grundstufe": 3162.08,
-          "Hauptstufe": 3253.84,
-          "Zusatzstufe 1": 3343.53,
-          "Zusatzstufe 2": 3434.26
+          "Grundstufe": 3162.00,
+          "Hauptstufe": 3254.00,
+          "Zusatzstufe 1": 3344.00,
+          "Zusatzstufe 2": 3434.00
         },
         "EG 5": {
-          "Grundstufe": 3481.69,
-          "Hauptstufe": 3572.41,
-          "Zusatzstufe 1": 3663.14,
-          "Zusatzstufe 2": 3749.75,
-          "Zusatzstufe 3": 3842.54
+          "Grundstufe": 3482.00,
+          "Hauptstufe": 3572.00,
+          "Zusatzstufe 1": 3663.00,
+          "Zusatzstufe 2": 3750.00,
+          "Zusatzstufe 3": 3843.00
         },
         "EG 6": {
-          "Grundstufe": 3731.19,
-          "Hauptstufe": 3816.76,
-          "Zusatzstufe 1": 3952.85,
-          "Zusatzstufe 2": 4044.61,
-          "Zusatzstufe 3": 4135.34
+          "Grundstufe": 3731.00,
+          "Hauptstufe": 3817.00,
+          "Zusatzstufe 1": 3953.00,
+          "Zusatzstufe 2": 4045.00,
+          "Zusatzstufe 3": 4135.00
         },
         "EG 7": {
-          "Grundstufe": 3976.57,
-          "Hauptstufe": 4096.16,
-          "Zusatzstufe 1": 4233.29,
-          "Zusatzstufe 2": 4354.94,
-          "Zusatzstufe 3": 4477.63
+          "Grundstufe": 3977.00,
+          "Hauptstufe": 4096.00,
+          "Zusatzstufe 1": 4233.00,
+          "Zusatzstufe 2": 4355.00,
+          "Zusatzstufe 3": 4478.00
         },
         "EG 8": {
-          "Grundstufe": 4633.31,
-          "Hauptstufe": 4749.82,
-          "Zusatzstufe 1": 4891.06,
-          "Zusatzstufe 2": 5010.66,
-          "Zusatzstufe 3": 5138.5
+          "Grundstufe": 4633.00,
+          "Hauptstufe": 4750.00,
+          "Zusatzstufe 1": 4891.00,
+          "Zusatzstufe 2": 5011.00,
+          "Zusatzstufe 3": 5139.00
         },
         "EG 9": {
-          "Grundstufe": 5319.96,
-          "Hauptstufe": 5482.86,
-          "Zusatzstufe 1": 5621.01,
-          "Zusatzstufe 2": 5776.69
+          "Grundstufe": 5320.00,
+          "Hauptstufe": 5483.00,
+          "Zusatzstufe 1": 5621.00,
+          "Zusatzstufe 2": 5777.00
         },
         "EG 10": {
-          "Grundstufe": 6035.47,
-          "Hauptstufe": 6283.95,
-          "Zusatzstufe 1": 6462.31
+          "Grundstufe": 6035.00,
+          "Hauptstufe": 6284.00,
+          "Zusatzstufe 1": 6462.00
         },
         "EG 11": {
-          "Grundstufe": 6783.98,
-          "Hauptstufe": 7063.38
+          "Grundstufe": 6784.00,
+          "Hauptstufe": 7063.00
         }
       },
       "Thüringen": {
         "EG 1": {
-          "Grundentgelt": 2762.05,
-          "Zusatzstufe": 2795.04
+          "Grundentgelt": 2762.00,
+          "Zusatzstufe": 2795.00
         },
         "EG 2": {
-          "Grundentgelt": 2828.03,
-          "Zusatzstufe": 2859.99
+          "Grundentgelt": 2828.00,
+          "Zusatzstufe": 2861.00
         },
         "EG 3": {
-          "Grundentgelt": 2925.98,
-          "Zusatzstufe": 2991.96
+          "Grundentgelt": 2926.00,
+          "Zusatzstufe": 2992.00
         },
         "EG 4": {
-          "Grundentgelt": 3090.94,
-          "Zusatzstufe": 3188.88
+          "Grundentgelt": 3091.00,
+          "Zusatzstufe": 3189.00
         },
         "EG 5": {
-          "Grundentgelt": 3287.86,
-          "Zusatzstufe": 3451.79
+          "Grundentgelt": 3288.00,
+          "Zusatzstufe": 3452.00
         },
         "EG 6": {
-          "Grundentgelt": 3616.75,
-          "Zusatzstufe": 3780.68
+          "Grundentgelt": 3617.00,
+          "Zusatzstufe": 3781.00
         },
         "EG 7": {
-          "Grundentgelt": 4011.62,
-          "Zusatzstufe": 4175.55
+          "Grundentgelt": 4011.00,
+          "Zusatzstufe": 4176.00
         },
         "EG 8": {
-          "Grundentgelt": 4504.44,
-          "Zusatzstufe": 4668.37
+          "Grundentgelt": 4505.00,
+          "Zusatzstufe": 4669.00
         },
         "EG 9": {
-          "Grundentgelt": 4932.3,
-          "Zusatzstufe": 5096.23
+          "Grundentgelt": 4932.00,
+          "Zusatzstufe": 5096.00
         },
         "EG 10": {
-          "Grundentgelt": 5260.16,
-          "Zusatzstufe": 5425.12
+          "Grundentgelt": 5261.00,
+          "Zusatzstufe": 5425.00
         },
         "EG 11": {
-          "Grundentgelt": 5754.01,
-          "Zusatzstufe": 5917.94
+          "Grundentgelt": 5754.00,
+          "Zusatzstufe": 5918.00
         },
         "EG 12": {
-          "Grundentgelt": 6082.9,
-          "Zusatzstufe": 6411.79
+          "Grundentgelt": 6083.00,
+          "Zusatzstufe": 6412.00
         }
       }
     },
@@ -1825,7 +1825,7 @@ const ERA_DATA = {
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.265,
-        "eckentgelt": 3296.11,
+        "eckentgelt": 3296.00,
         "minMonate": 6,
         "weihnachtsgeldStaffel": [
           { "monate": 36, "satz": 0.55 },
@@ -1839,7 +1839,7 @@ const ERA_DATA = {
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.265,
-        "eckentgelt": 3497.15,
+        "eckentgelt": 3497.00,
         "minMonate": 6,
         "weihnachtsgeldStaffel": [
           { "monate": 36, "satz": 0.55 },
@@ -1853,7 +1853,7 @@ const ERA_DATA = {
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.265,
-        "eckentgelt": 3388.9,
+        "eckentgelt": 3389.00,
         "minMonate": 6,
         "weihnachtsgeldStaffel": [
           { "monate": 36, "satz": 0.55 },
@@ -1867,7 +1867,7 @@ const ERA_DATA = {
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.265,
-        "eckentgelt": 3481.69,
+        "eckentgelt": 3482.00,
         "minMonate": 6,
         "weihnachtsgeldStaffel": [
           { "monate": 36, "satz": 0.55 },
@@ -1881,7 +1881,7 @@ const ERA_DATA = {
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.265,
-        "eckentgelt": 3287.86,
+        "eckentgelt": 3288.00,
         "minMonate": 6,
         "weihnachtsgeldStaffel": [
           { "monate": 36, "satz": 0.55 },
@@ -1895,7 +1895,7 @@ const ERA_DATA = {
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.265,
-        "eckentgelt": 3355.91,
+        "eckentgelt": 3356.00,
         "minMonate": 6,
         "weihnachtsgeldStaffel": [
           { "monate": 36, "satz": 0.55 },
@@ -1909,7 +1909,7 @@ const ERA_DATA = {
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.265,
-        "eckentgelt": 3561.07,
+        "eckentgelt": 3561.00,
         "minMonate": 6,
         "weihnachtsgeldStaffel": [
           { "monate": 36, "satz": 0.55 },
@@ -1923,7 +1923,7 @@ const ERA_DATA = {
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.265,
-        "eckentgelt": 3676.55,
+        "eckentgelt": 3677.00,
         "minMonate": 6,
         "weihnachtsgeldStaffel": [
           { "monate": 36, "satz": 0.55 },
@@ -1937,7 +1937,7 @@ const ERA_DATA = {
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.265,
-        "eckentgelt": 3287.86,
+        "eckentgelt": 3288.00,
         "minMonate": 6,
         "weihnachtsgeldStaffel": [
           { "monate": 36, "satz": 0.55 },
@@ -1951,7 +1951,7 @@ const ERA_DATA = {
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.265,
-        "eckentgelt": 3287.86,
+        "eckentgelt": 3288.00,
         "minMonate": 6,
         "weihnachtsgeldStaffel": [
           { "monate": 36, "satz": 0.55 },
@@ -1965,7 +1965,7 @@ const ERA_DATA = {
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.265,
-        "eckentgelt": 3287.86,
+        "eckentgelt": 3288.00,
         "minMonate": 6,
         "weihnachtsgeldStaffel": [
           { "monate": 36, "satz": 0.55 },
@@ -1979,7 +1979,7 @@ const ERA_DATA = {
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.265,
-        "eckentgelt": 3287.86,
+        "eckentgelt": 3288.00,
         "minMonate": 6,
         "weihnachtsgeldStaffel": [
           { "monate": 36, "satz": 0.55 },
@@ -1993,7 +1993,7 @@ const ERA_DATA = {
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.265,
-        "eckentgelt": 3381.68,
+        "eckentgelt": 3382.00,
         "minMonate": 6,
         "weihnachtsgeldStaffel": [
           { "monate": 36, "satz": 0.55 },
@@ -2007,7 +2007,7 @@ const ERA_DATA = {
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.265,
-        "eckentgelt": 3481.69,
+        "eckentgelt": 3482.00,
         "minMonate": 6,
         "weihnachtsgeldStaffel": [
           { "monate": 36, "satz": 0.55 },
@@ -2021,7 +2021,7 @@ const ERA_DATA = {
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.265,
-        "eckentgelt": 3287.86,
+        "eckentgelt": 3288.00,
         "minMonate": 6,
         "weihnachtsgeldStaffel": [
           { "monate": 36, "satz": 0.55 },
