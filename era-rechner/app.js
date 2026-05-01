@@ -51,6 +51,10 @@ const elTZugBPct         = document.getElementById("tzug-b-pct");
 const elSonderzahlung    = document.getElementById("sonderzahlung");
 const elSonderzahlungRow = document.getElementById("sonderzahlung-row");
 const elSonderzahlungAnnual = document.getElementById("sonderzahlung-annual");
+const elWeihnachtsgeldManuell = document.getElementById("weihnachtsgeld-manuell");
+const elAvgMonthly       = document.getElementById("avg-monthly");
+const elAvgMonthlyRow    = document.getElementById("avg-monthly-row");
+const elAvgMonthlyNetto  = document.getElementById("avg-monthly-netto");
 const elHourly           = document.getElementById("hourly");
 const elYearNotice       = document.getElementById("year-notice");
 const elChart            = document.getElementById("chart");
@@ -674,6 +678,10 @@ elSonderzahlung.addEventListener("input", () => {
   recalcIfReady();
 });
 
+elWeihnachtsgeldManuell.addEventListener("change", () => {
+  recalcIfReady();
+});
+
 // ---------------------------------------------------------------------------
 // Event: Steuerklasse / Kirchensteuer changed → recalculate
 // ---------------------------------------------------------------------------
@@ -754,13 +762,14 @@ function recalcIfReady() {
 // Betriebszugehörigkeit helpers
 // ---------------------------------------------------------------------------
 
-function berechneMonate(eintrittsdatum) {
-  const heute = new Date();
+function berechneMonate(eintrittsdatum, stichtag) {
+  // Weihnachtsgeld wird im November ausgezahlt – Stichtag ist der 30.11. des Tarifjahres.
+  const ref = stichtag ?? new Date();
   const eintritt = new Date(eintrittsdatum);
   if (isNaN(eintritt.getTime())) return null;
-  let monate = (heute.getFullYear() - eintritt.getFullYear()) * 12
-             + (heute.getMonth() - eintritt.getMonth());
-  if (heute.getDate() < eintritt.getDate()) monate--;
+  let monate = (ref.getFullYear() - eintritt.getFullYear()) * 12
+             + (ref.getMonth() - eintritt.getMonth());
+  if (ref.getDate() < eintritt.getDate()) monate--;
   return Math.max(0, monate);
 }
 
@@ -808,7 +817,9 @@ function calcSalary(tabellenMonthly) {
   }
 
   const datumStr = elEintrittsdatum.value;
-  const monate = datumStr ? berechneMonate(datumStr) : null;
+  // Weihnachtsgeld-Stichtag: 31. Dezember des gewählten Tarifjahres
+  const wgStichtag = new Date(parseInt(elJahr.value, 10), 11, 31);
+  const monate = datumStr ? berechneMonate(datumStr, wgStichtag) : null;
   const hatAnspruch = monate === null || monate >= bonus.minMonate;
 
   // Weihnachtsgeld-Satz bestimmen
@@ -819,20 +830,32 @@ function calcSalary(tabellenMonthly) {
   // Sonderzahlungen basieren auf Monatsentgelt brutto (inkl. Leistungszulage)
   const monatsentgeltBrutto = monthly + utMonatlich;
   const urlaubsgeld     = hatAnspruch ? monatsentgeltBrutto * bonus.urlaubsgeld : 0;
-  const weihnachtsgeld  = hatAnspruch ? monatsentgeltBrutto * wgSatz : 0;
+  const wgDynamisch     = hatAnspruch ? monatsentgeltBrutto * wgSatz : 0;
+  const wgManuellVal    = elWeihnachtsgeldManuell.value.trim();
+  const wgIstManuell    = wgManuellVal !== "" && !isNaN(parseFloat(wgManuellVal));
+  const wgSatzEffektiv  = wgIstManuell ? Math.min(55, Math.max(0, parseFloat(wgManuellVal))) / 100 : wgSatz;
+  const weihnachtsgeld  = wgIstManuell ? monatsentgeltBrutto * wgSatzEffektiv : wgDynamisch;
   const tZugAFreiTage   = elTZugAFrei.checked;
   const tZugA           = hatAnspruch && !tZugAFreiTage ? monatsentgeltBrutto * bonus.tZugA : 0;
   const tGeld           = hatAnspruch && bonus.tGeld ? monatsentgeltBrutto * bonus.tGeld : 0;
   const tZugB           = hatAnspruch ? bonus.eckentgelt * azFaktor * bonus.tZugB : 0;
   const total           = grundgehalt + utJaehrlich + urlaubsgeld + weihnachtsgeld + tZugA + tGeld + tZugB + sonderzahlung;
 
-  return { ...result, bonus, hatAnspruch, wgSatz, urlaubsgeld, weihnachtsgeld, tZugA, tGeld, tZugB, total };
+  return { ...result, bonus, hatAnspruch, wgSatz, wgDynamisch, wgIstManuell, urlaubsgeld, weihnachtsgeld, tZugA, tGeld, tZugB, total };
 }
 
 function displayResult(r) {
   elMonthly.textContent = currencyFmt.format(r.monthly + r.utMonatlich);
   elHourly.textContent = currencyFmt.format(r.stundenlohn);
   elAnnual.textContent = currencyFmt.format(r.total);
+
+  // Ø Monatsdurchschnitt brutto
+  if (r.bonus) {
+    elAvgMonthly.textContent = currencyFmt.format(r.total / 12);
+    elAvgMonthlyRow.classList.remove("hidden");
+  } else {
+    elAvgMonthlyRow.classList.add("hidden");
+  }
 
   if (r.bonus) {
     elGrundgehalt.textContent    = currencyFmt.format(r.grundgehalt);
@@ -861,11 +884,12 @@ function displayResult(r) {
       elUtZulageRow.classList.add("hidden");
     }
 
-    // Dynamische Prozentanzeige im Label
-    const pctText = r.hatAnspruch
-      ? tReplace("xmasPayPct", {
-          pct: fmtDE(r.wgSatz * 100, 0)
-        })
+    // Dynamische Prozentanzeige im Label + Placeholder für manuelles Feld
+    const wgPctAnzeige = r.wgIstManuell
+      ? parseFloat(elWeihnachtsgeldManuell.value)
+      : (r.hatAnspruch ? r.wgSatz * 100 : null);
+    const pctText = wgPctAnzeige !== null
+      ? tReplace("xmasPayPct", { pct: fmtDE(wgPctAnzeige, 0) })
       : t("xmasPayNone");
     elWeihnachtsgeldPct.textContent = pctText;
 
@@ -887,6 +911,12 @@ function displayResult(r) {
   elResult.classList.remove("hidden");
   const monatsBrutto = r.monthly + r.utMonatlich;
   const netto = updateNettoEstimate(monatsBrutto, r.total);
+
+  // Ø Monatsdurchschnitt netto
+  if (netto && r.bonus) {
+    elAvgMonthlyNetto.textContent = currencyFmt.format(netto.annual / 12);
+  }
+
   updateCompare(monatsBrutto, r.total, netto);
 }
 

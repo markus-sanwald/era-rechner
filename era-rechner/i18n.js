@@ -19,6 +19,8 @@ const TRANSLATIONS = {
     labelTZugADaysOff: "T-ZUG A als freie Tage nehmen",
     labelBonus: "Leistungszulage",
     labelSonderzahlung: "Sonderzahlung / Gewinnbeteiligung (j\u00e4hrlich)",
+    labelWeihnachtsgeldManuell: "Weihnachtsgeld-Satz (manuell \u00fcbersteuern)",
+    wgManuellAuto: "automatisch",
 
     // Datepicker
     dpMonths: ["Januar", "Februar", "M\u00e4rz", "April", "Mai", "Juni",
@@ -40,6 +42,8 @@ const TRANSLATIONS = {
     resultMonthly: "Monatsentgelt (brutto)",
     resultHourly: "Brutto-Stundenlohn",
     resultAnnual: "Bruttojahresgehalt (gesamt)",
+    resultAvgMonthly: "Ø Monatsdurchschnitt (brutto)",
+    resultAvgMonthlyNetto: "Ø Monatsdurchschnitt (netto)",
 
     // Netto Estimate
     labelSteuerklasse: "Steuerklasse",
@@ -106,6 +110,7 @@ const TRANSLATIONS = {
     // Dynamic labels
     xmasPayPct: "(${pct}\u00a0% eines ME)",
     xmasPayNone: "(kein Anspruch)",
+    xmasPayManual: "(manuell)",
     utZulagePct: "(${pct}\u00a0% v. ME)",
     tZugBPct: "(${pct}\u00a0% v. Eckentgelt)",
 
@@ -196,6 +201,8 @@ const TRANSLATIONS = {
     labelTZugADaysOff: "Take T-ZUG A as days off",
     labelBonus: "Performance Bonus",
     labelSonderzahlung: "Special Payment / Profit Sharing (annual)",
+    labelWeihnachtsgeldManuell: "Christmas Bonus Rate (manual override)",
+    wgManuellAuto: "automatic",
 
     // Datepicker
     dpMonths: ["January", "February", "March", "April", "May", "June",
@@ -217,6 +224,8 @@ const TRANSLATIONS = {
     resultMonthly: "Monthly Salary (gross)",
     resultHourly: "Gross Hourly Wage",
     resultAnnual: "Gross Annual Salary (total)",
+    resultAvgMonthly: "Avg. monthly (gross)",
+    resultAvgMonthlyNetto: "Avg. monthly (net)",
 
     // Netto Estimate
     labelSteuerklasse: "Tax class",
@@ -283,6 +292,7 @@ const TRANSLATIONS = {
     // Dynamic labels
     xmasPayPct: "(${pct}\u00a0% of monthly)",
     xmasPayNone: "(not eligible)",
+    xmasPayManual: "(manual)",
     utZulagePct: "(${pct}\u00a0% of monthly)",
     tZugBPct: "(${pct}\u00a0% of base salary)",
 

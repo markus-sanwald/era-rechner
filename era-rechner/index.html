@@ -270,6 +270,18 @@
           </div>
         </div>
 
+        <div class="form-group">
+          <label for="weihnachtsgeld-manuell" data-i18n="labelWeihnachtsgeldManuell">Weihnachtsgeld-Satz (manuell &uuml;bersteuern)</label>
+          <select id="weihnachtsgeld-manuell">
+            <option value="" data-i18n="wgManuellAuto">automatisch</option>
+            <option value="0">0 %</option>
+            <option value="25">25 %</option>
+            <option value="35">35 %</option>
+            <option value="45">45 %</option>
+            <option value="55">55 %</option>
+          </select>
+        </div>
+
         <div class="form-group checkbox-group">
           <label class="checkbox-label">
             <input type="checkbox" id="tzug-a-frei">
@@ -342,6 +354,10 @@
         <span class="result-label" data-i18n="resultAnnual">Bruttojahresgehalt (gesamt)</span>
         <span class="result-value" id="annual"></span>
       </div>
+      <div class="result-row hidden" id="avg-monthly-row">
+        <span class="result-label" data-i18n="resultAvgMonthly">&Oslash; Monatsdurchschnitt (brutto)</span>
+        <span class="result-value" id="avg-monthly"></span>
+      </div>
 
       <div id="netto-result" class="netto-result hidden">
         <div class="result-row netto-row">
@@ -351,6 +367,10 @@
         <div class="result-row netto-row">
           <span class="result-label" data-i18n="resultNettoAnnual">Gesch&auml;tztes Jahresnetto</span>
           <span class="result-value" id="netto-annual"></span>
+        </div>
+        <div class="result-row netto-row" id="avg-monthly-netto-row">
+          <span class="result-label" data-i18n="resultAvgMonthlyNetto">&Oslash; Monatsdurchschnitt (netto)</span>
+          <span class="result-value" id="avg-monthly-netto"></span>
         </div>
         <p class="netto-hint" data-i18n="nettoHint">&#9432; Grobe Sch&auml;tzung auf Basis pauschaler Abzugss&auml;tze. Kein Ersatz f&uuml;r eine individuelle Steuerberechnung.</p>
       </div>
