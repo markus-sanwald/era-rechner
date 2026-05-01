@@ -632,15 +632,16 @@ elEintrittsdatum.addEventListener("change", () => {
 // ---------------------------------------------------------------------------
 
 elUtZulage.addEventListener("input", () => {
-  elUtZulageOutput.value = parseFloat(elUtZulage.value).toFixed(1);
+  // Slider arbeitet mit ganzen Zahlen → Zahlenfeld übernimmt exakt diesen Wert
+  elUtZulageOutput.value = parseFloat(elUtZulage.value).toFixed(2);
   recalcIfReady();
 });
 
-// Max. eine Nachkommastelle bei Leistungszulage
+// Max. zwei Nachkommastellen bei Leistungszulage (Slider bleibt auf ganze Zahlen)
 elUtZulageOutput.addEventListener("input", () => {
   let raw = elUtZulageOutput.value;
-  // Auf eine Nachkommastelle begrenzen (z.B. "12.34" → "12.3")
-  const match = raw.match(/^(\d*[.,]?\d?)/);
+  // Auf zwei Nachkommastellen begrenzen (z.B. "12.345" → "12.34")
+  const match = raw.match(/^(\d*[.,]?\d{0,2})/);
   if (match && match[1] !== raw) {
     elUtZulageOutput.value = match[1];
     raw = match[1];
@@ -648,7 +649,8 @@ elUtZulageOutput.addEventListener("input", () => {
   let v = parseFloat(raw.replace(",", "."));
   if (isNaN(v)) return;
   v = Math.max(0, Math.min(30, v));
-  elUtZulage.value = v;
+  // Slider rastet auf nächste 0,1-Stelle
+  elUtZulage.value = Math.round(v * 10) / 10;
   recalcIfReady();
 });
 
@@ -656,9 +658,9 @@ elUtZulageOutput.addEventListener("blur", () => {
   let v = parseFloat(elUtZulageOutput.value);
   if (isNaN(v)) v = 0;
   v = Math.max(0, Math.min(30, v));
-  v = Math.round(v * 10) / 10;
-  elUtZulageOutput.value = v.toFixed(1);
-  elUtZulage.value = v;
+  v = Math.round(v * 100) / 100;
+  elUtZulageOutput.value = v.toFixed(2);
+  elUtZulage.value = Math.round(v * 10) / 10;
   recalcIfReady();
 });
 
@@ -796,7 +798,7 @@ function calcSalary(tabellenMonthly) {
   const monthly = tabellenMonthly * azFaktor;
 
   // ÜT-Zulage (übertarifliche Zulage)
-  const utPct = parseFloat(elUtZulage.value) || 0;
+  const utPct = parseFloat(elUtZulageOutput.value) || 0;
   const utMonatlich = monthly * (utPct / 100);
   const utJaehrlich = utMonatlich * 12;
 
@@ -877,7 +879,7 @@ function displayResult(r) {
     if (r.utPct > 0) {
       elUtZulageAnnual.textContent = currencyFmt.format(r.utJaehrlich);
       elUtZulagePct.textContent = tReplace("utZulagePct", {
-        pct: fmtDE(r.utPct)
+        pct: fmtDE(r.utPct, 2)
       });
       elUtZulageRow.classList.remove("hidden");
     } else {
@@ -1190,7 +1192,7 @@ function getCurrentLabel() {
 
 function getCurrentDetails() {
   const wochenstunden = parseInt(elArbeitszeit.value, 10) || 35;
-  const utPct = parseFloat(elUtZulage.value) || 0;
+  const utPct = parseFloat(elUtZulageOutput.value) || 0;
   const sonderzahlung = parseFloat(elSonderzahlung.value) || 0;
   const details = [wochenstunden + "\u00a0h"];
   if (utPct > 0) details.push("\u00dcT " + fmtDE(utPct) + "\u00a0%");
