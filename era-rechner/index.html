@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ERA Entgeltrechner 2026 – IG Metall Entgelttabelle &amp; Gehaltsrechner Metall- und Elektroindustrie</title>
-  <meta name="description" content="Tariflohn berechnen leicht gemacht: Kostenloser ERA Entgeltrechner auf Basis der IG Metall Entgelttabellen 2026. Bruttojahresgehalt inkl. Weihnachtsgeld, Urlaubsgeld, T-ZUG und T-Geld f&uuml;r alle 15 Tarifgebiete. Werbefrei &amp; ohne Registrierung.">
+  <meta name="description" content="Tariflohn berechnen leicht gemacht: Kostenloser Open-Source ERA Entgeltrechner auf Basis der IG Metall Entgelttabellen 2026. Bruttojahresgehalt inkl. Weihnachtsgeld, Urlaubsgeld, T-ZUG und T-Geld f&uuml;r alle 15 Tarifgebiete. Werbefrei &amp; ohne Registrierung.">
   <meta name="keywords" content="ERA, Entgeltrechner, Gehaltsrechner, Metall, Elektroindustrie, IG Metall, Tarifvertrag, Entgelttabelle, Bruttojahresgehalt, Weihnachtsgeld, Urlaubsgeld, T-ZUG, T-Geld, Entgeltgruppe, Tariflohn, open-source, kostenlos, werbefrei">
   <meta name="robots" content="index, follow">
   <meta name="author" content="era-rechner.de">
@@ -124,7 +124,7 @@
         "name": "Welche Sonderzahlungen sind im Jahresbrutto enthalten?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Das Bruttojahresgehalt enthält: Urlaubsgeld (69 %), Weihnachtsgeld (25–55 % je nach Betriebszugehörigkeit), T-ZUG A (27,5 %), Transformationsgeld (18,4 %) und T-ZUG B (fester Betrag auf Basis des Eckentgelts)."
+          "text": "Das Bruttojahresgehalt enthält: Urlaubsgeld (69 %, in NRW 72 %), Weihnachtsgeld (25–55 % je nach Betriebszugehörigkeit), T-ZUG A (27,5 %), Transformationsgeld (18,4 %) und T-ZUG B (fester Betrag auf Basis des Eckentgelts)."
         }
       },
       {
@@ -393,7 +393,7 @@
         </div>
         <div class="breakdown-row has-tooltip">
           <span class="breakdown-label">
-            <span data-i18n="breakdownHolidayPay">Urlaubsgeld</span> <small data-i18n-html="breakdownHolidayPayDetail">(69&nbsp;% eines ME)</small>
+            <span data-i18n="breakdownHolidayPay">Urlaubsgeld</span> <small id="urlaubsgeld-pct" data-i18n-html="breakdownHolidayPayDetail">(69&nbsp;% eines ME)</small>
             <span class="tooltip" data-i18n="tooltipHolidayPay">Zus&auml;tzliches Urlaubsgeld, das einmal j&auml;hrlich im Juni ausgezahlt wird. Berechnung auf Basis des tariflichen Monatsentgelts.</span>
           </span>
           <span class="breakdown-value" id="urlaubsgeld"></span>
@@ -516,7 +516,7 @@
 
       <details class="faq-item">
         <summary data-i18n="faq3Q">Welche Sonderzahlungen sind im Jahresbrutto enthalten?</summary>
-        <p data-i18n="faq3A">Das berechnete Bruttojahresgehalt enth&auml;lt neben dem monatlichen Entgelt auch: Urlaubsgeld (69&nbsp;% eines Monatsentgelts), Weihnachtsgeld (25&ndash;55&nbsp;% je nach Betriebszugeh&ouml;rigkeit), T-ZUG A (27,5&nbsp;%), Transformationsgeld (18,4&nbsp;%) und T-ZUG B (fester Betrag auf Basis des Eckentgelts). Alle Sonderzahlungen au&szlig;er T-ZUG B berechnen sich auf Basis des Monatsentgelts inkl. Leistungszulage.</p>
+        <p data-i18n="faq3A">Das berechnete Bruttojahresgehalt enth&auml;lt neben dem monatlichen Entgelt auch: Urlaubsgeld (69&nbsp;% eines Monatsentgelts, in NRW 72&nbsp;%), Weihnachtsgeld (25&ndash;55&nbsp;% je nach Betriebszugeh&ouml;rigkeit), T-ZUG A (27,5&nbsp;%), Transformationsgeld (18,4&nbsp;%) und T-ZUG B (fester Betrag auf Basis des Eckentgelts). Alle Sonderzahlungen au&szlig;er T-ZUG B berechnen sich auf Basis des Monatsentgelts inkl. Leistungszulage.</p>
       </details>
 
       <details class="faq-item">

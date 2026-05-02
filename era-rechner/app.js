@@ -42,6 +42,7 @@ const elUtZulageRow      = document.getElementById("ut-zulage-row");
 const elUtZulagePct      = document.getElementById("ut-zulage-pct");
 const elUtZulageAnnual   = document.getElementById("ut-zulage-annual");
 const elUrlaubsgeld      = document.getElementById("urlaubsgeld");
+const elUrlaubsgeldPct   = document.getElementById("urlaubsgeld-pct");
 const elWeihnachtsgeld   = document.getElementById("weihnachtsgeld");
 const elWeihnachtsgeldPct = document.getElementById("weihnachtsgeld-pct");
 const elTZugA            = document.getElementById("tzug-a");
@@ -862,6 +863,7 @@ function displayResult(r) {
   if (r.bonus) {
     elGrundgehalt.textContent    = currencyFmt.format(r.grundgehalt);
     elUrlaubsgeld.textContent    = currencyFmt.format(r.urlaubsgeld);
+    elUrlaubsgeldPct.textContent = tReplace("holidayPayPct", { pct: fmtDE(r.bonus.urlaubsgeld * 100, 0) });
     elWeihnachtsgeld.textContent = currencyFmt.format(r.weihnachtsgeld);
     elTZugA.textContent          = currencyFmt.format(r.tZugA);
     elTGeld.textContent          = currencyFmt.format(r.tGeld);

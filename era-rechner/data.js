@@ -889,7 +889,7 @@ const ERA_DATA = {
         ]
       },
       "Nordrhein-Westfalen": {
-        "urlaubsgeld": 0.69,
+        "urlaubsgeld": 0.72,
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.185,
@@ -1905,7 +1905,7 @@ const ERA_DATA = {
         ]
       },
       "Nordrhein-Westfalen": {
-        "urlaubsgeld": 0.69,
+        "urlaubsgeld": 0.72,
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.265,

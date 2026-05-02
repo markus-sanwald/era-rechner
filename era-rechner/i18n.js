@@ -108,6 +108,7 @@ const TRANSLATIONS = {
     },
 
     // Dynamic labels
+    holidayPayPct: "(${pct}\u00a0% eines ME)",
     xmasPayPct: "(${pct}\u00a0% eines ME)",
     xmasPayNone: "(kein Anspruch)",
     xmasPayManual: "(manuell)",
@@ -159,7 +160,7 @@ const TRANSLATIONS = {
     faq2Q: "Wie aktuell sind die Entgelttabellen in diesem Rechner?",
     faq2A: "Der Rechner enth\u00e4lt die offiziellen ERA-Entgelttabellen f\u00fcr 2025 und 2026 (g\u00fcltig ab 01.04.2026) f\u00fcr alle 15 Tarifgebiete. Die Werte werden nach jeder Tarifrunde zeitnah aktualisiert.",
     faq3Q: "Welche Sonderzahlungen sind im Jahresbrutto enthalten?",
-    faq3A: "Das berechnete Bruttojahresgehalt enth\u00e4lt neben dem monatlichen Entgelt auch: Urlaubsgeld (69\u00a0% eines Monatsentgelts), Weihnachtsgeld (25\u201355\u00a0% je nach Betriebszugeh\u00f6rigkeit), T-ZUG\u00a0A (27,5\u00a0%), Transformationsgeld (18,4\u00a0%) und T-ZUG\u00a0B (fester Betrag auf Basis des Eckentgelts). Alle Sonderzahlungen au\u00dfer T-ZUG\u00a0B berechnen sich auf Basis des Monatsentgelts inkl. Leistungszulage.",
+    faq3A: "Das berechnete Bruttojahresgehalt enth\u00e4lt neben dem monatlichen Entgelt auch: Urlaubsgeld (69\u00a0% eines Monatsentgelts, in NRW 72\u00a0%), Weihnachtsgeld (25\u201355\u00a0% je nach Betriebszugeh\u00f6rigkeit), T-ZUG\u00a0A (27,5\u00a0%), Transformationsgeld (18,4\u00a0%) und T-ZUG\u00a0B (fester Betrag auf Basis des Eckentgelts). Alle Sonderzahlungen au\u00dfer T-ZUG\u00a0B berechnen sich auf Basis des Monatsentgelts inkl. Leistungszulage.",
     faq4Q: "Was ist die Leistungszulage und wie wirkt sie sich aus?",
     faq4A: "Die Leistungszulage ist ein prozentualer Aufschlag auf das tarifliche Grundentgelt, den der Arbeitgeber individuell gew\u00e4hrt. Sie erh\u00f6ht das monatliche Bruttoentgelt und flie\u00dft in die Berechnung von Urlaubsgeld, Weihnachtsgeld, T-ZUG\u00a0A und Transformationsgeld ein. Der T-ZUG\u00a0B basiert auf dem Eckentgelt (EG\u00a05) und ist unabh\u00e4ngig davon.",
     faq5Q: "Ist dies ein offizielles Angebot der IG Metall?",
@@ -290,6 +291,7 @@ const TRANSLATIONS = {
     },
 
     // Dynamic labels
+    holidayPayPct: "(${pct}\u00a0% of monthly)",
     xmasPayPct: "(${pct}\u00a0% of monthly)",
     xmasPayNone: "(not eligible)",
     xmasPayManual: "(manual)",
@@ -370,7 +372,7 @@ const TRANSLATIONS = {
     faq2Q: "How up to date are the salary tables in this calculator?",
     faq2A: "The calculator contains the official ERA salary tables for 2025 and 2026 (effective 01.04.2026) for all 15 bargaining regions. Values are updated promptly after each wage round.",
     faq3Q: "Which special payments are included in the annual gross salary?",
-    faq3A: "The calculated annual gross includes: holiday pay (69\u00a0% of one monthly salary), Christmas bonus (25\u201355\u00a0% depending on tenure), T-ZUG\u00a0A (27.5\u00a0%), transformation payment (18.4\u00a0%), and T-ZUG\u00a0B (fixed amount based on the reference salary). All special payments except T-ZUG\u00a0B are calculated on the monthly salary including performance allowance.",
+    faq3A: "The calculated annual gross includes: holiday pay (69\u00a0% of one monthly salary, 72\u00a0% in NRW), Christmas bonus (25\u201355\u00a0% depending on tenure), T-ZUG\u00a0A (27.5\u00a0%), transformation payment (18.4\u00a0%), and T-ZUG\u00a0B (fixed amount based on the reference salary). All special payments except T-ZUG\u00a0B are calculated on the monthly salary including performance allowance.",
     faq4Q: "What is the performance allowance and how does it affect the result?",
     faq4A: "The performance allowance (Leistungszulage) is a percentage surcharge on the collectively agreed base pay, granted individually by the employer. It increases the monthly gross and feeds into the calculation of holiday pay, Christmas bonus, T-ZUG\u00a0A, and transformation payment. T-ZUG\u00a0B is based on the reference salary (EG\u00a05) and is unaffected.",
     faq5Q: "Is this an official IG Metall service?",
