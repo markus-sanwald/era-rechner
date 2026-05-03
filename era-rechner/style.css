@@ -679,6 +679,17 @@ header h1 {
   display: none;
 }
 
+.form-hint {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  margin-top: 0.1rem;
+}
+
+#kv-gkv-fields.hidden,
+#kv-pkv-fields.hidden {
+  display: none;
+}
+
 /* Breakdown */
 .breakdown {
   margin-top: 1rem;
@@ -801,6 +812,17 @@ header h1 {
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
   overflow: hidden;
+}
+
+.kv-mode-toggle {
+  display: flex;
+  width: 100%;
+}
+
+.kv-mode-toggle .chart-view-btn {
+  flex: 1;
+  font-size: 0.85rem;
+  padding: 0.55rem 0.75rem;
 }
 
 .chart-view-toggle.hidden {

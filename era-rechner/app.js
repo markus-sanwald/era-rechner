@@ -79,6 +79,11 @@ const elOptionalToggle   = document.getElementById("optional-toggle");
 const elOptionalInputs   = document.getElementById("optional-inputs");
 const elKinderfreibetrag = document.getElementById("kinderfreibetrag");
 const elKVZusatz         = document.getElementById("kv-zusatzbeitrag");
+const elKvModeGkv        = document.getElementById("kv-mode-gkv");
+const elKvModePkv        = document.getElementById("kv-mode-pkv");
+const elKvGkvFields      = document.getElementById("kv-gkv-fields");
+const elKvPkvFields      = document.getElementById("kv-pkv-fields");
+const elPkvBeitrag       = document.getElementById("pkv-beitrag");
 
 // Compare DOM references
 const elCompare          = document.getElementById("compare");
@@ -720,6 +725,38 @@ elKirchensteuer.addEventListener("change", () => {
   recalcIfReady();
 });
 
+// ---------------------------------------------------------------------------
+// KV-Modus: GKV / PKV
+// ---------------------------------------------------------------------------
+
+function switchKvMode(mode) {
+  const isPkv = mode === "pkv";
+  elKvModeGkv.classList.toggle("active", !isPkv);
+  elKvModePkv.classList.toggle("active", isPkv);
+  elKvGkvFields.classList.toggle("hidden", isPkv);
+  elKvPkvFields.classList.toggle("hidden", !isPkv);
+  recalcIfReady();
+}
+
+elKvModeGkv.addEventListener("click", () => {
+  if (!elKvModeGkv.classList.contains("active")) switchKvMode("gkv");
+});
+
+elKvModePkv.addEventListener("click", () => {
+  if (!elKvModePkv.classList.contains("active")) switchKvMode("pkv");
+});
+
+elPkvBeitrag.addEventListener("input", () => {
+  recalcIfReady();
+});
+
+elPkvBeitrag.addEventListener("blur", () => {
+  let v = parseFloat(elPkvBeitrag.value);
+  if (isNaN(v) || v < 0) v = 0;
+  elPkvBeitrag.value = v > 0 ? v : "";
+  recalcIfReady();
+});
+
 elKinderfreibetrag.addEventListener("change", () => {
   recalcIfReady();
 });
@@ -758,6 +795,8 @@ elNettoToggle.addEventListener("click", () => {
     elKirchensteuer.checked = false;
     elKinderfreibetrag.value = "0";
     elKVZusatz.value = "2.5";
+    elPkvBeitrag.value = "";
+    switchKvMode("gkv");
     elNettoResult.classList.add("hidden");
     currentNettoFaktor = null;
     updateChartViewToggle();
@@ -1067,20 +1106,26 @@ function updateNettoEstimate(bruttoMonatlich, bruttoJaehrlich) {
   const renteAbzug = basisRvAv * SV_RENTE;
   const alAbzug    = basisRvAv * SV_ARBEITSLOSEN;
 
-  const kvAnteil = SV_KV_BASIS + kvZusatz / 2;
-  const kvAbzug  = basisKvPv * kvAnteil;
+  let kvPvAbzug;
+  if (elKvModePkv.classList.contains("active")) {
+    // PKV: fixer Monatsbeitrag (Eigenanteil, inkl. privater PV)
+    kvPvAbzug = Math.max(0, parseFloat(elPkvBeitrag.value) || 0);
+  } else {
+    // GKV: prozentual auf beitragspflichtiges Entgelt
+    const kvAnteil = SV_KV_BASIS + kvZusatz / 2;
+    const kvAbzug  = basisKvPv * kvAnteil;
 
-  // Pflegeversicherung
-  let pflegeSatz = SV_PFLEGE_BASIS;
-  if (kinder === 0) {
-    pflegeSatz += SV_PFLEGE_KINDERLOS_ZUSCHLAG;
-  } else if (kinder >= 2) {
-    const abzugKinder = Math.min(kinder - 1, 4);
-    pflegeSatz = Math.max(0, pflegeSatz - abzugKinder * SV_PFLEGE_KIND_ABZUG);
+    let pflegeSatz = SV_PFLEGE_BASIS;
+    if (kinder === 0) {
+      pflegeSatz += SV_PFLEGE_KINDERLOS_ZUSCHLAG;
+    } else if (kinder >= 2) {
+      const abzugKinder = Math.min(kinder - 1, 4);
+      pflegeSatz = Math.max(0, pflegeSatz - abzugKinder * SV_PFLEGE_KIND_ABZUG);
+    }
+    kvPvAbzug = kvAbzug + basisKvPv * pflegeSatz;
   }
-  const pflegeAbzug = basisKvPv * pflegeSatz;
 
-  const svAbzug = renteAbzug + alAbzug + kvAbzug + pflegeAbzug;
+  const svAbzug = renteAbzug + alAbzug + kvPvAbzug;
 
   // --- Gesamt-Abzug ---
   const gesamtAbzug = steuerAbzug + svAbzug;

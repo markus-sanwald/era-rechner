@@ -305,6 +305,14 @@
 
       <div class="netto-inputs hidden" id="netto-inputs">
         <div class="form-group">
+          <label data-i18n="labelKvMode">Krankenversicherung</label>
+          <div class="kv-mode-toggle chart-view-toggle">
+            <button type="button" class="chart-view-btn active" id="kv-mode-gkv" data-i18n="kvModeGkv">Gesetzlich (GKV)</button>
+            <button type="button" class="chart-view-btn" id="kv-mode-pkv" data-i18n="kvModePkv">Privat (PKV)</button>
+          </div>
+        </div>
+
+        <div class="form-group">
           <label for="steuerklasse" data-i18n="labelSteuerklasse">Steuerklasse</label>
           <select id="steuerklasse">
             <option value="" data-i18n="steuerklasseNone">&ndash; bitte w&auml;hlen &ndash;</option>
@@ -332,11 +340,24 @@
           </select>
         </div>
 
-        <div class="form-group">
-          <label for="kv-zusatzbeitrag" data-i18n="labelKVZusatz">KV-Zusatzbeitrag (%)</label>
-          <div class="input-pct-group">
-            <input type="number" id="kv-zusatzbeitrag" min="0" max="5" step="0.1" value="2.5">
-            <span class="input-pct-suffix">%</span>
+        <div id="kv-gkv-fields">
+          <div class="form-group">
+            <label for="kv-zusatzbeitrag" data-i18n="labelKVZusatz">KV-Zusatzbeitrag (%)</label>
+            <div class="input-pct-group">
+              <input type="number" id="kv-zusatzbeitrag" min="0" max="5" step="0.1" value="2.5">
+              <span class="input-pct-suffix">%</span>
+            </div>
+          </div>
+        </div>
+
+        <div id="kv-pkv-fields" class="hidden">
+          <div class="form-group">
+            <label for="pkv-beitrag" data-i18n="labelPkvBeitrag">PKV-Monatsbeitrag (Eigenanteil)</label>
+            <div class="input-euro-group">
+              <input type="number" id="pkv-beitrag" min="0" step="1" placeholder="0" value="">
+              <span class="input-euro-suffix">&euro;</span>
+            </div>
+            <small class="form-hint" data-i18n="hintPkvBeitrag">Anteil nach AG-Zuschuss, inkl. privater Pflegeversicherung (Gesamtbeitrag minus Arbeitgeberzuschuss)</small>
           </div>
         </div>
 
