@@ -17,6 +17,16 @@
   --color-border: #d1d5db;
   --color-highlight-bg: #eaf4ff;
   --color-highlight-border: #0a5a9e;
+  --color-netto-bg: #f0f7ed;
+  --color-netto-border: #c5dfc0;
+  --color-netto-text: #2e6b2e;
+  --color-warning-bg: #fff8e1;
+  --color-warning-border: #ffe082;
+  --color-warning-text: #7a5c00;
+  --color-bg-secondary: #f5f7fa;
+  --color-input-disabled-bg: #f7f8fa;
+  --color-input-disabled-text: #9ca3af;
+  --color-focus-ring: rgba(10, 90, 158, 0.15);
   --radius: 8px;
   --shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.12);
@@ -165,12 +175,12 @@ header h1 {
 .form-group select:focus {
   outline: none;
   border-color: var(--color-primary-light);
-  box-shadow: 0 0 0 3px rgba(10, 90, 158, 0.15);
+  box-shadow: 0 0 0 3px var(--color-focus-ring);
 }
 
 .form-group select:disabled {
-  background-color: #f7f8fa;
-  color: #9ca3af;
+  background-color: var(--color-input-disabled-bg);
+  color: var(--color-input-disabled-text);
   cursor: not-allowed;
 }
 
@@ -193,7 +203,7 @@ header h1 {
 .form-group input[type="number"]:focus {
   outline: none;
   border-color: var(--color-primary-light);
-  box-shadow: 0 0 0 3px rgba(10, 90, 158, 0.15);
+  box-shadow: 0 0 0 3px var(--color-focus-ring);
 }
 
 .input-euro-group,
@@ -263,7 +273,7 @@ header h1 {
 .range-value-input:focus {
   outline: none;
   border-color: var(--color-primary-light);
-  box-shadow: 0 0 0 3px rgba(10, 90, 158, 0.15);
+  box-shadow: 0 0 0 3px var(--color-focus-ring);
 }
 
 .range-input-unit {
@@ -303,7 +313,7 @@ header h1 {
 .datepicker-wrapper.open .datepicker-input {
   outline: none;
   border-color: var(--color-primary-light);
-  box-shadow: 0 0 0 3px rgba(10, 90, 158, 0.15);
+  box-shadow: 0 0 0 3px var(--color-focus-ring);
 }
 
 .datepicker-icon {
@@ -523,9 +533,9 @@ header h1 {
 /* Year notice banner */
 .year-notice {
   font-size: 0.8rem;
-  color: #7a5c00;
-  background: #fff8e1;
-  border: 1px solid #ffe082;
+  color: var(--color-warning-text);
+  background: var(--color-warning-bg);
+  border: 1px solid var(--color-warning-border);
   border-radius: var(--radius);
   padding: 0.5rem 0.75rem;
   line-height: 1.5;
@@ -600,8 +610,8 @@ header h1 {
 .netto-result {
   margin-top: 0.75rem;
   padding: 0.75rem 1rem;
-  background: #f0f7ed;
-  border: 1px solid #c5dfc0;
+  background: var(--color-netto-bg);
+  border: 1px solid var(--color-netto-border);
   border-radius: var(--radius);
 }
 
@@ -611,17 +621,17 @@ header h1 {
 
 .netto-row .result-label {
   font-size: 0.9rem;
-  color: #2e6b2e;
+  color: var(--color-netto-text);
 }
 
 .netto-row .result-value {
   font-size: 1.1rem;
   font-weight: 700;
-  color: #2e6b2e;
+  color: var(--color-netto-text);
 }
 
 .netto-row + .netto-row {
-  border-top: 1px dashed #c5dfc0;
+  border-top: 1px dashed var(--color-netto-border);
 }
 
 .netto-hint {
@@ -643,7 +653,7 @@ header h1 {
 }
 
 .result-sublabel--netto {
-  color: #4a8c4a;
+  color: var(--color-netto-text);
 }
 
 /* Ø Monatsdurchschnitt: visuell als abgeleiteter Wert kennzeichnen */
@@ -656,7 +666,7 @@ header h1 {
 }
 
 .netto-row--avg {
-  border-top: 1px dashed #c5dfc0;
+  border-top: 1px dashed var(--color-netto-border);
   padding-top: 0.6rem;
   margin-top: 0.25rem;
 }
@@ -1176,7 +1186,7 @@ footer p + p {
 .contact-form textarea:focus {
   outline: none;
   border-color: var(--color-primary-light);
-  box-shadow: 0 0 0 2px rgba(10, 90, 158, 0.15);
+  box-shadow: 0 0 0 2px var(--color-focus-ring);
 }
 
 .contact-form textarea {
@@ -1336,7 +1346,7 @@ footer p + p {
 }
 
 .compare-positive {
-  color: #16a34a;
+  color: var(--color-netto-text);
 }
 
 .compare-negative {
@@ -1436,6 +1446,38 @@ footer p + p {
 
 .page-content .preserve-lines {
   white-space: pre-line;
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-primary: #1a6abf;
+    --color-primary-light: #3d8fd4;
+    --color-bg: #111318;
+    --color-card: #1c1f26;
+    --color-text: #e2e4e9;
+    --color-text-muted: #8b92a0;
+    --color-border: #2a2f3a;
+    --color-highlight-bg: #162030;
+    --color-highlight-border: #3d8fd4;
+    --color-netto-bg: #152318;
+    --color-netto-border: #2a4a2d;
+    --color-netto-text: #6abf6a;
+    --color-warning-bg: #261f0a;
+    --color-warning-border: #4a3d15;
+    --color-warning-text: #d4a843;
+    --color-bg-secondary: #22252e;
+    --color-input-disabled-bg: #16181f;
+    --color-input-disabled-text: #4a5060;
+    --color-focus-ring: rgba(61, 143, 212, 0.25);
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.6);
+  }
+
+  /* Select dropdown arrow in light color */
+  .form-group select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238b92a0' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  }
 }
 
 /* Responsive */
