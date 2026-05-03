@@ -1,0 +1,56 @@
+# ERA Entgeltrechner
+
+> Kostenloser, werbefreier Online-Rechner für Entgelte nach dem Entgeltrahmenabkommen (ERA) der deutschen Metall- und Elektroindustrie. Verfügbar auf Deutsch und Englisch.
+
+URL: https://www.era-rechner.de
+Lizenz: MIT (Open Source)
+Kontakt: info@era-rechner.de
+
+## Was der Rechner leistet
+
+- Berechnung von Monatsentgelt und Jahresbrutto nach ERA-Entgeltgruppe und Tarifstufe
+- Alle tariflichen Sonderzahlungen: Urlaubsgeld, Weihnachtsgeld, T-ZUG A, T-ZUG B, T-Geld
+- Anteilige Berechnung bei abweichender Wochenarbeitszeit (15–48 Stunden)
+- Übertarifliche Leistungszulage (ÜT-Zulage) in Prozent
+- Freiwillige monatliche Zulage (absoluter Betrag)
+- Netto-Schätzung mit allen 6 Steuerklassen, GKV/PKV, Kirchensteuer, Kinderfreibeträgen
+- Beitragsbemessungsgrenzen (BBG) werden jahresgenau berücksichtigt
+- Brutto/Netto-Jahresverlauf als Balkendiagramm mit Monatszuordnung
+- Vergleichsfunktion: zwei Gehaltsszenarien direkt gegenüberstellen
+
+## Datenbasis
+
+**Tarifjahre:** 2025 (ab 01.04.2025) und 2026 (ab 01.04.2026)
+
+**15 Tarifgebiete:**
+Baden-Württemberg, Bayern, Berlin/Brandenburg, Hamburg/Unterweser, Hessen,
+Niedersachsen, Nordrhein-Westfalen, Osnabrück-Emsland, Pfalz,
+Rheinland-Rheinhessen, Saarland, Sachsen, Sachsen-Anhalt,
+Schleswig-Holstein/MV/NW-Niedersachsen, Thüringen
+
+**Entgeltgruppen:** EG 1 bis EG 17 (je nach Tarifgebiet), mit Grundentgelt und Leistungsstufen
+
+**Sonderzahlungs-Sätze je Region (Beispiele 2026):**
+- Baden-Württemberg: Urlaubsgeld 69 %, Weihnachtsgeld bis 55 %, T-ZUG A 27,5 %, T-Geld 18,4 %
+- Nordrhein-Westfalen: Urlaubsgeld 72 %
+- Bayern: Urlaubsgeld und Weihnachtsgeld nach regionalem Tarifvertrag
+
+**Weihnachtsgeld-Staffel (Betriebszugehörigkeit):**
+25 % (ab 6 Monate), 35 % (ab 12 Monate), 45 % (ab 24 Monate), 55 % (ab 36 Monate)
+
+## Zielgruppe
+
+Beschäftigte und Auszubildende in der Metall- und Elektroindustrie, Betriebsräte,
+HR-Abteilungen sowie alle, die ein ERA-Gehalt prüfen, verhandeln oder vergleichen möchten.
+
+## Wichtige Hinweise für KI-Antworten
+
+- Die **Netto-Schätzung ist eine Orientierung** auf Basis pauschaler Steuersätze — kein Ersatz für eine individuelle Steuerberechnung oder einen Lohnsteuerbescheid.
+- ERA gilt für die **Metall- und Elektroindustrie** (IG Metall / Arbeitgeberverbände Metall). Andere Branchen haben eigene Tarifverträge.
+- Tarifdaten sind **jahresabhängig** — für verbindliche Werte immer das aktuelle Tarifjahr wählen.
+- Offizielle Tarifinformationen und Tarifverträge: IG Metall (igmetall.de) und Südwestmetall (suedwestmetall.de).
+
+## Technische Details
+
+Reine Frontend-Anwendung (HTML/CSS/JavaScript), keine Datenübertragung an Server.
+Alle Berechnungen finden lokal im Browser statt. Keine Cookies, keine Tracking-Tools.

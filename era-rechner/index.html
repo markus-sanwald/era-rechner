@@ -372,7 +372,10 @@
 
     <section id="result" class="result hidden" aria-live="polite">
       <div class="result-row">
-        <span class="result-label" data-i18n="resultMonthly">Monatsentgelt (brutto)</span>
+        <span class="result-label">
+          <span data-i18n="resultMonthly">Monatsentgelt (brutto)</span>
+          <small class="result-sublabel" data-i18n="resultMonthlySub">ohne Sonderzahlungen</small>
+        </span>
         <span class="result-value" id="monthly"></span>
       </div>
       <div class="result-row">
@@ -383,22 +386,31 @@
         <span class="result-label" data-i18n="resultAnnual">Bruttojahresgehalt (gesamt)</span>
         <span class="result-value" id="annual"></span>
       </div>
-      <div class="result-row hidden" id="avg-monthly-row">
-        <span class="result-label" data-i18n="resultAvgMonthly">&Oslash; Monatsdurchschnitt (brutto)</span>
+      <div class="result-row result-row--avg hidden" id="avg-monthly-row">
+        <span class="result-label">
+          <span data-i18n="resultAvgMonthly">&Oslash; Monatsdurchschnitt (brutto)</span>
+          <small class="result-sublabel" data-i18n="resultAvgMonthlySub">inkl. Sonderzahlungen</small>
+        </span>
         <span class="result-value" id="avg-monthly"></span>
       </div>
 
       <div id="netto-result" class="netto-result hidden">
         <div class="result-row netto-row">
-          <span class="result-label" data-i18n="resultNettoMonthly">Gesch&auml;tztes monatliches Netto</span>
+          <span class="result-label">
+            <span data-i18n="resultNettoMonthly">Gesch&auml;tztes monatliches Netto</span>
+            <small class="result-sublabel result-sublabel--netto" data-i18n="resultMonthlySub">ohne Sonderzahlungen</small>
+          </span>
           <span class="result-value" id="netto-monthly"></span>
         </div>
         <div class="result-row netto-row">
           <span class="result-label" data-i18n="resultNettoAnnual">Gesch&auml;tztes Jahresnetto</span>
           <span class="result-value" id="netto-annual"></span>
         </div>
-        <div class="result-row netto-row" id="avg-monthly-netto-row">
-          <span class="result-label" data-i18n="resultAvgMonthlyNetto">&Oslash; Monatsdurchschnitt (netto)</span>
+        <div class="result-row netto-row netto-row--avg" id="avg-monthly-netto-row">
+          <span class="result-label">
+            <span data-i18n="resultAvgMonthlyNetto">&Oslash; Monatsdurchschnitt (netto)</span>
+            <small class="result-sublabel result-sublabel--netto" data-i18n="resultAvgMonthlySub">inkl. Sonderzahlungen</small>
+          </span>
           <span class="result-value" id="avg-monthly-netto"></span>
         </div>
         <p class="netto-hint" data-i18n="nettoHint">&#9432; Grobe Sch&auml;tzung auf Basis pauschaler Abzugss&auml;tze. Kein Ersatz f&uuml;r eine individuelle Steuerberechnung.</p>
@@ -598,6 +610,7 @@
 
   <script src="i18n.js"></script>
   <script src="data.js"></script>
+  <script src="taxes.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

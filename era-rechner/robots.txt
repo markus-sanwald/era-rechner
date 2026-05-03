@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
 Sitemap: https://www.era-rechner.de/sitemap.xml
+LLMs: https://www.era-rechner.de/llms.txt

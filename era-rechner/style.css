@@ -632,6 +632,35 @@ header h1 {
   line-height: 1.3;
 }
 
+/* Sublabel: kleine Erklärungszeile unter einem result-label */
+.result-sublabel {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--color-text-muted);
+  margin-top: 0.15rem;
+  font-style: italic;
+}
+
+.result-sublabel--netto {
+  color: #4a8c4a;
+}
+
+/* Ø Monatsdurchschnitt: visuell als abgeleiteter Wert kennzeichnen */
+.result-row--avg {
+  background: var(--color-bg-secondary, #f5f7fa);
+  border-radius: var(--radius);
+  border-top: none !important;
+  padding: 0.6rem 0;
+  margin-top: 0.25rem;
+}
+
+.netto-row--avg {
+  border-top: 1px dashed #c5dfc0;
+  padding-top: 0.6rem;
+  margin-top: 0.25rem;
+}
+
 /* Section Toggles (optional fields, netto estimate) */
 .section-toggle {
   display: flex;

@@ -41,9 +41,11 @@ const TRANSLATIONS = {
 
     // Result
     resultMonthly: "Monatsentgelt (brutto)",
+    resultMonthlySub: "ohne Sonderzahlungen",
     resultHourly: "Brutto-Stundenlohn",
     resultAnnual: "Bruttojahresgehalt (gesamt)",
     resultAvgMonthly: "Ø Monatsdurchschnitt (brutto)",
+    resultAvgMonthlySub: "inkl. Sonderzahlungen",
     resultAvgMonthlyNetto: "Ø Monatsdurchschnitt (netto)",
 
     // Netto Estimate
@@ -232,9 +234,11 @@ const TRANSLATIONS = {
 
     // Result
     resultMonthly: "Monthly Salary (gross)",
+    resultMonthlySub: "excl. special payments",
     resultHourly: "Gross Hourly Wage",
     resultAnnual: "Gross Annual Salary (total)",
     resultAvgMonthly: "Avg. monthly (gross)",
+    resultAvgMonthlySub: "incl. special payments",
     resultAvgMonthlyNetto: "Avg. monthly (net)",
 
     // Netto Estimate
