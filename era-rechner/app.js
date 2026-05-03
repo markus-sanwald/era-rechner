@@ -386,7 +386,7 @@ elArbeitszeitOutput.addEventListener("input", () => {
   if (raw !== elArbeitszeitOutput.value) elArbeitszeitOutput.value = raw;
   let v = parseInt(elArbeitszeitOutput.value, 10);
   if (isNaN(v)) return;
-  v = Math.max(15, Math.min(42, v));
+  v = Math.max(15, Math.min(48, v));
   elArbeitszeit.value = v;
   recalcIfReady();
 });
@@ -394,7 +394,7 @@ elArbeitszeitOutput.addEventListener("input", () => {
 elArbeitszeitOutput.addEventListener("blur", () => {
   let v = parseInt(elArbeitszeitOutput.value, 10);
   if (isNaN(v)) v = 35;
-  v = Math.max(15, Math.min(42, v));
+  v = Math.max(15, Math.min(48, v));
   elArbeitszeitOutput.value = v;
   elArbeitszeit.value = v;
   recalcIfReady();
