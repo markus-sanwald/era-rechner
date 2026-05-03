@@ -271,6 +271,14 @@
         </div>
 
         <div class="form-group">
+          <label for="freiwillige-zulage" data-i18n="labelFreiwilligeZulage">Freiwillige monatliche Zulage</label>
+          <div class="input-euro-group">
+            <input type="number" id="freiwillige-zulage" min="0" step="1" placeholder="0" value="">
+            <span class="input-euro-suffix">&euro;</span>
+          </div>
+        </div>
+
+        <div class="form-group">
           <label for="weihnachtsgeld-manuell" data-i18n="labelWeihnachtsgeldManuell">Weihnachtsgeld-Satz (manuell &uuml;bersteuern)</label>
           <select id="weihnachtsgeld-manuell">
             <option value="" data-i18n="wgManuellAuto">automatisch</option>
@@ -387,9 +395,15 @@
         <div class="breakdown-row has-tooltip hidden" id="ut-zulage-row">
           <span class="breakdown-label">
             <span data-i18n-html="breakdownUtZulage">12 &times; &Uuml;T-Zulage</span> <small id="ut-zulage-pct"></small>
-            <span class="tooltip" data-i18n="tooltipUtZulage">Freiwillige Arbeitgeberzulage oberhalb des Tarifentgelts. Wird nicht bei Sonderzahlungen ber&uuml;cksichtigt.</span>
+            <span class="tooltip" data-i18n="tooltipUtZulage">Freiwillige Leistungszulage des Arbeitgebers oberhalb des Tarifentgelts. Flie&szlig;t in die Berechnung der Sonderzahlungen ein.</span>
           </span>
           <span class="breakdown-value" id="ut-zulage-annual"></span>
+        </div>
+        <div class="breakdown-row hidden" id="freiwillige-zulage-row">
+          <span class="breakdown-label">
+            <span data-i18n-html="breakdownFreiwilligeZulage">12 &times; Freiwillige Zulage</span>
+          </span>
+          <span class="breakdown-value" id="freiwillige-zulage-annual"></span>
         </div>
         <div class="breakdown-row has-tooltip">
           <span class="breakdown-label">

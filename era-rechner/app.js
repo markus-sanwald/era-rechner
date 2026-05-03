@@ -53,6 +53,9 @@ const elSonderzahlung    = document.getElementById("sonderzahlung");
 const elSonderzahlungRow = document.getElementById("sonderzahlung-row");
 const elSonderzahlungAnnual = document.getElementById("sonderzahlung-annual");
 const elWeihnachtsgeldManuell = document.getElementById("weihnachtsgeld-manuell");
+const elFreiwilligeZulage     = document.getElementById("freiwillige-zulage");
+const elFreiwilligeZulageRow  = document.getElementById("freiwillige-zulage-row");
+const elFreiwilligeZulageAnnual = document.getElementById("freiwillige-zulage-annual");
 const elAvgMonthly       = document.getElementById("avg-monthly");
 const elAvgMonthlyRow    = document.getElementById("avg-monthly-row");
 const elAvgMonthlyNetto  = document.getElementById("avg-monthly-netto");
@@ -121,13 +124,14 @@ const fmtDE = (num, decimals = 1) => num.toFixed(decimals).replace(".", ",");
 // ---------------------------------------------------------------------------
 
 const CHART_COLORS = {
-  monatsentgelt:  "#003d6b",
-  utZulage:       "#4a90c4",
-  urlaubsgeld:    "#2ecc71",
-  tZugA:          "#e67e22",
-  tGeld:          "#9b59b6",
-  tZugB:          "#f1c40f",
-  weihnachtsgeld: "#e2001a"
+  monatsentgelt:      "#003d6b",
+  utZulage:           "#4a90c4",
+  freiwilligeZulage:  "#16a085",
+  urlaubsgeld:        "#2ecc71",
+  tZugA:              "#e67e22",
+  tGeld:              "#9b59b6",
+  tZugB:              "#f1c40f",
+  weihnachtsgeld:     "#e2001a"
 };
 
 // ---------------------------------------------------------------------------
@@ -303,6 +307,7 @@ elBundesland.addEventListener("change", () => {
 // ---------------------------------------------------------------------------
 
 elEG.addEventListener("change", () => {
+  const prevStufe = elStufe.value;
   resetSelect(elStufe);
   hideResult();
 
@@ -323,6 +328,13 @@ elEG.addEventListener("change", () => {
   }
 
   elStufe.disabled = false;
+
+  // Restore previous step if it exists in the new EG
+  if (prevStufe && stepNames.includes(prevStufe)) {
+    elStufe.value = prevStufe;
+    showResult(steps[prevStufe]);
+    return;
+  }
 
   // Auto-select if only one step available
   if (stepNames.length === 1) {
@@ -685,6 +697,17 @@ elWeihnachtsgeldManuell.addEventListener("change", () => {
   recalcIfReady();
 });
 
+elFreiwilligeZulage.addEventListener("input", () => {
+  recalcIfReady();
+});
+
+elFreiwilligeZulage.addEventListener("blur", () => {
+  let v = parseFloat(elFreiwilligeZulage.value);
+  if (isNaN(v) || v < 0) v = 0;
+  elFreiwilligeZulage.value = v > 0 ? v : "";
+  recalcIfReady();
+});
+
 // ---------------------------------------------------------------------------
 // Event: Steuerklasse / Kirchensteuer changed → recalculate
 // ---------------------------------------------------------------------------
@@ -803,19 +826,23 @@ function calcSalary(tabellenMonthly) {
   const utMonatlich = monthly * (utPct / 100);
   const utJaehrlich = utMonatlich * 12;
 
+  // Freiwillige monatliche Zulage (absoluter Betrag)
+  const freiwilligeZulageMonatlich = Math.max(0, parseFloat(elFreiwilligeZulage.value) || 0);
+  const freiwilligeZulageJaehrlich = freiwilligeZulageMonatlich * 12;
+
   const grundgehalt = monthly * 12;
 
   // Brutto-Stundenlohn: Monatsentgelt / (Wochenstunden × 52 / 12)
   const monatsStunden = wochenstunden * 52 / 12;
-  const stundenlohn = (monthly + utMonatlich) / monatsStunden;
+  const stundenlohn = (monthly + utMonatlich + freiwilligeZulageMonatlich) / monatsStunden;
 
   // Optionale Sonderzahlung
   const sonderzahlung = parseFloat(elSonderzahlung.value) || 0;
 
-  const result = { monthly, utPct, utMonatlich, utJaehrlich, grundgehalt, wochenstunden, stundenlohn, sonderzahlung };
+  const result = { monthly, utPct, utMonatlich, utJaehrlich, freiwilligeZulageMonatlich, freiwilligeZulageJaehrlich, grundgehalt, wochenstunden, stundenlohn, sonderzahlung };
 
   if (!bonus) {
-    result.total = grundgehalt + utJaehrlich + sonderzahlung;
+    result.total = grundgehalt + utJaehrlich + freiwilligeZulageJaehrlich + sonderzahlung;
     return result;
   }
 
@@ -830,8 +857,8 @@ function calcSalary(tabellenMonthly) {
     ? bonus.weihnachtsgeldStaffel[0].satz
     : getWeihnachtsgeldSatz(monate, bonus.weihnachtsgeldStaffel);
 
-  // Sonderzahlungen basieren auf Monatsentgelt brutto (inkl. Leistungszulage)
-  const monatsentgeltBrutto = monthly + utMonatlich;
+  // Sonderzahlungen basieren auf Monatsentgelt brutto (inkl. Leistungszulage und freiwilliger Zulage)
+  const monatsentgeltBrutto = monthly + utMonatlich + freiwilligeZulageMonatlich;
   const urlaubsgeld     = hatAnspruch ? monatsentgeltBrutto * bonus.urlaubsgeld : 0;
   const wgDynamisch     = hatAnspruch ? monatsentgeltBrutto * wgSatz : 0;
   const wgManuellVal    = elWeihnachtsgeldManuell.value.trim();
@@ -842,13 +869,13 @@ function calcSalary(tabellenMonthly) {
   const tZugA           = hatAnspruch && !tZugAFreiTage ? monatsentgeltBrutto * bonus.tZugA : 0;
   const tGeld           = hatAnspruch && bonus.tGeld ? monatsentgeltBrutto * bonus.tGeld : 0;
   const tZugB           = hatAnspruch ? bonus.eckentgelt * azFaktor * bonus.tZugB : 0;
-  const total           = grundgehalt + utJaehrlich + urlaubsgeld + weihnachtsgeld + tZugA + tGeld + tZugB + sonderzahlung;
+  const total           = grundgehalt + utJaehrlich + freiwilligeZulageJaehrlich + urlaubsgeld + weihnachtsgeld + tZugA + tGeld + tZugB + sonderzahlung;
 
   return { ...result, bonus, hatAnspruch, wgSatz, wgDynamisch, wgIstManuell, urlaubsgeld, weihnachtsgeld, tZugA, tGeld, tZugB, total };
 }
 
 function displayResult(r) {
-  elMonthly.textContent = currencyFmt.format(r.monthly + r.utMonatlich);
+  elMonthly.textContent = currencyFmt.format(r.monthly + r.utMonatlich + r.freiwilligeZulageMonatlich);
   elHourly.textContent = currencyFmt.format(r.stundenlohn);
   elAnnual.textContent = currencyFmt.format(r.total);
 
@@ -875,6 +902,14 @@ function displayResult(r) {
       elSonderzahlungRow.classList.remove("hidden");
     } else {
       elSonderzahlungRow.classList.add("hidden");
+    }
+
+    // Freiwillige Zulage Zeile ein-/ausblenden
+    if (r.freiwilligeZulageMonatlich > 0) {
+      elFreiwilligeZulageAnnual.textContent = currencyFmt.format(r.freiwilligeZulageJaehrlich);
+      elFreiwilligeZulageRow.classList.remove("hidden");
+    } else {
+      elFreiwilligeZulageRow.classList.add("hidden");
     }
 
     // ÜT-Zulage Zeile ein-/ausblenden
@@ -904,8 +939,8 @@ function displayResult(r) {
     elBreakdown.classList.remove("hidden");
 
     // Chart rendern
-    chartBruttoParams = { monthly: r.monthly, utMonatlich: r.utMonatlich, urlaubsgeld: r.urlaubsgeld, weihnachtsgeld: r.weihnachtsgeld, tZugA: r.tZugA, tGeld: r.tGeld, tZugB: r.tZugB };
-    renderChart(r.monthly, r.utMonatlich, r.urlaubsgeld, r.weihnachtsgeld, r.tZugA, r.tGeld, r.tZugB);
+    chartBruttoParams = { monthly: r.monthly, utMonatlich: r.utMonatlich, freiwilligeZulageMonatlich: r.freiwilligeZulageMonatlich, urlaubsgeld: r.urlaubsgeld, weihnachtsgeld: r.weihnachtsgeld, tZugA: r.tZugA, tGeld: r.tGeld, tZugB: r.tZugB };
+    renderChart(r.monthly, r.utMonatlich, r.freiwilligeZulageMonatlich, r.urlaubsgeld, r.weihnachtsgeld, r.tZugA, r.tGeld, r.tZugB);
     updateChartViewToggle();
   } else {
     elBreakdown.classList.add("hidden");
@@ -913,7 +948,7 @@ function displayResult(r) {
   }
 
   elResult.classList.remove("hidden");
-  const monatsBrutto = r.monthly + r.utMonatlich;
+  const monatsBrutto = r.monthly + r.utMonatlich + r.freiwilligeZulageMonatlich;
   const netto = updateNettoEstimate(monatsBrutto, r.total);
 
   // Ø Monatsdurchschnitt netto
@@ -1067,14 +1102,15 @@ function updateNettoEstimate(bruttoMonatlich, bruttoJaehrlich) {
 //                    Jul → T-ZUG A + T-Geld, Nov → Weihnachtsgeld
 // ---------------------------------------------------------------------------
 
-function renderChart(monthly, utMonatlich, urlaubsgeld, weihnachtsgeld, tZugA, tGeld, tZugB) {
+function renderChart(monthly, utMonatlich, freiwilligeZulageMonatlich, urlaubsgeld, weihnachtsgeld, tZugA, tGeld, tZugB) {
   const monthNames = t("chartMonths");
   const chartLabels = t("chartLabels");
-  const baseSegCount = 1 + (utMonatlich > 0 ? 1 : 0);
+  const baseSegCount = 1 + (utMonatlich > 0 ? 1 : 0) + (freiwilligeZulageMonatlich > 0 ? 1 : 0);
 
   const data = monthNames.map((label, i) => {
     const segs = [{ key: "monatsentgelt", value: monthly }];
     if (utMonatlich > 0) segs.push({ key: "utZulage", value: utMonatlich });
+    if (freiwilligeZulageMonatlich > 0) segs.push({ key: "freiwilligeZulage", value: freiwilligeZulageMonatlich });
     if (i === 1  && tZugB > 0)          segs.push({ key: "tZugB",          value: tZugB });
     if (i === 5  && urlaubsgeld > 0)     segs.push({ key: "urlaubsgeld",    value: urlaubsgeld });
     if (i === 6  && tZugA > 0)           segs.push({ key: "tZugA",          value: tZugA });
@@ -1111,7 +1147,7 @@ function renderChart(monthly, utMonatlich, urlaubsgeld, weihnachtsgeld, tZugA, t
   for (const month of data) {
     for (const seg of month.segs) allKeys.add(seg.key);
   }
-  const legendOrder = ["monatsentgelt", "utZulage", "tZugB", "urlaubsgeld", "tZugA", "tGeld", "weihnachtsgeld"];
+  const legendOrder = ["monatsentgelt", "utZulage", "freiwilligeZulage", "tZugB", "urlaubsgeld", "tZugA", "tGeld", "weihnachtsgeld"];
   elChartLegend.innerHTML = legendOrder
     .filter(k => allKeys.has(k))
     .map(k => `<div class="chart-legend-item"><span class="chart-legend-color" style="background:${CHART_COLORS[k]}"></span>${chartLabels[k]}</div>`)
@@ -1144,7 +1180,7 @@ function renderChartNetto() {
   const p = chartBruttoParams;
   const f = currentNettoFaktor;
   renderChart(
-    p.monthly * f, p.utMonatlich * f, p.urlaubsgeld * f,
+    p.monthly * f, p.utMonatlich * f, p.freiwilligeZulageMonatlich * f, p.urlaubsgeld * f,
     p.weihnachtsgeld * f, p.tZugA * f, p.tGeld * f, p.tZugB * f
   );
   elChartTitle.setAttribute("data-i18n", "chartTitleNetto");
@@ -1160,7 +1196,7 @@ function switchChartView(mode) {
     renderChartNetto();
   } else if (chartBruttoParams) {
     const p = chartBruttoParams;
-    renderChart(p.monthly, p.utMonatlich, p.urlaubsgeld, p.weihnachtsgeld, p.tZugA, p.tGeld, p.tZugB);
+    renderChart(p.monthly, p.utMonatlich, p.freiwilligeZulageMonatlich, p.urlaubsgeld, p.weihnachtsgeld, p.tZugA, p.tGeld, p.tZugB);
     elChartTitle.setAttribute("data-i18n", "chartTitle");
     elChartTitle.textContent = t("chartTitle");
   }

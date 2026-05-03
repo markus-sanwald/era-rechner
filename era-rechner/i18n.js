@@ -19,6 +19,7 @@ const TRANSLATIONS = {
     labelTZugADaysOff: "T-ZUG A als freie Tage nehmen",
     labelBonus: "Leistungszulage",
     labelSonderzahlung: "Sonderzahlung / Gewinnbeteiligung (j\u00e4hrlich)",
+    labelFreiwilligeZulage: "Freiwillige monatliche Zulage",
     labelWeihnachtsgeldManuell: "Weihnachtsgeld-Satz (manuell \u00fcbersteuern)",
     wgManuellAuto: "automatisch",
 
@@ -80,6 +81,7 @@ const TRANSLATIONS = {
     breakdownTZugB: "T-ZUG B",
     breakdownTZugBDetail: "(18,5\u00a0% v. Eckentgelt)",
     breakdownSonderzahlung: "Sonderzahlung",
+    breakdownFreiwilligeZulage: "12 × Freiwillige Zulage",
 
     // Tooltips
     tooltipBase: "Tarifliches Monatsentgelt gem\u00e4\u00df ERA-Entgelttabelle, ggf. angepasst an die individuelle Wochenarbeitszeit.",
@@ -98,13 +100,14 @@ const TRANSLATIONS = {
     chartMonths: ["Jan", "Feb", "M\u00e4r", "Apr", "Mai", "Jun",
                   "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"],
     chartLabels: {
-      monatsentgelt:  "Monatsentgelt",
-      utZulage:       "Leistungszulage",
-      urlaubsgeld:    "Urlaubsgeld",
-      tZugA:          "T-ZUG A",
-      tGeld:          "T-Geld",
-      tZugB:          "T-ZUG B",
-      weihnachtsgeld: "Weihnachtsgeld"
+      monatsentgelt:      "Monatsentgelt",
+      utZulage:           "Leistungszulage",
+      freiwilligeZulage:  "Freiwillige Zulage",
+      urlaubsgeld:        "Urlaubsgeld",
+      tZugA:              "T-ZUG A",
+      tGeld:              "T-Geld",
+      tZugB:              "T-ZUG B",
+      weihnachtsgeld:     "Weihnachtsgeld"
     },
 
     // Dynamic labels
@@ -202,6 +205,7 @@ const TRANSLATIONS = {
     labelTZugADaysOff: "Take T-ZUG A as days off",
     labelBonus: "Performance Bonus",
     labelSonderzahlung: "Special Payment / Profit Sharing (annual)",
+    labelFreiwilligeZulage: "Voluntary monthly allowance",
     labelWeihnachtsgeldManuell: "Christmas Bonus Rate (manual override)",
     wgManuellAuto: "automatic",
 
@@ -263,6 +267,7 @@ const TRANSLATIONS = {
     breakdownTZugB: "T-ZUG B",
     breakdownTZugBDetail: "(18.5\u00a0% of base salary)",
     breakdownSonderzahlung: "Special Payment",
+    breakdownFreiwilligeZulage: "12 × Voluntary Allowance",
 
     // Tooltips
     tooltipBase: "Tariff monthly salary according to the ERA pay table, adjusted for individual weekly working hours if applicable.",
@@ -281,13 +286,14 @@ const TRANSLATIONS = {
     chartMonths: ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
                   "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
     chartLabels: {
-      monatsentgelt:  "Monthly Salary",
-      utZulage:       "Performance Bonus",
-      urlaubsgeld:    "Holiday Pay",
-      tZugA:          "T-ZUG A",
-      tGeld:          "T-Geld",
-      tZugB:          "T-ZUG B",
-      weihnachtsgeld: "Christmas Bonus"
+      monatsentgelt:      "Monthly Salary",
+      utZulage:           "Performance Bonus",
+      freiwilligeZulage:  "Voluntary Allowance",
+      urlaubsgeld:        "Holiday Pay",
+      tZugA:              "T-ZUG A",
+      tGeld:              "T-Geld",
+      tZugB:              "T-ZUG B",
+      weihnachtsgeld:     "Christmas Bonus"
     },
 
     // Dynamic labels
