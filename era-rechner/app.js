@@ -950,6 +950,7 @@ function displayResult(r) {
   elResult.classList.remove("hidden");
   const monatsBrutto = r.monthly + r.utMonatlich + r.freiwilligeZulageMonatlich;
   const netto = updateNettoEstimate(monatsBrutto, r.total);
+  updateChartViewToggle();
 
   // Ø Monatsdurchschnitt netto
   if (netto && r.bonus) {
