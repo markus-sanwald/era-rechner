@@ -658,8 +658,6 @@ header h1 {
 
 /* Ø Monatsdurchschnitt: visuell als abgeleiteter Wert kennzeichnen */
 .result-row--avg {
-  background: var(--color-bg-secondary, #f5f7fa);
-  border-radius: var(--radius);
   border-top: none !important;
   padding: 0.6rem 0;
   margin-top: 0.25rem;
