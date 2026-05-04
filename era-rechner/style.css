@@ -1446,9 +1446,9 @@ footer p + p {
   white-space: pre-line;
 }
 
-/* Dark Mode */
+/* Dark Mode – system preference (nur wenn nicht manuell übersteuert) */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --color-primary: #1a6abf;
     --color-primary-light: #3d8fd4;
     --color-bg: #111318;
@@ -1472,10 +1472,86 @@ footer p + p {
     --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.6);
   }
 
-  /* Select dropdown arrow in light color */
-  .form-group select {
+  :root:not([data-theme="light"]) .form-group select {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238b92a0' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   }
+}
+
+/* Dark Mode – manuell per Toggle erzwungen */
+:root[data-theme="dark"] {
+  --color-primary: #1a6abf;
+  --color-primary-light: #3d8fd4;
+  --color-bg: #111318;
+  --color-card: #1c1f26;
+  --color-text: #e2e4e9;
+  --color-text-muted: #8b92a0;
+  --color-border: #2a2f3a;
+  --color-highlight-bg: #162030;
+  --color-highlight-border: #3d8fd4;
+  --color-netto-bg: #152318;
+  --color-netto-border: #2a4a2d;
+  --color-netto-text: #6abf6a;
+  --color-warning-bg: #261f0a;
+  --color-warning-border: #4a3d15;
+  --color-warning-text: #d4a843;
+  --color-bg-secondary: #22252e;
+  --color-input-disabled-bg: #16181f;
+  --color-input-disabled-text: #4a5060;
+  --color-focus-ring: rgba(61, 143, 212, 0.25);
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.6);
+}
+
+:root[data-theme="dark"] .form-group select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238b92a0' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+/* Theme toggle button */
+.theme-btn {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.85rem;
+  border: 1.5px solid var(--color-border);
+  border-radius: 4px;
+  background: var(--color-card);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: all var(--transition);
+  line-height: 1;
+  display: flex;
+  align-items: center;
+}
+
+.theme-btn:hover {
+  border-color: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+.lang-switch-sep {
+  width: 1px;
+  height: 1rem;
+  background: var(--color-border);
+  align-self: center;
+}
+
+/* Chart Tooltip */
+.chart-tooltip {
+  position: fixed;
+  z-index: 200;
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  padding: 0.3rem 0.6rem;
+  font-size: 0.8rem;
+  color: var(--color-text);
+  pointer-events: none;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.1s;
+}
+
+.chart-tooltip.visible {
+  opacity: 1;
 }
 
 /* Responsive */

@@ -1,6 +1,39 @@
 "use strict";
 
 // ---------------------------------------------------------------------------
+// Theme toggle (Dark Mode)
+// ---------------------------------------------------------------------------
+
+(function () {
+  const root = document.documentElement;
+  const saved = localStorage.getItem('theme');
+  if (saved === 'dark' || saved === 'light') {
+    root.setAttribute('data-theme', saved);
+  }
+
+  function isDark() {
+    const t = root.getAttribute('data-theme');
+    if (t === 'dark') return true;
+    if (t === 'light') return false;
+    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+
+  function applyTheme(dark) {
+    root.setAttribute('data-theme', dark ? 'dark' : 'light');
+    localStorage.setItem('theme', dark ? 'dark' : 'light');
+    document.getElementById('theme-icon-moon').style.display = dark ? 'none' : '';
+    document.getElementById('theme-icon-sun').style.display = dark ? '' : 'none';
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    applyTheme(isDark());
+    document.getElementById('theme-toggle').addEventListener('click', function () {
+      applyTheme(!isDark());
+    });
+  });
+})();
+
+// ---------------------------------------------------------------------------
 // ERA Salary Data – loaded from data.json
 // Structure: Year -> { salaryData: Region -> EG -> { StepName: MonthlyGross },
 //                       bonusData:  Region -> { ... } }
@@ -134,6 +167,7 @@ const compactFmt = new Intl.NumberFormat("de-DE", {
   currency: "EUR",
   maximumFractionDigits: 0
 });
+const compactFmtNarrow = (v) => compactFmt.format(v).replace(/\s€/, "€");
 
 const fmtDE = (num, decimals = 1) => num.toFixed(decimals).replace(".", ",");
 
@@ -1061,12 +1095,12 @@ function renderChart(monthly, utMonatlich, freiwilligeZulageMonatlich, urlaubsge
     let segsHtml = "";
     for (const seg of month.segs) {
       const segPct = month.total > 0 ? (seg.value / month.total) * 100 : 0;
-      segsHtml += `<div class="chart-seg" style="height:${segPct.toFixed(1)}%;background:${CHART_COLORS[seg.key]}" title="${chartLabels[seg.key]}: ${currencyFmt.format(seg.value)}"></div>`;
+      segsHtml += `<div class="chart-seg" style="height:${segPct.toFixed(1)}%;background:${CHART_COLORS[seg.key]}" data-tip="${chartLabels[seg.key]}: ${currencyFmt.format(seg.value)}"></div>`;
     }
 
     const hasBonus = month.segs.length > baseSegCount;
     const totalHtml = hasBonus
-      ? `<span class="chart-total">${compactFmt.format(month.total)}</span>`
+      ? `<span class="chart-total">${compactFmtNarrow(month.total)}</span>`
       : `<span class="chart-total" style="visibility:hidden">0 \u20ac</span>`;
 
     barsHtml += `<div class="chart-col">${totalHtml}<div class="chart-bar-area"><div class="chart-stack" style="height:${pct.toFixed(1)}%">${segsHtml}</div></div><span class="chart-lbl">${month.label}</span></div>`;
@@ -1279,7 +1313,62 @@ elCompareReset.addEventListener("click", () => {
 });
 
 // ---------------------------------------------------------------------------
+// Chart Tooltip (Desktop hover + Mobile tap)
+// ---------------------------------------------------------------------------
+
+function initChartTooltip() {
+  const tip = document.createElement('div');
+  tip.className = 'chart-tooltip';
+  document.body.appendChild(tip);
+
+  let hideTimer = null;
+
+  function show(text, x, y) {
+    clearTimeout(hideTimer);
+    tip.textContent = text;
+    tip.classList.add('visible');
+    position(x, y);
+  }
+
+  function hide(delay = 0) {
+    hideTimer = setTimeout(() => tip.classList.remove('visible'), delay);
+  }
+
+  function position(x, y) {
+    const margin = 12;
+    const w = tip.offsetWidth || 140;
+    const h = tip.offsetHeight || 28;
+    let left = x + margin;
+    let top = y - h - margin;
+    if (left + w > window.innerWidth - 4) left = x - w - margin;
+    if (top < 4) top = y + margin;
+    tip.style.left = left + 'px';
+    tip.style.top = top + 'px';
+  }
+
+  elChartArea.addEventListener('mouseover', e => {
+    const seg = e.target.closest('.chart-seg');
+    if (seg && seg.dataset.tip) show(seg.dataset.tip, e.clientX, e.clientY);
+  });
+  elChartArea.addEventListener('mousemove', e => {
+    if (tip.classList.contains('visible')) position(e.clientX, e.clientY);
+  });
+  elChartArea.addEventListener('mouseout', e => {
+    if (e.target.closest('.chart-seg')) hide();
+  });
+
+  elChartArea.addEventListener('touchstart', e => {
+    const seg = e.target.closest('.chart-seg');
+    if (!seg || !seg.dataset.tip) return;
+    const touch = e.touches[0];
+    show(seg.dataset.tip, touch.clientX, touch.clientY);
+    hide(2500);
+  }, { passive: true });
+}
+
+// ---------------------------------------------------------------------------
 // Boot
 // ---------------------------------------------------------------------------
 
+initChartTooltip();
 init();
