@@ -170,7 +170,7 @@ const compactFmt = new Intl.NumberFormat("de-DE", {
 const compactFmtNarrow = (v) => compactFmt.format(v).replace(/\s€/, "€");
 
 function chartLabelCompact(value) {
-  if (window.innerWidth < 400) {
+  if (elChartArea.offsetWidth < 350) {
     const locale = currentLang === 'en' ? 'en-GB' : 'de-DE';
     return (value / 1000).toLocaleString(locale, { maximumFractionDigits: 1 }) + 'k';
   }
@@ -1382,9 +1382,10 @@ initChartTooltip();
 
 // ResizeObserver: Chart neu rendern wenn Schwelle 400px überschritten wird
 (function () {
-  let wasCompact = window.innerWidth < 400;
-  const ro = new ResizeObserver(() => {
-    const isCompact = window.innerWidth < 400;
+  let wasCompact = elChartArea.offsetWidth < 350;
+  const ro = new ResizeObserver((entries) => {
+    const width = entries[0].contentRect.width;
+    const isCompact = width < 350;
     if (isCompact !== wasCompact) {
       wasCompact = isCompact;
       if (typeof chartBruttoParams !== 'undefined' && chartBruttoParams) {
