@@ -169,6 +169,14 @@ const compactFmt = new Intl.NumberFormat("de-DE", {
 });
 const compactFmtNarrow = (v) => compactFmt.format(v).replace(/\s€/, "€");
 
+function chartLabelCompact(value) {
+  if (window.innerWidth < 400) {
+    const locale = currentLang === 'en' ? 'en-GB' : 'de-DE';
+    return (value / 1000).toLocaleString(locale, { maximumFractionDigits: 1 }) + 'k';
+  }
+  return compactFmtNarrow(value);
+}
+
 const fmtDE = (num, decimals = 1) => num.toFixed(decimals).replace(".", ",");
 
 // ---------------------------------------------------------------------------
@@ -1100,7 +1108,7 @@ function renderChart(monthly, utMonatlich, freiwilligeZulageMonatlich, urlaubsge
 
     const hasBonus = month.segs.length > baseSegCount;
     const totalHtml = hasBonus
-      ? `<span class="chart-total">${compactFmtNarrow(month.total)}</span>`
+      ? `<span class="chart-total">${chartLabelCompact(month.total)}</span>`
       : `<span class="chart-total" style="visibility:hidden">0 \u20ac</span>`;
 
     barsHtml += `<div class="chart-col">${totalHtml}<div class="chart-bar-area"><div class="chart-stack" style="height:${pct.toFixed(1)}%">${segsHtml}</div></div><span class="chart-lbl">${month.label}</span></div>`;
@@ -1371,4 +1379,20 @@ function initChartTooltip() {
 // ---------------------------------------------------------------------------
 
 initChartTooltip();
+
+// ResizeObserver: Chart neu rendern wenn Schwelle 400px überschritten wird
+(function () {
+  let wasCompact = window.innerWidth < 400;
+  const ro = new ResizeObserver(() => {
+    const isCompact = window.innerWidth < 400;
+    if (isCompact !== wasCompact) {
+      wasCompact = isCompact;
+      if (typeof chartBruttoParams !== 'undefined' && chartBruttoParams) {
+        switchChartView(chartViewMode);
+      }
+    }
+  });
+  ro.observe(elChartArea);
+})();
+
 init();
