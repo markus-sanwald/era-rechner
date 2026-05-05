@@ -40,15 +40,14 @@
   const fmt = new Intl.NumberFormat("de-DE", {
     style: "currency", currency: "EUR", maximumFractionDigits: 0
   });
-  const pct = v => (v * 100).toFixed(1).replace(".", ",") + " %";
-
-  // Anzahl EGs für Intro-Text
-  const egCount = Object.keys(ERA_DATA[activeYear].salaryData[regionKey]).length;
+  const pct = v => (v * 100).toFixed(1).replace(".", ",") + " %";
 
   // ----- Intro -----
   function renderIntro() {
     const el = document.getElementById("rp-intro-text");
     if (!el) return;
+    // egCount im aktiven Jahr berechnen (kann je Jahr variieren)
+    const egCount = Object.keys(ERA_DATA[activeYear].salaryData[regionKey]).length;
     el.innerHTML = tReplace("rpIntro", { region: regionKey, count: egCount });
   }
 
@@ -58,7 +57,6 @@
     const bonusH2 = document.getElementById("rp-bonus-heading");
     if (tableH2) tableH2.innerHTML = `${t("rpTableHeading")} <span class="rp-year-label">${activeYear}</span>`;
     if (bonusH2) bonusH2.innerHTML = `${t("rpBonusHeading")} <span class="rp-year-label">${activeYear}</span>`;
-    document.querySelectorAll(".rp-year-label").forEach(e => e.textContent = activeYear);
   }
 
   // ----- Year Tabs -----
@@ -137,7 +135,7 @@
         </div>
         <div class="rp-bonus-card">
           <div class="rp-bonus-name">${t("rpBonusLabelTZugB")}</div>
-          <div class="rp-bonus-val">≈ ${tZugBAmt}</div>
+          <div class="rp-bonus-val">≈ ${tZugBAmt}</div>
           <div class="rp-bonus-note">${pct(b.tZugB)} ${t("rpBonusTZugBNote")}</div>
         </div>
         <div class="rp-bonus-card rp-bonus-card--wide">
@@ -160,7 +158,14 @@
     }
   }
 
-  // ----- Alles rendern -----
+  // ----- Region Nav Pills (via tRegion – stimmt mit Dropdown überein) -----
+  function renderRegionNav() {
+    document.querySelectorAll(".rp-region-link[data-region]").forEach(el => {
+      el.textContent = tRegion(el.dataset.region);
+    });
+  }
+
+  // ----- Alles rendern (ohne applyTranslations – wird separat via setLanguage getriggert) -----
   function render() {
     renderYearTabs();
     renderHeadings();
@@ -168,16 +173,15 @@
     renderSalaryTable();
     renderBonus();
     renderCta();
-    // i18n data-i18n Attribute neu anwenden (z.B. rpAllRegions h3)
-    applyTranslations();
-    // Region nav pill labels via tRegion (matches select dropdown)
-    document.querySelectorAll(".rp-region-link[data-region]").forEach(el => {
-      el.textContent = tRegion(el.dataset.region);
-    });
+    renderRegionNav();
   }
 
   // Jahr-Tab-Klick
   document.addEventListener("DOMContentLoaded", function () {
+    // URL-Parameter ?lang= hat Vorrang vor localStorage
+    const urlLang = new URLSearchParams(window.location.search).get("lang");
+    if (urlLang === "en" || urlLang === "de") setLanguage(urlLang);
+
     document.getElementById("rp-year-tabs").addEventListener("click", function (e) {
       const btn = e.target.closest("[data-year]");
       if (!btn) return;
@@ -185,13 +189,15 @@
       render();
     });
 
-    // Sprachumschalter – nach setLanguage() neu rendern
+    // Sprachumschalter – _setLanguage ruft applyTranslations() auf, danach neu rendern
     const _setLanguage = window.setLanguage;
     window.setLanguage = function (lang) {
-      _setLanguage(lang);
-      render();
+      _setLanguage(lang);  // → ruft applyTranslations() intern auf
+      render();            // → aktualisiert dynamische Inhalte (Tabelle, Bonus, Nav, etc.)
     };
 
+    // Erster Render + initiale Übersetzungen
+    applyTranslations();
     render();
   });
 })();

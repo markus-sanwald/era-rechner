@@ -10,6 +10,11 @@ const path = require("path");
 const dataCode = fs.readFileSync("data.js", "utf8").replace("const ERA_DATA", "globalThis.ERA_DATA");
 (0, eval)(dataCode);
 
+// Aktuellstes und ältestes Jahr dynamisch ableiten
+const allYears   = Object.keys(ERA_DATA).sort();
+const latestYear = allYears[allYears.length - 1];
+const firstYear  = allYears[0];
+
 const SLUG_MAP = {
   "Baden-Württemberg":                      "entgelttabelle-baden-wuerttemberg",
   "Bayern":                                 "entgelttabelle-bayern",
@@ -28,69 +33,57 @@ const SLUG_MAP = {
   "Thüringen":                              "entgelttabelle-thueringen",
 };
 
-const SHORT_MAP = {
-  "Baden-Württemberg":                      "Baden-Württemberg",
-  "Bayern":                                 "Bayern",
-  "Berlin/Brandenburg":                     "Berlin/Brandenburg",
-  "Hamburg/Unterweser":                     "Hamburg/Unterweser",
-  "Hessen":                                 "Hessen",
-  "Niedersachsen":                          "Niedersachsen",
+// Kurznamen nur für <title> und OG-Tags (2 Ausnahmen, sonst = Regionname)
+const TITLE_SHORT = {
   "Nordrhein-Westfalen":                    "NRW",
-  "Osnabrück-Emsland":                      "Osnabrück-Emsland",
-  "Pfalz":                                  "Pfalz",
-  "Rheinland-Rheinhessen":                  "Rheinland-Rheinhessen",
-  "Saarland":                               "Saarland",
-  "Sachsen":                                "Sachsen",
-  "Sachsen-Anhalt":                         "Sachsen-Anhalt",
   "Schleswig-Holstein/MV/NW-Niedersachsen": "Schleswig-Holstein",
-  "Thüringen":                              "Thüringen",
 };
 
-const regions = Object.keys(ERA_DATA["2025"].salaryData);
+// HTML-Entitäten für Umlaute/ß
+function htmlEscape(str) {
+  return str
+    .replace(/ü/g, "&uuml;").replace(/Ü/g, "&Uuml;")
+    .replace(/ö/g, "&ouml;").replace(/Ö/g, "&Ouml;")
+    .replace(/ä/g, "&auml;").replace(/Ä/g, "&Auml;")
+    .replace(/ß/g, "&szlig;");
+}
+
+const regions = Object.keys(ERA_DATA[firstYear].salaryData);
 
 function egCount(regionKey) {
-  return Object.keys(ERA_DATA["2026"].salaryData[regionKey]).length;
+  return Object.keys(ERA_DATA[latestYear].salaryData[regionKey]).length;
 }
 
 function regionNavLinks(currentKey) {
   return regions.map(r => {
     const isCurrent = r === currentKey;
-    return `        <a href="/${SLUG_MAP[r]}.html" class="rp-region-link${isCurrent ? " current" : ""}" data-region="${r}">${r}</a>`;
+    // Statischer Text leer – JS überschreibt per tRegion()
+    return `        <a href="/${SLUG_MAP[r]}.html" class="rp-region-link${isCurrent ? " current" : ""}" data-region="${r}"></a>`;
   }).join("\n");
 }
 
 function generateHTML(regionKey) {
-  const slug  = SLUG_MAP[regionKey];
-  const short = SHORT_MAP[regionKey];
-  const count = egCount(regionKey);
-  const links = regionNavLinks(regionKey);
+  const slug       = SLUG_MAP[regionKey];
+  const titleShort = TITLE_SHORT[regionKey] ?? regionKey;
+  const count      = egCount(regionKey);
+  const links      = regionNavLinks(regionKey);
 
-  // HTML-safe Sonderzeichen im Regionsnamen
-  const regionHtml = regionKey
-    .replace(/ü/g, "&uuml;").replace(/Ü/g, "&Uuml;")
-    .replace(/ö/g, "&ouml;").replace(/Ö/g, "&Ouml;")
-    .replace(/ä/g, "&auml;").replace(/Ä/g, "&Auml;")
-    .replace(/ß/g, "&szlig;");
-
-  const shortHtml = short
-    .replace(/ü/g, "&uuml;").replace(/Ü/g, "&Uuml;")
-    .replace(/ö/g, "&ouml;").replace(/Ö/g, "&Ouml;")
-    .replace(/ä/g, "&auml;").replace(/Ä/g, "&Auml;")
-    .replace(/ß/g, "&szlig;");
+  const regionHtml   = htmlEscape(regionKey);
+  const titleShortHtml = htmlEscape(titleShort);
 
   return `<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ERA Entgelttabelle ${shortHtml} 2026 &ndash; IG Metall Gehaltstabelle</title>
-  <meta name="description" content="ERA Entgelttabelle ${regionHtml} 2025 &amp; 2026 &ndash; alle ${count} Entgeltgruppen nach IG Metall Tarifvertrag. Monatsentgelt, Weihnachtsgeld, Urlaubsgeld und T-ZUG auf einen Blick.">
+  <title>ERA Entgelttabelle ${titleShortHtml} ${latestYear} &ndash; IG Metall Gehaltstabelle</title>
+  <meta name="description" content="ERA Entgelttabelle ${regionHtml} ${firstYear} &amp; ${latestYear} &ndash; alle ${count} Entgeltgruppen nach IG Metall Tarifvertrag. Monatsentgelt, Weihnachtsgeld, Urlaubsgeld und T-ZUG auf einen Blick.">
   <meta name="robots" content="index, follow">
   <meta name="author" content="era-rechner.de">
   <link rel="canonical" href="https://www.era-rechner.de/${slug}.html">
 
-  <meta property="og:title" content="ERA Entgelttabelle ${shortHtml} 2026 &ndash; IG Metall">
-  <meta property="og:description" content="ERA Entgelttabelle ${regionHtml} 2025 &amp; 2026 &ndash; alle ${count} Entgeltgruppen nach IG Metall Tarifvertrag.">
+  <meta property="og:title" content="ERA Entgelttabelle ${titleShortHtml} ${latestYear} &ndash; IG Metall">
+  <meta property="og:description" content="ERA Entgelttabelle ${regionHtml} ${firstYear} &amp; ${latestYear} &ndash; alle ${count} Entgeltgruppen nach IG Metall Tarifvertrag.">
   <meta property="og:url" content="https://www.era-rechner.de/${slug}.html">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="ERA Entgeltrechner">
@@ -124,7 +117,7 @@ function generateHTML(regionKey) {
         </button>
       </div>
       <h1>ERA Entgelttabelle ${regionHtml}</h1>
-      <p class="subtitle" data-i18n="rpSubtitle">IG Metall Gehaltstabelle 2025 &amp; 2026</p>
+      <p class="subtitle" data-i18n="rpSubtitle">IG Metall Gehaltstabelle ${firstYear} &amp; ${latestYear}</p>
       <p class="header-disclaimer" data-i18n="headerDisclaimer">Unabh&auml;ngiges Open-Source-Projekt &ndash; kein offizielles Angebot der IG Metall.</p>
     </header>
 

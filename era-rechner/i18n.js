@@ -173,7 +173,6 @@ const TRANSLATIONS = {
     rpCtaText: "Berechne dein pers\u00f6nliches Gehalt inkl. Teilzeit, Leistungszulage und Nettolohn:",
     rpCtaBtn: "Gehaltsrechner f\u00fcr ${region} \u00f6ffnen \u2192",
     rpAllRegions: "Alle Tarifgebiete",
-    rpH1Prefix: "ERA Entgelttabelle",
     rpSubtitle: "IG Metall Gehaltstabelle 2025 & 2026",
     rpBonusLabelUrlaubsgeld: "Urlaubsgeld",
     rpBonusLabelTZugA: "T-ZUG A",
@@ -368,18 +367,26 @@ const TRANSLATIONS = {
 
     // Steps
     steps: {
-      "Grundentgelt": "Base Salary",
-      "Stufe A": "Step A",
-      "Stufe B": "Step B",
-      "Stufe C": "Step C",
-      "Hauptstufe": "Main Step",
-      "Eingangsstufe": "Entry Step",
+      "Grundentgelt":   "Base Salary",
+      "Stufe A":        "Step A",
+      "Stufe B":        "Step B",
+      "Stufe C":        "Step C",
+      "Hauptstufe":     "Main Step",
+      "Eingangsstufe":  "Entry Step",
+      "Grundstufe":     "Base Step",
+      "Zusatzstufe":    "Additional Step",
       "1. Zusatzstufe": "1st Additional Step",
       "2. Zusatzstufe": "2nd Additional Step",
-      "Grundstufe": "Base Step",
-      "Zusatzstufe 1": "Additional Step 1",
-      "Zusatzstufe 2": "Additional Step 2",
-      "Zusatzstufe 3": "Additional Step 3"
+      "Zusatzstufe 1":  "Additional Step 1",
+      "Zusatzstufe 2":  "Additional Step 2",
+      "Zusatzstufe 3":  "Additional Step 3",
+      "bis 12. Monat":  "up to 12 months",
+      "bis 18. Monat":  "up to 18 months",
+      "bis 36. Monat":  "up to 36 months",
+      "nach 12. Monat": "after 12 months",
+      "nach 18. Monat": "after 18 months",
+      "nach 24. Monat": "after 24 months",
+      "nach 36. Monat": "after 36 months"
     },
 
     // Compare
@@ -422,7 +429,6 @@ const TRANSLATIONS = {
     rpCtaText: "Calculate your personal salary including part-time, performance allowance and net pay:",
     rpCtaBtn: "Open salary calculator for ${region} →",
     rpAllRegions: "All Collective Bargaining Regions",
-    rpH1Prefix: "ERA Salary Table",
     rpSubtitle: "IG Metall Salary Table 2025 & 2026",
     rpBonusLabelUrlaubsgeld: "Holiday Pay",
     rpBonusLabelTZugA: "T-ZUG A",
@@ -490,11 +496,11 @@ function tReplace(key, replacements) {
 }
 
 function tRegion(key) {
-  return TRANSLATIONS[currentLang].regions[key] || key;
+  return TRANSLATIONS[currentLang].regions[key] ?? key;
 }
 
 function tStep(key) {
-  return TRANSLATIONS[currentLang].steps[key] || key;
+  return TRANSLATIONS[currentLang].steps[key] ?? key;
 }
 
 function setLanguage(lang) {
