@@ -157,6 +157,30 @@
           "@type": "Answer",
           "text": "Der Rechner unterstützt alle 15 ERA-Tarifgebiete: Baden-Württemberg, Bayern, Berlin/Brandenburg, Hamburg/Unterweser, Hessen, Niedersachsen, Nordrhein-Westfalen, Osnabrück-Emsland, Pfalz, Rheinland-Rheinhessen, Saarland, Sachsen, Sachsen-Anhalt, Schleswig-Holstein/MV/NW-Niedersachsen und Thüringen."
         }
+      },
+      {
+        "@type": "Question",
+        "name": "Was ist der Unterschied zwischen T-ZUG A und T-ZUG B?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "T-ZUG A beträgt 27,5 % eines Monatsentgelts und kann wahlweise als Geldleistung oder als bis zu 8 bezahlte freie Tage genommen werden. T-ZUG B ist ein jährlicher Festbetrag, der sich nach dem Eckentgelt (EG 5) der jeweiligen Region richtet – unabhängig von der persönlichen Entgeltgruppe. Beide Zahlungen werden einmal jährlich ausgezahlt."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie berechne ich mein ERA-Gehalt bei Teilzeit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Das Teilzeitgehalt ergibt sich aus: Grundentgelt × (tatsächliche Wochenstunden ÷ 35). Bei 28 Stunden in der Woche beträgt das Entgelt also 80 % des Vollzeitwertes. Alle Sonderzahlungen wie Urlaubsgeld, Weihnachtsgeld und T-ZUG werden anteilig auf Basis dieses angepassten Monatsentgelts berechnet. Im Rechner einfach die gewünschten Wochenstunden eintragen – alles wird automatisch umgerechnet."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was bedeutet Leistungszulage und wie beeinflusst sie Sonderzahlungen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die Leistungszulage ist ein individueller prozentualer Aufschlag auf das tarifliche Grundentgelt (0–30 %), den der Arbeitgeber gewährt. Sie erhöht nicht nur das monatliche Bruttogehalt, sondern wirkt sich auch auf Urlaubsgeld, Weihnachtsgeld, T-ZUG A und Transformationsgeld aus, da diese als Prozentsatz des Monatsentgelts berechnet werden. Einzige Ausnahme: T-ZUG B basiert auf dem Eckentgelt EG 5 und ist von der persönlichen Leistungszulage unabhängig."
+        }
       }
     ]
   }
@@ -176,8 +200,9 @@
           <svg id="theme-icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
         </button>
       </div>
-      <h1 data-i18n="title">ERA Entgeltrechner</h1>
-      <p class="subtitle" id="subtitle">Metall- und Elektroindustrie</p>
+      <h1 data-i18n="title">ERA Entgeltrechner – IG Metall</h1>
+      <p class="subtitle" id="subtitle">Gehaltsrechner Metall- und Elektroindustrie</p>
+      <p class="header-disclaimer" data-i18n="headerDisclaimer">Unabh&auml;ngiges Open-Source-Projekt &ndash; kein offizielles Angebot der IG Metall.</p>
     </header>
 
     <section class="calculator" data-i18n-aria="ariaLabel" aria-label="Gehaltsrechner">
@@ -242,7 +267,7 @@
         <div class="form-group">
           <label data-i18n="labelStartDate">Eintrittsdatum</label>
           <div class="datepicker-wrapper">
-            <input type="text" id="eintrittsdatum-display" class="datepicker-input" readonly placeholder="TT.MM.JJJJ">
+            <input type="text" id="eintrittsdatum-display" class="datepicker-input" placeholder="TT.MM.JJJJ" maxlength="10" inputmode="numeric">
             <span class="datepicker-icon" aria-hidden="true">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
             </span>
@@ -588,6 +613,21 @@
       <details class="faq-item">
         <summary data-i18n="faq7Q">F&uuml;r welche Bundesl&auml;nder und Tarifgebiete gilt der Rechner?</summary>
         <p data-i18n="faq7A">Der Rechner unterst&uuml;tzt alle 15 ERA-Tarifgebiete: Baden-W&uuml;rttemberg, Bayern, Berlin/Brandenburg, Hamburg/Unterweser, Hessen, Niedersachsen, Nordrhein-Westfalen, Osnabr&uuml;ck-Emsland, Pfalz, Rheinland-Rheinhessen, Saarland, Sachsen, Sachsen-Anhalt, Schleswig-Holstein/MV/NW-Niedersachsen und Th&uuml;ringen.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary data-i18n="faq9Q">Was ist der Unterschied zwischen T-ZUG A und T-ZUG B?</summary>
+        <p data-i18n="faq9A">T-ZUG A betr&auml;gt 27,5&nbsp;% eines Monatsentgelts und kann wahlweise als Geldleistung oder als bis zu 8 bezahlte freie Tage genommen werden. T-ZUG B ist ein j&auml;hrlicher Festbetrag, der sich nach dem Eckentgelt (EG&nbsp;5) der jeweiligen Region richtet &ndash; unabh&auml;ngig von der pers&ouml;nlichen Entgeltgruppe. Beide Zahlungen werden einmal j&auml;hrlich ausgezahlt.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary data-i18n="faq10Q">Wie berechne ich mein ERA-Gehalt bei Teilzeit?</summary>
+        <p data-i18n="faq10A">Das Teilzeitgehalt ergibt sich aus: Grundentgelt &times; (tats&auml;chliche Wochenstunden &divide; 35). Bei 28&nbsp;Stunden in der Woche betr&auml;gt das Entgelt also 80&nbsp;% des Vollzeitwertes. Alle Sonderzahlungen wie Urlaubsgeld, Weihnachtsgeld und T-ZUG werden anteilig auf Basis dieses angepassten Monatsentgelts berechnet. Im Rechner einfach die gew&uuml;nschten Wochenstunden eintragen &ndash; alles wird automatisch umgerechnet.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary data-i18n="faq11Q">Was bedeutet Leistungszulage und wie beeinflusst sie Sonderzahlungen?</summary>
+        <p data-i18n="faq11A">Die Leistungszulage ist ein individueller prozentualer Aufschlag auf das tarifliche Grundentgelt (0&ndash;30&nbsp;%), den der Arbeitgeber gew&auml;hrt. Sie erh&ouml;ht nicht nur das monatliche Bruttogehalt, sondern wirkt sich auch auf Urlaubsgeld, Weihnachtsgeld, T-ZUG&nbsp;A und Transformationsgeld aus, da diese als Prozentsatz des Monatsentgelts berechnet werden. Einzige Ausnahme: T-ZUG&nbsp;B basiert auf dem Eckentgelt EG&nbsp;5 und ist von der pers&ouml;nlichen Leistungszulage unabh&auml;ngig.</p>
       </details>
 
       <details class="faq-item">

@@ -3,10 +3,11 @@
 const TRANSLATIONS = {
   de: {
     // Page
-    pageTitle: "ERA Entgeltrechner {year} \u2013 IG Metall Entgelttabelle & Gehaltsrechner Metall- und Elektroindustrie",
-    title: "ERA Entgeltrechner",
-    subtitle: "Metall- und Elektroindustrie",
-    subtitleWithYear: "Metall- und Elektroindustrie",
+    pageTitle: "ERA Entgeltrechner {year} \u2013 IG Metall Gehaltsrechner",
+    title: "ERA Entgeltrechner \u2013 IG Metall",
+    subtitle: "Gehaltsrechner Metall- und Elektroindustrie",
+    subtitleWithYear: "Gehaltsrechner ${year} \u00b7 Metall- und Elektroindustrie",
+    headerDisclaimer: "Unabh\u00e4ngiges Open-Source-Projekt \u2013 kein offizielles Angebot der IG Metall.",
     ariaLabel: "Gehaltsrechner",
 
     // Form labels
@@ -181,6 +182,12 @@ const TRANSLATIONS = {
     faq7A: "Der Rechner unterst\u00fctzt alle 15 ERA-Tarifgebiete: Baden-W\u00fcrttemberg, Bayern, Berlin/Brandenburg, Hamburg/Unterweser, Hessen, Niedersachsen, Nordrhein-Westfalen, Osnabr\u00fcck-Emsland, Pfalz, Rheinland-Rheinhessen, Saarland, Sachsen, Sachsen-Anhalt, Schleswig-Holstein/MV/NW-Niedersachsen und Th\u00fcringen.",
     faq8Q: "Wie kann ich das Projekt unterst\u00fctzen?",
     faq8A: "Der Rechner ist kostenlos, werbefrei und wird in der Freizeit gepflegt. Wer das Projekt unterst\u00fctzen m\u00f6chte, kann das gerne \u00fcber eine kleine Spende via PayPal tun \u2013 das hilft, den Dienst langfristig am Laufen zu halten.",
+    faq9Q: "Was ist der Unterschied zwischen T-ZUG A und T-ZUG B?",
+    faq9A: "T-ZUG A betr\u00e4gt 27,5\u00a0% eines Monatsentgelts und kann wahlweise als Geldleistung oder als bis zu 8 bezahlte freie Tage genommen werden. T-ZUG B ist ein j\u00e4hrlicher Festbetrag, der sich nach dem Eckentgelt (EG\u00a05) der jeweiligen Region richtet \u2013 unabh\u00e4ngig von der pers\u00f6nlichen Entgeltgruppe. Beide Zahlungen werden einmal j\u00e4hrlich ausgezahlt.",
+    faq10Q: "Wie berechne ich mein ERA-Gehalt bei Teilzeit?",
+    faq10A: "Das Teilzeitgehalt ergibt sich aus: Grundentgelt \u00d7 (tats\u00e4chliche Wochenstunden \u00f7 35). Bei 28\u00a0Stunden in der Woche betr\u00e4gt das Entgelt also 80\u00a0% des Vollzeitwertes. Alle Sonderzahlungen wie Urlaubsgeld, Weihnachtsgeld und T-ZUG werden anteilig auf Basis dieses angepassten Monatsentgelts berechnet. Im Rechner einfach die gew\u00fcnschten Wochenstunden eintragen \u2013 alles wird automatisch umgerechnet.",
+    faq11Q: "Was bedeutet Leistungszulage und wie beeinflusst sie Sonderzahlungen?",
+    faq11A: "Die Leistungszulage ist ein individueller prozentualer Aufschlag auf das tarifliche Grundentgelt (0\u201330\u00a0%), den der Arbeitgeber gew\u00e4hrt. Sie erh\u00f6ht nicht nur das monatliche Bruttogehalt, sondern wirkt sich auch auf Urlaubsgeld, Weihnachtsgeld, T-ZUG\u00a0A und Transformationsgeld aus, da diese als Prozentsatz des Monatsentgelts berechnet werden. Einzige Ausnahme: T-ZUG\u00a0B basiert auf dem Eckentgelt EG\u00a05 und ist von der pers\u00f6nlichen Leistungszulage unabh\u00e4ngig.",
 
     // Footer
     footerSource: "Quelle: IG Metall ERA-Entgelttabellen",
@@ -196,10 +203,11 @@ const TRANSLATIONS = {
 
   en: {
     // Page
-    pageTitle: "ERA Salary Calculator {year} \u2013 IG Metall Salary Table & Calculator | Metal and Electrical Industry",
-    title: "ERA Salary Calculator",
-    subtitle: "Metal and Electrical Industry",
-    subtitleWithYear: "Metal and Electrical Industry",
+    pageTitle: "ERA Salary Calculator {year} \u2013 IG Metall Pay Calculator",
+    title: "ERA Salary Calculator \u2013 IG Metall",
+    subtitle: "Pay Calculator for Metal and Electrical Industry",
+    subtitleWithYear: "Pay Calculator ${year} \u00b7 Metal and Electrical Industry",
+    headerDisclaimer: "Independent open-source project \u2013 not an official IG Metall service.",
     ariaLabel: "Salary Calculator",
 
     // Form labels
@@ -403,6 +411,12 @@ const TRANSLATIONS = {
     faq7A: "The calculator covers all 15 ERA collective bargaining regions: Baden-W\u00fcrttemberg, Bayern, Berlin/Brandenburg, Hamburg/Unterweser, Hessen, Niedersachsen, Nordrhein-Westfalen, Osnabr\u00fcck-Emsland, Pfalz, Rheinland-Rheinhessen, Saarland, Sachsen, Sachsen-Anhalt, Schleswig-Holstein/MV/NW-Niedersachsen and Th\u00fcringen.",
     faq8Q: "How can I support this project?",
     faq8A: "This calculator is free, ad-free, and maintained in spare time. If you find it useful, a small donation via PayPal is very much appreciated \u2013 it helps keep the service running long-term.",
+    faq9Q: "What is the difference between T-ZUG A and T-ZUG B?",
+    faq9A: "T-ZUG A equals 27.5 % of one monthly salary and can be taken either as a cash payment or as up to 8 paid days off. T-ZUG B is a fixed annual amount based on the reference salary (EG 5) of the respective region \u2013 regardless of your personal pay group. Both payments are made once a year.",
+    faq10Q: "How do I calculate my ERA salary for part-time work?",
+    faq10A: "The part-time salary is calculated as: base salary \u00d7 (actual weekly hours \u00f7 35). Working 28 hours a week therefore gives you 80 % of the full-time value. All special payments such as holiday pay, Christmas bonus and T-ZUG are calculated proportionally based on this adjusted monthly salary. Simply enter your weekly hours in the calculator \u2013 everything is adjusted automatically.",
+    faq11Q: "What is the performance allowance and how does it affect special payments?",
+    faq11A: "The performance allowance (Leistungszulage) is an individual percentage surcharge on the collectively agreed base pay (0\u201330 %), granted by the employer. It increases not only the monthly gross salary but also affects holiday pay, Christmas bonus, T-ZUG A and transformation payment, as these are calculated as a percentage of the monthly salary. The only exception: T-ZUG B is based on the reference salary EG 5 and is independent of the personal performance allowance.",
 
     // Footer
     footerSource: "Source: IG Metall ERA salary tables",

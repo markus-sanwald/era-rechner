@@ -636,8 +636,66 @@ const datepicker = {
   }
 };
 
-// Open/close
-elDpDisplay.addEventListener("click", () => datepicker.toggle());
+// Open/close: input click only when empty or complete; icon always opens
+elDpDisplay.addEventListener("click", () => {
+  const len = elDpDisplay.value.length;
+  if (len === 0 || len === 10) datepicker.toggle();
+});
+document.querySelector(".datepicker-icon").addEventListener("click", () => datepicker.toggle());
+
+// Keyboard input: auto-format TT.MM.JJJJ, validate and sync on complete date
+elDpDisplay.addEventListener("keydown", (e) => {
+  // Allow: Backspace, Delete, Tab, Escape, Arrow keys
+  const allowed = ["Backspace","Delete","Tab","Escape","ArrowLeft","ArrowRight","ArrowUp","ArrowDown","Home","End"];
+  if (allowed.includes(e.key)) return;
+  // Block non-digits (except dots which we insert automatically)
+  if (!/^\d$/.test(e.key)) e.preventDefault();
+});
+
+elDpDisplay.addEventListener("input", (e) => {
+  let raw = elDpDisplay.value.replace(/[^\d.]/g, "");
+
+  // Auto-insert dots, but only when growing (not on delete)
+  const digits = raw.replace(/\./g, "");
+  let formatted = "";
+  for (let i = 0; i < digits.length && i < 8; i++) {
+    formatted += digits[i];
+    if (i === 1 || i === 3) formatted += ".";
+  }
+
+  // Only update if value changed to avoid cursor-jump loops
+  if (elDpDisplay.value !== formatted) {
+    elDpDisplay.value = formatted;
+  }
+
+  // Try to parse when we have a full date (TT.MM.JJJJ = 10 chars)
+  if (formatted.length === 10) {
+    const [dd, mm, yyyy] = formatted.split(".");
+    const d = parseInt(dd, 10), m = parseInt(mm, 10), y = parseInt(yyyy, 10);
+    const date = new Date(y, m - 1, d);
+    const valid = !isNaN(date.getTime())
+      && date.getDate() === d
+      && date.getMonth() === m - 1
+      && date.getFullYear() === y;
+
+    if (valid) {
+      const dateStr = `${y}-${String(m).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
+      datepicker.selectedDate = dateStr;
+      datepicker.viewMonth   = m - 1;
+      datepicker.viewYear    = y;
+      elEintrittsdatum.value = dateStr;
+      elEintrittsdatum.dispatchEvent(new Event("change"));
+      datepicker.close();
+    }
+  }
+
+  // Clear hidden value if display is empty
+  if (formatted === "") {
+    datepicker.selectedDate = null;
+    elEintrittsdatum.value  = "";
+    elEintrittsdatum.dispatchEvent(new Event("change"));
+  }
+});
 
 // Day click
 elDpDays.addEventListener("click", (e) => {
