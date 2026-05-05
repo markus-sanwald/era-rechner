@@ -1587,3 +1587,218 @@ footer p + p {
     font-size: 0.5rem;
   }
 }
+
+/* Region-Nav auf Startseite */
+.region-nav-section {
+  margin: 2rem 0;
+}
+.region-nav-section h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text);
+  margin-bottom: 0.6rem;
+}
+.region-nav-intro {
+  font-size: 0.88rem;
+  color: var(--color-text-muted);
+  margin-bottom: 1rem;
+}
+
+/* ===========================================================================
+   Region Landing Pages (entgelttabelle-*.html)
+   =========================================================================== */
+
+.rp-breadcrumb {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  margin-bottom: 1.25rem;
+}
+.rp-breadcrumb a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+.rp-breadcrumb a:hover { text-decoration: underline; }
+
+.rp-intro-section p {
+  line-height: 1.7;
+  color: var(--color-text-muted);
+}
+
+.rp-year-tabs-wrap {
+  margin-top: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+.rp-year-tabs {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.rp-year-tab {
+  padding: 0.4rem 1.4rem;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--color-text);
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.rp-year-tab:hover,
+.rp-year-tab.active {
+  background: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
+}
+
+.rp-section { margin-bottom: 1.5rem; }
+.rp-section h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Salary Table */
+.rp-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 6px;
+  border: 1px solid var(--color-border);
+}
+.rp-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+.rp-table th,
+.rp-table td {
+  padding: 0.55rem 0.9rem;
+  text-align: right;
+  border-bottom: 1px solid var(--color-border);
+  white-space: nowrap;
+}
+.rp-table th {
+  font-weight: 600;
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: var(--color-bg-card);
+}
+.rp-table th:first-child,
+.rp-table td:first-child { text-align: left; }
+.rp-table tbody tr:last-child td { border-bottom: none; }
+.rp-table tbody tr:hover { background: var(--color-bg-card); }
+.rp-eg {
+  font-weight: 600;
+  color: var(--color-primary);
+}
+.rp-na { color: var(--color-text-muted); }
+
+/* Bonus Cards */
+.rp-bonus-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 1rem;
+}
+.rp-bonus-card {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 1rem;
+}
+.rp-bonus-card--wide { grid-column: 1 / -1; }
+.rp-bonus-name {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.35rem;
+}
+.rp-bonus-val {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+.rp-bonus-note {
+  font-size: 0.76rem;
+  color: var(--color-text-muted);
+  margin-top: 0.2rem;
+}
+.rp-wg-table { width: 100%; font-size: 0.85rem; margin-top: 0.5rem; }
+.rp-wg-table td { padding: 0.3rem 0; border-bottom: 1px solid var(--color-border); }
+.rp-wg-table tr:last-child td { border-bottom: none; }
+.rp-right { text-align: right; font-weight: 600; color: var(--color-primary); }
+
+/* CTA */
+.rp-cta {
+  text-align: center;
+  margin: 2rem 0;
+}
+.rp-cta p {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  margin-bottom: 0.75rem;
+}
+.rp-cta-btn {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  background: var(--color-primary);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: opacity 0.15s;
+}
+.rp-cta-btn:hover { opacity: 0.85; }
+
+/* Region Nav */
+.rp-region-nav { margin: 2rem 0 1.5rem; }
+.rp-region-nav h3 {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+  margin-bottom: 0.75rem;
+}
+.rp-region-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.rp-region-link {
+  padding: 0.3rem 0.8rem;
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  font-size: 0.8rem;
+  color: var(--color-text);
+  text-decoration: none;
+  transition: background 0.12s, color 0.12s, border-color 0.12s;
+}
+.rp-region-link:hover,
+.rp-region-link.current {
+  background: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
+}
+
+/* Footer */
+.rp-footer {
+  text-align: center;
+  padding: 1.5rem 0;
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+  border-top: 1px solid var(--color-border);
+  margin-top: 2rem;
+}
+.rp-footer a {
+  color: var(--color-text-muted);
+  text-decoration: none;
+}
+.rp-footer a:hover { color: var(--color-primary); }

@@ -216,7 +216,20 @@ function init() {
 
   // Year dropdown is already populated by applyTranslations() above.
   const years = Object.keys(allData).sort((a, b) => b.localeCompare(a));
-  loadYear(years[0]);
+
+  // URL-Parameter: ?region=Bayern&jahr=2026 (von Regionseiten-CTA)
+  const urlParams = new URLSearchParams(window.location.search);
+  const pJahr     = urlParams.get("jahr");
+  const pRegion   = urlParams.get("region");
+
+  const startYear = (pJahr && years.includes(pJahr)) ? pJahr : years[0];
+  loadYear(startYear);
+  if (startYear !== years[0]) elJahr.value = startYear;
+
+  if (pRegion && [...elBundesland.options].some(o => o.value === pRegion)) {
+    elBundesland.value = pRegion;
+    elBundesland.dispatchEvent(new Event("change"));
+  }
 }
 
 function loadYear(year) {
@@ -302,6 +315,11 @@ onTranslationsApplied(function () {
 
   // Re-render chart and result if visible
   recalcIfReady();
+
+  // Update region nav pill labels to match the select dropdown
+  document.querySelectorAll(".rp-region-link[data-region]").forEach(el => {
+    el.textContent = tRegion(el.dataset.region);
+  });
 });
 
 // ---------------------------------------------------------------------------
