@@ -64,7 +64,7 @@ function regionNavLinks(currentKey) {
 
 function generateHTML(regionKey) {
   const slug       = SLUG_MAP[regionKey];
-  const titleShort = TITLE_SHORT[regionKey] ?? regionKey;
+  const titleShort = TITLE_SHORT[regionKey] || regionKey;
   const count      = egCount(regionKey);
   const links      = regionNavLinks(regionKey);
 
