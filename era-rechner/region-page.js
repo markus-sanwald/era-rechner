@@ -38,7 +38,7 @@
   let   activeYear = years[years.length - 1];
 
   const fmt = new Intl.NumberFormat("de-DE", {
-    style: "currency", currency: "EUR", maximumFractionDigits: 0
+    style: "currency", currency: "EUR", minimumFractionDigits: 2, maximumFractionDigits: 2
   });
   const pct = v => (v * 100).toFixed(1).replace(".", ",") + " %";
 
