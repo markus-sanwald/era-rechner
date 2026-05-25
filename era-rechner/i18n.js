@@ -556,6 +556,50 @@ const TRANSLATIONS = {
 };
 
 // ---------------------------------------------------------------------------
+// Region-specific intro paragraphs (keyed by REGION_KEY)
+// ---------------------------------------------------------------------------
+const REGION_INTROS = {
+  de: {
+    "Baden-Württemberg": "Baden-Württemberg gilt als traditionelles Pilottarifgebiet der Metall- und Elektroindustrie: Abschlüsse hier dienen häufig als Vorlage für andere Regionen. Mit 17 Entgeltgruppen und einem einheitlichen Grundentgelt je EG hat das Tarifgebiet die größte Entgeltgruppenspanne aller ERA-Regionen.",
+    "Bayern": "Bayern ist das einzige ERA-Tarifgebiet mit lediglich 12 Entgeltgruppen (EG 1–12). Eine weitere Besonderheit: Die Entgelttabelle unterscheidet innerhalb der Gruppen Erfahrungsstufen (Stufe A–C), was ein feineres Stufensystem als in den meisten anderen Regionen ergibt.",
+    "Berlin/Brandenburg": "Berlin/Brandenburg ist ein gemeinsames Tarifgebiet für die Bundeshauptstadt und das Land Brandenburg. Die Region vereint urbane Hochtechnologieunternehmen mit traditionellen Fertigungsbetrieben im Umland.",
+    "Hamburg/Unterweser": "Das Tarifgebiet Hamburg/Unterweser erstreckt sich über Hamburg und die Küstenregion an der Unterweser (Bremerhaven und Umgebung). Luft- und Raumfahrt (Airbus), Schiffbau und maritimer Maschinenbau prägen die M+E-Industrie dieser Region.",
+    "Hessen": "Das Tarifgebiet Hessen umfasst eine der wirtschaftsstärksten Regionen Deutschlands mit Schwerpunkt im Rhein-Main-Gebiet. Elektroindustrie, Automatisierungstechnik und internationale Konzerne der Fertigungsindustrie sind hier prominent vertreten.",
+    "Niedersachsen": "Niedersachsen ist eine der bedeutendsten Automobilregionen Deutschlands – Volkswagen in Wolfsburg und Continental in Hannover gehören zu den größten Arbeitgebern. Das Tarifgebiet schließt das Flächenland Niedersachsen ein, ausgenommen die eigenständigen Gebiete Osnabrück-Emsland und Hamburg/Unterweser.",
+    "Nordrhein-Westfalen": "Nordrhein-Westfalen ist nach Beschäftigtenzahl das größte ERA-Tarifgebiet Deutschlands. Eine tarifliche Besonderheit: Das Urlaubsgeld beträgt in NRW 72 % eines Monatsentgelts – drei Prozentpunkte mehr als in allen anderen ERA-Tarifgebieten.",
+    "Osnabrück-Emsland": "Osnabrück-Emsland ist ein eigenständiges Tarifgebiet im Nordwesten Niedersachsens. Mit dem höchsten Eckentgelt (EG 5) aller 15 ERA-Tarifgebiete zählt es zu den tariflich bestbezahlten Regionen der deutschen M+E-Industrie.",
+    "Pfalz": "Das Tarifgebiet Pfalz umfasst die Pfalz in Rheinland-Pfalz im Südwesten Deutschlands. Chemie-, Pharma- und Maschinenbauunternehmen im Raum Ludwigshafen und Kaiserslautern gehören zu den typischen Arbeitgebern.",
+    "Rheinland-Rheinhessen": "Rheinland-Rheinhessen umfasst Teile von Rheinland-Pfalz mit Schwerpunkten im Raum Koblenz und Mainz. Maschinenbau, Elektrotechnik und Fahrzeugzulieferung prägen die Industriestruktur dieser Region.",
+    "Saarland": "Das Saarland ist das kleinste westdeutsche Flächenland mit eigenem M+E-Tarifvertrag. Die Region blickt auf eine starke Industrietradition zurück, insbesondere in der Automobil- und Stahlindustrie.",
+    "Sachsen": "Sachsen hat sich nach der deutschen Wiedervereinigung zu einem wichtigen Automobilstandort entwickelt, mit Werken von BMW und Porsche in Leipzig sowie Volkswagen in Zwickau. Das Tarifgebiet gilt als wirtschaftsstärkstes der ostdeutschen ERA-Regionen.",
+    "Sachsen-Anhalt": "Sachsen-Anhalt ist ein ostdeutsches ERA-Tarifgebiet mit wachsender Industriebasis. Chemie-, Energie- und Maschinenbauunternehmen prägen die M+E-Industrie, besonders im Raum Halle und Magdeburg.",
+    "Schleswig-Holstein/MV/NW-Niedersachsen": "Dieses Tarifgebiet ist geografisch das ausgedehnteste und vereint Betriebe aus Schleswig-Holstein, Mecklenburg-Vorpommern und dem nordwestlichen Niedersachsen. Windenergieanlagenbau, Schiffstechnik und Lebensmitteltechnik sind typische Branchen.",
+    "Thüringen": "Thüringen blickt auf eine traditionsreiche Industriegeschichte zurück, insbesondere in der Optik und Feinmechanik (Carl Zeiss, Schott in Jena), im Fahrzeugbau und im Maschinenbau. Das Tarifgebiet zählt zu den ostdeutschen ERA-Regionen."
+  },
+  en: {
+    "Baden-Württemberg": "Baden-Württemberg is traditionally the pilot bargaining region for the M+E industry: settlements here frequently serve as a template for other regions. With 17 pay groups and a single base salary per group, this region has the widest pay group range of all ERA regions.",
+    "Bayern": "Bavaria is the only ERA bargaining region with just 12 pay groups (EG 1–12). A further distinction: the salary table differentiates experience steps (Step A–C) within groups, creating a more granular step system than in most other regions.",
+    "Berlin/Brandenburg": "Berlin/Brandenburg is a joint bargaining region covering the federal capital and the state of Brandenburg. The region combines urban high-tech companies with traditional manufacturing businesses in the surrounding area.",
+    "Hamburg/Unterweser": "The Hamburg/Unterweser bargaining region covers Hamburg and the Lower Weser coastal area around Bremerhaven. Aerospace (Airbus), shipbuilding, and maritime engineering are the defining industries of the local M+E sector.",
+    "Hessen": "The Hessen bargaining region covers one of Germany’s economically strongest areas, centred on the Rhine-Main metropolitan region. Electrical engineering, automation technology, and international manufacturing corporations are strongly represented here.",
+    "Niedersachsen": "Lower Saxony is one of Germany’s most important automotive regions – Volkswagen in Wolfsburg and Continental in Hanover rank among the largest employers. The bargaining region covers the state of Lower Saxony, excluding the independent Osnabrück-Emsland and Hamburg/Unterweser areas.",
+    "Nordrhein-Westfalen": "North Rhine-Westphalia is Germany’s largest ERA bargaining region by headcount. One regional distinction: holiday pay in NRW amounts to 72 % of one monthly salary – three percentage points higher than in all other ERA regions.",
+    "Osnabrück-Emsland": "Osnabrück-Emsland is an independent bargaining region in north-western Lower Saxony. With the highest reference salary (Eckentgelt, EG 5) of all 15 ERA regions, it is among the best-paid collective bargaining areas in the German M+E industry.",
+    "Pfalz": "The Pfalz bargaining region covers the Palatinate area in south-western Rhineland-Palatinate. Chemical, pharmaceutical, and mechanical engineering companies around Ludwigshafen and Kaiserslautern are typical employers.",
+    "Rheinland-Rheinhessen": "Rheinland-Rheinhessen covers parts of Rhineland-Palatinate, centred on Koblenz and Mainz. Mechanical engineering, electrical technology, and automotive supply characterise the industrial structure of this region.",
+    "Saarland": "Saarland is the smallest western German state with its own M+E collective agreement. The region has a strong industrial heritage, particularly in automotive and steel production.",
+    "Sachsen": "Saxony has developed into a major automotive centre since German reunification, with plants from BMW and Porsche in Leipzig and Volkswagen in Zwickau. The bargaining region is considered the economically strongest of the eastern German ERA regions.",
+    "Sachsen-Anhalt": "Saxony-Anhalt is an eastern German ERA bargaining region with a growing industrial base. Chemical, energy, and mechanical engineering companies shape the M+E sector, particularly around Halle and Magdeburg.",
+    "Schleswig-Holstein/MV/NW-Niedersachsen": "This is geographically the most extensive ERA bargaining region, covering companies in Schleswig-Holstein, Mecklenburg-Vorpommern, and north-western Lower Saxony. Wind turbine manufacturing, marine engineering, and food processing technology are typical industries.",
+    "Thüringen": "Thuringia has a long-established industrial history, particularly in optics and precision engineering (Carl Zeiss, Schott in Jena), vehicle manufacturing, and mechanical engineering. The bargaining region is one of the eastern German ERA regions."
+  }
+};
+
+function tRegionIntro(regionKey) {
+  return REGION_INTROS[currentLang]?.[regionKey] ?? REGION_INTROS.de[regionKey] ?? "";
+}
+
+// ---------------------------------------------------------------------------
 // i18n engine
 // ---------------------------------------------------------------------------
 

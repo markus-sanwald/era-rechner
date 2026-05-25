@@ -46,9 +46,16 @@
   function renderIntro() {
     const el = document.getElementById("rp-intro-text");
     if (!el) return;
-    // egCount im aktiven Jahr berechnen (kann je Jahr variieren)
     const egCount = Object.keys(ERA_DATA[activeYear].salaryData[regionKey]).length;
     el.innerHTML = tReplace("rpIntro", { region: regionKey, count: egCount });
+
+    let el2 = document.getElementById("rp-region-intro");
+    if (!el2) {
+      el2 = document.createElement("p");
+      el2.id = "rp-region-intro";
+      el.parentNode.insertBefore(el2, el.nextSibling);
+    }
+    el2.textContent = tRegionIntro(regionKey);
   }
 
   // ----- Section Headings -----
