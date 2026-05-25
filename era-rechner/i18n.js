@@ -218,6 +218,7 @@ const TRANSLATIONS = {
     footerPrivacy: "Datenschutz",
     footerGithub: "Quellcode auf GitHub",
     backToCalculator: "\u2190 Zur\u00fcck zum Rechner",
+    sourceNote: "Quelle: <a href=\"https://www.igmetall.de/tarif\" target=\"_blank\" rel=\"noopener noreferrer\">ERA-Tarifvertrag der Metall- und Elektroindustrie (IG Metall)</a> &middot; Zuletzt gepr&uuml;ft: <time datetime=\"2026-05\">Mai 2026</time>",
 
     // Glossar
     glossarTitle: "ERA Glossar",
@@ -512,6 +513,7 @@ const TRANSLATIONS = {
     footerPrivacy: "Privacy Policy",
     footerGithub: "Source Code on GitHub",
     backToCalculator: "\u2190 Back to Calculator",
+    sourceNote: "Source: <a href=\"https://www.igmetall.de/tarif\" target=\"_blank\" rel=\"noopener noreferrer\">ERA collective agreement for the metal and electrical industry (IG Metall)</a> &middot; Last reviewed: <time datetime=\"2026-05\">May 2026</time>",
 
     // Glossar
     glossarTitle: "ERA Glossary",
