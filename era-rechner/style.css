@@ -1802,3 +1802,67 @@ footer p + p {
   text-decoration: none;
 }
 .rp-footer a:hover { color: var(--color-primary); }
+
+/* Source note (E-E-A-T) */
+.source-note {
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+  border-top: 1px solid var(--color-border);
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  line-height: 1.6;
+}
+.source-note a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+.source-note a:hover {
+  text-decoration: underline;
+}
+
+/* Glossar */
+.glossar-intro {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  margin-bottom: 1.25rem;
+  line-height: 1.6;
+}
+.glossar-item {
+  border-bottom: 1px solid var(--color-border);
+}
+.glossar-item:last-child {
+  border-bottom: none;
+}
+.glossar-item summary {
+  padding: 0.85rem 0;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--color-text);
+  gap: 1rem;
+}
+.glossar-item summary::-webkit-details-marker { display: none; }
+.glossar-item summary::after {
+  content: "+";
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--color-muted);
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+.glossar-item[open] summary::after { transform: rotate(45deg); }
+.glossar-item p {
+  padding: 0 0 1rem 0;
+  color: var(--color-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+}
+.glossar-item p a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+.glossar-item p a:hover { text-decoration: underline; }

@@ -155,6 +155,11 @@ ${links}
       </div>
     </nav>
 
+    <p class="source-note" style="text-align:center">
+      Quelle: <a href="https://www.igmetall.de/tarif" target="_blank" rel="noopener noreferrer">ERA-Tarifvertrag der Metall- und Elektroindustrie (IG Metall)</a> &middot;
+      Zuletzt gepr&uuml;ft: <time datetime="2026-05">Mai 2026</time>
+    </p>
+
     <footer>
       <p class="footer-feedback" data-i18n-html="footerFeedback">Anregungen, Fehler oder Feedback? <a href="mailto:info@era-rechner.de">info@era-rechner.de</a></p>
       <p class="footer-donate" data-i18n-html="footerDonate">Dieses Projekt ist werbefrei und open-source. <a href="https://paypal.me/erarechner" target="_blank" rel="noopener noreferrer">Unterst&uuml;tze es mit einer Spende via PayPal</a>.</p>
@@ -164,6 +169,8 @@ ${links}
         <a href="/impressum.html" data-i18n="footerImprint">Impressum</a>
         <span class="footer-sep">&middot;</span>
         <a href="/datenschutz.html" data-i18n="footerPrivacy">Datenschutz</a>
+        <span class="footer-sep">&middot;</span>
+        <a href="/glossar.html">Glossar</a>
         <span class="footer-sep">&middot;</span>
         <a href="https://github.com/markus-sanwald/era-rechner" target="_blank" rel="noopener noreferrer" data-i18n="footerGithub">Quellcode auf GitHub</a>
       </p>
