@@ -38,7 +38,7 @@ const TRANSLATIONS = {
     yearOption: "ab 01.04.${year}",
 
     // Year notice
-    yearNotice2026: "Die Werte ab 01.04.2026 sind vorl\u00e4ufig (Vorjahreswerte + 3,1\u00a0%).",
+    yearNotice2026: "Die Werte ab 01.04.2026 sind vorläufig (Vorjahreswerte + 3,1 %).",
 
     // Result
     resultMonthly: "Monatsentgelt (brutto)",
@@ -174,6 +174,7 @@ const TRANSLATIONS = {
     rpCtaBtn: "Gehaltsrechner f\u00fcr ${region} \u00f6ffnen \u2192",
     rpAllRegions: "Alle Tarifgebiete",
     rpSubtitle: "IG Metall Gehaltstabelle 2025 & 2026",
+    rpValidFrom: "gültig ab 01.04.${year}",
     rpBonusLabelUrlaubsgeld: "Urlaubsgeld",
     rpBonusLabelTZugA: "T-ZUG A",
     rpBonusLabelTGeld: "Transformationsgeld",
@@ -469,6 +470,7 @@ const TRANSLATIONS = {
     rpCtaBtn: "Open salary calculator for ${region} →",
     rpAllRegions: "All Collective Bargaining Regions",
     rpSubtitle: "IG Metall Salary Table 2025 & 2026",
+    rpValidFrom: "valid from 04/01/${year}",
     rpBonusLabelUrlaubsgeld: "Holiday Pay",
     rpBonusLabelTZugA: "T-ZUG A",
     rpBonusLabelTGeld: "Transformation Payment",

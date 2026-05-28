@@ -1,36 +1,12 @@
 "use strict";
 
 // ---------------------------------------------------------------------------
-// Theme toggle (identisch mit app.js – kein app.js auf Regionseiten)
+// Theme toggle (Dark Mode) → siehe theme.js (auf allen Seiten geteilt)
 // ---------------------------------------------------------------------------
-(function () {
-  const root  = document.documentElement;
-  const saved = localStorage.getItem("theme");
-  if (saved === "dark" || saved === "light") root.setAttribute("data-theme", saved);
-
-  function isDark() {
-    const t = root.getAttribute("data-theme");
-    if (t === "dark")  return true;
-    if (t === "light") return false;
-    return window.matchMedia("(prefers-color-scheme: dark)").matches;
-  }
-  function applyTheme(dark) {
-    root.setAttribute("data-theme", dark ? "dark" : "light");
-    localStorage.setItem("theme", dark ? "dark" : "light");
-    document.getElementById("theme-icon-moon").style.display = dark ? "none" : "";
-    document.getElementById("theme-icon-sun").style.display  = dark ? ""     : "none";
-  }
-  document.addEventListener("DOMContentLoaded", function () {
-    applyTheme(isDark());
-    document.getElementById("theme-toggle").addEventListener("click", function () {
-      applyTheme(!isDark());
-    });
-  });
-})();
 
 // ---------------------------------------------------------------------------
 // Region Page – Entgelttabelle & Sonderzahlungen
-// Benötigt: data.js + i18n.js vor diesem Script, window.REGION_KEY gesetzt
+// Benötigt: data.js + i18n.js + theme.js vor diesem Script, window.REGION_KEY gesetzt
 // ---------------------------------------------------------------------------
 (function () {
   const regionKey = window.REGION_KEY;
@@ -62,8 +38,9 @@
   function renderHeadings() {
     const tableH2 = document.getElementById("rp-table-heading");
     const bonusH2 = document.getElementById("rp-bonus-heading");
-    if (tableH2) tableH2.innerHTML = `${t("rpTableHeading")} <span class="rp-year-label">${activeYear}</span>`;
-    if (bonusH2) bonusH2.innerHTML = `${t("rpBonusHeading")} <span class="rp-year-label">${activeYear}</span>`;
+    const validFrom = tReplace("rpValidFrom", { year: activeYear });
+    if (tableH2) tableH2.innerHTML = `${t("rpTableHeading")} <span class="rp-year-label">${validFrom}</span>`;
+    if (bonusH2) bonusH2.innerHTML = `${t("rpBonusHeading")} <span class="rp-year-label">${validFrom}</span>`;
   }
 
   // ----- Year Tabs -----

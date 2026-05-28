@@ -1,1 +1,12 @@
 CLAUDE.md
+
+# IDE / Editor
+.vs/
+.vscode/
+.idea/
+
+# Claude Code (lokal)
+.claude/
+
+# Lokale ERA-Quelldokumente (nicht deployen)
+*.pdf

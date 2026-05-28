@@ -1,37 +1,8 @@
 "use strict";
 
 // ---------------------------------------------------------------------------
-// Theme toggle (Dark Mode)
+// Theme toggle (Dark Mode) → siehe theme.js (auf allen Seiten geteilt)
 // ---------------------------------------------------------------------------
-
-(function () {
-  const root = document.documentElement;
-  const saved = localStorage.getItem('theme');
-  if (saved === 'dark' || saved === 'light') {
-    root.setAttribute('data-theme', saved);
-  }
-
-  function isDark() {
-    const t = root.getAttribute('data-theme');
-    if (t === 'dark') return true;
-    if (t === 'light') return false;
-    return window.matchMedia('(prefers-color-scheme: dark)').matches;
-  }
-
-  function applyTheme(dark) {
-    root.setAttribute('data-theme', dark ? 'dark' : 'light');
-    localStorage.setItem('theme', dark ? 'dark' : 'light');
-    document.getElementById('theme-icon-moon').style.display = dark ? 'none' : '';
-    document.getElementById('theme-icon-sun').style.display = dark ? '' : 'none';
-  }
-
-  document.addEventListener('DOMContentLoaded', function () {
-    applyTheme(isDark());
-    document.getElementById('theme-toggle').addEventListener('click', function () {
-      applyTheme(!isDark());
-    });
-  });
-})();
 
 // ---------------------------------------------------------------------------
 // ERA Salary Data – loaded from data.json
@@ -239,7 +210,9 @@ function loadYear(year) {
   elSubtitle.textContent = tReplace("subtitleWithYear", { year });
   document.title = t("pageTitle").replace("{year}", year);
 
-  // Hinweis für vorläufige Werte ein-/ausblenden
+  // Hinweis für vorläufige Werte. Aktuell ausgeblendet, da die 2026-Werte final
+  // sind (= offizielle PDF). Für vorläufige 2027-Werte: Bedingung wieder aktivieren,
+  // z.B. elYearNotice.classList.toggle("hidden", year !== "2027").
   elYearNotice.classList.add("hidden");
 
   // Reset dependent dropdowns

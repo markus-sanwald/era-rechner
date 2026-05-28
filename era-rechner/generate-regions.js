@@ -76,6 +76,7 @@ function generateHTML(regionKey) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>(function(){var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);})();</script>
   <title>ERA Entgelttabelle ${titleShortHtml} ${latestYear} &ndash; IG Metall Gehaltstabelle</title>
   <meta name="description" content="ERA Entgelttabelle ${regionHtml} ${firstYear} &amp; ${latestYear} &ndash; alle ${count} Entgeltgruppen nach IG Metall Tarifvertrag. Monatsentgelt, Weihnachtsgeld, Urlaubsgeld und T-ZUG auf einen Blick.">
   <meta name="robots" content="index, follow">
@@ -87,9 +88,6 @@ function generateHTML(regionKey) {
   <meta property="og:url" content="https://www.era-rechner.de/${slug}.html">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="ERA Entgeltrechner">
-
-  <link rel="alternate" hreflang="de" href="https://www.era-rechner.de/${slug}.html">
-  <link rel="alternate" hreflang="x-default" href="https://www.era-rechner.de/${slug}.html">
 
   <script type="application/ld+json">
   {
@@ -177,6 +175,7 @@ ${links}
   <script>window.REGION_KEY = ${JSON.stringify(regionKey)};</script>
   <script src="data.js"></script>
   <script src="i18n.js"></script>
+  <script src="theme.js"></script>
   <script src="region-page.js"></script>
 </body>
 </html>`;
@@ -185,7 +184,9 @@ ${links}
 regions.forEach(regionKey => {
   const slug     = SLUG_MAP[regionKey];
   const filePath = path.join(__dirname, `${slug}.html`);
-  fs.writeFileSync(filePath, generateHTML(regionKey), "utf8");
+  // CRLF, damit die generierten Dateien zu den Windows-Zeilenenden des Repos passen
+  const html = generateHTML(regionKey).replace(/\r?\n/g, "\r\n");
+  fs.writeFileSync(filePath, html, "utf8");
   console.log(`  ✓  ${slug}.html`);
 });
 
