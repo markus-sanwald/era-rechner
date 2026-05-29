@@ -1625,6 +1625,15 @@ footer p + p {
   line-height: 1.7;
   color: var(--color-text-muted);
 }
+.rp-step-info {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  border-left: 3px solid var(--color-primary);
+  background: var(--color-bg-card);
+  border-radius: 0 6px 6px 0;
+  font-size: 0.9rem;
+}
+.rp-step-info strong { color: var(--color-text); }
 
 .rp-year-tabs-wrap {
   margin-top: 1.25rem;
@@ -1699,6 +1708,66 @@ footer p + p {
   color: var(--color-primary);
 }
 .rp-na { color: var(--color-text-muted); }
+
+/* Step header tooltip */
+.rp-th-info {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  cursor: help;
+  outline: none;
+}
+.rp-th-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  font-size: 0.62rem;
+  font-weight: 700;
+  font-style: italic;
+  text-transform: none;
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+}
+.rp-th-info:hover .rp-th-icon,
+.rp-th-info:focus .rp-th-icon {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+.rp-tip {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 250px;
+  max-width: calc(100vw - 16px);
+  padding: 0.5rem 0.7rem;
+  font-size: 0.72rem;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.5;
+  text-transform: none;
+  letter-spacing: normal;
+  text-align: left;
+  white-space: normal;
+  color: var(--color-text);
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.12s ease;
+}
+.rp-tip.visible {
+  opacity: 1;
+  visibility: visible;
+}
 
 /* Bonus Cards */
 .rp-bonus-grid {

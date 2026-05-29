@@ -133,6 +133,40 @@ const TRANSLATIONS = {
     // Steps (identity mapping for German)
     steps: {},
 
+    // Step tooltips – erklären, wann welche Stufe greift.
+    // Konkrete Wartezeiten nur für dokumentierte Grund-/Haupt-/Zusatzstufen-Systeme,
+    // A/B/C und einfache Zusatzstufe nur allgemein.
+    stepTooltips: {
+      "nordmetall/Grundstufe": "Einstiegsstufe bei Neueinstellung. Der Aufstieg in die Hauptstufe erfolgt nach 6 Monaten (EG 2–4), 1 Jahr (EG 5–8) bzw. 2 Jahren (EG 9–11) in der Entgeltgruppe.",
+      "sachsenanhalt/Grundstufe": "Reguläres Grundentgelt der Entgeltgruppe ohne zusätzliche Anforderungen. Die Zusatzstufe greift erst bei dauerhaft erweiterten Aufgaben oder Qualifikationen.",
+      "berlin/Eingangsstufe": "Einstiegsstufe bis zur selbstständigen Ausführung der Tätigkeit. Der Aufstieg in die Hauptstufe erfolgt nach 6 Monaten (EG 2–4), 12 Monaten (EG 5–8) bzw. 24 Monaten (EG 9–11).",
+      "osnabrueck/Eingangsstufe": "Einstiegsstufe bis zur selbstständigen Ausführung der Tätigkeit. Der Aufstieg in die Hauptstufe erfolgt nach 1 Jahr (EG 2–4), 2 Jahren (EG 5–8) bzw. 3 Jahren (EG 9–12).",
+      "osnabrueck/Hauptstufe": "Reguläre Stufe nach der Wartezeit in der Eingangsstufe – 1 Jahr (EG 2–4), 2 Jahre (EG 5–8) bzw. 3 Jahre (EG 9–12).",
+      "Hauptstufe":     "Reguläre Stufe nach der Wartezeit in der Grund- bzw. Eingangsstufe – 6 Monate (EG 2–4), 1 Jahr (EG 5–8) bzw. 2 Jahre (EG 9–11). Bei Höhergruppierung wird in der Regel direkt die Hauptstufe gezahlt.",
+      "Zusatzstufe 1":  "Zusätzliche Stufe oberhalb der Hauptstufe. Der Aufstieg erfolgt anforderungs- bzw. leistungsbezogen (z. B. Flexibilität, Verantwortung, Zusammenarbeit) – nicht automatisch nach Zeit.",
+      "Zusatzstufe 2":  "Zusätzliche Stufe oberhalb der Hauptstufe. Der Aufstieg erfolgt anforderungs- bzw. leistungsbezogen (z. B. Flexibilität, Verantwortung, Zusammenarbeit) – nicht automatisch nach Zeit.",
+      "Zusatzstufe 3":  "Zusätzliche Stufe oberhalb der Hauptstufe. Der Aufstieg erfolgt anforderungs- bzw. leistungsbezogen (z. B. Flexibilität, Verantwortung, Zusammenarbeit) – nicht automatisch nach Zeit.",
+      "1. Zusatzstufe": "Zusätzliche Stufe oberhalb der Hauptstufe. Der Aufstieg erfolgt anforderungs- bzw. leistungsbezogen (z. B. Flexibilität, Verantwortung, Zusammenarbeit) – nicht automatisch nach Zeit.",      "2. Zusatzstufe": "Zweite Zusatzstufe für ausgeprägtes besonderes betriebliches Wissen oberhalb der 1. Zusatzstufe – anforderungsbezogen, nicht automatisch nach Zeit.",
+      "bayern/Stufe A": "Einstiegsstufe bei Ein- oder Umgruppierung.",
+      "bayern/Stufe B": "Wird nach Tätigkeitszeit in der Entgeltgruppe erreicht: 6 Monate (EG 2–4), 12 Monate (EG 5–8) bzw. 18 Monate (EG 9–12).",
+      "bayern/Stufe C": "Nur in EG 4. Wird gezahlt, wenn die übertragenen Aufgaben erkennbar höhere Anforderungen erfüllen, die noch nicht für die nächste Entgeltgruppe ausreichen.",
+      "niedersachsen/Stufe A": "Einarbeitungsstufe bis zur selbstständigen Ausführung der Tätigkeit – in der Regel 6 Monate, in EG 5–13 in der Regel 12 Monate.",
+      "niedersachsen/Stufe B": "Gilt ab der selbstständigen Ausführung der übertragenen Tätigkeit.",
+      "niedersachsen/Stufe C": "Wird gezahlt, wenn die Gesamttätigkeit über das Anforderungsniveau der Entgeltgruppe hinausgeht, aber noch nicht für die nächste Entgeltgruppe ausreicht.",
+      "Zusatzstufe":    "Die Zusatzstufe wird gezahlt, wenn dauerhaft eine zusätzliche Tätigkeit oder Qualifikation über die Anforderungen der Entgeltgruppe hinaus übernommen wird – nicht automatisch nach Betriebszugehörigkeit."
+    },
+
+    // Stufen-Erklärung im Info-Block der Regionsseiten (je Stufen-System)
+    stepInfo: {
+      "nordmetall":    "Neu eingestellte Beschäftigte starten in der Grundstufe und rücken nach 6 Monaten (EG 2–4), einem Jahr (EG 5–8) bzw. zwei Jahren (EG 9–11) in die Hauptstufe auf. Die Zusatzstufen 1–3 sind keine Zeitstufen: Sie werden gezahlt, wenn die Tätigkeit höhere Anforderungen an Flexibilität, Verantwortung und Zusammenarbeit stellt, ohne dass die nächste Entgeltgruppe erreicht wird.",
+      "berlin":        "Neu eingestellte Beschäftigte starten in der Eingangsstufe und erreichen die Hauptstufe nach 6 Monaten (EG 2–4), 12 Monaten (EG 5–8) bzw. 24 Monaten (EG 9–11). Die 1. und 2. Zusatzstufe sind anforderungsbezogen: Sie werden bei zusätzlichen Anforderungen an Flexibilität, Verantwortung und Zusammenarbeit oberhalb der Hauptstufe gezahlt.",
+      "osnabrueck":    "Neu eingestellte Beschäftigte starten in der Eingangsstufe und erreichen die Hauptstufe nach einem Jahr (EG 2–4), zwei Jahren (EG 5–8) bzw. drei Jahren (EG 9–12). Die Zusatzstufen 1–3 sind anforderungsbezogen: Sie werden bei höheren Anforderungen an Flexibilität, Verantwortung und Zusammenarbeit gezahlt, ohne dass die nächste Entgeltgruppe erreicht wird.",
+      "bayern":        "Jede Tätigkeit startet in Stufe A (bei Ein- oder Umgruppierung). Stufe B wird nach 6 Monaten (EG 2–4), 12 Monaten (EG 5–8) bzw. 18 Monaten (EG 9–12) Tätigkeit in der Entgeltgruppe erreicht. Stufe C gibt es nur in EG 4 und wird gezahlt, wenn die Aufgaben höhere Anforderungen erfüllen, die noch nicht für die nächste Entgeltgruppe ausreichen.",
+      "niedersachsen": "Stufe A gilt während der Einarbeitung bis zur selbstständigen Ausführung der Tätigkeit (in der Regel 6 Monate, in EG 5–13 in der Regel 12 Monate). Stufe B gilt ab der selbstständigen Ausführung. Stufe C wird gezahlt, wenn die Gesamttätigkeit über das Anforderungsniveau der Entgeltgruppe hinausgeht, aber noch nicht für die nächste reicht.",
+      "sachsenanhalt": "Die Grundstufe ist das reguläre Grundentgelt der Entgeltgruppe. Die Zusatzstufe ist keine Zeitstufe: Sie wird gezahlt, wenn dauerhaft eine zusätzliche Tätigkeit oder Qualifikation über die Anforderungen der Entgeltgruppe hinaus übernommen wird.",
+      "zusatz":        "Das Grundentgelt ist die reguläre Vergütung der Entgeltgruppe. Die Zusatzstufe ist keine Zeitstufe: Sie wird gezahlt, wenn dauerhaft eine zusätzliche Tätigkeit oder Qualifikation über die Anforderungen der Entgeltgruppe hinaus übernommen wird."
+    },
+
     // Compare
     compareSave: "Zum Vergleich merken",
     compareTitle: "Vergleich",
@@ -175,6 +209,7 @@ const TRANSLATIONS = {
     rpAllRegions: "Alle Tarifgebiete",
     rpSubtitle: "IG Metall Gehaltstabelle 2025 & 2026",
     rpValidFrom: "gültig ab 01.04.${year}",
+    rpStepInfoLabel: "Stufen:",
     rpBonusLabelUrlaubsgeld: "Urlaubsgeld",
     rpBonusLabelTZugA: "T-ZUG A",
     rpBonusLabelTGeld: "Transformationsgeld",
@@ -429,6 +464,39 @@ const TRANSLATIONS = {
       "nach 36. Monat": "after 36 months"
     },
 
+    // Step tooltips
+    stepTooltips: {
+      "nordmetall/Grundstufe": "Entry step for new hires. You move up to the main step after 6 months (EG 2–4), 1 year (EG 5–8) or 2 years (EG 9–11) in the pay group.",
+      "sachsenanhalt/Grundstufe": "Regular base salary of the pay group without additional requirements. The additional step only applies with permanently expanded tasks or qualifications.",
+      "berlin/Eingangsstufe": "Entry step until you perform the assigned task independently. You move up to the main step after 6 months (EG 2–4), 12 months (EG 5–8) or 24 months (EG 9–11).",
+      "osnabrueck/Eingangsstufe": "Entry step until you perform the assigned task independently. You move up to the main step after 1 year (EG 2–4), 2 years (EG 5–8) or 3 years (EG 9–12).",
+      "osnabrueck/Hauptstufe": "Regular step reached after the waiting period in the entry step – 1 year (EG 2–4), 2 years (EG 5–8) or 3 years (EG 9–12).",
+      "Hauptstufe":     "Regular step reached after the waiting period in the base/entry step – 6 months (EG 2–4), 1 year (EG 5–8) or 2 years (EG 9–11). On reclassification to a higher pay group, the main step is usually paid right away.",
+      "Zusatzstufe 1":  "Additional step above the main step. Progression is requirement-based (higher demands on flexibility, responsibility and cooperation) – not automatic over time.",
+      "Zusatzstufe 2":  "Additional step above the main step. Progression is requirement-based (higher demands on flexibility, responsibility and cooperation) – not automatic over time.",
+      "Zusatzstufe 3":  "Additional step above the main step. Progression is requirement-based (higher demands on flexibility, responsibility and cooperation) – not automatic over time.",
+      "1. Zusatzstufe": "Additional step above the main step. Progression is requirement-based (higher demands on flexibility, responsibility and cooperation) – not automatic over time.",
+      "2. Zusatzstufe": "Second additional step for pronounced special operational knowledge above the 1st additional step – requirement-based, not automatic over time.",
+      "bayern/Stufe A": "Entry step on classification or reclassification.",
+      "bayern/Stufe B": "Reached after time worked in the pay group: 6 months (EG 2–4), 12 months (EG 5–8) or 18 months (EG 9–12).",
+      "bayern/Stufe C": "Only in EG 4. Paid when the assigned tasks clearly exceed the requirements of the pay group but do not yet reach the next one.",
+      "niedersachsen/Stufe A": "Onboarding step until you perform the task independently – typically 6 months, in EG 5–13 typically 12 months.",
+      "niedersachsen/Stufe B": "Applies once you perform the assigned task independently.",
+      "niedersachsen/Stufe C": "Paid when the overall task exceeds the requirement level of the pay group but does not yet reach the next one.",
+      "Zusatzstufe":    "The additional step is paid when an extra task or qualification beyond the pay group's requirements is taken on permanently – not automatically based on tenure."
+    },
+
+    // Step explanation in the info block of the region pages (per step system)
+    stepInfo: {
+      "nordmetall":    "New hires start in the base step and move up to the main step after 6 months (EG 2–4), one year (EG 5–8) or two years (EG 9–11). The additional steps 1–3 are not time-based: they are paid when the task places higher demands on flexibility, responsibility and cooperation, without reaching the next pay group.",
+      "berlin":        "New hires start in the entry step and reach the main step after 6 months (EG 2–4), 12 months (EG 5–8) or 24 months (EG 9–11). The 1st and 2nd additional steps are requirement-based: they are paid for extra demands on flexibility, responsibility and cooperation above the main step.",
+      "osnabrueck":    "New hires start in the entry step and reach the main step after one year (EG 2–4), two years (EG 5–8) or three years (EG 9–12). The additional steps 1–3 are requirement-based: they are paid for higher demands on flexibility, responsibility and cooperation without reaching the next pay group.",
+      "bayern":        "Every task starts in step A (on classification or reclassification). Step B is reached after 6 months (EG 2–4), 12 months (EG 5–8) or 18 months (EG 9–12) of work in the pay group. Step C exists only in EG 4 and is paid when the tasks meet higher requirements that do not yet reach the next pay group.",
+      "niedersachsen": "Step A applies during onboarding until you perform the task independently (typically 6 months, in EG 5–13 typically 12 months). Step B applies once you work independently. Step C is paid when the overall task exceeds the requirement level of the pay group but does not yet reach the next one.",
+      "sachsenanhalt": "The base step is the regular base salary of the pay group. The additional step is not time-based: it is paid when an extra task or qualification beyond the pay group requirements is taken on permanently.",
+      "zusatz":        "The base salary is the regular pay of the pay group. The additional step is not time-based: it is paid when an extra task or qualification beyond the pay group requirements is taken on permanently."
+    },
+
     // Compare
     compareSave: "Save for comparison",
     compareTitle: "Comparison",
@@ -471,6 +539,7 @@ const TRANSLATIONS = {
     rpAllRegions: "All Collective Bargaining Regions",
     rpSubtitle: "IG Metall Salary Table 2025 & 2026",
     rpValidFrom: "valid from 04/01/${year}",
+    rpStepInfoLabel: "Steps:",
     rpBonusLabelUrlaubsgeld: "Holiday Pay",
     rpBonusLabelTZugA: "T-ZUG A",
     rpBonusLabelTGeld: "Transformation Payment",
@@ -625,6 +694,16 @@ function tRegion(key) {
 
 function tStep(key) {
   return TRANSLATIONS[currentLang].steps[key] ?? key;
+}
+
+function tStepTooltip(key, system) {
+  const tt = TRANSLATIONS[currentLang].stepTooltips ?? {};
+  if (system && tt[system + "/" + key] !== undefined) return tt[system + "/" + key];
+  return tt[key] ?? "";
+}
+
+function tStepInfo(system) {
+  return TRANSLATIONS[currentLang].stepInfo?.[system] ?? "";
 }
 
 function setLanguage(lang) {
