@@ -90,9 +90,13 @@
   function renderHeadings() {
     const tableH2 = document.getElementById("rp-table-heading");
     const bonusH2 = document.getElementById("rp-bonus-heading");
+    const ausbH2  = document.getElementById("rp-ausbildung-heading");
     const validFrom = tReplace("rpValidFrom", { year: activeYear });
     if (tableH2) tableH2.innerHTML = `${t("rpTableHeading")} <span class="rp-year-label">${validFrom}</span>`;
     if (bonusH2) bonusH2.innerHTML = `${t("rpBonusHeading")} <span class="rp-year-label">${validFrom}</span>`;
+    // Ausbildungsvergütung: ohne "gültig ab"-Datum, da das Stichdatum (z. B. 01.01.2025)
+    // vom Entgelt-Stichdatum abweichen kann; das Jahr ergibt sich aus den Jahr-Tabs.
+    if (ausbH2) ausbH2.innerHTML = `${t("rpAusbildungHeading")} <span class="rp-year-label">${activeYear}</span>`;
   }
 
   // ----- Year Tabs -----
@@ -196,6 +200,30 @@
       </div>`;
   }
 
+  // ----- Ausbildungsvergütung (rein informativ, brutto) -----
+  function renderAusbildung() {
+    const el = document.getElementById("rp-ausbildung");
+    if (!el) return;
+    const data = ERA_DATA[activeYear].ausbildungData?.[regionKey];
+    if (!data) { el.innerHTML = ""; return; }
+
+    const rows = data.map((v, i) => `<tr>
+        <td class="rp-eg">${tReplace("rpAusbildungYear", { year: i + 1 })}</td>
+        <td>${fmt.format(v)}</td>
+      </tr>`).join("");
+
+    el.innerHTML = `
+      <p class="rp-ausbildung-intro">${tReplace("rpAusbildungIntro", { region: regionKey })}</p>
+      <div class="rp-table-wrap"><table class="rp-table rp-ausbildung-table">
+        <thead><tr>
+          <th>${t("rpAusbildungYearCol")}</th>
+          <th>${t("rpAusbildungMonthlyCol")}</th>
+        </tr></thead>
+        <tbody>${rows}</tbody>
+      </table></div>
+      <p class="rp-ausbildung-note">${t("rpAusbildungNote")}</p>`;
+  }
+
   // ----- CTA -----
   function renderCta() {
     const ctaText = document.getElementById("rp-cta-text");
@@ -221,6 +249,7 @@
     renderIntro();
     renderSalaryTable();
     renderBonus();
+    renderAusbildung();
     renderCta();
     renderRegionNav();
   }

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>(function(){var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);})();</script>
   <title>ERA Entgeltrechner 2026 – IG Metall Gehaltsrechner</title>
-  <meta name="description" content="Tariflohn berechnen leicht gemacht: Kostenloser Open-Source ERA Entgeltrechner auf Basis der IG Metall Entgelttabellen 2026. Bruttojahresgehalt inkl. Weihnachtsgeld, Urlaubsgeld, T-ZUG und T-Geld f&uuml;r alle 15 Tarifgebiete. Werbefrei &amp; ohne Registrierung.">
+  <meta name="description" content="Tariflohn berechnen leicht gemacht: Kostenloser, werbefreier Open-Source ERA Entgeltrechner auf Basis der IG Metall Entgelttabellen 2026. Bruttojahresgehalt inkl. Weihnachtsgeld, Urlaubsgeld, T-ZUG und T-Geld f&uuml;r alle 15 Tarifgebiete &ndash; ohne Registrierung.">
   <meta name="keywords" content="ERA, Entgeltrechner, Gehaltsrechner, Metall, Elektroindustrie, IG Metall, Tarifvertrag, Entgelttabelle, Bruttojahresgehalt, Weihnachtsgeld, Urlaubsgeld, T-ZUG, T-Geld, Entgeltgruppe, Tariflohn, open-source, kostenlos, werbefrei">
   <meta name="robots" content="index, follow">
   <meta name="author" content="era-rechner.de">
@@ -118,6 +118,14 @@
       },
       {
         "@type": "Question",
+        "name": "Was ändert sich mit dem Tarifjahr 2026?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Zum 1. April 2026 steigen die ERA-Grundentgelte in allen 15 Tarifgebieten um 3,1 %. Außerdem wird das T-ZUG B deutlich angehoben – von 18,5 % auf 26,5 % des Eckentgelts (EG 5). Die übrigen Sonderzahlungen bleiben unverändert: Urlaubsgeld (69 %, in NRW 72 %), Weihnachtsgeld (25–55 %), T-ZUG A (27,5 %) und Transformationsgeld (18,4 %). Neu ist außerdem der Auszahlungszeitpunkt: T-ZUG B wird künftig im Februar ausgezahlt (bisher Juli) – im Tausch mit dem Transformationsgeld (T-Geld), das nun im Juli kommt. Eine mögliche „Differenzierung\" (Kürzung oder Verschiebung in wirtschaftlich angeschlagenen Betrieben) betrifft seither nicht mehr das T-ZUG B, sondern das T-Geld – so bleibt T-ZUG B als soziale Komponente erhalten."
+        }
+      },
+      {
+        "@type": "Question",
         "name": "Welche Sonderzahlungen sind im Jahresbrutto enthalten?",
         "acceptedAnswer": {
           "@type": "Answer",
@@ -178,6 +186,22 @@
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "Die Leistungszulage ist ein individueller prozentualer Aufschlag auf das tarifliche Grundentgelt (0–30 %), den der Arbeitgeber gewährt. Sie erhöht nicht nur das monatliche Bruttogehalt, sondern wirkt sich auch auf Urlaubsgeld, Weihnachtsgeld, T-ZUG A und Transformationsgeld aus, da diese als Prozentsatz des Monatsentgelts berechnet werden. Einzige Ausnahme: T-ZUG B basiert auf dem Eckentgelt EG 5 und ist von der persönlichen Leistungszulage unabhängig."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie hoch ist die Ausbildungsvergütung in der Metall- und Elektroindustrie?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Die tarifliche Ausbildungsvergütung steigt mit jedem Ausbildungsjahr und unterscheidet sich je Tarifgebiet. 2026 liegt sie im ersten Ausbildungsjahr je nach Region bei rund 1.240–1.370 € und erreicht im vierten Jahr bis zu rund 1.560 €. Die genauen Beträge je Tarifgebiet stehen auf den jeweiligen Entgelttabellen-Unterseiten."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was bedeuten die Entgeltstufen (z. B. Grund-, Haupt- und Zusatzstufe oder Stufe A/B/C)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Viele Tarifgebiete unterteilen jede Entgeltgruppe in Stufen, die sich nach Berufserfahrung bzw. zusätzlichen Anforderungen richten. Wann genau welche Stufe erreicht wird, unterscheidet sich je Region (z. B. Hauptstufe nach 6 Monaten bis 3 Jahren, je nach Tarifgebiet und Entgeltgruppe). Die genauen Regeln werden auf den einzelnen Tarifgebiet-Seiten erklärt."
         }
       }
     ]
@@ -596,63 +620,86 @@
         <a href="/entgelttabelle-schleswig-holstein.html" class="rp-region-link" data-region="Schleswig-Holstein/MV/NW-Niedersachsen">Schleswig-Holstein/MV/NW-Niedersachsen</a>
         <a href="/entgelttabelle-thueringen.html" class="rp-region-link" data-region="Thüringen">Thüringen</a>
       </div>
+      <p class="region-nav-teaser" data-i18n="regionNavTeaser">Tipp: Auf den Tarifgebiet-Seiten findest du auch die Ausbildungsverg&uuml;tung und Erkl&auml;rungen, wann welche Entgeltstufe erreicht wird.</p>
     </section>
 
     <!-- FAQ Section -->
     <section class="faq-section" id="faq" data-nosnippet>
       <h2 data-i18n="faqTitle">H&auml;ufige Fragen zum ERA Rechner</h2>
 
-      <details class="faq-item">
+      <div class="faq-filter" role="group" aria-label="FAQ-Kategorien">
+        <button type="button" class="faq-chip active" data-faq-filter="all" aria-pressed="true" data-i18n="faqCatAll">Alle</button>
+        <button type="button" class="faq-chip" data-faq-filter="grundlagen" aria-pressed="false" data-i18n="faqCatBasics">Grundlagen &amp; Tarif</button>
+        <button type="button" class="faq-chip" data-faq-filter="berechnung" aria-pressed="false" data-i18n="faqCatCalc">Berechnung</button>
+        <button type="button" class="faq-chip" data-faq-filter="projekt" aria-pressed="false" data-i18n="faqCatProject">&Uuml;ber das Projekt</button>
+      </div>
+
+      <details class="faq-item" data-faq-cat="grundlagen">
         <summary data-i18n="faq1Q">Was ist das ERA-Entgeltsystem der Metall- und Elektroindustrie?</summary>
         <p data-i18n="faq1A">Das Entgeltrahmenabkommen (ERA) ist das Entgeltsystem f&uuml;r die Metall- und Elektroindustrie in Deutschland. Es regelt die Eingruppierung in Entgeltgruppen (EG 1&ndash;17, je nach Tarifgebiet) und wird zwischen den Arbeitgeberverb&auml;nden und der IG Metall ausgehandelt. Die ERA-Entgelttabellen legen die monatlichen Grundentgelte f&uuml;r jede Entgeltgruppe und jedes Tarifgebiet fest.</p>
       </details>
 
-      <details class="faq-item">
+      <details class="faq-item" data-faq-cat="grundlagen">
         <summary data-i18n="faq2Q">Wie aktuell sind die Entgelttabellen in diesem Rechner?</summary>
         <p data-i18n="faq2A">Der Rechner enth&auml;lt die offiziellen ERA-Entgelttabellen f&uuml;r 2025 und 2026 (g&uuml;ltig ab 01.04.2026) f&uuml;r alle 15 Tarifgebiete. Die Werte werden nach jeder Tarifrunde zeitnah aktualisiert.</p>
       </details>
 
-      <details class="faq-item">
+      <details class="faq-item" data-faq-cat="grundlagen">
+        <summary data-i18n="faq2026Q">Was &auml;ndert sich mit dem Tarifjahr 2026?</summary>
+        <p data-i18n-html="faq2026A">Zum 1.&nbsp;April 2026 steigen die ERA-Grundentgelte in allen 15 Tarifgebieten um 3,1&nbsp;%. Au&szlig;erdem wird das T-ZUG&nbsp;B deutlich angehoben &ndash; von 18,5&nbsp;% auf 26,5&nbsp;% des Eckentgelts (EG&nbsp;5). Die &uuml;brigen Sonderzahlungen bleiben unver&auml;ndert: Urlaubsgeld (69&nbsp;%, in NRW 72&nbsp;%), Weihnachtsgeld (25&ndash;55&nbsp;%), T-ZUG&nbsp;A (27,5&nbsp;%) und Transformationsgeld (18,4&nbsp;%).<br><br>Neu ist au&szlig;erdem der Auszahlungszeitpunkt: T-ZUG&nbsp;B wird k&uuml;nftig im Februar ausgezahlt (bisher Juli) &ndash; im Tausch mit dem Transformationsgeld (T-Geld), das nun im Juli kommt. Eine m&ouml;gliche &bdquo;Differenzierung&ldquo; (K&uuml;rzung oder Verschiebung in wirtschaftlich angeschlagenen Betrieben) betrifft seither nicht mehr das T-ZUG&nbsp;B, sondern das T-Geld &ndash; so bleibt T-ZUG&nbsp;B als soziale Komponente erhalten. W&auml;hle im Rechner einfach das Tarifjahr 2026, um die neuen Werte zu sehen.</p>
+      </details>
+
+      <details class="faq-item" data-faq-cat="berechnung">
         <summary data-i18n="faq3Q">Welche Sonderzahlungen sind im Jahresbrutto enthalten?</summary>
         <p data-i18n="faq3A">Das berechnete Bruttojahresgehalt enth&auml;lt neben dem monatlichen Entgelt auch: Urlaubsgeld (69&nbsp;% eines Monatsentgelts, in NRW 72&nbsp;%), Weihnachtsgeld (25&ndash;55&nbsp;% je nach Betriebszugeh&ouml;rigkeit), T-ZUG A (27,5&nbsp;%), Transformationsgeld (18,4&nbsp;%) und T-ZUG B (fester Betrag auf Basis des Eckentgelts). Alle Sonderzahlungen au&szlig;er T-ZUG B berechnen sich auf Basis des Monatsentgelts inkl. Leistungszulage.</p>
       </details>
 
-      <details class="faq-item">
+      <details class="faq-item" data-faq-cat="berechnung">
         <summary data-i18n="faq4Q">Was ist die Leistungszulage und wie wirkt sie sich aus?</summary>
         <p data-i18n="faq4A">Die Leistungszulage (fr&uuml;her &uuml;bertarifliche Zulage) ist ein prozentualer Aufschlag auf das tarifliche Grundentgelt, den der Arbeitgeber individuell gew&auml;hrt. Sie erh&ouml;ht das monatliche Bruttoentgelt und flie&szlig;t in die Berechnung von Urlaubsgeld, Weihnachtsgeld, T-ZUG A und Transformationsgeld ein. Der T-ZUG B basiert dagegen auf dem Eckentgelt (EG&nbsp;5) und ist unabh&auml;ngig von der pers&ouml;nlichen Leistungszulage.</p>
       </details>
 
-      <details class="faq-item">
+      <details class="faq-item" data-faq-cat="projekt">
         <summary data-i18n="faq5Q">Ist dies ein offizielles Angebot der IG Metall?</summary>
         <p data-i18n="faq5A">Nein. Dieser Rechner ist ein unabh&auml;ngiges, kostenloses und werbefreies Open-Source-Projekt. Er basiert auf den &ouml;ffentlich verf&uuml;gbaren ERA-Entgelttabellen, ist jedoch kein offizielles Angebot der IG Metall oder eines Arbeitgeberverbandes. Alle Angaben ohne Gew&auml;hr.</p>
       </details>
 
-      <details class="faq-item">
+      <details class="faq-item" data-faq-cat="berechnung">
         <summary data-i18n="faq6Q">Wie genau ist die Netto-Sch&auml;tzung?</summary>
         <p data-i18n="faq6A">Die Netto-Sch&auml;tzung ist eine N&auml;herung auf Basis progressiver Lohnsteuers&auml;tze und der aktuellen Sozialversicherungsbeitr&auml;ge (inkl. Beitragsbemessungsgrenzen). Sie ersetzt keine individuelle Steuerberechnung &ndash; f&uuml;r verbindliche Werte empfehlen wir den offiziellen Lohnsteuerrechner des Bundesfinanzministeriums.</p>
       </details>
 
-      <details class="faq-item">
+      <details class="faq-item" data-faq-cat="grundlagen">
         <summary data-i18n="faq7Q">F&uuml;r welche Bundesl&auml;nder und Tarifgebiete gilt der Rechner?</summary>
         <p data-i18n="faq7A">Der Rechner unterst&uuml;tzt alle 15 ERA-Tarifgebiete: Baden-W&uuml;rttemberg, Bayern, Berlin/Brandenburg, Hamburg/Unterweser, Hessen, Niedersachsen, Nordrhein-Westfalen, Osnabr&uuml;ck-Emsland, Pfalz, Rheinland-Rheinhessen, Saarland, Sachsen, Sachsen-Anhalt, Schleswig-Holstein/MV/NW-Niedersachsen und Th&uuml;ringen.</p>
       </details>
 
-      <details class="faq-item">
+      <details class="faq-item" data-faq-cat="grundlagen">
+        <summary data-i18n="faqAusbildungQ">Wie hoch ist die Ausbildungsverg&uuml;tung in der Metall- und Elektroindustrie?</summary>
+        <p data-i18n-html="faqAusbildungA">Die tarifliche Ausbildungsverg&uuml;tung steigt mit jedem Ausbildungsjahr und unterscheidet sich je Tarifgebiet. 2026 liegt sie im ersten Ausbildungsjahr je nach Region bei rund 1.240&ndash;1.370&nbsp;&euro; und erreicht im vierten Jahr bis zu rund 1.560&nbsp;&euro;. Die genauen Betr&auml;ge f&uuml;r dein Tarifgebiet findest du auf den jeweiligen <a href="#entgelttabellen">Entgelttabellen-Unterseiten</a>.</p>
+      </details>
+
+      <details class="faq-item" data-faq-cat="grundlagen">
+        <summary data-i18n="faqStufenQ">Was bedeuten die Entgeltstufen (z.&nbsp;B. Grund-, Haupt- und Zusatzstufe oder Stufe A/B/C)?</summary>
+        <p data-i18n-html="faqStufenA">Viele Tarifgebiete unterteilen jede Entgeltgruppe in Stufen, die sich nach Berufserfahrung bzw. zus&auml;tzlichen Anforderungen richten. Wann genau welche Stufe erreicht wird, unterscheidet sich je Region &ndash; wir erkl&auml;ren es direkt auf den Tarifgebiet-Seiten, z.&nbsp;B. <a href="/entgelttabelle-bayern.html">Bayern</a>, <a href="/entgelttabelle-berlin-brandenburg.html">Berlin/Brandenburg</a>, <a href="/entgelttabelle-hamburg.html">Hamburg/Unterweser</a>, <a href="/entgelttabelle-osnabrueck-emsland.html">Osnabr&uuml;ck-Emsland</a> oder <a href="/entgelttabelle-niedersachsen.html">Niedersachsen</a>. Eine &Uuml;bersicht aller Gebiete gibt es bei den <a href="#entgelttabellen">ERA Entgelttabellen</a>.</p>
+      </details>
+
+      <details class="faq-item" data-faq-cat="berechnung">
         <summary data-i18n="faq9Q">Was ist der Unterschied zwischen T-ZUG A und T-ZUG B?</summary>
         <p data-i18n="faq9A">T-ZUG A betr&auml;gt 27,5&nbsp;% eines Monatsentgelts und kann wahlweise als Geldleistung oder als bis zu 8 bezahlte freie Tage genommen werden. T-ZUG B ist ein j&auml;hrlicher Festbetrag, der sich nach dem Eckentgelt (EG&nbsp;5) der jeweiligen Region richtet &ndash; unabh&auml;ngig von der pers&ouml;nlichen Entgeltgruppe. Beide Zahlungen werden einmal j&auml;hrlich ausgezahlt.</p>
       </details>
 
-      <details class="faq-item">
+      <details class="faq-item" data-faq-cat="berechnung">
         <summary data-i18n="faq10Q">Wie berechne ich mein ERA-Gehalt bei Teilzeit?</summary>
         <p data-i18n="faq10A">Das Teilzeitgehalt ergibt sich aus: Grundentgelt &times; (tats&auml;chliche Wochenstunden &divide; 35). Bei 28&nbsp;Stunden in der Woche betr&auml;gt das Entgelt also 80&nbsp;% des Vollzeitwertes. Alle Sonderzahlungen wie Urlaubsgeld, Weihnachtsgeld und T-ZUG werden anteilig auf Basis dieses angepassten Monatsentgelts berechnet. Im Rechner einfach die gew&uuml;nschten Wochenstunden eintragen &ndash; alles wird automatisch umgerechnet.</p>
       </details>
 
-      <details class="faq-item">
+      <details class="faq-item" data-faq-cat="berechnung">
         <summary data-i18n="faq11Q">Was bedeutet Leistungszulage und wie beeinflusst sie Sonderzahlungen?</summary>
         <p data-i18n="faq11A">Die Leistungszulage ist ein individueller prozentualer Aufschlag auf das tarifliche Grundentgelt (0&ndash;30&nbsp;%), den der Arbeitgeber gew&auml;hrt. Sie erh&ouml;ht nicht nur das monatliche Bruttogehalt, sondern wirkt sich auch auf Urlaubsgeld, Weihnachtsgeld, T-ZUG&nbsp;A und Transformationsgeld aus, da diese als Prozentsatz des Monatsentgelts berechnet werden. Einzige Ausnahme: T-ZUG&nbsp;B basiert auf dem Eckentgelt EG&nbsp;5 und ist von der pers&ouml;nlichen Leistungszulage unabh&auml;ngig.</p>
       </details>
 
-      <details class="faq-item">
+      <details class="faq-item" data-faq-cat="projekt">
         <summary data-i18n="faq8Q">Wie kann ich das Projekt unterst&uuml;tzen?</summary>
         <p data-i18n="faq8A">Der Rechner ist kostenlos, werbefrei und wird in der Freizeit gepflegt. Wer das Projekt unterst&uuml;tzen m&ouml;chte, kann das gerne &uuml;ber eine kleine Spende via PayPal tun &ndash; das hilft, den Dienst langfristig am Laufen zu halten.</p>
         <p><a href="https://paypal.me/erarechner" target="_blank" rel="noopener noreferrer" class="faq-donate-link">&#128151; Jetzt via PayPal spenden</a></p>

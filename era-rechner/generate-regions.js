@@ -141,6 +141,11 @@ function generateHTML(regionKey) {
       <div id="rp-bonus"></div>
     </section>
 
+    <section class="calculator rp-section">
+      <h2 id="rp-ausbildung-heading"></h2>
+      <div id="rp-ausbildung"></div>
+    </section>
+
     <div class="rp-cta">
       <p id="rp-cta-text"></p>
       <a href="/" id="rp-cta-btn" class="rp-cta-btn"></a>

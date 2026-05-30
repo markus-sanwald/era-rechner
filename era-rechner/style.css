@@ -1035,6 +1035,37 @@ header h1 {
   color: var(--color-text);
 }
 
+.faq-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+.faq-chip {
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-card);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.faq-chip:hover {
+  border-color: var(--color-primary);
+  color: var(--color-text);
+}
+.faq-chip.active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+}
+.faq-hidden {
+  display: none;
+}
+
 .faq-item {
   border-bottom: 1px solid var(--color-border);
 }
@@ -1605,6 +1636,14 @@ footer p + p {
   color: var(--color-text-muted);
   margin-bottom: 1rem;
 }
+.region-nav-teaser {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  margin-top: 1rem;
+  padding-left: 0.75rem;
+  border-left: 3px solid var(--color-primary);
+  line-height: 1.55;
+}
 
 /* ===========================================================================
    Region Landing Pages (entgelttabelle-*.html)
@@ -1708,6 +1747,20 @@ footer p + p {
   color: var(--color-primary);
 }
 .rp-na { color: var(--color-text-muted); }
+
+/* Ausbildungsvergütung (informativ) */
+.rp-ausbildung-intro {
+  margin: 0 0 0.85rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+.rp-ausbildung-table { max-width: 420px; }
+.rp-ausbildung-note {
+  margin: 0.75rem 0 0;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
 
 /* Step header tooltip */
 .rp-th-info {

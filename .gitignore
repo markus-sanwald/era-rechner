@@ -20,6 +20,10 @@ packages/
 # Claude Code
 .claude/
 
+# Andere Projekte mit eigenem Git-Repo (nicht Teil des era-rechner-Repos)
+parkana/
+tfw-rechner/
+
 # OS files
 Thumbs.db
 ehthumbs.db

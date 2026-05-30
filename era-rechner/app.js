@@ -1445,4 +1445,28 @@ initChartTooltip();
   ro.observe(elChartArea);
 })();
 
+// FAQ-Kategorie-Filter (Chips). Alle Fragen bleiben im DOM (SEO/JSON-LD),
+// gefilterte werden nur ausgeblendet.
+function initFaqFilter() {
+  const bar = document.querySelector(".faq-filter");
+  if (!bar) return;
+  const items = document.querySelectorAll(".faq-item");
+  const chips = bar.querySelectorAll(".faq-chip");
+  bar.addEventListener("click", function (e) {
+    const btn = e.target.closest("[data-faq-filter]");
+    if (!btn) return;
+    const cat = btn.dataset.faqFilter;
+    chips.forEach(c => {
+      const active = c === btn;
+      c.classList.toggle("active", active);
+      c.setAttribute("aria-pressed", active ? "true" : "false");
+    });
+    items.forEach(it => {
+      const show = cat === "all" || it.dataset.faqCat === cat;
+      it.classList.toggle("faq-hidden", !show);
+    });
+  });
+}
+
 init();
+initFaqFilter();
