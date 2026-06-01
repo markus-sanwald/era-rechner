@@ -189,7 +189,7 @@
         <div class="rp-bonus-card">
           <div class="rp-bonus-name">${t("rpBonusLabelTZugB")}</div>
           <div class="rp-bonus-val">≈ ${tZugBAmt}</div>
-          <div class="rp-bonus-note">${pct(b.tZugB)} ${t("rpBonusTZugBNote")}</div>
+          <div class="rp-bonus-note">${pct(b.tZugB)} ${tReplace("rpBonusTZugBNote", { eg: b.eckentgeltEG ?? 5 })}</div>
         </div>
         <div class="rp-bonus-card rp-bonus-card--wide">
           <div class="rp-bonus-name">${t("rpBonusLabelWeihnachtsgeld")}</div>
