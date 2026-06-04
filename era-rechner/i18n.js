@@ -208,7 +208,7 @@ const TRANSLATIONS = {
     rpCtaText: "Berechne dein pers\u00f6nliches Gehalt inkl. Teilzeit, Leistungszulage und Nettolohn:",
     rpCtaBtn: "Gehaltsrechner f\u00fcr ${region} \u00f6ffnen \u2192",
     rpAllRegions: "Alle Tarifgebiete",
-    rpSubtitle: "IG Metall Gehaltstabelle 2025 & 2026",
+    rpSubtitle: "IG Metall Tariftabelle 2025 & 2026",
     rpValidFrom: "gültig ab 01.04.${year}",
     rpStepInfoLabel: "Stufen:",
     rpBonusLabelUrlaubsgeld: "Urlaubsgeld",
@@ -555,7 +555,7 @@ const TRANSLATIONS = {
     rpCtaText: "Calculate your personal salary including part-time, performance allowance and net pay:",
     rpCtaBtn: "Open salary calculator for ${region} →",
     rpAllRegions: "All Collective Bargaining Regions",
-    rpSubtitle: "IG Metall Salary Table 2025 & 2026",
+    rpSubtitle: "IG Metall Tariff Table 2025 & 2026",
     rpValidFrom: "valid from 04/01/${year}",
     rpStepInfoLabel: "Steps:",
     rpBonusLabelUrlaubsgeld: "Holiday Pay",
@@ -754,10 +754,13 @@ function onTranslationsApplied(callback) {
 }
 
 function applyTranslations() {
-  // Page title (mit aktuellem Tarifjahr)
+  // Page title nur auf der Rechner-Startseite dynamisch setzen (mit Tarifjahr).
+  // Auf Unterseiten (Regionen, Glossar) bleibt der statische, seitenspezifische
+  // <title> erhalten – sonst würden alle Seiten denselben Homepage-Titel tragen (SEO).
   const elJahrSel = document.getElementById("jahr");
-  const currentYear = elJahrSel?.value || new Date().getFullYear();
-  document.title = t("pageTitle").replace("{year}", currentYear);
+  if (elJahrSel) {
+    document.title = t("pageTitle").replace("{year}", elJahrSel.value || new Date().getFullYear());
+  }
 
   // All elements with data-i18n attribute
   document.querySelectorAll("[data-i18n]").forEach(el => {

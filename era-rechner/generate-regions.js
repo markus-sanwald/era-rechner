@@ -77,14 +77,14 @@ function generateHTML(regionKey) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>(function(){var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);})();</script>
-  <title>ERA Entgelttabelle ${titleShortHtml} ${latestYear} &ndash; IG Metall Gehaltstabelle</title>
-  <meta name="description" content="ERA Entgelttabelle ${regionHtml} ${firstYear} &amp; ${latestYear} &ndash; alle ${count} Entgeltgruppen nach IG Metall Tarifvertrag. Monatsentgelt, Weihnachtsgeld, Urlaubsgeld und T-ZUG auf einen Blick.">
+  <title>IG Metall Tariftabelle ${latestYear} ${titleShortHtml} &ndash; ERA Entgelttabelle</title>
+  <meta name="description" content="IG Metall Tariftabelle ${latestYear} f&uuml;r ${regionHtml}: alle ${count} Entgeltgruppen der ERA-Entgelttabelle (${firstYear} &amp; ${latestYear}) mit Monatsentgelt, Weihnachtsgeld, Urlaubsgeld, T-ZUG und Ausbildungsverg&uuml;tung.">
   <meta name="robots" content="index, follow">
   <meta name="author" content="era-rechner.de">
   <link rel="canonical" href="https://www.era-rechner.de/${slug}.html">
 
-  <meta property="og:title" content="ERA Entgelttabelle ${titleShortHtml} ${latestYear} &ndash; IG Metall">
-  <meta property="og:description" content="ERA Entgelttabelle ${regionHtml} ${firstYear} &amp; ${latestYear} &ndash; alle ${count} Entgeltgruppen nach IG Metall Tarifvertrag.">
+  <meta property="og:title" content="IG Metall Tariftabelle ${latestYear} ${titleShortHtml} &ndash; ERA Entgelttabelle">
+  <meta property="og:description" content="IG Metall Tariftabelle ${latestYear} f&uuml;r ${regionHtml}: alle ${count} Entgeltgruppen der ERA-Entgelttabelle mit allen Sonderzahlungen und Ausbildungsverg&uuml;tung.">
   <meta property="og:url" content="https://www.era-rechner.de/${slug}.html">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="ERA Entgeltrechner">
@@ -115,7 +115,7 @@ function generateHTML(regionKey) {
         </button>
       </div>
       <h1>ERA Entgelttabelle ${regionHtml}</h1>
-      <p class="subtitle" data-i18n="rpSubtitle">IG Metall Gehaltstabelle ${firstYear} &amp; ${latestYear}</p>
+      <p class="subtitle" data-i18n="rpSubtitle">IG Metall Tariftabelle ${firstYear} &amp; ${latestYear}</p>
       <p class="header-disclaimer" data-i18n="headerDisclaimer">Unabh&auml;ngiges Open-Source-Projekt &ndash; kein offizielles Angebot der IG Metall.</p>
     </header>
 
