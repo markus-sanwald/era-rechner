@@ -4,9 +4,9 @@ const TRANSLATIONS = {
   de: {
     // Page
     pageTitle: "ERA Entgeltrechner {year} \u2013 IG Metall Gehaltsrechner",
-    title: "ERA Entgeltrechner \u2013 IG Metall",
+    title: "IG Metall Gehaltsrechner",
     subtitle: "Gehaltsrechner Metall- und Elektroindustrie",
-    subtitleWithYear: "Gehaltsrechner ${year} \u00b7 Metall- und Elektroindustrie",
+    subtitleWithYear: "ERA Entgeltrechner ${year} f\u00fcr die Metall- und Elektroindustrie",
     headerDisclaimer: "Unabh\u00e4ngiges Open-Source-Projekt \u2013 kein offizielles Angebot der IG Metall.",
     ariaLabel: "Gehaltsrechner",
 
@@ -203,7 +203,7 @@ const TRANSLATIONS = {
     regionNavIntro: "W\u00e4hle dein Tarifgebiet f\u00fcr die vollst\u00e4ndige Entgelttabelle mit allen Entgeltgruppen und Sonderzahlungen:",
     regionNavTeaser: "Tipp: Auf den Tarifgebiet-Seiten findest du auch die Ausbildungsverg\u00fctung und Erkl\u00e4rungen, wann welche Entgeltstufe erreicht wird.",
     rpIntro: "Die ERA Entgelttabelle f\u00fcr das Tarifgebiet <strong>${region}</strong> listet alle ${count} Entgeltgruppen (EG) mit den monatlichen Grundentgelten nach dem IG Metall Tarifvertrag. G\u00fcltig f\u00fcr Vollzeit (35 Std./Woche). Mit dem Rechner kannst du dein individuelles Gehalt inkl. Teilzeit, Leistungszulage und Nettolohn berechnen.",
-    rpTableHeading: "Entgelttabelle",
+    rpTableHeading: "Entgelttabelle / Tariftabelle",
     rpBonusHeading: "Sonderzahlungen",
     rpCtaText: "Berechne dein pers\u00f6nliches Gehalt inkl. Teilzeit, Leistungszulage und Nettolohn:",
     rpCtaBtn: "Gehaltsrechner f\u00fcr ${region} \u00f6ffnen \u2192",
@@ -315,9 +315,9 @@ const TRANSLATIONS = {
   en: {
     // Page
     pageTitle: "ERA Salary Calculator {year} \u2013 IG Metall Pay Calculator",
-    title: "ERA Salary Calculator \u2013 IG Metall",
+    title: "IG Metall Pay Calculator",
     subtitle: "Pay Calculator for Metal and Electrical Industry",
-    subtitleWithYear: "Pay Calculator ${year} \u00b7 Metal and Electrical Industry",
+    subtitleWithYear: "ERA Salary Calculator ${year} for the metal and electrical industry",
     headerDisclaimer: "Independent open-source project \u2013 not an official IG Metall service.",
     ariaLabel: "Salary Calculator",
 
@@ -550,7 +550,7 @@ const TRANSLATIONS = {
     regionNavIntro: "Select your region for the full salary table with all pay groups and special payments:",
     regionNavTeaser: "Tip: The regional pages also show the apprentice pay and explain when each pay step is reached.",
     rpIntro: "The ERA salary table for the <strong>${region}</strong> collective bargaining region lists all ${count} pay groups (EG) with monthly base salaries under the IG Metall collective agreement. Valid for full-time (35 hrs/week). Use the calculator for your individual salary including part-time, performance allowance and net pay.",
-    rpTableHeading: "Salary Table",
+    rpTableHeading: "Salary Table / Tariff Table",
     rpBonusHeading: "Special Payments",
     rpCtaText: "Calculate your personal salary including part-time, performance allowance and net pay:",
     rpCtaBtn: "Open salary calculator for ${region} →",
