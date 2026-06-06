@@ -1446,26 +1446,91 @@ initChartTooltip();
 })();
 
 // FAQ-Kategorie-Filter (Chips). Alle Fragen bleiben im DOM (SEO/JSON-LD),
-// gefilterte werden nur ausgeblendet.
+// gefilterte werden nur ausgeblendet. In der "Alle"-Ansicht wird die Liste
+// auf COLLAPSED_LIMIT begrenzt; der Rest steht hinter "Alle Fragen anzeigen".
 function initFaqFilter() {
   const bar = document.querySelector(".faq-filter");
   if (!bar) return;
-  const items = document.querySelectorAll(".faq-item");
-  const chips = bar.querySelectorAll(".faq-chip");
+  const section = bar.closest(".faq-section");
+  const items = Array.from(document.querySelectorAll(".faq-item"));
+  const chips = Array.from(bar.querySelectorAll(".faq-chip"));
+  const COLLAPSED_LIMIT = 5;
+  let currentCat = "all";
+  let expanded = false;
+
+  // "Alle Fragen anzeigen / Weniger anzeigen"-Button (nur in der "Alle"-Ansicht)
+  const moreBtn = document.createElement("button");
+  moreBtn.type = "button";
+  moreBtn.className = "faq-more-btn";
+  moreBtn.addEventListener("click", function () {
+    expanded = !expanded;
+    render();
+    if (!expanded) section.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+  section.appendChild(moreBtn);
+
+  // Zähler an die Chips hängen (idempotent – überlebt Sprachwechsel via Callback)
+  function decorateChips() {
+    chips.forEach(c => {
+      const cat = c.dataset.faqFilter;
+      const count = cat === "all"
+        ? items.length
+        : items.filter(it => it.dataset.faqCat === cat).length;
+      let span = c.querySelector(".faq-chip-count");
+      if (!span) {
+        span = document.createElement("span");
+        span.className = "faq-chip-count";
+        c.appendChild(span);
+      }
+      span.textContent = count;
+    });
+  }
+
+  function render() {
+    const matching = items.filter(
+      it => currentCat === "all" || it.dataset.faqCat === currentCat
+    );
+    const limit = currentCat === "all" && !expanded ? COLLAPSED_LIMIT : Infinity;
+    let shown = 0;
+    items.forEach(it => {
+      const isMatch = currentCat === "all" || it.dataset.faqCat === currentCat;
+      const show = isMatch && shown < limit;
+      if (show) shown++;
+      it.classList.toggle("faq-hidden", !show);
+    });
+    const hasMore = matching.length > shown;
+    if (currentCat === "all" && (hasMore || expanded)) {
+      moreBtn.style.display = "";
+      moreBtn.textContent = expanded
+        ? t("faqShowLess")
+        : t("faqShowMore").replace("%n", matching.length);
+    } else {
+      moreBtn.style.display = "none";
+    }
+  }
+
   bar.addEventListener("click", function (e) {
     const btn = e.target.closest("[data-faq-filter]");
     if (!btn) return;
-    const cat = btn.dataset.faqFilter;
+    currentCat = btn.dataset.faqFilter;
+    expanded = false;
     chips.forEach(c => {
       const active = c === btn;
       c.classList.toggle("active", active);
       c.setAttribute("aria-pressed", active ? "true" : "false");
     });
-    items.forEach(it => {
-      const show = cat === "all" || it.dataset.faqCat === cat;
-      it.classList.toggle("faq-hidden", !show);
-    });
+    render();
   });
+
+  decorateChips();
+  render();
+  // Sprachwechsel: textContent der Chips wird überschrieben → Zähler & Button neu setzen
+  if (typeof onTranslationsApplied === "function") {
+    onTranslationsApplied(function () {
+      decorateChips();
+      render();
+    });
+  }
 }
 
 init();
