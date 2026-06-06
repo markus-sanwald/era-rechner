@@ -1160,14 +1160,14 @@ footer p + p {
 }
 
 .footer-donate a {
-  color: var(--color-text-muted);
-  text-decoration: none;
+  color: var(--color-primary);
+  text-decoration: underline;
+  font-weight: 600;
   transition: color var(--transition);
 }
 
 .footer-donate a:hover {
-  color: var(--color-primary);
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 /* Contact Form */
