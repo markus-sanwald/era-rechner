@@ -990,31 +990,56 @@ function calcSalary(tabellenMonthly) {
   }
 
   const datumStr = elEintrittsdatum.value;
-  // Weihnachtsgeld-Stichtag: 31. Dezember des gewählten Tarifjahres
-  const wgStichtag = new Date(parseInt(elJahr.value, 10), 11, 31);
-  const monate = datumStr ? berechneMonate(datumStr, wgStichtag) : null;
-  const hatAnspruch = monate === null || monate >= bonus.minMonate;
+  const jahr = parseInt(elJahr.value, 10);
 
-  // Weihnachtsgeld-Satz bestimmen
+  // Anspruch auf die Sonderzahlungen besteht erst nach 6 Monaten ununterbrochener Betriebszugehörigkeit,
+  // gemessen zum jeweiligen Auszahlungsmonat (letzter Tag des Monats). Quelle: IG Metall, Tarifverträge.
+  //  - Weihnachtsgeld: 31. Dezember des Tarifjahres (Betriebszugehörigkeit bis Jahresende)
+  //  - Urlaubsgeld: Auszahlung im Juni → Stichtag 30. Juni (Eintritt spätestens Ende Dezember des Vorjahres)
+  //  - T-ZUG A: Auszahlung im Juli → Stichtag 31. Juli (Eintritt spätestens 31. Januar)
+  //  - T-Geld & T-ZUG B: ab 2026 getauschte Auszahlung – T-Geld im Juli, T-ZUG B im Februar;
+  //    bis 2025 umgekehrt (T-Geld im Februar, T-ZUG B im Juli). Februar-Stichtag → Eintritt spätestens Ende August.
+  const letzterTag     = (monatIndex) => new Date(jahr, monatIndex + 1, 0); // Tag 0 = letzter Tag des Monats (schaltjahrsicher)
+  const wgStichtag     = new Date(jahr, 11, 31);
+  const juniStichtag   = letzterTag(5); // 30. Juni
+  const juliStichtag   = letzterTag(6); // 31. Juli
+  const febStichtag    = letzterTag(1); // Ende Februar
+  const tGeldStichtag  = jahr >= 2026 ? juliStichtag : febStichtag;
+  const tZugBStichtag  = jahr >= 2026 ? febStichtag  : juliStichtag;
+
+  // Bei leerem Eintrittsdatum gilt die Annahme "bereits über 6 Monate im Betrieb" → voller Anspruch.
+  const hatAnspruchZu = (stichtag) => {
+    if (!datumStr) return true;
+    const m = berechneMonate(datumStr, stichtag);
+    return m === null || m >= bonus.minMonate;
+  };
+  const monate         = datumStr ? berechneMonate(datumStr, wgStichtag) : null; // für Weihnachtsgeld-Staffel
+  const hatUrlaubsgeld = hatAnspruchZu(juniStichtag);
+  const hatTZugA       = hatAnspruchZu(juliStichtag);
+  const hatTGeld       = hatAnspruchZu(tGeldStichtag);
+  const hatTZugB       = hatAnspruchZu(tZugBStichtag);
+
+  // Weihnachtsgeld-Satz bestimmen (eigener Stichtag 31.12., self-gating: Satz = 0 bei < 6 Monaten)
   const wgSatz = monate === null
     ? bonus.weihnachtsgeldStaffel[0].satz
     : getWeihnachtsgeldSatz(monate, bonus.weihnachtsgeldStaffel);
+  const hatWeihnachtsgeld = wgSatz > 0;
 
   // Sonderzahlungen basieren auf Monatsentgelt brutto (inkl. Leistungszulage und freiwilliger Zulage)
   const monatsentgeltBrutto = monthly + utMonatlich + freiwilligeZulageMonatlich;
-  const urlaubsgeld     = hatAnspruch ? monatsentgeltBrutto * bonus.urlaubsgeld : 0;
-  const wgDynamisch     = hatAnspruch ? monatsentgeltBrutto * wgSatz : 0;
+  const urlaubsgeld     = hatUrlaubsgeld ? monatsentgeltBrutto * bonus.urlaubsgeld : 0;
+  const wgDynamisch     = monatsentgeltBrutto * wgSatz;
   const wgManuellVal    = elWeihnachtsgeldManuell.value.trim();
   const wgIstManuell    = wgManuellVal !== "" && !isNaN(parseFloat(wgManuellVal));
   const wgSatzEffektiv  = wgIstManuell ? Math.min(55, Math.max(0, parseFloat(wgManuellVal))) / 100 : wgSatz;
   const weihnachtsgeld  = wgIstManuell ? monatsentgeltBrutto * wgSatzEffektiv : wgDynamisch;
   const tZugAFreiTage   = elTZugAFrei.checked;
-  const tZugA           = hatAnspruch && !tZugAFreiTage ? monatsentgeltBrutto * bonus.tZugA : 0;
-  const tGeld           = hatAnspruch && bonus.tGeld ? monatsentgeltBrutto * bonus.tGeld : 0;
-  const tZugB           = hatAnspruch ? bonus.eckentgelt * azFaktor * bonus.tZugB : 0;
+  const tZugA           = hatTZugA && !tZugAFreiTage ? monatsentgeltBrutto * bonus.tZugA : 0;
+  const tGeld           = hatTGeld && bonus.tGeld ? monatsentgeltBrutto * bonus.tGeld : 0;
+  const tZugB           = hatTZugB ? bonus.eckentgelt * azFaktor * bonus.tZugB : 0;
   const total           = grundgehalt + utJaehrlich + freiwilligeZulageJaehrlich + urlaubsgeld + weihnachtsgeld + tZugA + tGeld + tZugB + sonderzahlung;
 
-  return { ...result, bonus, hatAnspruch, wgSatz, wgDynamisch, wgIstManuell, urlaubsgeld, weihnachtsgeld, tZugA, tGeld, tZugB, total };
+  return { ...result, bonus, hatUrlaubsgeld, hatTZugA, hatTGeld, hatTZugB, hatWeihnachtsgeld, wgSatz, wgDynamisch, wgIstManuell, urlaubsgeld, weihnachtsgeld, tZugA, tGeld, tZugB, total };
 }
 
 function displayResult(r) {
@@ -1069,7 +1094,7 @@ function displayResult(r) {
     // Dynamische Prozentanzeige im Label + Placeholder für manuelles Feld
     const wgPctAnzeige = r.wgIstManuell
       ? parseFloat(elWeihnachtsgeldManuell.value)
-      : (r.hatAnspruch ? r.wgSatz * 100 : null);
+      : (r.hatWeihnachtsgeld ? r.wgSatz * 100 : null);
     const pctText = wgPctAnzeige !== null
       ? tReplace("xmasPayPct", { pct: fmtDE(wgPctAnzeige, 0) })
       : t("xmasPayNone");
