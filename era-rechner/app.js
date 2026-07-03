@@ -949,6 +949,19 @@ function getWeihnachtsgeldSatz(monate, staffel) {
   return 0;
 }
 
+function volleMonateImJahr(eintrittsdatum, jahr) {
+  // Zwölftelung nach Urlaubsabkommen (§ 2.5): Im Eintrittsjahr besteht der Urlaubsanspruch
+  // (und damit das zusätzliche Urlaubsgeld) nur zu 1/12 je vollem Beschäftigungsmonat.
+  // Ein angebrochener Eintrittsmonat zählt nicht als voller Monat.
+  const eintritt = new Date(eintrittsdatum);
+  if (isNaN(eintritt.getTime())) return null;
+  if (eintritt.getFullYear() < jahr) return 12;  // Eintritt vor dem Tarifjahr → voller Anspruch
+  if (eintritt.getFullYear() > jahr) return 0;   // Eintritt nach dem Tarifjahr
+  let ersterVollerMonat = eintritt.getMonth();   // 0-basiert
+  if (eintritt.getDate() > 1) ersterVollerMonat++;
+  return Math.max(0, 12 - ersterVollerMonat);
+}
+
 // ---------------------------------------------------------------------------
 // Display helpers
 // ---------------------------------------------------------------------------
@@ -992,16 +1005,18 @@ function calcSalary(tabellenMonthly) {
   const datumStr = elEintrittsdatum.value;
   const jahr = parseInt(elJahr.value, 10);
 
-  // Anspruch auf die Sonderzahlungen besteht erst nach 6 Monaten ununterbrochener Betriebszugehörigkeit,
+  // Anspruch auf T-ZUG A/B und T-Geld besteht erst nach 6 Monaten ununterbrochener Betriebszugehörigkeit,
   // gemessen zum jeweiligen Auszahlungsmonat (letzter Tag des Monats). Quelle: IG Metall, Tarifverträge.
   //  - Weihnachtsgeld: 31. Dezember des Tarifjahres (Betriebszugehörigkeit bis Jahresende)
-  //  - Urlaubsgeld: Auszahlung im Juni → Stichtag 30. Juni (Eintritt spätestens Ende Dezember des Vorjahres)
   //  - T-ZUG A: Auszahlung im Juli → Stichtag 31. Juli (Eintritt spätestens 31. Januar)
   //  - T-Geld & T-ZUG B: ab 2026 getauschte Auszahlung – T-Geld im Juli, T-ZUG B im Februar;
   //    bis 2025 umgekehrt (T-Geld im Februar, T-ZUG B im Juli). Februar-Stichtag → Eintritt spätestens Ende August.
+  //  - Urlaubsgeld: KEIN Stichtag – es hängt am Urlaubsanspruch (50 % Aufschlag je Urlaubstag,
+  //    Urlaubsabkommen § 4.3.1). Im Eintrittsjahr gilt die Zwölftelung (§ 2.5): 1/12 je vollem
+  //    Beschäftigungsmonat. Bei Eintritt nach dem 1.7. entsteht der anteilige Anspruch erst im
+  //    Folgejahr (§ 2.4.3, sechs Monate nach Eintritt), geht aber nicht verloren.
   const letzterTag     = (monatIndex) => new Date(jahr, monatIndex + 1, 0); // Tag 0 = letzter Tag des Monats (schaltjahrsicher)
   const wgStichtag     = new Date(jahr, 11, 31);
-  const juniStichtag   = letzterTag(5); // 30. Juni
   const juliStichtag   = letzterTag(6); // 31. Juli
   const febStichtag    = letzterTag(1); // Ende Februar
   const tGeldStichtag  = jahr >= 2026 ? juliStichtag : febStichtag;
@@ -1014,7 +1029,8 @@ function calcSalary(tabellenMonthly) {
     return m === null || m >= bonus.minMonate;
   };
   const monate         = datumStr ? berechneMonate(datumStr, wgStichtag) : null; // für Weihnachtsgeld-Staffel
-  const hatUrlaubsgeld = hatAnspruchZu(juniStichtag);
+  const urlaubsgeldMonate = datumStr ? volleMonateImJahr(datumStr, jahr) : null;
+  const urlaubsgeldFaktor = urlaubsgeldMonate === null ? 1 : urlaubsgeldMonate / 12;
   const hatTZugA       = hatAnspruchZu(juliStichtag);
   const hatTGeld       = hatAnspruchZu(tGeldStichtag);
   const hatTZugB       = hatAnspruchZu(tZugBStichtag);
@@ -1027,7 +1043,7 @@ function calcSalary(tabellenMonthly) {
 
   // Sonderzahlungen basieren auf Monatsentgelt brutto (inkl. Leistungszulage und freiwilliger Zulage)
   const monatsentgeltBrutto = monthly + utMonatlich + freiwilligeZulageMonatlich;
-  const urlaubsgeld     = hatUrlaubsgeld ? monatsentgeltBrutto * bonus.urlaubsgeld : 0;
+  const urlaubsgeld     = monatsentgeltBrutto * bonus.urlaubsgeld * urlaubsgeldFaktor;
   const wgDynamisch     = monatsentgeltBrutto * wgSatz;
   const wgManuellVal    = elWeihnachtsgeldManuell.value.trim();
   const wgIstManuell    = wgManuellVal !== "" && !isNaN(parseFloat(wgManuellVal));
@@ -1039,7 +1055,7 @@ function calcSalary(tabellenMonthly) {
   const tZugB           = hatTZugB ? bonus.eckentgelt * azFaktor * bonus.tZugB : 0;
   const total           = grundgehalt + utJaehrlich + freiwilligeZulageJaehrlich + urlaubsgeld + weihnachtsgeld + tZugA + tGeld + tZugB + sonderzahlung;
 
-  return { ...result, bonus, hatUrlaubsgeld, hatTZugA, hatTGeld, hatTZugB, hatWeihnachtsgeld, wgSatz, wgDynamisch, wgIstManuell, urlaubsgeld, weihnachtsgeld, tZugA, tGeld, tZugB, total };
+  return { ...result, bonus, urlaubsgeldMonate, urlaubsgeldFaktor, hatTZugA, hatTGeld, hatTZugB, hatWeihnachtsgeld, wgSatz, wgDynamisch, wgIstManuell, urlaubsgeld, weihnachtsgeld, tZugA, tGeld, tZugB, total };
 }
 
 function displayResult(r) {
@@ -1058,7 +1074,9 @@ function displayResult(r) {
   if (r.bonus) {
     elGrundgehalt.textContent    = currencyFmt.format(r.grundgehalt);
     elUrlaubsgeld.textContent    = currencyFmt.format(r.urlaubsgeld);
-    elUrlaubsgeldPct.textContent = tReplace("holidayPayPct", { pct: fmtDE(r.bonus.urlaubsgeld * 100, 0) });
+    elUrlaubsgeldPct.textContent = r.urlaubsgeldFaktor < 1
+      ? tReplace("holidayPayPctProRata", { pct: fmtDE(r.bonus.urlaubsgeld * 100, 0), monate: r.urlaubsgeldMonate })
+      : tReplace("holidayPayPct", { pct: fmtDE(r.bonus.urlaubsgeld * 100, 0) });
     elWeihnachtsgeld.textContent = currencyFmt.format(r.weihnachtsgeld);
     elTZugA.textContent          = currencyFmt.format(r.tZugA);
     elTGeld.textContent          = currencyFmt.format(r.tGeld);
@@ -1155,15 +1173,27 @@ function renderChart(monthly, utMonatlich, freiwilligeZulageMonatlich, urlaubsge
   const chartLabels = t("chartLabels");
   const baseSegCount = 1 + (utMonatlich > 0 ? 1 : 0) + (freiwilligeZulageMonatlich > 0 ? 1 : 0);
 
+  // Auszahlungsmonate (0-basiert): T-Geld & T-ZUG B ab 2026 getauscht (T-Geld Juli, T-ZUG B Februar;
+  // bis 2025 umgekehrt). Urlaubsgeld: pauschal im Juni – bei Eintritt nach dem 30.6. des Tarifjahres
+  // fließt der anteilige Betrag aber erst mit dem Resturlaub am Jahresende → Dezember.
+  const chartJahr   = parseInt(elJahr.value, 10);
+  const tZugBMonat  = chartJahr >= 2026 ? 1 : 6;
+  const tGeldMonat  = chartJahr >= 2026 ? 6 : 1;
+  let urlaubsgeldMonat = 5;
+  const eintritt = elEintrittsdatum.value ? new Date(elEintrittsdatum.value) : null;
+  if (eintritt && !isNaN(eintritt.getTime()) && eintritt.getFullYear() === chartJahr && eintritt.getMonth() >= 6) {
+    urlaubsgeldMonat = 11;
+  }
+
   const data = monthNames.map((label, i) => {
     const segs = [{ key: "monatsentgelt", value: monthly }];
     if (utMonatlich > 0) segs.push({ key: "utZulage", value: utMonatlich });
     if (freiwilligeZulageMonatlich > 0) segs.push({ key: "freiwilligeZulage", value: freiwilligeZulageMonatlich });
-    if (i === 1  && tZugB > 0)          segs.push({ key: "tZugB",          value: tZugB });
-    if (i === 5  && urlaubsgeld > 0)     segs.push({ key: "urlaubsgeld",    value: urlaubsgeld });
-    if (i === 6  && tZugA > 0)           segs.push({ key: "tZugA",          value: tZugA });
-    if (i === 6  && tGeld > 0)           segs.push({ key: "tGeld",          value: tGeld });
-    if (i === 10 && weihnachtsgeld > 0)  segs.push({ key: "weihnachtsgeld", value: weihnachtsgeld });
+    if (i === tZugBMonat && tZugB > 0)            segs.push({ key: "tZugB",          value: tZugB });
+    if (i === urlaubsgeldMonat && urlaubsgeld > 0) segs.push({ key: "urlaubsgeld",    value: urlaubsgeld });
+    if (i === 6  && tZugA > 0)                     segs.push({ key: "tZugA",          value: tZugA });
+    if (i === tGeldMonat && tGeld > 0)             segs.push({ key: "tGeld",          value: tGeld });
+    if (i === 10 && weihnachtsgeld > 0)            segs.push({ key: "weihnachtsgeld", value: weihnachtsgeld });
     const total = segs.reduce((s, seg) => s + seg.value, 0);
     return { label, segs, total };
   });
