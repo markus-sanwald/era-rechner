@@ -1390,7 +1390,35 @@ function updateCompare(currentMonthly, currentAnnual, currentNetto) {
     elCompareNettoAnnualDiff.className = "compare-netto-col " + (isZeroNettoAnnual ? "compare-neutral" : nettoAnnualDiff > 0 ? "compare-positive" : "compare-negative");
   }
 
+  syncCompareLabels();
   elCompareTable.classList.remove("hidden");
+}
+
+// ---------------------------------------------------------------------------
+// Vergleichstabelle auf sehr kleinen Bildschirmen: CSS baut jede Zeile zu
+// einer Karte mit Label:Wert-Zeilen um (siehe .compare-table td::before in
+// style.css). Die Labels kommen hier aus den i18n-Strings (sprachfest),
+// nicht aus den <th>, da <th> im Karten-Layout ausgeblendet wird und
+// innerText dort dann leer wäre.
+// ---------------------------------------------------------------------------
+
+function compareColumnLabel(key) {
+  return t(key).replace(/<br\s*\/?>/gi, " ").replace(/­/g, "");
+}
+
+function syncCompareLabels() {
+  const labels = [null,
+    compareColumnLabel("compareBruttoMonthly"),
+    compareColumnLabel("compareBruttoAnnual"),
+    compareColumnLabel("compareNettoMonthly"),
+    compareColumnLabel("compareNettoAnnual")
+  ];
+  document.querySelectorAll(".compare-table tbody tr").forEach(row => {
+    row.querySelectorAll("td").forEach((cell, i) => {
+      if (i === 0) return;
+      cell.setAttribute("data-label", labels[i]);
+    });
+  });
 }
 
 elCompareSave.addEventListener("click", () => {

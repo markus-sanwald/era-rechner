@@ -1528,6 +1528,11 @@ footer p + p {
   display: none;
 }
 
+.compare-table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 .compare-header {
   display: flex;
   justify-content: space-between;
@@ -1617,6 +1622,73 @@ footer p + p {
 
 .compare-netto-col.hidden {
   display: none;
+}
+
+/* Vergleichstabelle auf schmalen Bildschirmen: statt horizontalem Scrollen
+   (5 Spalten passen selbst ohne Netto kaum in ein Handy-Viewport) wird jede
+   Zeile zu einer Karte mit Label:Wert-Zeilen umgebaut. Labels kommen aus
+   data-label (siehe syncCompareLabels() in app.js), da <thead> hier
+   ausgeblendet wird. */
+@media (max-width: 700px) {
+  .compare-table-scroll {
+    overflow-x: visible;
+  }
+
+  .compare-table table,
+  .compare-table tbody,
+  .compare-table tr {
+    display: block;
+    width: 100%;
+  }
+
+  .compare-table thead {
+    display: none;
+  }
+
+  .compare-table tr {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 0.65rem 0.85rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .compare-table tbody tr:last-child {
+    margin-bottom: 0;
+  }
+
+  .compare-table td {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.3rem 0;
+    border-bottom: none;
+    text-align: right;
+  }
+
+  .compare-table td:first-child {
+    display: block;
+    text-align: left;
+    padding: 0 0 0.5rem;
+    margin-bottom: 0.35rem;
+    border-bottom: 1px solid var(--color-border);
+    max-width: none;
+  }
+
+  .compare-table td:not(:first-child)::before {
+    content: attr(data-label);
+    font-size: 0.72rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--color-text-muted);
+  }
+
+  .compare-diff-row td:first-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0.3rem;
+  }
 }
 
 /* Back link */
