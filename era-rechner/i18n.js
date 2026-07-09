@@ -9,6 +9,11 @@ const TRANSLATIONS = {
     subtitleWithYear: "ERA Entgeltrechner ${year} f\u00fcr die Metall- und Elektroindustrie",
     headerDisclaimer: "Unabh\u00e4ngiges Open-Source-Projekt \u2013 kein offizielles Angebot der IG Metall.",
     ariaLabel: "Gehaltsrechner",
+    sectionTarif: "Dein Tarif",
+    sectionArbeitszeit: "Arbeitszeit & Zulage",
+    breakdownSum: "Summe Jahresbrutto",
+    nettoTitle: "Netto-Sch\u00e4tzung",
+    resultsPlaceholder: "W\u00e4hle Tarifgebiet, Entgeltgruppe und Stufe, um dein Gehalt zu berechnen.",
 
     // Form labels
     labelYear: "Tarifjahr",
@@ -338,6 +343,11 @@ const TRANSLATIONS = {
     subtitleWithYear: "ERA Salary Calculator ${year} for the metal and electrical industry",
     headerDisclaimer: "Independent open-source project \u2013 not an official IG Metall service.",
     ariaLabel: "Salary Calculator",
+    sectionTarif: "Your tariff",
+    sectionArbeitszeit: "Working hours & bonus",
+    breakdownSum: "Total annual gross",
+    nettoTitle: "Net estimate",
+    resultsPlaceholder: "Select tariff region, pay grade and step to calculate your salary.",
 
     // Form labels
     labelYear: "Tariff Year",

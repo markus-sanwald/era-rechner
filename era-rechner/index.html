@@ -219,31 +219,41 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main class="container">
-    <header>
-      <div class="lang-switch">
-        <button class="lang-btn active" data-lang="de" onclick="setLanguage('de')">DE</button>
-        <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
-        <span class="lang-switch-sep"></span>
-        <button class="theme-btn" id="theme-toggle" aria-label="Dark Mode umschalten" title="Dark Mode umschalten">
-          <svg id="theme-icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-          <svg id="theme-icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-        </button>
+  <main class="container container--wide">
+    <header class="app-header">
+      <div class="app-brand">
+        <img class="app-logo" src="favicon.png" alt="" width="58" height="58" aria-hidden="true">
+        <div class="app-brand-text">
+          <h1 data-i18n="title">IG Metall Gehaltsrechner</h1>
+          <h2 class="subtitle" id="subtitle">ERA Entgeltrechner 2026 f&uuml;r die Metall- und Elektroindustrie</h2>
+          <p class="header-disclaimer" data-i18n="headerDisclaimer">Unabh&auml;ngiges Open-Source-Projekt &ndash; kein offizielles Angebot der IG Metall.</p>
+        </div>
       </div>
-      <h1 data-i18n="title">IG Metall Gehaltsrechner</h1>
-      <h2 class="subtitle" id="subtitle">ERA Entgeltrechner 2026 f&uuml;r die Metall- und Elektroindustrie</h2>
-      <p class="header-disclaimer" data-i18n="headerDisclaimer">Unabh&auml;ngiges Open-Source-Projekt &ndash; kein offizielles Angebot der IG Metall.</p>
+      <div class="app-header-controls">
+        <div class="year-group">
+          <label for="jahr" class="sr-only" data-i18n="labelYear">Tarifjahr</label>
+          <div class="year-segment" id="year-segment"></div>
+          <select id="jahr" class="sr-only" tabindex="-1"></select>
+        </div>
+        <div class="lang-switch">
+          <button class="lang-btn active" data-lang="de" onclick="setLanguage('de')">DE</button>
+          <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+          <span class="lang-switch-sep"></span>
+          <button class="theme-btn" id="theme-toggle" aria-label="Dark Mode umschalten" title="Dark Mode umschalten">
+            <svg id="theme-icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            <svg id="theme-icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          </button>
+        </div>
+      </div>
     </header>
 
+    <div class="layout">
     <section class="calculator" data-i18n-aria="ariaLabel" aria-label="Gehaltsrechner">
-      <div class="form-group">
-        <label for="jahr" data-i18n="labelYear">Tarifjahr</label>
-        <select id="jahr"></select>
-      </div>
-
       <div id="year-notice" class="year-notice hidden" data-i18n="yearNotice2026">
         Die Werte ab 01.04.2026 sind vorl&auml;ufig (Vorjahreswerte + 3,1&nbsp;%).
       </div>
+
+      <h3 class="form-section-title" data-i18n="sectionTarif">Dein Tarif</h3>
 
       <div class="form-group">
         <label for="bundesland" data-i18n="labelRegion">Bundesland / Tarifgebiet</label>
@@ -252,19 +262,23 @@
         </select>
       </div>
 
-      <div class="form-group">
-        <label for="eg" data-i18n="labelGrade">Entgeltgruppe (EG)</label>
-        <select id="eg" disabled>
-          <option value="">Bitte w&auml;hlen&hellip;</option>
-        </select>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="eg" data-i18n="labelGrade">Entgeltgruppe (EG)</label>
+          <select id="eg" disabled>
+            <option value="">Bitte w&auml;hlen&hellip;</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="stufe" data-i18n="labelStep">Stufe</label>
+          <select id="stufe" disabled>
+            <option value="">Bitte w&auml;hlen&hellip;</option>
+          </select>
+        </div>
       </div>
 
-      <div class="form-group">
-        <label for="stufe" data-i18n="labelStep">Stufe</label>
-        <select id="stufe" disabled>
-          <option value="">Bitte w&auml;hlen&hellip;</option>
-        </select>
-      </div>
+      <h3 class="form-section-title" data-i18n="sectionArbeitszeit">Arbeitszeit &amp; Zulage</h3>
 
       <div class="form-group">
         <label for="arbeitszeit" data-i18n="labelHours">W&ouml;chentliche Arbeitszeit</label>
@@ -429,50 +443,44 @@
       </div>
     </section>
 
+    <div class="results-col">
     <section id="result" class="result hidden" aria-live="polite">
-      <div class="result-row">
-        <span class="result-label">
-          <span data-i18n="resultMonthly">Monatsentgelt (brutto)</span>
-          <small class="result-sublabel" data-i18n="resultMonthlySub">ohne Sonderzahlungen</small>
-        </span>
-        <span class="result-value" id="monthly"></span>
-      </div>
-      <div class="result-row">
-        <span class="result-label" data-i18n="resultHourly">Brutto-Stundenlohn</span>
-        <span class="result-value" id="hourly"></span>
-      </div>
-      <div class="result-row highlight">
-        <span class="result-label" data-i18n="resultAnnual">Bruttojahresgehalt (gesamt)</span>
-        <span class="result-value" id="annual"></span>
-      </div>
-      <div class="result-row result-row--avg hidden" id="avg-monthly-row">
-        <span class="result-label">
-          <span data-i18n="resultAvgMonthly">&Oslash; Monatsdurchschnitt (brutto)</span>
-          <small class="result-sublabel" data-i18n="resultAvgMonthlySub">inkl. Sonderzahlungen</small>
-        </span>
-        <span class="result-value" id="avg-monthly"></span>
+      <div class="result-hero">
+        <span class="result-hero-label" data-i18n="resultAnnual">Bruttojahresgehalt (gesamt)</span>
+        <span class="result-hero-value" id="annual"></span>
       </div>
 
-      <div id="netto-result" class="netto-result hidden">
-        <div class="result-row netto-row">
-          <span class="result-label">
-            <span data-i18n="resultNettoMonthly">Gesch&auml;tztes monatliches Netto</span>
-            <small class="result-sublabel result-sublabel--netto" data-i18n="resultMonthlySub">ohne Sonderzahlungen</small>
+      <div class="stat-cards">
+        <div class="stat-card">
+          <span class="stat-label">
+            <span data-i18n="resultMonthly">Monatsentgelt (brutto)</span>
+            <small class="result-sublabel" data-i18n="resultMonthlySub">ohne Sonderzahlungen</small>
           </span>
-          <span class="result-value" id="netto-monthly"></span>
+          <span class="stat-value" id="monthly"></span>
         </div>
-        <div class="result-row netto-row">
-          <span class="result-label" data-i18n="resultNettoAnnual">Gesch&auml;tztes Jahresnetto</span>
-          <span class="result-value" id="netto-annual"></span>
-        </div>
-        <div class="result-row netto-row netto-row--avg" id="avg-monthly-netto-row">
-          <span class="result-label">
-            <span data-i18n="resultAvgMonthlyNetto">&Oslash; Monatsdurchschnitt (netto)</span>
-            <small class="result-sublabel result-sublabel--netto" data-i18n="resultAvgMonthlySub">inkl. Sonderzahlungen</small>
+        <div class="stat-card hidden" id="avg-monthly-row">
+          <span class="stat-label">
+            <span data-i18n="resultAvgMonthly">&Oslash; Monatsdurchschnitt (brutto)</span>
+            <small class="result-sublabel" data-i18n="resultAvgMonthlySub">inkl. Sonderzahlungen</small>
           </span>
-          <span class="result-value" id="avg-monthly-netto"></span>
+          <span class="stat-value" id="avg-monthly"></span>
         </div>
-        <p class="netto-hint" data-i18n="nettoHint">&#9432; Grobe Sch&auml;tzung auf Basis pauschaler Abzugss&auml;tze. Kein Ersatz f&uuml;r eine individuelle Steuerberechnung.</p>
+        <div class="stat-card">
+          <span class="stat-label" data-i18n="resultHourly">Brutto-Stundenlohn</span>
+          <span class="stat-value" id="hourly"></span>
+        </div>
+      </div>
+
+      <div id="chart" class="chart hidden">
+        <div class="chart-header">
+          <h2 class="chart-title" id="chart-title" data-i18n="chartTitle">Bruttoverdienst nach Monaten</h2>
+          <div class="chart-view-toggle hidden" id="chart-view-toggle">
+            <button type="button" class="chart-view-btn active" id="chart-view-brutto" data-i18n="chartViewBrutto">Brutto</button>
+            <button type="button" class="chart-view-btn" id="chart-view-netto" data-i18n="chartViewNetto">Netto</button>
+          </div>
+        </div>
+        <div class="chart-area" id="chart-area"></div>
+        <div class="chart-legend" id="chart-legend"></div>
       </div>
 
       <div id="breakdown" class="breakdown hidden">
@@ -536,22 +544,43 @@
           <span class="breakdown-label" data-i18n="breakdownSonderzahlung">Sonderzahlung</span>
           <span class="breakdown-value" id="sonderzahlung-annual"></span>
         </div>
+        <div class="breakdown-row breakdown-sum">
+          <span class="breakdown-label" data-i18n="breakdownSum">Summe Jahresbrutto</span>
+          <span class="breakdown-value" id="annual-sum"></span>
+        </div>
       </div>
 
-      <div id="chart" class="chart hidden">
-        <div class="chart-header">
-          <h2 class="chart-title" id="chart-title" data-i18n="chartTitle">Bruttoverdienst nach Monaten</h2>
-          <div class="chart-view-toggle hidden" id="chart-view-toggle">
-            <button type="button" class="chart-view-btn active" id="chart-view-brutto" data-i18n="chartViewBrutto">Brutto</button>
-            <button type="button" class="chart-view-btn" id="chart-view-netto" data-i18n="chartViewNetto">Netto</button>
+      <div id="netto-result" class="netto-result hidden">
+        <h2 class="netto-title" data-i18n="nettoTitle">Netto-Sch&auml;tzung</h2>
+        <div class="netto-grid">
+          <div class="netto-tile">
+            <span class="stat-label">
+              <span data-i18n="resultNettoMonthly">Gesch&auml;tztes monatliches Netto</span>
+              <small class="result-sublabel result-sublabel--netto" data-i18n="resultMonthlySub">ohne Sonderzahlungen</small>
+            </span>
+            <span class="stat-value" id="netto-monthly"></span>
+          </div>
+          <div class="netto-tile">
+            <span class="stat-label" data-i18n="resultNettoAnnual">Gesch&auml;tztes Jahresnetto</span>
+            <span class="stat-value" id="netto-annual"></span>
+          </div>
+          <div class="netto-tile" id="avg-monthly-netto-row">
+            <span class="stat-label">
+              <span data-i18n="resultAvgMonthlyNetto">&Oslash; Monatsdurchschnitt (netto)</span>
+              <small class="result-sublabel result-sublabel--netto" data-i18n="resultAvgMonthlySub">inkl. Sonderzahlungen</small>
+            </span>
+            <span class="stat-value" id="avg-monthly-netto"></span>
           </div>
         </div>
-        <div class="chart-area" id="chart-area"></div>
-        <div class="chart-legend" id="chart-legend"></div>
+        <p class="netto-hint" data-i18n="nettoHint">&#9432; Grobe Sch&auml;tzung auf Basis pauschaler Abzugss&auml;tze. Kein Ersatz f&uuml;r eine individuelle Steuerberechnung.</p>
       </div>
     </section>
 
-    <div class="compare-save-wrapper" style="text-align:center;margin-top:1rem;">
+    <div class="results-placeholder">
+      <p data-i18n="resultsPlaceholder">W&auml;hle Tarifgebiet, Entgeltgruppe und Stufe, um dein Gehalt zu berechnen.</p>
+    </div>
+
+    <div class="compare-save-wrapper">
       <button id="compare-save" class="compare-btn hidden" data-i18n="compareSave">Zum Vergleich merken</button>
     </div>
 
@@ -597,16 +626,11 @@
         </table>
       </div>
     </section>
+    </div><!-- /.results-col -->
+    </div><!-- /.layout -->
 
-    <!-- SEO Content Block -->
-    <section class="seo-content" id="ueber">
-      <h2 data-i18n="seoTitle">IG Metall Tariftabelle 2026 &ndash; Tariflohn in der Metall- und Elektroindustrie berechnen</h2>
-      <p data-i18n="seoText1">Dieser kostenlose Open-Source-Rechner basiert auf den ERA-Tariftabellen (Entgelttabellen) der Metall- und Elektroindustrie und wird nach jeder Tarifrunde aktualisiert. Er unterst&uuml;tzt alle 15 Tarifgebiete von Baden-W&uuml;rttemberg bis Th&uuml;ringen und berechnet neben dem monatlichen Bruttolohn auch alle tariflichen Sonderzahlungen: Weihnachtsgeld, Urlaubsgeld, T-ZUG&nbsp;A, Transformationsgeld und T-ZUG&nbsp;B.</p>
-      <p data-i18n="seoText2">Die IG Metall Tariftabellen unterscheiden sich je nach Bundesland und Entgeltgruppe (EG&nbsp;1 bis EG&nbsp;17). Mit diesem Rechner l&auml;sst sich das pers&ouml;nliche Jahresbrutto schnell ermitteln &ndash; inkl. anteiliger Berechnung bei Teilzeit und optionaler Leistungszulage.</p>
-      <p class="seo-disclaimer" data-i18n="seoDisclaimer">Unabh&auml;ngiges Open-Source-Projekt &ndash; kein offizielles Angebot der IG Metall.</p>
-      <p class="source-note" data-i18n-html="sourceNote">Quelle: <a href="https://www.igmetall.de/tarif" target="_blank" rel="noopener noreferrer">ERA-Tarifvertrag der Metall- und Elektroindustrie (IG Metall)</a> &middot; Zuletzt gepr&uuml;ft: <time datetime="2026-05">Mai 2026</time></p>
-    </section>
-
+    <div class="layout-bottom">
+    <div class="bottom-col">
     <!-- Regionseiten -->
     <section class="region-nav-section" id="entgelttabellen">
       <h2 data-i18n="regionNavTitle">ERA Entgelttabellen nach Tarifgebiet</h2>
@@ -629,6 +653,53 @@
         <a href="/entgelttabelle-thueringen.html" class="rp-region-link" data-region="Thüringen">Thüringen</a>
       </div>
       <p class="region-nav-teaser" data-i18n="regionNavTeaser">Tipp: Auf den Tarifgebiet-Seiten findest du auch die Ausbildungsverg&uuml;tung und Erkl&auml;rungen, wann welche Entgeltstufe erreicht wird.</p>
+    </section>
+    </div><!-- /.bottom-col -->
+
+    <div class="bottom-col">
+    <!-- Trust Badges -->
+    <section class="trust-badges" data-i18n-aria="ariaTrust" aria-label="Vorteile des Rechners">
+      <div class="trust-grid">
+        <div class="trust-card">
+          <span class="trust-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+          </span>
+          <h3 class="trust-title" data-i18n="trustOfficialTitle">Offizielle Daten</h3>
+          <p class="trust-text" data-i18n="trustOfficialText">Basierend auf den offiziellen IG Metall Tarifabschl&uuml;ssen 2025/2026 &ndash; regelm&auml;&szlig;ig aktualisiert.</p>
+        </div>
+        <div class="trust-card">
+          <span class="trust-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </span>
+          <h3 class="trust-title" data-i18n="trustPrivacyTitle">100&nbsp;% Datenschutz</h3>
+          <p class="trust-text" data-i18n="trustPrivacyText">Keine Speicherung, kein Tracking &ndash; alle Berechnungen laufen direkt in deinem Browser.</p>
+        </div>
+        <a class="trust-card trust-card--link" href="https://github.com/markus-sanwald/era-rechner" target="_blank" rel="noopener noreferrer">
+          <span class="trust-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </span>
+          <h3 class="trust-title" data-i18n="trustOpenSourceTitle">Open Source</h3>
+          <p class="trust-text" data-i18n="trustOpenSourceText">Quellcode frei einsehbar auf GitHub (MIT-Lizenz) &ndash; transparent und nachpr&uuml;fbar.</p>
+          <span class="trust-cta" data-i18n="trustOpenSourceCta">Auf GitHub ansehen &rarr;</span>
+        </a>
+        <a class="trust-card trust-card--link" href="https://paypal.me/erarechner" target="_blank" rel="noopener noreferrer">
+          <span class="trust-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+          </span>
+          <h3 class="trust-title" data-i18n="trustAdFreeTitle">Werbefrei</h3>
+          <p class="trust-text" data-i18n="trustAdFreeText">Unabh&auml;ngiges Privatprojekt &ndash; kostenlos und ohne Werbung.</p>
+          <span class="trust-cta" data-i18n="trustAdFreeCta">Mit einer Spende unterst&uuml;tzen &rarr;</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- SEO Content Block -->
+    <section class="seo-content" id="ueber">
+      <h2 data-i18n="seoTitle">IG Metall Tariftabelle 2026 &ndash; Tariflohn in der Metall- und Elektroindustrie berechnen</h2>
+      <p data-i18n="seoText1">Dieser kostenlose Open-Source-Rechner basiert auf den ERA-Tariftabellen (Entgelttabellen) der Metall- und Elektroindustrie und wird nach jeder Tarifrunde aktualisiert. Er unterst&uuml;tzt alle 15 Tarifgebiete von Baden-W&uuml;rttemberg bis Th&uuml;ringen und berechnet neben dem monatlichen Bruttolohn auch alle tariflichen Sonderzahlungen: Weihnachtsgeld, Urlaubsgeld, T-ZUG&nbsp;A, Transformationsgeld und T-ZUG&nbsp;B.</p>
+      <p data-i18n="seoText2">Die IG Metall Tariftabellen unterscheiden sich je nach Bundesland und Entgeltgruppe (EG&nbsp;1 bis EG&nbsp;17). Mit diesem Rechner l&auml;sst sich das pers&ouml;nliche Jahresbrutto schnell ermitteln &ndash; inkl. anteiliger Berechnung bei Teilzeit und optionaler Leistungszulage.</p>
+      <p class="seo-disclaimer" data-i18n="seoDisclaimer">Unabh&auml;ngiges Open-Source-Projekt &ndash; kein offizielles Angebot der IG Metall.</p>
+      <p class="source-note" data-i18n-html="sourceNote">Quelle: <a href="https://www.igmetall.de/tarif" target="_blank" rel="noopener noreferrer">ERA-Tarifvertrag der Metall- und Elektroindustrie (IG Metall)</a> &middot; Zuletzt gepr&uuml;ft: <time datetime="2026-05">Mai 2026</time></p>
     </section>
 
     <!-- FAQ Section -->
@@ -718,42 +789,8 @@
         <p><a href="https://paypal.me/erarechner" target="_blank" rel="noopener noreferrer" class="faq-donate-link">&#128151; Jetzt via PayPal spenden</a></p>
       </details>
     </section>
-
-    <!-- Trust Badges -->
-    <section class="trust-badges" data-i18n-aria="ariaTrust" aria-label="Vorteile des Rechners">
-      <div class="trust-grid">
-        <div class="trust-card">
-          <span class="trust-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
-          </span>
-          <h3 class="trust-title" data-i18n="trustOfficialTitle">Offizielle Daten</h3>
-          <p class="trust-text" data-i18n="trustOfficialText">Basierend auf den offiziellen IG Metall Tarifabschl&uuml;ssen 2025/2026 &ndash; regelm&auml;&szlig;ig aktualisiert.</p>
-        </div>
-        <div class="trust-card">
-          <span class="trust-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          </span>
-          <h3 class="trust-title" data-i18n="trustPrivacyTitle">100&nbsp;% Datenschutz</h3>
-          <p class="trust-text" data-i18n="trustPrivacyText">Keine Speicherung, kein Tracking &ndash; alle Berechnungen laufen direkt in deinem Browser.</p>
-        </div>
-        <a class="trust-card trust-card--link" href="https://github.com/markus-sanwald/era-rechner" target="_blank" rel="noopener noreferrer">
-          <span class="trust-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-          </span>
-          <h3 class="trust-title" data-i18n="trustOpenSourceTitle">Open Source</h3>
-          <p class="trust-text" data-i18n="trustOpenSourceText">Quellcode frei einsehbar auf GitHub (MIT-Lizenz) &ndash; transparent und nachpr&uuml;fbar.</p>
-          <span class="trust-cta" data-i18n="trustOpenSourceCta">Auf GitHub ansehen &rarr;</span>
-        </a>
-        <a class="trust-card trust-card--link" href="https://paypal.me/erarechner" target="_blank" rel="noopener noreferrer">
-          <span class="trust-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
-          </span>
-          <h3 class="trust-title" data-i18n="trustAdFreeTitle">Werbefrei</h3>
-          <p class="trust-text" data-i18n="trustAdFreeText">Unabh&auml;ngiges Privatprojekt &ndash; kostenlos und ohne Werbung.</p>
-          <span class="trust-cta" data-i18n="trustAdFreeCta">Mit einer Spende unterst&uuml;tzen &rarr;</span>
-        </a>
-      </div>
-    </section>
+    </div><!-- /.bottom-col -->
+    </div><!-- /.layout-bottom -->
 
     <footer>
       <p class="footer-feedback" data-i18n-html="footerFeedback">Anregungen, Fehler oder Feedback? <a href="mailto:info@era-rechner.de">info@era-rechner.de</a></p>

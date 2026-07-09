@@ -40,6 +40,7 @@ const elUtZulageOutput   = document.getElementById("ut-zulage-output");
 const elResult           = document.getElementById("result");
 const elMonthly          = document.getElementById("monthly");
 const elAnnual           = document.getElementById("annual");
+const elAnnualSum        = document.getElementById("annual-sum");
 const elBreakdown        = document.getElementById("breakdown");
 const elGrundgehalt      = document.getElementById("grundgehalt");
 const elUtZulageRow      = document.getElementById("ut-zulage-row");
@@ -155,8 +156,8 @@ const fmtDE = (num, decimals = 1) => num.toFixed(decimals).replace(".", ",");
 // ---------------------------------------------------------------------------
 
 const CHART_COLORS = {
-  monatsentgelt:      "#003d6b",
-  utZulage:           "#4a90c4",
+  monatsentgelt:      "#8bb8e0",
+  utZulage:           "#0a5a9e",
   freiwilligeZulage:  "#16a085",
   urlaubsgeld:        "#2ecc71",
   tZugA:              "#e67e22",
@@ -1062,6 +1063,7 @@ function displayResult(r) {
   elMonthly.textContent = currencyFmt.format(r.monthly + r.utMonatlich + r.freiwilligeZulageMonatlich);
   elHourly.textContent = currencyFmt.format(r.stundenlohn);
   elAnnual.textContent = currencyFmt.format(r.total);
+  elAnnualSum.textContent = currencyFmt.format(r.total);
 
   // Ø Monatsdurchschnitt brutto
   if (r.bonus) {
@@ -1590,3 +1592,36 @@ function initFaqFilter() {
 
 init();
 initFaqFilter();
+
+// ---------------------------------------------------------------------------
+// Jahres-Umschalter im Header: segmentierte Buttons, gespiegelt auf das
+// (visuell versteckte) #jahr-Select – die gesamte Jahr-Logik bleibt dort.
+// ---------------------------------------------------------------------------
+
+const elYearSegment = document.getElementById("year-segment");
+
+function renderYearSegment() {
+  if (!elYearSegment) return;
+  elYearSegment.innerHTML = "";
+  const opts = [...elJahr.options].sort((a, b) => a.value.localeCompare(b.value));
+  for (const opt of opts) {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "year-seg-btn" + (opt.value === elJahr.value ? " active" : "");
+    btn.textContent = opt.value;
+    btn.setAttribute("aria-pressed", opt.value === elJahr.value ? "true" : "false");
+    btn.addEventListener("click", () => {
+      if (elJahr.value !== opt.value) {
+        elJahr.value = opt.value;
+        elJahr.dispatchEvent(new Event("change"));
+      }
+    });
+    elYearSegment.appendChild(btn);
+  }
+}
+
+if (elYearSegment) {
+  elJahr.addEventListener("change", renderYearSegment);
+  onTranslationsApplied(renderYearSegment);
+  renderYearSegment();
+}
