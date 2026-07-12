@@ -199,20 +199,33 @@ const TRANSLATIONS = {
     contactSuccess: "Danke f\u00fcr deine Nachricht! Sie wurde erfolgreich gesendet.",
 
     // SEO Content
-    seoTitle: "IG Metall Tariftabelle 2026 \u2013 Tariflohn in der Metall- und Elektroindustrie berechnen",
-    seoText1: "Dieser kostenlose Open-Source-Rechner basiert auf den ERA-Tariftabellen (Entgelttabellen) der Metall- und Elektroindustrie und wird nach jeder Tarifrunde aktualisiert. Er unterst\u00fctzt alle 15 Tarifgebiete von Baden-W\u00fcrttemberg bis Th\u00fcringen und berechnet neben dem monatlichen Bruttolohn auch alle tariflichen Sonderzahlungen: Weihnachtsgeld, Urlaubsgeld, T-ZUG\u00a0A, Transformationsgeld und T-ZUG\u00a0B.",
-    seoText2: "Die IG Metall Tariftabellen unterscheiden sich je nach Bundesland und Entgeltgruppe (EG\u00a01 bis EG\u00a017). Mit diesem Rechner l\u00e4sst sich das pers\u00f6nliche Jahresbrutto schnell ermitteln \u2013 inkl. anteiliger Berechnung bei Teilzeit und optionaler Leistungszulage.",
+    seoTitle: "IG Metall Gehaltsrechner 2026 \u2013 Tariflohn in der Metall- und Elektroindustrie berechnen",
+    seoText1: "Kostenloser, Open-Source IG Metall Gehaltsrechner auf Basis der Tariftabellen 2026 inkl. aller tariflichen Sonderzahlungen: Weihnachtsgeld, Urlaubsgeld, T-ZUG\u00a0A, Transformationsgeld und T-ZUG\u00a0B. Er unterst\u00fctzt alle 15 Tarifgebiete der Metall- und Elektroindustrie \u2013 von Baden-W\u00fcrttemberg bis Th\u00fcringen \u2013 und wird nach jeder Tarifrunde aktualisiert.",
+    seoText2: "Die Tariftabellen unterscheiden sich je nach Bundesland und Entgeltgruppe (EG\u00a01 bis EG\u00a017). Mit unserem Rechner ermittelst du dein pers\u00f6nliches Jahresbrutto in Sekunden \u2013 inkl. anteiliger Berechnung bei Teilzeit und optionaler Leistungszulage.",
     seoDisclaimer: "Unabh\u00e4ngiges Open-Source-Projekt \u2013 kein offizielles Angebot der IG Metall.",
 
     // FAQ
     regionNavTitle: "IG Metall Tariftabelle 2026 \u2013 ERA Entgelttabellen nach Tarifgebiet",
     regionNavIntro: "W\u00e4hle dein Tarifgebiet f\u00fcr die vollst\u00e4ndige IG Metall Tariftabelle 2026 (ERA-Entgelttabelle) mit allen Entgeltgruppen und Sonderzahlungen:",
     regionNavTeaser: "Tipp: Auf den Tarifgebiet-Seiten findest du auch die Ausbildungsverg\u00fctung und Erkl\u00e4rungen, wann welche Entgeltstufe erreicht wird.",
+    regionNavOverviewLink: "Alle Tarifgebiete im Vergleich \u2192",
     rpIntro: "Die ERA Entgelttabelle f\u00fcr das Tarifgebiet <strong>${region}</strong> listet alle ${count} Entgeltgruppen (EG) mit den monatlichen Grundentgelten nach dem IG Metall Tarifvertrag. G\u00fcltig f\u00fcr Vollzeit (35 Std./Woche). Mit dem Rechner kannst du dein individuelles Gehalt inkl. Teilzeit, Leistungszulage und Nettolohn berechnen.",
     rpTableHeading: "Entgelttabelle / Tariftabelle",
     rpBonusHeading: "Sonderzahlungen",
     rpCtaText: "Berechne dein pers\u00f6nliches Gehalt inkl. Teilzeit, Leistungszulage und Nettolohn:",
     rpCtaBtn: "Gehaltsrechner f\u00fcr ${region} \u00f6ffnen \u2192",
+    ttoSubtitle: "Alle 15 Tarifgebiete im \u00dcberblick",
+    ttoIntro: "Diese \u00dcbersicht zeigt die IG Metall Tariftabelle ${year} f\u00fcr alle 15 ERA-Tarifgebiete auf einen Blick: Anzahl der Entgeltgruppen sowie die Spannweite der monatlichen Grundentgelte von der niedrigsten bis zur h\u00f6chsten Entgeltgruppe (g\u00fcltig ab 01.04.${year}, Vollzeit 35 Std./Woche). F\u00fcr die vollst\u00e4ndige Tabelle mit allen Entgeltgruppen, Stufen und Sonderzahlungen w\u00e4hle dein Tarifgebiet.",
+    ttoTableHeading: "Tariftabelle ${year} im Vergleich",
+    ttoChartHeading: "Grundentgelt-Spannen im Regionsvergleich",
+    ttoChartCaption: "Grundentgelt von der niedrigsten bis zur höchsten Entgeltgruppe, ohne Sonderzahlungen. Sortiert nach Höchstwert.",
+    ttoColRegion: "Tarifgebiet",
+    ttoColEgCount: "Entgeltgruppen",
+    ttoColFrom: "Grundentgelt ab",
+    ttoColTo: "Grundentgelt bis",
+    ttoCtaText: "Berechne dein pers\u00f6nliches Gehalt inkl. aller Sonderzahlungen und Nettolohn:",
+    ttoCtaBtn: "Zum ERA Entgeltrechner \u2192",
+    ttoBreadcrumb: "Tariftabelle",
     rpAllRegions: "Alle Tarifgebiete",
     rpSubtitle: "IG Metall Tariftabelle 2025 & 2026",
     rpValidFrom: "gültig ab 01.04.${year}",
@@ -569,20 +582,33 @@ const TRANSLATIONS = {
     contactSuccess: "Thank you for your message! It has been sent successfully.",
 
     // SEO Content
-    seoTitle: "ERA Salary Table 2026 \u2013 Calculate Collectively Agreed Pay in the Metal & Electrical Industry",
-    seoText1: "This free calculator is based on the ERA salary tables for the German metal and electrical industry (effective 01.04.2026) and is updated after each wage round. It supports all 15 bargaining regions and calculates monthly gross pay plus all collectively agreed special payments: Christmas bonus, holiday pay, T-ZUG\u00a0A, transformation payment, and T-ZUG\u00a0B.",
-    seoText2: "The IG Metall ERA salary tables vary by federal state and pay group (EG\u00a01 to EG\u00a017). This calculator makes it easy to determine your annual gross salary \u2013 including pro-rata calculation for part-time work and an optional performance allowance.",
+    seoTitle: "IG Metall Salary Calculator 2026 \u2013 Calculate Collectively Agreed Pay in the Metal & Electrical Industry",
+    seoText1: "Free, open-source IG Metall salary calculator based on the 2026 pay tables, including all collectively agreed special payments: Christmas bonus, holiday pay, T-ZUG\u00a0A, transformation payment, and T-ZUG\u00a0B. It supports all 15 collective bargaining regions in the metal and electrical industry \u2013 from Baden-W\u00fcrttemberg to Thuringia \u2013 and is updated after every wage round.",
+    seoText2: "The salary tables vary by federal state and pay group (EG\u00a01 to EG\u00a017). Our calculator lets you determine your personal annual gross salary in seconds \u2013 including pro-rata calculation for part-time work and an optional performance allowance.",
     seoDisclaimer: "Independent open-source project \u2013 not an official IG Metall service.",
 
     // FAQ
     regionNavTitle: "ERA Salary Tables by Collective Bargaining Region",
     regionNavIntro: "Select your region for the full salary table with all pay groups and special payments:",
     regionNavTeaser: "Tip: The regional pages also show the apprentice pay and explain when each pay step is reached.",
+    regionNavOverviewLink: "Compare all regions →",
     rpIntro: "The ERA salary table for the <strong>${region}</strong> collective bargaining region lists all ${count} pay groups (EG) with monthly base salaries under the IG Metall collective agreement. Valid for full-time (35 hrs/week). Use the calculator for your individual salary including part-time, performance allowance and net pay.",
     rpTableHeading: "Salary Table / Tariff Table",
     rpBonusHeading: "Special Payments",
     rpCtaText: "Calculate your personal salary including part-time, performance allowance and net pay:",
     rpCtaBtn: "Open salary calculator for ${region} →",
+    ttoColRegion: "Region",
+    ttoSubtitle: "All 15 collective bargaining regions at a glance",
+    ttoIntro: "This overview shows the IG Metall salary table for ${year} for all 15 ERA collective bargaining regions at a glance: number of pay groups and the range of monthly base salaries from the lowest to the highest pay group (effective 04/01/${year}, full-time 35 hrs/week). For the full table with all pay groups, steps and special payments, select your region.",
+    ttoTableHeading: "Salary table ${year} comparison",
+    ttoChartHeading: "Base pay ranges by region",
+    ttoChartCaption: "Base pay from the lowest to the highest pay group, excluding special payments. Sorted by highest value.",
+    ttoColEgCount: "Pay groups",
+    ttoColFrom: "Base pay from",
+    ttoColTo: "Base pay up to",
+    ttoCtaText: "Calculate your personal salary including all special payments and net pay:",
+    ttoCtaBtn: "Open ERA salary calculator →",
+    ttoBreadcrumb: "Salary Tables",
     rpAllRegions: "All Collective Bargaining Regions",
     rpSubtitle: "IG Metall Tariff Table 2025 & 2026",
     rpValidFrom: "valid from 04/01/${year}",
@@ -763,7 +789,7 @@ function t(key) {
 function tReplace(key, replacements) {
   let str = t(key);
   for (const [k, v] of Object.entries(replacements)) {
-    str = str.replace("${" + k + "}", v);
+    str = str.replaceAll("${" + k + "}", v);
   }
   return str;
 }

@@ -1952,6 +1952,11 @@ footer p + p {
   border-left: 3px solid var(--color-primary);
   line-height: 1.55;
 }
+.region-nav-overview-link {
+  margin-top: 1rem;
+  font-size: 0.88rem;
+  font-weight: 500;
+}
 
 /* ===========================================================================
    Region Landing Pages (entgelttabelle-*.html)
@@ -2055,6 +2060,172 @@ footer p + p {
   color: var(--color-primary);
 }
 .rp-na { color: var(--color-text-muted); }
+.rp-eg a { color: inherit; text-decoration: none; }
+.rp-eg a:hover { text-decoration: underline; }
+.rp-table-row-link { cursor: pointer; }
+.rp-table-arrow {
+  width: 1.5rem;
+  text-align: center !important;
+  color: var(--color-text-muted);
+  font-size: 1.15rem;
+}
+.rp-table tbody tr:hover .rp-table-arrow { color: var(--color-primary); }
+
+/* Range-Balkendiagramm (tariftabelle.html): Grundentgelt-Spanne je Region */
+.tto-chart-caption {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  margin: -0.4rem 0 1.1rem;
+  line-height: 1.5;
+}
+.tto-chart {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.tto-chart-grid {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 150px;
+  right: 0;
+  pointer-events: none;
+}
+.tto-chart-gridline {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  border-left: 1px dashed var(--color-text-muted);
+  opacity: 0.4;
+}
+.tto-chart-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.tto-chart-label {
+  flex: 0 0 150px;
+  width: 150px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-primary);
+  text-decoration: none;
+  line-height: 1.25;
+}
+.tto-chart-label:hover { text-decoration: underline; }
+.tto-chart-track {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 20px;
+  background: var(--color-bg-card);
+  border-radius: 10px;
+}
+.tto-chart-range {
+  position: absolute;
+  top: 3px;
+  height: 14px;
+  min-width: 4px;
+  background: var(--color-primary);
+  border-radius: 7px;
+}
+.tto-chart-axis {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.35rem;
+}
+.tto-chart-axis-spacer {
+  flex: 0 0 150px;
+  width: 150px;
+}
+.tto-chart-axis-track {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 14px;
+}
+.tto-chart-tick {
+  position: absolute;
+  transform: translateX(-50%);
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+}
+.tto-chart-tick:first-child { transform: translateX(0); }
+.tto-chart-tick:last-child { transform: translateX(-100%); }
+
+@media (max-width: 520px) {
+  .tto-chart-grid { display: none; }
+  .tto-chart-row { flex-wrap: wrap; }
+  .tto-chart-label,
+  .tto-chart-axis-spacer { flex-basis: 100%; width: 100%; }
+  .tto-chart-track,
+  .tto-chart-axis-track { flex-basis: 100%; }
+  .tto-chart-axis { flex-wrap: wrap; }
+}
+
+/* Tariftabelle-Übersicht (tariftabelle.html) auf schmalen Bildschirmen: statt
+   horizontalem Scrollen wird jede Zeile zur Karte mit Label:Wert-Zeilen –
+   analog zur .compare-table-Lösung. Labels kommen aus data-label (siehe
+   renderDynamic() im generierten <script>-Block). */
+@media (max-width: 700px) {
+  .tto-table-wrap {
+    overflow-x: visible;
+    border: none;
+  }
+  .tto-table,
+  .tto-table tbody,
+  .tto-table tr {
+    display: block;
+    width: 100%;
+  }
+  .tto-table thead {
+    display: none;
+  }
+  .tto-table tr {
+    position: relative;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    padding: 0.7rem 2.3rem 0.7rem 0.85rem;
+    margin-bottom: 0.6rem;
+  }
+  .tto-table tbody tr:last-child {
+    margin-bottom: 0;
+  }
+  .tto-table td {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.25rem 0;
+    border-bottom: none;
+    text-align: right;
+    white-space: normal;
+  }
+  .tto-table td.rp-eg {
+    display: block;
+    text-align: left;
+    padding: 0 0 0.5rem;
+    margin-bottom: 0.35rem;
+    border-bottom: 1px solid var(--color-border);
+    font-size: 1rem;
+  }
+  .tto-table td[data-label]::before {
+    content: attr(data-label);
+    font-size: 0.72rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--color-text-muted);
+  }
+  .tto-table td.rp-table-arrow {
+    position: absolute;
+    top: 0.7rem;
+    right: 0.75rem;
+    width: auto;
+  }
+}
 
 /* Ausbildungsvergütung (informativ) */
 .rp-ausbildung-intro {
@@ -2376,9 +2547,9 @@ footer p + p {
   min-width: 0;
 }
 
-.bottom-col .region-nav-section { grid-area: 1 / 1; }
-.bottom-col .trust-badges      { grid-area: 1 / 2; }
-.bottom-col .seo-content       { grid-area: 2 / 1; }
+.bottom-col .seo-content       { grid-area: 1 / 1; }
+.bottom-col .region-nav-section { grid-area: 1 / 2; }
+.bottom-col .trust-badges      { grid-area: 2 / 1; }
 .bottom-col .faq-section       { grid-area: 2 / 2; }
 
 /* Trust-Karten füllen die gestreckte Zeilenhöhe aus */

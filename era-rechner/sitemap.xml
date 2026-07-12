@@ -11,6 +11,12 @@
       <image:title>ERA Entgeltrechner – Gehaltsrechner für die Metall- und Elektroindustrie</image:title>
     </image:image>
   </url>
+  <url>
+    <loc>https://www.era-rechner.de/tariftabelle.html</loc>
+    <lastmod>2026-07-12</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.9</priority>
+  </url>
   <!-- Regionseiten -->
   <url>
     <loc>https://www.era-rechner.de/entgelttabelle-baden-wuerttemberg.html</loc>
