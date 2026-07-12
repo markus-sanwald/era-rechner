@@ -205,8 +205,8 @@ const TRANSLATIONS = {
     seoDisclaimer: "Unabh\u00e4ngiges Open-Source-Projekt \u2013 kein offizielles Angebot der IG Metall.",
 
     // FAQ
-    regionNavTitle: "ERA Entgelttabellen nach Tarifgebiet",
-    regionNavIntro: "W\u00e4hle dein Tarifgebiet f\u00fcr die vollst\u00e4ndige Entgelttabelle mit allen Entgeltgruppen und Sonderzahlungen:",
+    regionNavTitle: "IG Metall Tariftabelle 2026 \u2013 ERA Entgelttabellen nach Tarifgebiet",
+    regionNavIntro: "W\u00e4hle dein Tarifgebiet f\u00fcr die vollst\u00e4ndige IG Metall Tariftabelle 2026 (ERA-Entgelttabelle) mit allen Entgeltgruppen und Sonderzahlungen:",
     regionNavTeaser: "Tipp: Auf den Tarifgebiet-Seiten findest du auch die Ausbildungsverg\u00fctung und Erkl\u00e4rungen, wann welche Entgeltstufe erreicht wird.",
     rpIntro: "Die ERA Entgelttabelle f\u00fcr das Tarifgebiet <strong>${region}</strong> listet alle ${count} Entgeltgruppen (EG) mit den monatlichen Grundentgelten nach dem IG Metall Tarifvertrag. G\u00fcltig f\u00fcr Vollzeit (35 Std./Woche). Mit dem Rechner kannst du dein individuelles Gehalt inkl. Teilzeit, Leistungszulage und Nettolohn berechnen.",
     rpTableHeading: "Entgelttabelle / Tariftabelle",
