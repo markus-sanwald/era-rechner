@@ -25,6 +25,13 @@ const elEG               = document.getElementById("eg");
 const elStufe            = document.getElementById("stufe");
 const elArbeitszeit      = document.getElementById("arbeitszeit");
 const elArbeitszeitOutput = document.getElementById("arbeitszeit-output");
+const elArbeitszeitLabel = document.getElementById("arbeitszeit-label");
+const elArbeitszeitInfo  = document.getElementById("arbeitszeit-info");
+const elArbeitszeitTooltip = document.getElementById("arbeitszeit-tooltip");
+const elMehrstunden      = document.getElementById("mehrstunden");
+const elMehrstundenOutput = document.getElementById("mehrstunden-output");
+const elMehrstundenGroup = document.getElementById("mehrstunden-group");
+const elRegionHint       = document.getElementById("region-hint");
 const elEintrittsdatum   = document.getElementById("eintrittsdatum");   // hidden input (YYYY-MM-DD)
 const elDpDisplay        = document.getElementById("eintrittsdatum-display");
 const elDpDropdown       = document.getElementById("datepicker-dropdown");
@@ -57,7 +64,10 @@ const elTZugBPct         = document.getElementById("tzug-b-pct");
 const elSonderzahlung    = document.getElementById("sonderzahlung");
 const elSonderzahlungRow = document.getElementById("sonderzahlung-row");
 const elSonderzahlungAnnual = document.getElementById("sonderzahlung-annual");
-const elWeihnachtsgeldManuell = document.getElementById("weihnachtsgeld-manuell");
+const elWgManuellAktiv    = document.getElementById("weihnachtsgeld-manuell-aktiv");
+const elWgManuellGroup    = document.getElementById("weihnachtsgeld-manuell-group");
+const elWgManuellSatz     = document.getElementById("weihnachtsgeld-manuell");
+const elWgManuellSatzOutput = document.getElementById("weihnachtsgeld-manuell-output");
 const elFreiwilligeZulage     = document.getElementById("freiwillige-zulage");
 const elFreiwilligeZulageRow  = document.getElementById("freiwillige-zulage-row");
 const elFreiwilligeZulageAnnual = document.getElementById("freiwillige-zulage-annual");
@@ -124,10 +134,41 @@ let chartViewMode = "brutto";   // "brutto" or "netto"
 // Arbeitszeit-Konstanten
 // ---------------------------------------------------------------------------
 
+// Das Tabellenentgelt ist der Vollzeitwert für die Grundarbeitszeit des Betriebs:
+// im Westen 35 h, im Tarifgebiet Ost 38 h – bei identischer Entgelttabelle.
+// Entgeltfaktor = tatsächliche Wochenarbeitszeit / Grundarbeitszeit.
 const TARIFLICHE_STUNDEN = 35;
 const MIN_ARBEITSZEIT = 15;
+const MIN_GRUNDARBEITSZEIT = 30;
+const MAX_GRUNDARBEITSZEIT = 42;
+const MIN_MEHRSTUNDEN = -20;
+const MAX_MEHRSTUNDEN = 13;
+const MIN_IST_STUNDEN = 1;
 const MAX_ARBEITSZEIT = 48;
-const WOCHEN_PRO_MONAT = 52 / 12;
+// Umrechnungsfaktor Woche → Monat für den Stundenverdienst. Der Manteltarifvertrag
+// schreibt 4,35 vor (Monatsverdienst ÷ [4,35 × regelmäßige Wochenstunden]), nicht 52/12.
+// Gegenprobe: Sachsen EG 5 = 3.288 € bei 38 h → 19,89 €/h (BMAS-Tarifdatenblatt);
+// Berlin EG 5 Hauptstufe 3.513 € → 23,07 €/h (35 h) bzw. 21,25 €/h (38 h).
+const WOCHEN_PRO_MONAT = 4.35;
+
+// Tarifgebiete mit abweichender tariflicher Grundarbeitszeit bzw. Weihnachtsgeld-Staffel.
+// Nur hier erscheint der zweite Regler – in den übrigen zehn Tarifgebieten sind
+// Grundarbeitszeit und Wochenarbeitszeit immer 35 h.
+// "hinweis" = kurzer Text unter den Reglern, "tooltip" = tariflicher Hintergrund am Label.
+// "grundDefault" = vorbelegte Grundarbeitszeit: 35 h für Sammel-Tarifgebiete, die einen
+// nativ 35-h-Bezirk enthalten (Berlin TG I bzw. Schleswig-Holstein/NW-Niedersachsen);
+// 38 h für Gebiete, die tariflich ausschließlich 38 h kennen und 35 h nur über eine
+// freiwillige betriebliche Angleichungsvereinbarung erreichen (Sachsen, Sachsen-Anhalt,
+// Thüringen).
+// Quellen: BMAS-Tarifdatenblätter (Sachsen, Sachsen-Anhalt, Thüringen), Tarifbroschüre
+// Metall- und Elektroindustrie der Senatsverwaltung Berlin, Tarifregister Land MV.
+const REGION_OST = {
+  "Berlin/Brandenburg":                     { grundDefault: 35, hinweis: "hintBerlin", tooltip: "tooltipGrundBerlin" },
+  "Sachsen":                                { grundDefault: 38, hinweis: "hintOst38",  tooltip: "tooltipGrundOst" },
+  "Sachsen-Anhalt":                         { grundDefault: 38, hinweis: "hintOst38",  tooltip: "tooltipGrundOst" },
+  "Thüringen":                              { grundDefault: 38, hinweis: "hintOst38",  tooltip: "tooltipGrundOst" },
+  "Schleswig-Holstein/MV/NW-Niedersachsen": { grundDefault: 35, hinweis: "hintMV",     tooltip: "tooltipGrundMV" }
+};
 
 const currencyFmt = new Intl.NumberFormat("de-DE", {
   style: "currency",
@@ -221,6 +262,7 @@ function loadYear(year) {
   elBundesland.disabled = false;
   resetSelect(elEG);
   resetSelect(elStufe);
+  updateRegionHint("");
   hideResult();
 
   const regions = Object.keys(salaryData).sort((a, b) =>
@@ -270,6 +312,9 @@ onTranslationsApplied(function () {
   // Update EG placeholder
   const egFirst = elEG.querySelector('option[value=""]');
   if (egFirst) egFirst.textContent = t("placeholder");
+
+  // Rückfrage-Texte enthalten Platzhalter und werden per JS gesetzt – neu aufbauen
+  updateAzFelder();
 
   // Update Stufe option texts
   for (const opt of elStufe.options) {
@@ -329,12 +374,125 @@ elJahr.addEventListener("change", () => {
 // Event: Bundesland changed → populate EG dropdown
 // ---------------------------------------------------------------------------
 
+// Im Tarifgebiet Ost ist die Grundarbeitszeit betrieblich unterschiedlich: tariflich
+// 38 h, in angeglichenen Betrieben 35–37 h. Das Tabellenentgelt gilt jeweils für diese
+// Grundarbeitszeit – die Absenkung 38 → 35 h läuft mit vollem Lohnausgleich ("zu
+// gleichen Monats- und Stundenentgelten wie im Westen", IG Metall zu BMW Leipzig),
+// in Mecklenburg-Vorpommern mit teilweiser Kompensation. Nur Mehr-/Minderstunden
+// verändern das Entgelt, anteilig zur Grundarbeitszeit.
+// Im Westen sind es immer 35 h – dort genügt ein Feld, das direkt skaliert.
+
+function istOstGebiet() {
+  return !!REGION_OST[elBundesland.value];
+}
+
+function getMehrstunden() {
+  if (!istOstGebiet()) return 0;
+  const v = parseInt(elMehrstunden.value, 10);
+  return isNaN(v) ? 0 : Math.max(MIN_MEHRSTUNDEN, Math.min(MAX_MEHRSTUNDEN, v));
+}
+
+// Tatsächliche Wochenstunden – im Westen direkt aus dem Feld, im Osten
+// Grundarbeitszeit plus Mehr-/Minderstunden.
+function getIstStunden() {
+  const basis = parseInt(elArbeitszeit.value, 10) || TARIFLICHE_STUNDEN;
+  return Math.max(MIN_IST_STUNDEN, basis + getMehrstunden());
+}
+
+function setStunden(el, out, wert) {
+  el.value = wert;
+  out.value = wert;
+}
+
+function updateAzFelder() {
+  const ost = istOstGebiet();
+
+  // Ost: Der Regler bedeutet "Grundarbeitszeit des Betriebs" und wird auf plausible
+  // Werte begrenzt; Teilzeit und Mehrarbeit laufen über den zweiten Regler.
+  // West: unverändert ein Regler über die volle Spanne.
+  elMehrstundenGroup.classList.toggle("hidden", !ost);
+  elArbeitszeitLabel.setAttribute("data-i18n", ost ? "labelBaseHours" : "labelHours");
+  elArbeitszeitLabel.textContent = t(ost ? "labelBaseHours" : "labelHours");
+
+  // Tariflicher Hintergrund (38 h, Angleichung, Berlin TG I/II, MV) steckt im Tooltip
+  // am Label – der Hinweis unter den Reglern erklärt nur die Bedienung.
+  const tooltipKey = REGION_OST[elBundesland.value]?.tooltip;
+  elArbeitszeitInfo.classList.toggle("hidden", !tooltipKey);
+  if (tooltipKey) {
+    elArbeitszeitTooltip.setAttribute("data-i18n", tooltipKey);
+    elArbeitszeitTooltip.textContent = t(tooltipKey);
+  } else {
+    elArbeitszeitTooltip.removeAttribute("data-i18n");
+    elArbeitszeitTooltip.textContent = "";
+  }
+
+  const min = ost ? MIN_GRUNDARBEITSZEIT : MIN_ARBEITSZEIT;
+  const max = ost ? MAX_GRUNDARBEITSZEIT : MAX_ARBEITSZEIT;
+  for (const el of [elArbeitszeit, elArbeitszeitOutput]) {
+    el.min = min;
+    el.max = max;
+  }
+}
+
+// Tarifgebiet Ost: Hinweis zur abweichenden Vollzeit bzw. Weihnachtsgeld-Staffel.
+// Letztes Tarifgebiet vor dem aktuellen Wechsel – um zu erkennen, ob wir gerade ein
+// Ost-Gebiet verlassen (nötig, weil elBundesland.value beim "change"-Event bereits
+// auf das neue Gebiet zeigt).
+let vorherigeRegion = "";
+
+function updateRegionHint(region) {
+  const ost = REGION_OST[region];
+  const vorherOst = REGION_OST[vorherigeRegion];
+
+  if (ost) {
+    elRegionHint.setAttribute("data-i18n", ost.hinweis);
+    elRegionHint.textContent = t(ost.hinweis);
+    elRegionHint.classList.remove("hidden");
+  } else {
+    elRegionHint.classList.add("hidden");
+    elRegionHint.removeAttribute("data-i18n");
+    elRegionHint.textContent = "";
+  }
+
+  updateAzFelder();
+
+  if (ost) {
+    // Tarifgebiet Ost: immer auf die regionale Grundarbeitszeit vorbelegen und
+    // Mehr-/Minderstunden auf 0 zurücksetzen – unabhängig von zuvor eingegebenen
+    // Werten. So startet jedes Ost-Tarifgebiet direkt beim vollen Tabellenentgelt.
+    setStunden(elArbeitszeit, elArbeitszeitOutput, ost.grundDefault);
+    setStunden(elMehrstunden, elMehrstundenOutput, 0);
+  } else {
+    const rohMehr = parseInt(elMehrstunden.value, 10) || 0;
+
+    if (vorherOst && rohMehr === 0) {
+      // Kommt aus einem Ost-Gebiet ohne bewusste Abweichung (Mehrstunden = 0, also
+      // "bei Vollzeit"): Die dortige Grundarbeitszeit (z. B. 38 h in Sachsen) ist kein
+      // real gearbeiteter Stundenwert, sondern nur die regionale Vollzeit-Referenz.
+      // Sie 1:1 als West-Stundenzahl zu übernehmen, würde fälschlich Mehrarbeit
+      // suggerieren (38 von 35 h). Stattdessen im neuen Gebiet bei Vollzeit starten.
+      setStunden(elArbeitszeit, elArbeitszeitOutput, TARIFLICHE_STUNDEN);
+    } else {
+      // Sonst (Westen → Westen, oder bewusste Ost-Teilzeit/-Mehrarbeit) die
+      // tatsächlichen Wochenstunden erhalten, z. B. Ost 35 − 7 h → West 28 h.
+      const rohGrund = parseInt(elArbeitszeit.value, 10) || TARIFLICHE_STUNDEN;
+      const istStunden = Math.max(MIN_IST_STUNDEN, rohGrund + rohMehr);
+      setStunden(elArbeitszeit, elArbeitszeitOutput,
+        Math.max(MIN_ARBEITSZEIT, Math.min(MAX_ARBEITSZEIT, istStunden)));
+    }
+    setStunden(elMehrstunden, elMehrstundenOutput, 0);
+  }
+
+  vorherigeRegion = region;
+}
+
 elBundesland.addEventListener("change", () => {
   resetSelect(elEG);
   resetSelect(elStufe);
   hideResult();
 
   const region = elBundesland.value;
+  updateRegionHint(region);
   if (!region) return;
 
   const grades = salaryData[region];
@@ -422,6 +580,14 @@ elStufe.addEventListener("change", () => {
 // Event: Arbeitszeit slider changed → update output + recalculate
 // ---------------------------------------------------------------------------
 
+// Grenzen des Arbeitszeit-Reglers – im Osten die Grundarbeitszeit (30–42 h),
+// im Westen die tatsächliche Wochenarbeitszeit (15–48 h).
+function clampArbeitszeit(v) {
+  const min = istOstGebiet() ? MIN_GRUNDARBEITSZEIT : MIN_ARBEITSZEIT;
+  const max = istOstGebiet() ? MAX_GRUNDARBEITSZEIT : MAX_ARBEITSZEIT;
+  return Math.max(min, Math.min(max, v));
+}
+
 elArbeitszeit.addEventListener("input", () => {
   elArbeitszeitOutput.value = elArbeitszeit.value;
   recalcIfReady();
@@ -434,23 +600,55 @@ elArbeitszeitOutput.addEventListener("keydown", (e) => {
 
 elArbeitszeitOutput.addEventListener("input", () => {
   // Dezimalstellen entfernen falls per Paste eingefügt
-  const raw = elArbeitszeitOutput.value.replace(/[.,]\d*/g, "");
+  const raw = elArbeitszeitOutput.value.replace(/[.,]d*/g, "");
   if (raw !== elArbeitszeitOutput.value) elArbeitszeitOutput.value = raw;
-  let v = parseInt(elArbeitszeitOutput.value, 10);
+  const v = parseInt(elArbeitszeitOutput.value, 10);
   if (isNaN(v)) return;
-  v = Math.max(MIN_ARBEITSZEIT, Math.min(MAX_ARBEITSZEIT, v));
-  elArbeitszeit.value = v;
+  elArbeitszeit.value = clampArbeitszeit(v);
   recalcIfReady();
 });
 
 elArbeitszeitOutput.addEventListener("blur", () => {
   let v = parseInt(elArbeitszeitOutput.value, 10);
   if (isNaN(v)) v = TARIFLICHE_STUNDEN;
-  v = Math.max(MIN_ARBEITSZEIT, Math.min(MAX_ARBEITSZEIT, v));
+  v = clampArbeitszeit(v);
   elArbeitszeitOutput.value = v;
   elArbeitszeit.value = v;
   recalcIfReady();
 });
+
+// ---------------------------------------------------------------------------
+// Event: Mehr-/Minderstunden slider changed (nur Tarifgebiet Ost)
+// ---------------------------------------------------------------------------
+
+elMehrstunden.addEventListener("input", () => {
+  elMehrstundenOutput.value = elMehrstunden.value;
+  recalcIfReady();
+});
+
+elMehrstundenOutput.addEventListener("keydown", (e) => {
+  if (e.key === "." || e.key === ",") e.preventDefault();
+});
+
+elMehrstundenOutput.addEventListener("input", () => {
+  const raw = elMehrstundenOutput.value.replace(/[.,]d*/g, "");
+  if (raw !== elMehrstundenOutput.value) elMehrstundenOutput.value = raw;
+  const v = parseInt(elMehrstundenOutput.value, 10);
+  if (isNaN(v)) return;
+  elMehrstunden.value = Math.max(MIN_MEHRSTUNDEN, Math.min(MAX_MEHRSTUNDEN, v));
+  recalcIfReady();
+});
+
+elMehrstundenOutput.addEventListener("blur", () => {
+  const raw = String(elMehrstundenOutput.value).trim();
+  let v = (raw === "" || raw === "-") ? 0 : parseInt(raw, 10);
+  if (isNaN(v)) v = 0;
+  v = Math.max(MIN_MEHRSTUNDEN, Math.min(MAX_MEHRSTUNDEN, v));
+  elMehrstundenOutput.value = v;
+  elMehrstunden.value = v;
+  recalcIfReady();
+});
+
 
 // ---------------------------------------------------------------------------
 // Custom Datepicker
@@ -803,7 +1001,40 @@ elSonderzahlung.addEventListener("input", () => {
   recalcIfReady();
 });
 
-elWeihnachtsgeldManuell.addEventListener("change", () => {
+// Beim Aktivieren mit dem automatisch berechneten Satz vorbelegen (auf 5 % gerundet),
+// damit der Regler nicht bei 0 % startet und das Ergebnis beim Umschalten nicht abrupt springt.
+elWgManuellAktiv.addEventListener("change", () => {
+  const aktiv = elWgManuellAktiv.checked;
+  elWgManuellGroup.classList.toggle("hidden", !aktiv);
+
+  if (aktiv) {
+    const vorschlag = getAutoWeihnachtsgeldSatzProzent();
+    elWgManuellSatz.value = vorschlag;
+    elWgManuellSatzOutput.value = vorschlag;
+  }
+  recalcIfReady();
+});
+
+elWgManuellSatz.addEventListener("input", () => {
+  elWgManuellSatzOutput.value = elWgManuellSatz.value;
+  recalcIfReady();
+});
+
+elWgManuellSatzOutput.addEventListener("input", () => {
+  const raw = elWgManuellSatzOutput.value.replace(/[.,]\d*/g, "");
+  if (raw !== elWgManuellSatzOutput.value) elWgManuellSatzOutput.value = raw;
+  const v = parseInt(elWgManuellSatzOutput.value, 10);
+  if (isNaN(v)) return;
+  elWgManuellSatz.value = Math.max(0, Math.min(55, v));
+  recalcIfReady();
+});
+
+elWgManuellSatzOutput.addEventListener("blur", () => {
+  let v = parseInt(elWgManuellSatzOutput.value, 10);
+  if (isNaN(v)) v = 0;
+  v = Math.max(0, Math.min(55, v));
+  elWgManuellSatzOutput.value = v;
+  elWgManuellSatz.value = v;
   recalcIfReady();
 });
 
@@ -967,13 +1198,38 @@ function volleMonateImJahr(eintrittsdatum, jahr) {
 // Display helpers
 // ---------------------------------------------------------------------------
 
+// Anteilsfaktor aufs Tabellenentgelt. Vollzeit = 1, unabhängig von der Stundenzahl:
+// Das Tabellenentgelt ist der Vollzeitwert des jeweiligen Tarifgebiets, und die
+// Ost-Angleichung senkt die Arbeitszeit bei vollem Lohnausgleich. Nur Teilzeit wirkt
+// anteilig – bezogen auf die betriebliche Vollzeit.
+// Anteilsfaktor aufs Tabellenentgelt. Im Westen skaliert die Wochenarbeitszeit direkt
+// (Basis 35 h). Im Osten gilt das Tabellenentgelt für die eingestellte Grundarbeitszeit,
+// egal ob 35 oder 38 h – nur Mehr-/Minderstunden wirken anteilig dazu.
+function getAnteilsfaktor() {
+  const grund = parseInt(elArbeitszeit.value, 10) || TARIFLICHE_STUNDEN;
+  if (!istOstGebiet()) return grund / TARIFLICHE_STUNDEN;
+  return getIstStunden() / grund;
+}
+
+// Automatisch berechneter Weihnachtsgeld-Satz in Prozent, gerundet auf 5 % – als
+// Startwert für den Übersteuern-Regler. wgSatz wird in calcSalary unabhängig vom
+// Übersteuern-Status berechnet, daher liefert ein normaler Aufruf hier den korrekten Wert.
+function getAutoWeihnachtsgeldSatzProzent() {
+  const region = elBundesland.value, grade = elEG.value, step = elStufe.value;
+  const monthly = salaryData[region]?.[grade]?.[step];
+  if (monthly == null) return 0;
+  const r = calcSalary(monthly);
+  return r.wgSatz ? Math.round((r.wgSatz * 100) / 5) * 5 : 0;
+}
+
 function calcSalary(tabellenMonthly) {
   const region = elBundesland.value;
   const bonus = bonusData[region];
 
-  // Arbeitszeitfaktor: Tabellenwerte basieren auf TARIFLICHE_STUNDEN h/Woche
-  const wochenstunden = parseInt(elArbeitszeit.value, 10) || TARIFLICHE_STUNDEN;
-  const azFaktor = wochenstunden / TARIFLICHE_STUNDEN;
+  // Bei Vollzeit gilt immer das volle Tabellenentgelt; die Wochenstunden wirken dann
+  // nur auf den Stundenlohn. Teilzeit wird anteilig zur betrieblichen Vollzeit gerechnet.
+  const wochenstunden = getIstStunden();
+  const azFaktor      = getAnteilsfaktor();
 
   // Angepasstes Monatsentgelt
   const monthly = tabellenMonthly * azFaktor;
@@ -1046,9 +1302,8 @@ function calcSalary(tabellenMonthly) {
   const monatsentgeltBrutto = monthly + utMonatlich + freiwilligeZulageMonatlich;
   const urlaubsgeld     = monatsentgeltBrutto * bonus.urlaubsgeld * urlaubsgeldFaktor;
   const wgDynamisch     = monatsentgeltBrutto * wgSatz;
-  const wgManuellVal    = elWeihnachtsgeldManuell.value.trim();
-  const wgIstManuell    = wgManuellVal !== "" && !isNaN(parseFloat(wgManuellVal));
-  const wgSatzEffektiv  = wgIstManuell ? Math.min(55, Math.max(0, parseFloat(wgManuellVal))) / 100 : wgSatz;
+  const wgIstManuell    = elWgManuellAktiv.checked;
+  const wgSatzEffektiv  = wgIstManuell ? Math.min(55, Math.max(0, parseFloat(elWgManuellSatz.value) || 0)) / 100 : wgSatz;
   const weihnachtsgeld  = wgIstManuell ? monatsentgeltBrutto * wgSatzEffektiv : wgDynamisch;
   const tZugAFreiTage   = elTZugAFrei.checked;
   const tZugA           = hatTZugA && !tZugAFreiTage ? monatsentgeltBrutto * bonus.tZugA : 0;
@@ -1113,7 +1368,7 @@ function displayResult(r) {
 
     // Dynamische Prozentanzeige im Label + Placeholder für manuelles Feld
     const wgPctAnzeige = r.wgIstManuell
-      ? parseFloat(elWeihnachtsgeldManuell.value)
+      ? parseFloat(elWgManuellSatz.value)
       : (r.hatWeihnachtsgeld ? r.wgSatz * 100 : null);
     const pctText = wgPctAnzeige !== null
       ? tReplace("xmasPayPct", { pct: fmtDE(wgPctAnzeige, 0) })
@@ -1309,10 +1564,16 @@ function getCurrentLabel() {
 }
 
 function getCurrentDetails() {
-  const wochenstunden = parseInt(elArbeitszeit.value, 10) || 35;
+  const grund = parseInt(elArbeitszeit.value, 10) || TARIFLICHE_STUNDEN;
+  const mehr = getMehrstunden();
   const utPct = parseFloat(elUtZulageOutput.value) || 0;
   const sonderzahlung = parseFloat(elSonderzahlung.value) || 0;
-  const details = [wochenstunden + "\u00a0h"];
+  // Im Osten Grundarbeitszeit und Abweichung getrennt ausweisen – sonst wären im
+  // Vergleich "35 h Grund − 7 h" und "38 h Grund − 10 h" nicht auseinanderzuhalten.
+  const stundenText = mehr === 0
+    ? grund + " h"
+    : grund + (mehr > 0 ? " + " : " − ") + Math.abs(mehr) + " h";
+  const details = [stundenText];
   if (utPct > 0) details.push("\u00dcT " + fmtDE(utPct) + "\u00a0%");
   if (sonderzahlung > 0) details.push("SZ " + compactFmt.format(sonderzahlung));
   return details.join(" \u00b7 ");

@@ -185,7 +185,7 @@
         "name": "Wie berechne ich mein ERA-Gehalt bei Teilzeit?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Das Teilzeitgehalt ergibt sich aus: Grundentgelt × (tatsächliche Wochenstunden ÷ 35). Bei 28 Stunden in der Woche beträgt das Entgelt also 80 % des Vollzeitwertes. Alle Sonderzahlungen wie Urlaubsgeld, Weihnachtsgeld und T-ZUG werden anteilig auf Basis dieses angepassten Monatsentgelts berechnet. Im Rechner einfach die gewünschten Wochenstunden eintragen – alles wird automatisch umgerechnet."
+          "text": "Das Teilzeitgehalt ergibt sich aus: Grundentgelt × (tatsächliche Wochenstunden ÷ Grundarbeitszeit des Betriebs). Bei 28 Stunden in der Woche und 35 Stunden Vollzeit beträgt das Entgelt also 80 % des Vollzeitwertes. Alle Sonderzahlungen wie Urlaubsgeld, Weihnachtsgeld und T-ZUG werden anteilig auf Basis dieses angepassten Monatsentgelts berechnet. Im Rechner einfach die gewünschten Wochenstunden eintragen – alles wird automatisch umgerechnet. In den ostdeutschen Tarifgebieten beträgt die tarifliche Vollzeit 38 Stunden statt 35; das ändert am Monatsentgelt aber nichts – Vollzeit bedeutet dort wie hier den vollen Tabellenwert."
         }
       },
       {
@@ -281,7 +281,13 @@
       <h2 class="form-section-title" data-i18n="sectionArbeitszeit">Arbeitszeit &amp; Zulage</h2>
 
       <div class="form-group">
-        <label for="arbeitszeit" data-i18n="labelHours">W&ouml;chentliche Arbeitszeit</label>
+        <label for="arbeitszeit" class="label-with-info">
+          <span id="arbeitszeit-label" data-i18n="labelHours">W&ouml;chentliche Arbeitszeit</span>
+          <span class="label-info hidden" id="arbeitszeit-info" tabindex="0" role="note" aria-label="Info">
+            <span class="label-info-icon" aria-hidden="true">i</span>
+            <span class="tooltip" id="arbeitszeit-tooltip"></span>
+          </span>
+        </label>
         <div class="range-group">
           <input type="range" id="arbeitszeit" min="15" max="48" step="1" value="35">
           <div class="range-input-wrapper">
@@ -290,6 +296,25 @@
           </div>
         </div>
       </div>
+
+      <div class="form-group hidden" id="mehrstunden-group">
+        <label for="mehrstunden" class="label-with-info">
+          <span data-i18n="labelExtraHours">Mehr-/Minderstunden</span>
+          <span class="label-info" tabindex="0" role="note" aria-label="Info">
+            <span class="label-info-icon" aria-hidden="true">i</span>
+            <span class="tooltip" data-i18n="tooltipMehrstunden">Abweichung von der Grundarbeitszeit: Teilzeit als negativer Wert, Mehrarbeit als positiver. Das Entgelt wird anteilig berechnet &ndash; 35&nbsp;h Grundarbeitszeit minus 7&nbsp;h ergeben also 80&nbsp;% des Tabellenentgelts.</span>
+          </span>
+        </label>
+        <div class="range-group">
+          <input type="range" id="mehrstunden" min="-20" max="13" step="1" value="0">
+          <div class="range-input-wrapper">
+            <input type="number" id="mehrstunden-output" class="range-value-input" min="-20" max="13" step="1" value="0">
+            <span class="range-input-unit">h</span>
+          </div>
+        </div>
+      </div>
+
+      <p class="region-hint hidden" id="region-hint"></p>
 
       <div class="form-group">
         <label for="ut-zulage" data-i18n="labelBonus">Leistungszulage</label>
@@ -351,16 +376,22 @@
           </div>
         </div>
 
-        <div class="form-group">
-          <label for="weihnachtsgeld-manuell" data-i18n="labelWeihnachtsgeldManuell">Weihnachtsgeld-Satz (manuell &uuml;bersteuern)</label>
-          <select id="weihnachtsgeld-manuell">
-            <option value="" data-i18n="wgManuellAuto">automatisch</option>
-            <option value="0">0 %</option>
-            <option value="25">25 %</option>
-            <option value="35">35 %</option>
-            <option value="45">45 %</option>
-            <option value="55">55 %</option>
-          </select>
+        <div class="form-group checkbox-group">
+          <label class="checkbox-label">
+            <input type="checkbox" id="weihnachtsgeld-manuell-aktiv">
+            <span data-i18n="labelWeihnachtsgeldManuell">Weihnachtsgeld-Satz manuell &uuml;bersteuern</span>
+          </label>
+        </div>
+
+        <div class="form-group hidden" id="weihnachtsgeld-manuell-group">
+          <label for="weihnachtsgeld-manuell" data-i18n="labelWeihnachtsgeldManuellSatz">Weihnachtsgeld-Satz</label>
+          <div class="range-group">
+            <input type="range" id="weihnachtsgeld-manuell" min="0" max="55" step="5" value="0">
+            <div class="range-input-wrapper">
+              <input type="number" id="weihnachtsgeld-manuell-output" class="range-value-input" min="0" max="55" step="5" value="0">
+              <span class="range-input-unit">%</span>
+            </div>
+          </div>
         </div>
 
         <div class="form-group checkbox-group">
@@ -639,7 +670,7 @@
       <p data-i18n="seoText1">Kostenloser, Open-Source IG Metall Gehaltsrechner auf Basis der Tariftabellen 2026 inkl. aller tariflichen Sonderzahlungen: Weihnachtsgeld, Urlaubsgeld, T-ZUG&nbsp;A, Transformationsgeld und T-ZUG&nbsp;B. Er unterst&uuml;tzt alle 15 Tarifgebiete der Metall- und Elektroindustrie &ndash; von Baden-W&uuml;rttemberg bis Th&uuml;ringen &ndash; und wird nach jeder Tarifrunde aktualisiert.</p>
       <p data-i18n="seoText2">Die Tariftabellen unterscheiden sich je nach Bundesland und Entgeltgruppe (EG&nbsp;1 bis EG&nbsp;17). Mit unserem Rechner ermittelst du dein pers&ouml;nliches Jahresbrutto in Sekunden &ndash; inkl. anteiliger Berechnung bei Teilzeit und optionaler Leistungszulage.</p>
       <p class="seo-disclaimer" data-i18n="seoDisclaimer">Unabh&auml;ngiges Open-Source-Projekt &ndash; kein offizielles Angebot der IG Metall.</p>
-      <p class="source-note" data-i18n-html="sourceNote">Quelle: <a href="https://www.igmetall.de/tarif" target="_blank" rel="noopener noreferrer">ERA-Tarifvertrag der Metall- und Elektroindustrie (IG Metall)</a> &middot; Zuletzt gepr&uuml;ft: <time datetime="2026-05">Mai 2026</time></p>
+      <p class="source-note" data-i18n-html="sourceNote">Quelle: <a href="https://www.igmetall.de/tarif" target="_blank" rel="noopener noreferrer">ERA-Tarifvertrag der Metall- und Elektroindustrie (IG Metall)</a> &middot; Zuletzt gepr&uuml;ft: <time datetime="2026-08">August 2026</time></p>
     </section>
 
     <!-- Regionseiten -->
@@ -778,7 +809,7 @@
 
       <details class="faq-item" data-faq-cat="berechnung">
         <summary data-i18n="faq10Q">Wie berechne ich mein ERA-Gehalt bei Teilzeit?</summary>
-        <p data-i18n="faq10A">Das Teilzeitgehalt ergibt sich aus: Grundentgelt &times; (tats&auml;chliche Wochenstunden &divide; 35). Bei 28&nbsp;Stunden in der Woche betr&auml;gt das Entgelt also 80&nbsp;% des Vollzeitwertes. Alle Sonderzahlungen wie Urlaubsgeld, Weihnachtsgeld und T-ZUG werden anteilig auf Basis dieses angepassten Monatsentgelts berechnet. Im Rechner einfach die gew&uuml;nschten Wochenstunden eintragen &ndash; alles wird automatisch umgerechnet.</p>
+        <p data-i18n="faq10A">Das Teilzeitgehalt ergibt sich aus: Grundentgelt &times; (tats&auml;chliche Wochenstunden &divide; Grundarbeitszeit des Betriebs). Bei 28&nbsp;Stunden in der Woche und 35&nbsp;Stunden Vollzeit betr&auml;gt das Entgelt also 80&nbsp;% des Vollzeitwertes. Alle Sonderzahlungen wie Urlaubsgeld, Weihnachtsgeld und T-ZUG werden anteilig auf Basis dieses angepassten Monatsentgelts berechnet. Im Rechner einfach die gew&uuml;nschten Wochenstunden eintragen &ndash; alles wird automatisch umgerechnet. In den ostdeutschen Tarifgebieten betr&auml;gt die tarifliche Vollzeit 38&nbsp;Stunden statt 35; das &auml;ndert am Monatsentgelt aber nichts &ndash; Vollzeit bedeutet dort wie hier den vollen Tabellenwert.</p>
       </details>
 
       <details class="faq-item" data-faq-cat="berechnung">

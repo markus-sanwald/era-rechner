@@ -920,6 +920,66 @@ header h1 {
   display: block;
 }
 
+/* Info-Icon an Formular-Labels */
+.label-with-info {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.label-info {
+  display: inline-flex;
+  cursor: help;
+}
+
+.label-info-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  font-style: italic;
+  line-height: 1;
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+}
+
+.label-info:hover .label-info-icon,
+.label-info:focus-visible .label-info-icon {
+  color: var(--color-text);
+}
+
+/* Tooltip an der Label-Zeile ausrichten (nicht am Icon), sonst läuft er aus der Spalte */
+.label-info .tooltip {
+  left: 0;
+  right: auto;
+  width: 100%;
+  max-width: 320px;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.label-info:hover .tooltip,
+.label-info:focus-visible .tooltip {
+  display: block;
+}
+
+/* Hinweis zu Tarifgebieten mit abweichender Grundarbeitszeit */
+.region-hint {
+  margin: -0.25rem 0 1.25rem;
+  padding: 0.6rem 0.75rem;
+  font-size: 0.78rem;
+  line-height: 1.55;
+  color: var(--color-text-muted);
+  background: var(--color-bg);
+  border-left: 3px solid var(--color-primary);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
 .breakdown-value {
   font-size: 0.95rem;
   font-weight: 600;

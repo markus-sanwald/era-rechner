@@ -20,14 +20,31 @@ const TRANSLATIONS = {
     labelRegion: "Bundesland / Tarifgebiet",
     labelGrade: "Entgeltgruppe (EG)",
     labelStep: "Stufe",
-    labelHours: "W\u00f6chentliche Arbeitszeit",
+    labelHours: "Wöchentliche Arbeitszeit",
     labelStartDate: "Eintrittsdatum",
     labelTZugADaysOff: "T-ZUG A als freie Tage nehmen",
     labelBonus: "Leistungszulage",
     labelSonderzahlung: "Sonderzahlung / Gewinnbeteiligung (j\u00e4hrlich)",
     labelFreiwilligeZulage: "Freiwillige monatliche Zulage",
-    labelWeihnachtsgeldManuell: "Weihnachtsgeld-Satz (manuell \u00fcbersteuern)",
-    wgManuellAuto: "automatisch",
+    labelWeihnachtsgeldManuell: "Weihnachtsgeld-Satz manuell übersteuern",
+    labelWeihnachtsgeldManuellSatz: "Weihnachtsgeld-Satz",
+
+    // Rückfrage bei abgesenkter Stundenzahl im Tarifgebiet Ost
+    labelBaseHours: "Grundarbeitszeit",
+    labelExtraHours: "Mehr-/Minderstunden",
+
+
+
+
+
+    // Hinweise zu Tarifgebieten mit abweichender Grundarbeitszeit / Weihnachtsgeld-Staffel
+    hintOst38: "Die Grundarbeitszeit ist die wöchentliche Vollzeit in deinem Betrieb – sie verändert das Monatsentgelt nicht. Nur Mehr-/Minderstunden wirken anteilig darauf.",
+    hintBerlin: "Die Grundarbeitszeit ist die wöchentliche Vollzeit in deinem Betrieb – sie verändert das Monatsentgelt nicht. Nur Mehr-/Minderstunden wirken anteilig darauf.",
+    hintMV: "Die Grundarbeitszeit ist die wöchentliche Vollzeit in deinem Betrieb – sie verändert das Monatsentgelt nicht. Nur Mehr-/Minderstunden wirken anteilig darauf.",
+    tooltipGrundOst: "Tariflich sind im Tarifgebiet Ost 38 Wochenstunden vorgesehen – bei identischem Tabellenentgelt wie im Westen. Seit 2021 haben viele Betriebe stufenweise auf 35 Stunden abgesenkt, und zwar bei vollem Lohnausgleich.",
+    tooltipGrundBerlin: "Berlin/Brandenburg umfasst zwei Tarifgebiete: TG I (ehemals Berlin-West) mit 35 Wochenstunden und TG II (Berlin-Ost und Brandenburg) mit 38 – bei identischem Tabellenentgelt.",
+    tooltipGrundMV: "Tariflich sind in Mecklenburg-Vorpommern 38 Wochenstunden vorgesehen, in Schleswig-Holstein und NW-Niedersachsen 35 – bei gleicher Entgelttabelle. Die Absenkung auf 35 Stunden läuft in MV nur mit teilweiser Kompensation.",
+    tooltipMehrstunden: "Abweichung von der Grundarbeitszeit: Teilzeit als negativer Wert, Mehrarbeit als positiver. Das Entgelt wird anteilig berechnet – 35 h Grundarbeitszeit minus 7 h ergeben also 80 % des Tabellenentgelts.",
 
     // Datepicker
     dpMonths: ["Januar", "Februar", "M\u00e4rz", "April", "Mai", "Juni",
@@ -97,7 +114,7 @@ const TRANSLATIONS = {
     breakdownFreiwilligeZulage: "12 × Freiwillige Zulage",
 
     // Tooltips
-    tooltipBase: "Tarifliches Monatsentgelt gem\u00e4\u00df ERA-Entgelttabelle, ggf. angepasst an die individuelle Wochenarbeitszeit.",
+    tooltipBase: "Tarifliches Monatsentgelt gem\u00e4\u00df ERA-Entgelttabelle. Es gilt f\u00fcr die Grundarbeitszeit deines Betriebs und wird nur durch Mehr-/Minderstunden anteilig ver\u00e4ndert.",
     tooltipUtZulage: "Freiwillige Leistungszulage des Arbeitgebers oberhalb des Tarifentgelts. Wird nicht bei Sonderzahlungen ber\u00fccksichtigt.",
     tooltipHolidayPay: "Zus\u00e4tzliches Urlaubsgeld, meist pauschal bis Ende Juni ausgezahlt. Berechnung auf Basis des tariflichen Monatsentgelts. Im Eintrittsjahr anteilig: 1/12 je vollem Besch\u00e4ftigungsmonat.",
     tooltipXmasPay: "Jahressonderzahlung im November. Der volle Satz (55\u00a0%) wird nach 36 Monaten Betriebszugeh\u00f6rigkeit erreicht. Vorher gestaffelt: 25\u00a0% (ab 6 Mon.), 35\u00a0% (ab 12 Mon.), 45\u00a0% (ab 24 Mon.).",
@@ -279,7 +296,7 @@ const TRANSLATIONS = {
     faqAnspruchQ: "Bekomme ich die Sonderzahlungen auch als Neueinsteiger?",
     faqAnspruchA: "Anspruch auf T-ZUG A, T-ZUG B und das Transformationsgeld (T-Geld) besteht erst nach sechs Monaten ununterbrochener Betriebszugeh\u00f6rigkeit. Ma\u00dfgeblich ist der jeweilige Auszahlungsmonat: T-ZUG A wird im Juli ausgezahlt (Stichtag 31. Juli, Eintritt also sp\u00e4testens 31. Januar). Bei T-Geld und T-ZUG B sind die Auszahlungsmonate ab 2026 getauscht: T-Geld kommt im Juli (Stichtag 31. Juli), T-ZUG B im Februar (Stichtag Ende Februar \u2013 Eintritt sp\u00e4testens Ende August des Vorjahres); bis 2025 war es umgekehrt. Das Urlaubsgeld funktioniert anders: Es h\u00e4ngt am Urlaubsanspruch und wird im Eintrittsjahr gezw\u00f6lftelt (1/12 je vollem Besch\u00e4ftigungsmonat). Wer z. B. am 1. September anf\u00e4ngt, hat Anspruch auf 4/12 des Urlaubsgeldes. Ausgezahlt wird dieser Anteil nicht im Juni (der pauschale Termin ist dann bereits vorbei), sondern mit den tats\u00e4chlich genommenen Urlaubstagen \u2013 z. B. im November/Dezember \u2013 oder zu Beginn des Folgejahres; bei Eintritt nach dem 1. Juli entsteht der Anspruch formal erst sechs Monate nach Eintritt, geht aber nicht verloren. Tipp: Trage dein Eintrittsdatum im Rechner ein, dann wird alles automatisch ber\u00fccksichtigt. Bleibt das Feld leer, geht der Rechner davon aus, dass du bereits l\u00e4nger als sechs Monate im Betrieb bist.",
     faq10Q: "Wie berechne ich mein ERA-Gehalt bei Teilzeit?",
-    faq10A: "Das Teilzeitgehalt ergibt sich aus: Grundentgelt \u00d7 (tats\u00e4chliche Wochenstunden \u00f7 35). Bei 28\u00a0Stunden in der Woche betr\u00e4gt das Entgelt also 80\u00a0% des Vollzeitwertes. Alle Sonderzahlungen wie Urlaubsgeld, Weihnachtsgeld und T-ZUG werden anteilig auf Basis dieses angepassten Monatsentgelts berechnet. Im Rechner einfach die gew\u00fcnschten Wochenstunden eintragen \u2013 alles wird automatisch umgerechnet.",
+    faq10A: "Das Teilzeitgehalt ergibt sich aus: Grundentgelt \u00d7 (tats\u00e4chliche Wochenstunden \u00f7 Grundarbeitszeit des Betriebs). Bei 28\u00a0Stunden in der Woche und 35\u00a0Stunden Vollzeit betr\u00e4gt das Entgelt also 80\u00a0% des Vollzeitwertes. Alle Sonderzahlungen wie Urlaubsgeld, Weihnachtsgeld und T-ZUG werden anteilig auf Basis dieses angepassten Monatsentgelts berechnet. Im Rechner einfach die gew\u00fcnschten Wochenstunden eintragen \u2013 alles wird automatisch umgerechnet. In den ostdeutschen Tarifgebieten betr\u00e4gt die tarifliche Vollzeit 38\u00a0Stunden statt 35; dort erscheint zus\u00e4tzlich das Feld \u201eGrundarbeitszeit des Betriebs\u201c, auf das sich die Teilzeitquote bezieht.",
     faq11Q: "Was bedeutet Leistungszulage und wie beeinflusst sie Sonderzahlungen?",
     faq11A: "Die Leistungszulage ist ein individueller prozentualer Aufschlag auf das tarifliche Grundentgelt (0\u201330\u00a0%), den der Arbeitgeber gew\u00e4hrt. Sie erh\u00f6ht nicht nur das monatliche Bruttogehalt, sondern wirkt sich auch auf Urlaubsgeld, Weihnachtsgeld, T-ZUG\u00a0A und Transformationsgeld aus, da diese als Prozentsatz des Monatsentgelts berechnet werden. Einzige Ausnahme: T-ZUG\u00a0B basiert auf dem Eckentgelt und ist von der pers\u00f6nlichen Leistungszulage unabh\u00e4ngig.",
 
@@ -307,7 +324,7 @@ const TRANSLATIONS = {
     footerPrivacy: "Datenschutz",
     footerGithub: "Quellcode auf GitHub",
     backToCalculator: "\u2190 Zur\u00fcck zum Rechner",
-    sourceNote: "Quelle: <a href=\"https://www.igmetall.de/tarif\" target=\"_blank\" rel=\"noopener noreferrer\">ERA-Tarifvertrag der Metall- und Elektroindustrie (IG Metall)</a> &middot; Zuletzt gepr&uuml;ft: <time datetime=\"2026-05\">Mai 2026</time>",
+    sourceNote: "Quelle: <a href=\"https://www.igmetall.de/tarif\" target=\"_blank\" rel=\"noopener noreferrer\">ERA-Tarifvertrag der Metall- und Elektroindustrie (IG Metall)</a> &middot; Zuletzt gepr&uuml;ft: <time datetime=\"2026-08\">August 2026</time>",
 
     // Glossar
     glossarTitle: "ERA Glossar",
@@ -373,8 +390,25 @@ const TRANSLATIONS = {
     labelBonus: "Performance Bonus",
     labelSonderzahlung: "Special Payment / Profit Sharing (annual)",
     labelFreiwilligeZulage: "Voluntary monthly allowance",
-    labelWeihnachtsgeldManuell: "Christmas Bonus Rate (manual override)",
-    wgManuellAuto: "automatic",
+    labelWeihnachtsgeldManuell: "Manually override Christmas bonus rate",
+    labelWeihnachtsgeldManuellSatz: "Christmas bonus rate",
+
+    // Follow-up question when hours are below contractual full-time (eastern regions)
+    labelBaseHours: "Base Weekly Hours",
+    labelExtraHours: "Extra / Reduced Hours",
+
+
+
+
+
+    // Notes on regions with a different base working time / Christmas bonus scale
+    hintOst38: "Base weekly hours are the full-time week at your company – they do not change the monthly salary. Only extra or reduced hours affect it, pro rata.",
+    hintBerlin: "Base weekly hours are the full-time week at your company – they do not change the monthly salary. Only extra or reduced hours affect it, pro rata.",
+    hintMV: "Base weekly hours are the full-time week at your company – they do not change the monthly salary. Only extra or reduced hours affect it, pro rata.",
+    tooltipGrundOst: "In the eastern collective region 38 weekly hours apply by collective agreement – with the same pay table as in the west. Since 2021 many companies have reduced this step by step to 35 hours, with full wage compensation.",
+    tooltipGrundBerlin: "Berlin/Brandenburg covers two collective regions: TG I (former West Berlin) with 35 weekly hours and TG II (East Berlin and Brandenburg) with 38 – with an identical pay table.",
+    tooltipGrundMV: "Mecklenburg-Vorpommern has 38 weekly hours by collective agreement, Schleswig-Holstein and north-western Lower Saxony 35 – with the same pay table. The reduction to 35 hours in MV comes with only partial compensation.",
+    tooltipMehrstunden: "Deviation from your base weekly hours: part-time as a negative value, extra work as a positive one. The salary is calculated pro rata – 35 h base minus 7 h therefore gives 80 % of the table value.",
 
     // Datepicker
     dpMonths: ["January", "February", "March", "April", "May", "June",
@@ -444,7 +478,7 @@ const TRANSLATIONS = {
     breakdownFreiwilligeZulage: "12 × Voluntary Allowance",
 
     // Tooltips
-    tooltipBase: "Tariff monthly salary according to the ERA pay table, adjusted for individual weekly working hours if applicable.",
+    tooltipBase: "Tariff monthly salary according to the ERA pay table. It applies to your company's base working time and is only adjusted pro rata by extra or reduced hours.",
     tooltipUtZulage: "Voluntary performance bonus from the employer above the tariff salary. Not included in special payment calculations.",
     tooltipHolidayPay: "Additional holiday pay, usually paid as a lump sum by the end of June. Calculated based on the tariff monthly salary. Prorated in the year of joining: 1/12 per full month of employment.",
     tooltipXmasPay: "Annual bonus paid in November. The full rate (55\u00a0%) is reached after 36 months of tenure. Graduated before: 25\u00a0% (from 6 mo.), 35\u00a0% (from 12 mo.), 45\u00a0% (from 24 mo.).",
@@ -662,7 +696,7 @@ const TRANSLATIONS = {
     faqAnspruchQ: "Do I receive the special payments as a new joiner?",
     faqAnspruchA: "Entitlement to T-ZUG A, T-ZUG B and the transformation payment (T-Geld) only arises after six months of uninterrupted company tenure. What matters is the respective payout month: T-ZUG A is paid in July (reference date 31 July, so start date no later than 31 January). For T-Geld and T-ZUG B the payout months are swapped from 2026: T-Geld is paid in July (reference date 31 July), T-ZUG B in February (reference date end of February – start date no later than the end of August of the previous year); until 2025 it was the other way round. Holiday pay works differently: it is tied to the vacation entitlement and is prorated in the year of joining (1/12 per full month of employment). If you start on 1 September, for example, you are entitled to 4/12 of the holiday pay. This share is not paid in June (that lump-sum date has already passed) but with the vacation days you actually take – e.g. in November/December – or at the beginning of the following year; if you join after 1 July, the claim formally only arises six months after joining but is not forfeited. Tip: enter your start date in the calculator and everything is taken into account automatically. If the field is left empty, the calculator assumes you have already been with the company for more than six months.",
     faq10Q: "How do I calculate my ERA salary for part-time work?",
-    faq10A: "The part-time salary is calculated as: base salary \u00d7 (actual weekly hours \u00f7 35). Working 28 hours a week therefore gives you 80 % of the full-time value. All special payments such as holiday pay, Christmas bonus and T-ZUG are calculated proportionally based on this adjusted monthly salary. Simply enter your weekly hours in the calculator \u2013 everything is adjusted automatically.",
+    faq10A: "The part-time salary is calculated as: base salary \u00d7 (actual weekly hours \u00f7 your company's base working time). Working 28 hours a week against a 35-hour full-time week therefore gives you 80 % of the full-time value. All special payments such as holiday pay, Christmas bonus and T-ZUG are calculated proportionally based on this adjusted monthly salary. Simply enter your weekly hours in the calculator \u2013 everything is adjusted automatically. In the eastern collective regions full-time is 38 hours instead of 35; there an additional \u201ccompany's base working time\u201d field appears, which the part-time ratio refers to.",
     faq11Q: "What is the performance allowance and how does it affect special payments?",
     faq11A: "The performance allowance (Leistungszulage) is an individual percentage surcharge on the collectively agreed base pay (0\u201330 %), granted by the employer. It increases not only the monthly gross salary but also affects holiday pay, Christmas bonus, T-ZUG A and transformation payment, as these are calculated as a percentage of the monthly salary. The only exception: T-ZUG B is based on the reference salary and is independent of the personal performance allowance.",
 
@@ -690,7 +724,7 @@ const TRANSLATIONS = {
     footerPrivacy: "Privacy Policy",
     footerGithub: "Source Code on GitHub",
     backToCalculator: "\u2190 Back to Calculator",
-    sourceNote: "Source: <a href=\"https://www.igmetall.de/tarif\" target=\"_blank\" rel=\"noopener noreferrer\">ERA collective agreement for the metal and electrical industry (IG Metall)</a> &middot; Last reviewed: <time datetime=\"2026-05\">May 2026</time>",
+    sourceNote: "Source: <a href=\"https://www.igmetall.de/tarif\" target=\"_blank\" rel=\"noopener noreferrer\">ERA collective agreement for the metal and electrical industry (IG Metall)</a> &middot; Last reviewed: <time datetime=\"2026-08\">August 2026</time>",
 
     // Glossar
     glossarTitle: "ERA Glossary",

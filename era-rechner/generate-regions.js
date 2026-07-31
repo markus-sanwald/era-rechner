@@ -161,7 +161,7 @@ ${links}
       </div>
     </nav>
 
-    <p class="source-note" style="text-align:center" data-i18n-html="sourceNote">Quelle: <a href="https://www.igmetall.de/tarif" target="_blank" rel="noopener noreferrer">ERA-Tarifvertrag der Metall- und Elektroindustrie (IG Metall)</a> &middot; Zuletzt gepr&uuml;ft: <time datetime="2026-05">Mai 2026</time></p>
+    <p class="source-note" style="text-align:center" data-i18n-html="sourceNote">Quelle: <a href="https://www.igmetall.de/tarif" target="_blank" rel="noopener noreferrer">ERA-Tarifvertrag der Metall- und Elektroindustrie (IG Metall)</a> &middot; Zuletzt gepr&uuml;ft: <time datetime="2026-08">August 2026</time></p>
 
     <footer>
       <p class="footer-feedback" data-i18n-html="footerFeedback">Anregungen, Fehler oder Feedback? <a href="mailto:info@era-rechner.de">info@era-rechner.de</a></p>
@@ -292,7 +292,7 @@ ${links}
       </div>
     </nav>
 
-    <p class="source-note" style="text-align:center" data-i18n-html="sourceNote">Quelle: <a href="https://www.igmetall.de/tarif" target="_blank" rel="noopener noreferrer">ERA-Tarifvertrag der Metall- und Elektroindustrie (IG Metall)</a> &middot; Zuletzt gepr&uuml;ft: <time datetime="2026-05">Mai 2026</time></p>
+    <p class="source-note" style="text-align:center" data-i18n-html="sourceNote">Quelle: <a href="https://www.igmetall.de/tarif" target="_blank" rel="noopener noreferrer">ERA-Tarifvertrag der Metall- und Elektroindustrie (IG Metall)</a> &middot; Zuletzt gepr&uuml;ft: <time datetime="2026-08">August 2026</time></p>
 
     <footer>
       <p class="footer-feedback" data-i18n-html="footerFeedback">Anregungen, Fehler oder Feedback? <a href="mailto:info@era-rechner.de">info@era-rechner.de</a></p>
