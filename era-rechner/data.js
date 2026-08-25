@@ -809,7 +809,8 @@ const ERA_DATA = {
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.185,
-        "eckentgelt": 3197,
+        "eckentgelt": 3592,
+        "eckentgeltEG": 7,
         "minMonate": 6,
         "weihnachtsgeldStaffel": [
           { "monate": 36, "satz": 0.55 },
@@ -823,7 +824,7 @@ const ERA_DATA = {
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.185,
-        "eckentgelt": 3392,
+        "eckentgelt": 3475,
         "minMonate": 6,
         "weihnachtsgeldStaffel": [
           { "monate": 36, "satz": 0.55 },
@@ -837,7 +838,7 @@ const ERA_DATA = {
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.185,
-        "eckentgelt": 3287,
+        "eckentgelt": 3407,
         "minMonate": 6,
         "weihnachtsgeldStaffel": [
           { "monate": 36, "satz": 0.55 },
@@ -851,7 +852,7 @@ const ERA_DATA = {
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.185,
-        "eckentgelt": 3377,
+        "eckentgelt": 3465,
         "minMonate": 6,
         "weihnachtsgeldStaffel": [
           { "monate": 36, "satz": 0.55 },
@@ -879,7 +880,7 @@ const ERA_DATA = {
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.185,
-        "eckentgelt": 3255,
+        "eckentgelt": 3462,
         "minMonate": 6,
         "weihnachtsgeldStaffel": [
           { "monate": 36, "satz": 0.55 },
@@ -893,8 +894,8 @@ const ERA_DATA = {
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.185,
-        "eckentgelt": 3196,
-        "eckentgeltEG": 8,
+        "eckentgelt": 3454,
+        "eckentgeltEG": 9,
         "minMonate": 6,
         "weihnachtsgeldStaffel": [
           { "monate": 36, "satz": 0.55 },
@@ -908,7 +909,8 @@ const ERA_DATA = {
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.185,
-        "eckentgelt": 3566,
+        "eckentgelt": 3462,
+        "eckentgeltEG": 4,
         "minMonate": 6,
         "weihnachtsgeldStaffel": [
           { "monate": 36, "satz": 0.55 },
@@ -992,7 +994,7 @@ const ERA_DATA = {
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.185,
-        "eckentgelt": 3377,
+        "eckentgelt": 3465,
         "minMonate": 6,
         "weihnachtsgeldStaffel": [
           { "monate": 36, "satz": 0.55 },
@@ -1843,7 +1845,8 @@ const ERA_DATA = {
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.265,
-        "eckentgelt": 3296.00,
+        "eckentgelt": 3703.50,
+        "eckentgeltEG": 7,
         "minMonate": 6,
         "weihnachtsgeldStaffel": [
           { "monate": 36, "satz": 0.55 },
@@ -1857,7 +1860,7 @@ const ERA_DATA = {
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.265,
-        "eckentgelt": 3497.00,
+        "eckentgelt": 3583.00,
         "minMonate": 6,
         "weihnachtsgeldStaffel": [
           { "monate": 36, "satz": 0.55 },
@@ -1871,7 +1874,7 @@ const ERA_DATA = {
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.265,
-        "eckentgelt": 3389.00,
+        "eckentgelt": 3513.00,
         "minMonate": 6,
         "weihnachtsgeldStaffel": [
           { "monate": 36, "satz": 0.55 },
@@ -1885,7 +1888,7 @@ const ERA_DATA = {
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.265,
-        "eckentgelt": 3482.00,
+        "eckentgelt": 3572.00,
         "minMonate": 6,
         "weihnachtsgeldStaffel": [
           { "monate": 36, "satz": 0.55 },
@@ -1913,7 +1916,7 @@ const ERA_DATA = {
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.265,
-        "eckentgelt": 3356.00,
+        "eckentgelt": 3569.00,
         "minMonate": 6,
         "weihnachtsgeldStaffel": [
           { "monate": 36, "satz": 0.55 },
@@ -1927,8 +1930,8 @@ const ERA_DATA = {
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.265,
-        "eckentgelt": 3295.00,
-        "eckentgeltEG": 8,
+        "eckentgelt": 3561.00,
+        "eckentgeltEG": 9,
         "minMonate": 6,
         "weihnachtsgeldStaffel": [
           { "monate": 36, "satz": 0.55 },
@@ -1942,7 +1945,8 @@ const ERA_DATA = {
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.265,
-        "eckentgelt": 3677.00,
+        "eckentgelt": 3569.00,
+        "eckentgeltEG": 4,
         "minMonate": 6,
         "weihnachtsgeldStaffel": [
           { "monate": 36, "satz": 0.55 },
@@ -2026,7 +2030,7 @@ const ERA_DATA = {
         "tZugA": 0.275,
         "tGeld": 0.184,
         "tZugB": 0.265,
-        "eckentgelt": 3482.00,
+        "eckentgelt": 3572.00,
         "minMonate": 6,
         "weihnachtsgeldStaffel": [
           { "monate": 36, "satz": 0.55 },
