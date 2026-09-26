@@ -358,6 +358,10 @@
               </div>
             </div>
           </div>
+          <div class="year-notice hidden" id="eintritt-jahr-hint">
+            <span id="eintritt-jahr-hint-text"></span>
+            <button type="button" class="year-notice-switch-btn hidden" id="eintritt-jahr-hint-switch"></button>
+          </div>
         </div>
 
         <div class="form-group">
@@ -547,6 +551,7 @@
           <span class="breakdown-label">
             <span data-i18n="breakdownXmasPay">Weihnachtsgeld</span> <small id="weihnachtsgeld-pct" data-i18n-html="breakdownXmasPayDetail">(55&nbsp;% eines ME)</small>
             <span class="tooltip" data-i18n="tooltipXmasPay">Jahressonderzahlung im November. Der volle Satz (55&nbsp;%) wird nach 36 Monaten Betriebszugeh&ouml;rigkeit erreicht. Vorher gestaffelt: 25&nbsp;% (ab 6 Mon.), 35&nbsp;% (ab 12 Mon.), 45&nbsp;% (ab 24 Mon.).</span>
+            <small class="breakdown-hint hidden" id="weihnachtsgeld-hint"></small>
           </span>
           <span class="breakdown-value" id="weihnachtsgeld"></span>
         </div>
@@ -554,6 +559,7 @@
           <span class="breakdown-label">
             <span data-i18n="breakdownTZugA">T-ZUG A</span> <small data-i18n-html="breakdownTZugADetail">(27,5&nbsp;% eines ME)</small>
             <span class="tooltip" data-i18n="tooltipTZugA">Tarifliches Zusatzgeld A &ndash; Auszahlung im Juli. Kann alternativ in freie Tage umgewandelt werden (bis zu 8 Tage). Wird bei Umwandlung nicht ausgezahlt.</span>
+            <small class="breakdown-hint hidden" id="tzug-a-hint"></small>
           </span>
           <span class="breakdown-value" id="tzug-a"></span>
         </div>
@@ -561,6 +567,7 @@
           <span class="breakdown-label">
             <span data-i18n="breakdownTGeld">T-Geld</span> <small data-i18n-html="breakdownTGeldDetail">(18,4&nbsp;% eines ME)</small>
             <span class="tooltip" data-i18n="tooltipTGeld">Transformationsgeld &ndash; Auszahlung im Juli zusammen mit T-ZUG&nbsp;A. Dient der Finanzierung von Qualifizierung und Transformation in der Metall- und Elektroindustrie.</span>
+            <small class="breakdown-hint hidden" id="tgeld-hint"></small>
           </span>
           <span class="breakdown-value" id="tgeld"></span>
         </div>
@@ -568,6 +575,7 @@
           <span class="breakdown-label">
             <span data-i18n="breakdownTZugB">T-ZUG B</span> <small id="tzug-b-pct" data-i18n-html="breakdownTZugBDetail">(18,5&nbsp;% v. Eckentgelt)</small>
             <span class="tooltip" data-i18n="tooltipTZugB">Tarifliches Zusatzgeld B &ndash; fester Betrag auf Basis des Eckentgelts der Region, unabh&auml;ngig von der pers&ouml;nlichen Entgeltgruppe. Ab 2026: 26,5&nbsp;% (vorher 18,5&nbsp;%). Auszahlung im Februar.</span>
+            <small class="breakdown-hint hidden" id="tzug-b-hint"></small>
           </span>
           <span class="breakdown-value" id="tzug-b"></span>
         </div>

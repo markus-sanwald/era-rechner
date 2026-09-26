@@ -57,10 +57,17 @@ const elUrlaubsgeld      = document.getElementById("urlaubsgeld");
 const elUrlaubsgeldPct   = document.getElementById("urlaubsgeld-pct");
 const elWeihnachtsgeld   = document.getElementById("weihnachtsgeld");
 const elWeihnachtsgeldPct = document.getElementById("weihnachtsgeld-pct");
+const elWeihnachtsgeldHint = document.getElementById("weihnachtsgeld-hint");
 const elTZugA            = document.getElementById("tzug-a");
+const elTZugAHint        = document.getElementById("tzug-a-hint");
 const elTGeld            = document.getElementById("tgeld");
+const elTGeldHint        = document.getElementById("tgeld-hint");
 const elTZugB            = document.getElementById("tzug-b");
 const elTZugBPct         = document.getElementById("tzug-b-pct");
+const elTZugBHint        = document.getElementById("tzug-b-hint");
+const elEintrittJahrHint       = document.getElementById("eintritt-jahr-hint");
+const elEintrittJahrHintText   = document.getElementById("eintritt-jahr-hint-text");
+const elEintrittJahrHintSwitch = document.getElementById("eintritt-jahr-hint-switch");
 const elSonderzahlung    = document.getElementById("sonderzahlung");
 const elSonderzahlungRow = document.getElementById("sonderzahlung-row");
 const elSonderzahlungAnnual = document.getElementById("sonderzahlung-annual");
@@ -191,6 +198,9 @@ function chartLabelCompact(value) {
 }
 
 const fmtDE = (num, decimals = 1) => num.toFixed(decimals).replace(".", ",");
+
+const fmtDatum = (date) =>
+  `${String(date.getDate()).padStart(2, "0")}.${String(date.getMonth() + 1).padStart(2, "0")}.${date.getFullYear()}`;
 
 // ---------------------------------------------------------------------------
 // Chart configuration
@@ -368,6 +378,49 @@ elJahr.addEventListener("change", () => {
       }
     }
   }
+
+  updateEintrittJahrHinweis();
+});
+
+// ---------------------------------------------------------------------------
+// Hinweis: Eintrittsdatum liegt in einem anderen Jahr als das gewählte Tarifjahr
+// (z.B. Tarifjahr 2026 gewählt, aber Eintritt erst 01.01.2027 → sonst werden alle
+// Sonderzahlungen ohne Erklärung 0€, weil man zu den 2026er-Stichtagen noch nicht
+// beschäftigt ist).
+// ---------------------------------------------------------------------------
+
+function updateEintrittJahrHinweis() {
+  const datumStr = elEintrittsdatum.value;
+  const jahr = parseInt(elJahr.value, 10);
+  const eintritt = datumStr ? new Date(datumStr) : null;
+
+  if (!eintritt || isNaN(eintritt.getTime()) || !jahr || eintritt.getFullYear() <= jahr) {
+    elEintrittJahrHint.classList.add("hidden");
+    return;
+  }
+
+  const eintrittJahr = eintritt.getFullYear();
+  const jahrVorhanden = Object.prototype.hasOwnProperty.call(allData, String(eintrittJahr));
+
+  elEintrittJahrHintText.textContent = tReplace(
+    jahrVorhanden ? "hintJahrMismatchOtherYearAvailable" : "hintJahrMismatchNoData",
+    { eintrittJahr, jahr }
+  );
+
+  elEintrittJahrHintSwitch.classList.toggle("hidden", !jahrVorhanden);
+  if (jahrVorhanden) {
+    elEintrittJahrHintSwitch.textContent = tReplace("hintJahrMismatchSwitchBtn", { eintrittJahr });
+    elEintrittJahrHintSwitch.dataset.targetYear = String(eintrittJahr);
+  }
+
+  elEintrittJahrHint.classList.remove("hidden");
+}
+
+elEintrittJahrHintSwitch.addEventListener("click", () => {
+  const targetYear = elEintrittJahrHintSwitch.dataset.targetYear;
+  if (!targetYear) return;
+  elJahr.value = targetYear;
+  elJahr.dispatchEvent(new Event("change"));
 });
 
 // ---------------------------------------------------------------------------
@@ -945,6 +998,7 @@ document.addEventListener("keydown", dpEscapeHandler);
 
 // Hidden input change → recalculate
 elEintrittsdatum.addEventListener("change", () => {
+  updateEintrittJahrHinweis();
   recalcIfReady();
 });
 
@@ -1311,7 +1365,11 @@ function calcSalary(tabellenMonthly) {
   const tZugB           = hatTZugB ? bonus.eckentgelt * azFaktor * bonus.tZugB : 0;
   const total           = grundgehalt + utJaehrlich + freiwilligeZulageJaehrlich + urlaubsgeld + weihnachtsgeld + tZugA + tGeld + tZugB + sonderzahlung;
 
-  return { ...result, bonus, urlaubsgeldMonate, urlaubsgeldFaktor, hatTZugA, hatTGeld, hatTZugB, hatWeihnachtsgeld, wgSatz, wgDynamisch, wgIstManuell, urlaubsgeld, weihnachtsgeld, tZugA, tGeld, tZugB, total };
+  return {
+    ...result, bonus, urlaubsgeldMonate, urlaubsgeldFaktor, hatTZugA, hatTGeld, hatTZugB, hatWeihnachtsgeld,
+    wgSatz, wgDynamisch, wgIstManuell, urlaubsgeld, weihnachtsgeld, tZugA, tGeld, tZugB, total,
+    minMonate: bonus.minMonate, tZugAStichtag: juliStichtag, tGeldStichtag, tZugBStichtag, wgStichtag
+  };
 }
 
 function displayResult(r) {
@@ -1338,6 +1396,15 @@ function displayResult(r) {
     elTZugA.textContent          = currencyFmt.format(r.tZugA);
     elTGeld.textContent          = currencyFmt.format(r.tGeld);
     elTZugB.textContent          = currencyFmt.format(r.tZugB);
+
+    // Hinweis, warum eine Sonderzahlung (noch) 0 € ist – Wartefrist statt "kaputt"
+    const wartefristHint = (stichtag) => tReplace("hintWartefrist", { monate: r.minMonate, datum: fmtDatum(stichtag) });
+    elTZugAHint.textContent = wartefristHint(r.tZugAStichtag);
+    elTZugAHint.classList.toggle("hidden", r.hatTZugA);
+    elTGeldHint.textContent = wartefristHint(r.tGeldStichtag);
+    elTGeldHint.classList.toggle("hidden", r.hatTGeld);
+    elTZugBHint.textContent = wartefristHint(r.tZugBStichtag);
+    elTZugBHint.classList.toggle("hidden", r.hatTZugB);
 
     // Sonderzahlung Zeile ein-/ausblenden
     if (r.sonderzahlung > 0) {
@@ -1374,6 +1441,8 @@ function displayResult(r) {
       ? tReplace("xmasPayPct", { pct: fmtDE(wgPctAnzeige, 0) })
       : t("xmasPayNone");
     elWeihnachtsgeldPct.textContent = pctText;
+    elWeihnachtsgeldHint.textContent = r.wgStichtag ? wartefristHint(r.wgStichtag) : "";
+    elWeihnachtsgeldHint.classList.toggle("hidden", wgPctAnzeige !== null || !r.wgStichtag);
 
     // T-ZUG B Prozentsatz dynamisch anzeigen
     const tZugBPctVal = fmtDE(r.bonus.tZugB * 100);

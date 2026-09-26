@@ -149,6 +149,14 @@ const TRANSLATIONS = {
     utZulagePct: "(${pct}\u00a0% v. ME)",
     tZugBPct: "(${pct}\u00a0% v. Eckentgelt)",
 
+    // Hinweis bei fehlendem Anspruch wegen Wartefrist (T-ZUG A/B, T-Geld, Weihnachtsgeld)
+    hintWartefrist: "Anspruch erst ab ${monate} Monaten Betriebszugeh\u00f6rigkeit (Stichtag ${datum}).",
+
+    // Hinweis bei Eintrittsdatum in einem anderen Jahr als das gew\u00e4hlte Tarifjahr
+    hintJahrMismatchOtherYearAvailable: "Das Eintrittsdatum liegt im Tarifjahr ${eintrittJahr}, berechnet wird aber f\u00fcr ${jahr}. Dadurch k\u00f6nnen Sonderzahlungen f\u00e4lschlich mit 0\u00a0\u20ac berechnet werden.",
+    hintJahrMismatchSwitchBtn: "Jetzt auf Tarifjahr ${eintrittJahr} wechseln",
+    hintJahrMismatchNoData: "F\u00fcr ${eintrittJahr} liegen noch keine Tarifdaten vor. Es wird weiterhin mit ${jahr} gerechnet \u2013 Sonderzahlungen k\u00f6nnen dadurch f\u00e4lschlich mit 0\u00a0\u20ac berechnet werden, weil du laut Eintrittsdatum zu den ${jahr}-Stichtagen noch nicht besch\u00e4ftigt bist.",
+
 
     // Regions (identity mapping for German)
     regions: {},
@@ -513,6 +521,14 @@ const TRANSLATIONS = {
     xmasPayManual: "(manual)",
     utZulagePct: "(${pct}\u00a0% of monthly)",
     tZugBPct: "(${pct}\u00a0% of base salary)",
+
+    // Hint shown when a payment isn't due yet because of the waiting period (T-ZUG A/B, T-Geld, Christmas bonus)
+    hintWartefrist: "Only due after ${monate} months of tenure (cutoff date ${datum}).",
+
+    // Hint shown when the start date falls in a different year than the selected tariff year
+    hintJahrMismatchOtherYearAvailable: "The start date falls in tariff year ${eintrittJahr}, but the calculation uses ${jahr}. This can make special payments incorrectly show as 0\u00a0\u20ac.",
+    hintJahrMismatchSwitchBtn: "Switch to tariff year ${eintrittJahr}",
+    hintJahrMismatchNoData: "No tariff data is available yet for ${eintrittJahr}. The calculation still uses ${jahr} \u2013 special payments may incorrectly show as 0\u00a0\u20ac because, per your start date, you aren't employed yet as of the ${jahr} cutoff dates.",
 
 
     // Regions
