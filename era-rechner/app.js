@@ -1316,6 +1316,19 @@ function calcSalary(tabellenMonthly) {
   const datumStr = elEintrittsdatum.value;
   const jahr = parseInt(elJahr.value, 10);
 
+  // Eintrittsdatum in einem Jahr, für das es noch keine Tarifdaten gibt (z.B. 2027, solange
+  // nur 2025/2026 vorliegen): Die Tabellenwerte/Sätze des letzten verfügbaren Jahres (jahr)
+  // dienen dann als Schätzbasis, aber die Stichtage/Betriebszugehörigkeit werden auf das
+  // tatsächliche Eintrittsjahr bezogen – sonst wäre man zu den Stichtagen des (früheren)
+  // Tabellenjahres "noch gar nicht eingestellt" und alle Sonderzahlungen fielen fälschlich
+  // auf 0 €. Existieren bereits Daten für das Eintrittsjahr, wird stattdessen (siehe
+  // updateEintrittJahrHinweis) empfohlen, direkt auf dieses Jahr zu wechseln.
+  const eintrittDatum     = datumStr ? new Date(datumStr) : null;
+  const eintrittJahrZahl  = eintrittDatum && !isNaN(eintrittDatum.getTime()) ? eintrittDatum.getFullYear() : null;
+  const istSchaetzjahr    = eintrittJahrZahl !== null && eintrittJahrZahl > jahr
+    && !Object.prototype.hasOwnProperty.call(allData, String(eintrittJahrZahl));
+  const stichtagJahr      = istSchaetzjahr ? eintrittJahrZahl : jahr;
+
   // Anspruch auf T-ZUG A/B und T-Geld besteht erst nach 6 Monaten ununterbrochener Betriebszugehörigkeit,
   // gemessen zum jeweiligen Auszahlungsmonat (letzter Tag des Monats). Quelle: IG Metall, Tarifverträge.
   //  - Weihnachtsgeld: 31. Dezember des Tarifjahres (Betriebszugehörigkeit bis Jahresende)
@@ -1326,12 +1339,12 @@ function calcSalary(tabellenMonthly) {
   //    Urlaubsabkommen § 4.3.1). Im Eintrittsjahr gilt die Zwölftelung (§ 2.5): 1/12 je vollem
   //    Beschäftigungsmonat. Bei Eintritt nach dem 1.7. entsteht der anteilige Anspruch erst im
   //    Folgejahr (§ 2.4.3, sechs Monate nach Eintritt), geht aber nicht verloren.
-  const letzterTag     = (monatIndex) => new Date(jahr, monatIndex + 1, 0); // Tag 0 = letzter Tag des Monats (schaltjahrsicher)
-  const wgStichtag     = new Date(jahr, 11, 31);
+  const letzterTag     = (monatIndex) => new Date(stichtagJahr, monatIndex + 1, 0); // Tag 0 = letzter Tag des Monats (schaltjahrsicher)
+  const wgStichtag     = new Date(stichtagJahr, 11, 31);
   const juliStichtag   = letzterTag(6); // 31. Juli
   const febStichtag    = letzterTag(1); // Ende Februar
-  const tGeldStichtag  = jahr >= 2026 ? juliStichtag : febStichtag;
-  const tZugBStichtag  = jahr >= 2026 ? febStichtag  : juliStichtag;
+  const tGeldStichtag  = stichtagJahr >= 2026 ? juliStichtag : febStichtag;
+  const tZugBStichtag  = stichtagJahr >= 2026 ? febStichtag  : juliStichtag;
 
   // Bei leerem Eintrittsdatum gilt die Annahme "bereits über 6 Monate im Betrieb" → voller Anspruch.
   const hatAnspruchZu = (stichtag) => {
@@ -1340,7 +1353,7 @@ function calcSalary(tabellenMonthly) {
     return m === null || m >= bonus.minMonate;
   };
   const monate         = datumStr ? berechneMonate(datumStr, wgStichtag) : null; // für Weihnachtsgeld-Staffel
-  const urlaubsgeldMonate = datumStr ? volleMonateImJahr(datumStr, jahr) : null;
+  const urlaubsgeldMonate = datumStr ? volleMonateImJahr(datumStr, stichtagJahr) : null;
   const urlaubsgeldFaktor = urlaubsgeldMonate === null ? 1 : urlaubsgeldMonate / 12;
   const hatTZugA       = hatAnspruchZu(juliStichtag);
   const hatTGeld       = hatAnspruchZu(tGeldStichtag);
@@ -1368,7 +1381,8 @@ function calcSalary(tabellenMonthly) {
   return {
     ...result, bonus, urlaubsgeldMonate, urlaubsgeldFaktor, hatTZugA, hatTGeld, hatTZugB, hatWeihnachtsgeld,
     wgSatz, wgDynamisch, wgIstManuell, urlaubsgeld, weihnachtsgeld, tZugA, tGeld, tZugB, total,
-    minMonate: bonus.minMonate, tZugAStichtag: juliStichtag, tGeldStichtag, tZugBStichtag, wgStichtag
+    minMonate: bonus.minMonate, tZugAStichtag: juliStichtag, tGeldStichtag, tZugBStichtag, wgStichtag,
+    istSchaetzjahr, eintrittJahrZahl, jahr
   };
 }
 
