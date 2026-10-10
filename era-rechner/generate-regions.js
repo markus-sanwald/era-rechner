@@ -12,7 +12,8 @@ const dataCode = fs.readFileSync("data.js", "utf8").replace("const ERA_DATA", "g
 
 // Aktuellstes und ältestes Jahr dynamisch ableiten
 const allYears   = Object.keys(ERA_DATA).sort();
-const latestYear = allYears[allYears.length - 1];
+// Titel/SEO-Texte beziehen sich auf das neueste *finale* Jahr (preliminary-Flag in data.js)
+const latestYear = allYears.filter(y => !ERA_DATA[y].preliminary).pop() || allYears[allYears.length - 1];
 const firstYear  = allYears[0];
 
 const SLUG_MAP = {
@@ -318,7 +319,7 @@ ${links}
     (function () {
       var SLUG_MAP  = ${slugMapJson};
       var years     = Object.keys(ERA_DATA).sort();
-      var activeYear = years[years.length - 1];
+      var activeYear = years.filter(function (y) { return !ERA_DATA[y].preliminary; }).pop() || years[years.length - 1];
       var eur = function (v) {
         return v.toLocaleString("de-DE", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
       };
@@ -337,7 +338,7 @@ ${links}
       function renderYearTabs() {
         var el = document.getElementById("tto-year-tabs");
         el.innerHTML = years.map(function (y) {
-          return '<button type="button" class="rp-year-tab' + (y === activeYear ? " active" : "") + '" data-year="' + y + '">' + y + "</button>";
+          return '<button type="button" class="rp-year-tab' + (y === activeYear ? " active" : "") + '" data-year="' + y + '">' + y + (ERA_DATA[y].preliminary ? ' <small class="rp-prelim">' + t("prelimBadge") + "</small>" : "") + "</button>";
         }).join("");
       }
 

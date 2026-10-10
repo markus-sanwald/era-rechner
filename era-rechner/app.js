@@ -245,7 +245,10 @@ function init() {
   const pJahr     = urlParams.get("jahr");
   const pRegion   = urlParams.get("region");
 
-  const startYear = (pJahr && years.includes(pJahr)) ? pJahr : years[0];
+  // Standard-Jahr: neuestes *finales* Jahr; vorläufige Jahre (ERA_DATA[jahr].preliminary)
+  // sind wählbar, werden aber nicht vorausgewählt.
+  const defaultYear = years.find(y => !allData[y].preliminary) || years[0];
+  const startYear = (pJahr && years.includes(pJahr)) ? pJahr : defaultYear;
   loadYear(startYear);
   if (startYear !== years[0]) elJahr.value = startYear;
 
@@ -255,6 +258,14 @@ function init() {
   }
 }
 
+// Hinweis-Banner für vorläufige Werte: gesteuert über das Flag `preliminary: true`
+// im jeweiligen Jahr in data.js. Beim Finalisieren das Flag dort einfach entfernen.
+function updateYearNotice(year) {
+  const preliminary = !!(allData[year] && allData[year].preliminary);
+  elYearNotice.classList.toggle("hidden", !preliminary);
+  if (preliminary) elYearNotice.textContent = tReplace("yearNoticePreliminary", { year });
+}
+
 function loadYear(year) {
   salaryData = allData[year].salaryData;
   bonusData = allData[year].bonusData;
@@ -262,10 +273,7 @@ function loadYear(year) {
   elSubtitle.textContent = tReplace("subtitleWithYear", { year });
   document.title = t("pageTitle").replace("{year}", year);
 
-  // Hinweis für vorläufige Werte. Aktuell ausgeblendet, da die 2026-Werte final
-  // sind (= offizielle PDF). Für vorläufige 2027-Werte: Bedingung wieder aktivieren,
-  // z.B. elYearNotice.classList.toggle("hidden", year !== "2027").
-  elYearNotice.classList.add("hidden");
+  updateYearNotice(year);
 
   // Reset dependent dropdowns
   resetSelect(elBundesland);
@@ -308,6 +316,7 @@ onTranslationsApplied(function () {
   const year = elJahr.value;
   if (year) {
     elSubtitle.textContent = tReplace("subtitleWithYear", { year });
+    updateYearNotice(year);
   }
 
   // Update Bundesland option texts
@@ -1981,6 +1990,15 @@ function renderYearSegment() {
     btn.type = "button";
     btn.className = "year-seg-btn" + (opt.value === elJahr.value ? " active" : "");
     btn.textContent = opt.value;
+    if (allData[opt.value] && allData[opt.value].preliminary) {
+      btn.classList.add("preliminary");
+      btn.title = t("prelimBadge");
+      const sup = document.createElement("sup");
+      sup.className = "year-seg-prelim";
+      sup.textContent = "*";
+      sup.setAttribute("aria-label", t("prelimBadge"));
+      btn.appendChild(sup);
+    }
     btn.setAttribute("aria-pressed", opt.value === elJahr.value ? "true" : "false");
     btn.addEventListener("click", () => {
       if (elJahr.value !== opt.value) {

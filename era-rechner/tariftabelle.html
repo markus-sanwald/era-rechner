@@ -134,7 +134,7 @@
     (function () {
       var SLUG_MAP  = {"Baden-Württemberg":"entgelttabelle-baden-wuerttemberg","Bayern":"entgelttabelle-bayern","Berlin/Brandenburg":"entgelttabelle-berlin-brandenburg","Hamburg/Unterweser":"entgelttabelle-hamburg","Hessen":"entgelttabelle-hessen","Niedersachsen":"entgelttabelle-niedersachsen","Nordrhein-Westfalen":"entgelttabelle-nrw","Osnabrück-Emsland":"entgelttabelle-osnabrueck-emsland","Pfalz":"entgelttabelle-pfalz","Rheinland-Rheinhessen":"entgelttabelle-rheinland-rheinhessen","Saarland":"entgelttabelle-saarland","Sachsen":"entgelttabelle-sachsen","Sachsen-Anhalt":"entgelttabelle-sachsen-anhalt","Schleswig-Holstein/MV/NW-Niedersachsen":"entgelttabelle-schleswig-holstein","Thüringen":"entgelttabelle-thueringen"};
       var years     = Object.keys(ERA_DATA).sort();
-      var activeYear = years[years.length - 1];
+      var activeYear = years.filter(function (y) { return !ERA_DATA[y].preliminary; }).pop() || years[years.length - 1];
       var eur = function (v) {
         return v.toLocaleString("de-DE", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
       };
@@ -153,7 +153,7 @@
       function renderYearTabs() {
         var el = document.getElementById("tto-year-tabs");
         el.innerHTML = years.map(function (y) {
-          return '<button type="button" class="rp-year-tab' + (y === activeYear ? " active" : "") + '" data-year="' + y + '">' + y + "</button>";
+          return '<button type="button" class="rp-year-tab' + (y === activeYear ? " active" : "") + '" data-year="' + y + '">' + y + (ERA_DATA[y].preliminary ? ' <small class="rp-prelim">' + t("prelimBadge") + "</small>" : "") + "</button>";
         }).join("");
       }
 

@@ -2099,6 +2099,13 @@ footer p + p {
   border-color: var(--color-primary);
 }
 
+.rp-prelim {
+  font-size: 0.7rem;
+  font-weight: 400;
+  opacity: 0.85;
+  margin-left: 0.25rem;
+}
+
 .rp-section { margin-bottom: 1.5rem; }
 .rp-section h2 {
   font-size: 1rem;
@@ -2756,6 +2763,12 @@ footer p + p {
   background: var(--color-primary);
   color: #fff;
   box-shadow: var(--shadow);
+}
+
+.year-seg-prelim {
+  font-size: 0.75em;
+  margin-left: 1px;
+  opacity: 0.8;
 }
 
 /* Zweispalten-Layout */

@@ -11,7 +11,8 @@
 (function () {
   const regionKey = window.REGION_KEY;
   const years     = Object.keys(ERA_DATA).sort();
-  let   activeYear = years[years.length - 1];
+  // Startjahr = neuestes finales Jahr (vorläufige Jahre ERA_DATA[jahr].preliminary sind per Tab wählbar)
+  let   activeYear = years.filter(y => !ERA_DATA[y].preliminary).pop() || years[years.length - 1];
 
   // Stufen-System je Tarifgebiet (steuert region-bewusste Tooltips + Info-Text).
   // Regionen ohne Eintrag (NRW: reine Zeitstufen, Baden-Württemberg: nur Grundentgelt)
@@ -103,7 +104,7 @@
   function renderYearTabs() {
     const el = document.getElementById("rp-year-tabs");
     el.innerHTML = years.map(y =>
-      `<button type="button" class="rp-year-tab${y === activeYear ? " active" : ""}" data-year="${y}">${y}</button>`
+      `<button type="button" class="rp-year-tab${y === activeYear ? " active" : ""}" data-year="${y}">${y}${ERA_DATA[y].preliminary ? ` <small class="rp-prelim">${t("prelimBadge")}</small>` : ""}</button>`
     ).join("");
   }
 

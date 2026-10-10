@@ -60,7 +60,9 @@ const TRANSLATIONS = {
     yearOption: "ab 01.04.${year}",
 
     // Year notice
-    yearNotice2026: "Die Werte ab 01.04.2026 sind vorläufig (Vorjahreswerte + 3,1 %).",
+    yearNoticePreliminary: "Die Werte ab 01.04.${year} sind vorläufig und können sich noch ändern.",
+
+    prelimBadge: "vorläufig",
 
     // Result
     resultMonthly: "Monatsentgelt (brutto)",
@@ -433,7 +435,9 @@ const TRANSLATIONS = {
     yearOption: "from 04/01/${year}",
 
     // Year notice
-    yearNotice2026: "Values from 04/01/2026 are preliminary (previous year + 3.1\u00a0%).",
+    yearNoticePreliminary: "Values from 04/01/${year} are preliminary and may still change.",
+
+    prelimBadge: "preliminary",
 
     // Result
     resultMonthly: "Monthly Salary (gross)",
