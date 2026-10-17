@@ -1384,7 +1384,10 @@ function calcSalary(tabellenMonthly) {
   const tZugAFreiTage   = elTZugAFrei.checked;
   const tZugA           = hatTZugA && !tZugAFreiTage ? monatsentgeltBrutto * bonus.tZugA : 0;
   const tGeld           = hatTGeld && bonus.tGeld ? monatsentgeltBrutto * bonus.tGeld : 0;
-  const tZugB           = hatTZugB ? bonus.eckentgelt * azFaktor * bonus.tZugB : 0;
+  // T-ZUG B ist ein fixer Betrag (Eckentgelt × Satz). Nur Teilzeit (unter 35 h bzw. unter
+  // der Vollzeit-Grundarbeitszeit im Osten) wirkt anteilig; Mehrarbeit/längere Arbeitszeit erhöht ihn nicht.
+  const tZugBFaktor     = Math.min(1, azFaktor);
+  const tZugB           = hatTZugB ? bonus.eckentgelt * tZugBFaktor * bonus.tZugB : 0;
   const total           = grundgehalt + utJaehrlich + freiwilligeZulageJaehrlich + urlaubsgeld + weihnachtsgeld + tZugA + tGeld + tZugB + sonderzahlung;
 
   return {
