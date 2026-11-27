@@ -92,7 +92,8 @@
     const tableH2 = document.getElementById("rp-table-heading");
     const bonusH2 = document.getElementById("rp-bonus-heading");
     const ausbH2  = document.getElementById("rp-ausbildung-heading");
-    const validFrom = tReplace("rpValidFrom", { year: activeYear });
+    const validFrom = tReplace("rpValidFrom", { year: activeYear, datum: gueltigAbDatum(activeYear) })
+      + (ERA_DATA[activeYear].preliminary ? ` (${t("rpPrelimSuffix")})` : "");
     if (tableH2) tableH2.innerHTML = `${t("rpTableHeading")} <span class="rp-year-label">${validFrom}</span>`;
     if (bonusH2) bonusH2.innerHTML = `${t("rpBonusHeading")} <span class="rp-year-label">${validFrom}</span>`;
     // Ausbildungsvergütung: ohne "gültig ab"-Datum, da das Stichdatum (z. B. 01.01.2025)

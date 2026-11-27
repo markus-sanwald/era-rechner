@@ -24,6 +24,10 @@ const TRANSLATIONS = {
     labelStartDate: "Eintrittsdatum",
     labelTZugADaysOff: "T-ZUG A als freie Tage nehmen",
     labelBonus: "Leistungszulage",
+    labelEinmalzahlung: "Einmalzahlung ${monat} ${year}",
+    einmalzahlungStufen: ["Rendite unter 2,3\u00a0%", "Rendite 2,3\u20134,6\u00a0%", "Rendite über 4,6\u00a0%"],
+    einmalzahlungKeine: "keine (z.\u00a0B. schon 2026 ausgezahlt)",
+    hintEinmalzahlung: "Hängt von der Nettoumsatzrendite deines Unternehmens ab. Mindestens 150\u00a0€; bei Teilzeit anteilig.",
     labelSonderzahlung: "Sonderzahlung / Gewinnbeteiligung (j\u00e4hrlich)",
     labelFreiwilligeZulage: "Freiwillige monatliche Zulage",
     labelWeihnachtsgeldManuell: "Weihnachtsgeld-Satz manuell übersteuern",
@@ -57,10 +61,11 @@ const TRANSLATIONS = {
     placeholder: "Bitte w\u00e4hlen\u2026",
 
     // Year option
-    yearOption: "ab 01.04.${year}",
+    yearOption: "ab ${datum}",
 
     // Year notice
-    yearNoticePreliminary: "Die Werte ab 01.04.${year} sind vorläufig und können sich noch ändern.",
+    yearNoticePreliminary: "Die Werte ab ${datum} sind vorläufig und können sich noch ändern.",
+    yearNoticeAbschluss2026: "Sie sind aus dem Tarifabschluss vom 26.11.2026 hochgerechnet (Pilotabschluss Baden-Württemberg/NRW, Übernahme in alle Tarifgebiete angenommen). Die offiziellen Entgelttabellen liegen noch nicht vor.",
 
     prelimBadge: "vorläufig",
 
@@ -112,6 +117,11 @@ const TRANSLATIONS = {
     breakdownTGeldDetail: "(18,4\u00a0% eines ME)",
     breakdownTZugB: "T-ZUG B",
     breakdownTZugBDetail: "(18,5\u00a0% v. Eckentgelt)",
+    breakdownEinmalzahlung: "Einmalzahlung",
+    einmalzahlungDetail: "(${monat} ${year})",
+    einmalzahlungDetailTeilzeit: "(${monat} ${year}, anteilig)",
+    tooltipEinmalzahlung: "Einmalzahlung aus dem Tarifabschluss vom 26.11.2026: 150, 300 oder 450\u00a0€ je nach Nettoumsatzrendite des Unternehmens, Auszahlung im März 2027 (kann ins Geschäftsjahr 2026 vorgezogen werden). Vorläufige Annahme: Teilzeit anteilig, Anspruch bei Beschäftigung im Auszahlungsmonat. Höhe unter „Weitere Optionen“ wählbar.",
+    hintEinmalzahlungStichtag: "Kein Anspruch bei Eintritt nach dem ${datum} (vorläufige Annahme).",
     breakdownSonderzahlung: "Sonderzahlung",
     breakdownFreiwilligeZulage: "12 × Freiwillige Zulage",
 
@@ -139,6 +149,7 @@ const TRANSLATIONS = {
       tZugA:              "T-ZUG A",
       tGeld:              "T-Geld",
       tZugB:              "T-ZUG B",
+      einmalzahlung:      "Einmalzahlung",
       weihnachtsgeld:     "Weihnachtsgeld"
     },
 
@@ -180,7 +191,8 @@ const TRANSLATIONS = {
       "Zusatzstufe 1":  "Zusätzliche Stufe oberhalb der Hauptstufe. Der Aufstieg erfolgt anforderungs- bzw. leistungsbezogen (z. B. Flexibilität, Verantwortung, Zusammenarbeit) – nicht automatisch nach Zeit.",
       "Zusatzstufe 2":  "Zusätzliche Stufe oberhalb der Hauptstufe. Der Aufstieg erfolgt anforderungs- bzw. leistungsbezogen (z. B. Flexibilität, Verantwortung, Zusammenarbeit) – nicht automatisch nach Zeit.",
       "Zusatzstufe 3":  "Zusätzliche Stufe oberhalb der Hauptstufe. Der Aufstieg erfolgt anforderungs- bzw. leistungsbezogen (z. B. Flexibilität, Verantwortung, Zusammenarbeit) – nicht automatisch nach Zeit.",
-      "1. Zusatzstufe": "Zusätzliche Stufe oberhalb der Hauptstufe. Der Aufstieg erfolgt anforderungs- bzw. leistungsbezogen (z. B. Flexibilität, Verantwortung, Zusammenarbeit) – nicht automatisch nach Zeit.",      "2. Zusatzstufe": "Zweite Zusatzstufe für ausgeprägtes besonderes betriebliches Wissen oberhalb der 1. Zusatzstufe – anforderungsbezogen, nicht automatisch nach Zeit.",
+      "1. Zusatzstufe": "Zusätzliche Stufe oberhalb der Hauptstufe. Der Aufstieg erfolgt anforderungs- bzw. leistungsbezogen (z. B. Flexibilität, Verantwortung, Zusammenarbeit) – nicht automatisch nach Zeit.",
+      "2. Zusatzstufe": "Zweite Zusatzstufe für ausgeprägtes besonderes betriebliches Wissen oberhalb der 1. Zusatzstufe – anforderungsbezogen, nicht automatisch nach Zeit.",
       "bayern/Stufe A": "Einstiegsstufe bei Ein- oder Umgruppierung.",
       "bayern/Stufe B": "Wird nach Tätigkeitszeit in der Entgeltgruppe erreicht: 6 Monate (EG 2–4), 12 Monate (EG 5–8) bzw. 18 Monate (EG 9–12).",
       "bayern/Stufe C": "Nur in EG 4. Wird gezahlt, wenn die übertragenen Aufgaben erkennbar höhere Anforderungen erfüllen, die noch nicht für die nächste Entgeltgruppe ausreichen.",
@@ -243,7 +255,7 @@ const TRANSLATIONS = {
     rpCtaText: "Berechne dein pers\u00f6nliches Gehalt inkl. Teilzeit, Leistungszulage und Nettolohn:",
     rpCtaBtn: "Gehaltsrechner f\u00fcr ${region} \u00f6ffnen \u2192",
     ttoSubtitle: "Alle 15 Tarifgebiete im \u00dcberblick",
-    ttoIntro: "Diese \u00dcbersicht zeigt die IG Metall Tariftabelle ${year} f\u00fcr alle 15 ERA-Tarifgebiete auf einen Blick: Anzahl der Entgeltgruppen sowie die Spannweite der monatlichen Grundentgelte von der niedrigsten bis zur h\u00f6chsten Entgeltgruppe (g\u00fcltig ab 01.04.${year}, Vollzeit 35 Std./Woche). F\u00fcr die vollst\u00e4ndige Tabelle mit allen Entgeltgruppen, Stufen und Sonderzahlungen w\u00e4hle dein Tarifgebiet.",
+    ttoIntro: "Diese \u00dcbersicht zeigt die IG Metall Tariftabelle ${year} f\u00fcr alle 15 ERA-Tarifgebiete auf einen Blick: Anzahl der Entgeltgruppen sowie die Spannweite der monatlichen Grundentgelte von der niedrigsten bis zur h\u00f6chsten Entgeltgruppe (g\u00fcltig ab ${datum}, Vollzeit 35 Std./Woche). F\u00fcr die vollst\u00e4ndige Tabelle mit allen Entgeltgruppen, Stufen und Sonderzahlungen w\u00e4hle dein Tarifgebiet.",
     ttoTableHeading: "Tariftabelle ${year} im Vergleich",
     ttoChartHeading: "Grundentgelt-Spannen im Regionsvergleich",
     ttoChartCaption: "Grundentgelt von der niedrigsten bis zur höchsten Entgeltgruppe, ohne Sonderzahlungen. Sortiert nach Höchstwert.",
@@ -256,7 +268,8 @@ const TRANSLATIONS = {
     ttoBreadcrumb: "Tariftabelle",
     rpAllRegions: "Alle Tarifgebiete",
     rpSubtitle: "IG Metall Tariftabelle 2025 & 2026",
-    rpValidFrom: "gültig ab 01.04.${year}",
+    rpValidFrom: "gültig ab ${datum}",
+    rpPrelimSuffix: "vorläufig, hochgerechnet",
     rpStepInfoLabel: "Stufen:",
     rpBonusLabelUrlaubsgeld: "Urlaubsgeld",
     rpBonusLabelTZugA: "T-ZUG A",
@@ -287,9 +300,11 @@ const TRANSLATIONS = {
     faq1Q: "Was ist das ERA-Entgeltsystem der Metall- und Elektroindustrie?",
     faq1A: "Das Entgeltrahmenabkommen (ERA) ist das Entgeltsystem f\u00fcr die Metall- und Elektroindustrie in Deutschland. Es regelt die Eingruppierung in Entgeltgruppen (EG\u00a01\u201317, je nach Tarifgebiet) und wird zwischen den Arbeitgeberverb\u00e4nden und der IG Metall ausgehandelt. Die ERA-Entgelttabellen legen die monatlichen Grundentgelte f\u00fcr jede Entgeltgruppe und jedes Tarifgebiet fest.",
     faq2Q: "Wie aktuell sind die Entgelttabellen in diesem Rechner?",
-    faq2A: "Der Rechner enth\u00e4lt die offiziellen ERA-Entgelttabellen f\u00fcr 2025 und 2026 (g\u00fcltig ab 01.04.2026) f\u00fcr alle 15 Tarifgebiete. Die Werte werden nach jeder Tarifrunde zeitnah aktualisiert.",
+    faq2A: "Der Rechner enth\u00e4lt die offiziellen ERA-Entgelttabellen f\u00fcr 2025 und 2026 (g\u00fcltig ab 01.04.2026) f\u00fcr alle 15 Tarifgebiete. Für 2027 und 2028 gibt es vorläufige Werte, hochgerechnet aus dem Tarifabschluss vom 26.11.2026. Die Werte werden nach jeder Tarifrunde zeitnah aktualisiert.",
     faqTariftabelleQ: "Was ist die IG Metall Tariftabelle 2026?",
     faqTariftabelleA: "\u201eTariftabelle\u201c und \u201eERA-Entgelttabelle\u201c bezeichnen dasselbe: die Tabelle der tariflichen Monatsentgelte in der Metall- und Elektroindustrie, gestaffelt nach Entgeltgruppe (EG\u00a01 bis EG\u00a017). Sie unterscheidet sich je Bundesland und Tarifgebiet. Die vollst\u00e4ndigen Werte deines Tarifgebiets findest du oben im Rechner oder auf den einzelnen <a href=\"#entgelttabellen\">Entgelttabellen-Unterseiten</a>.",
+    faq2027Q: "Was bringt der Tarifabschluss 2026 f\u00fcr 2027 und 2028?",
+    faq2027A: "Am 26. November 2026 haben sich IG Metall und Arbeitgeber in Baden-W\u00fcrttemberg und Nordrhein-Westfalen auf einen Pilotabschluss geeinigt. Der IG-Metall-Vorstand empfiehlt, das Ergebnis im ganzen Bundesgebiet zu \u00fcbernehmen \u2013 der Rechner geht deshalb davon aus, dass es in allen 15 Tarifgebieten gilt.<br><br><strong>Die Eckpunkte:</strong> Die ERA-Entgelte steigen zum 1. Mai 2027 um 2,0 % und zum 1. April 2028 um weitere 2,3 %. Im M\u00e4rz 2027 gibt es eine Einmalzahlung, deren H\u00f6he von der Nettoumsatzrendite des Unternehmens abh\u00e4ngt: mindestens 150 \u20ac, bei 2,3 bis 4,6 % Rendite 300 \u20ac, bei \u00fcber 4,6 % 450 \u20ac. Sie kann auch ins Gesch\u00e4ftsjahr 2026 vorgezogen werden. Auszubildende und dual Studierende erhalten ebenfalls eine Einmalzahlung. Die Laufzeit betr\u00e4gt 25 Monate bis zum 30. November 2028. Neu ist au\u00dferdem der Tarifvertrag f\u00fcr Investition und Besch\u00e4ftigung: Unternehmen, die sich zu Investitionen in deutsche Standorte verpflichten und auf aktiven Personalabbau verzichten, d\u00fcrfen befristet tarifliche Leistungen der Besch\u00e4ftigten in begrenztem Umfang (maximal 8 %) verwenden.<br><br><strong>So rechnet der Rechner (vorl\u00e4ufig):</strong> Die Tarifjahre 2027 und 2028 sind als \u201evorl\u00e4ufig\u201c gekennzeichnet. Entgelttabellen und Eckentgelt sind aus den Werten von 2026 hochgerechnet (+2,0 % bzw. +2,3 %, gerundet wie in den bisherigen Tabellen); f\u00fcr die Ausbildungsverg\u00fctungen sind dieselben Prozents\u00e4tze angenommen. Urlaubsgeld, Weihnachtsgeld, T-ZUG A, T-ZUG B und T-Geld bleiben unver\u00e4ndert, weil der Abschluss dazu nichts Neues regelt. Wie bei jedem Tarifjahr rechnet der Rechner vereinfachend das ganze Jahr mit den erh\u00f6hten Werten, obwohl die Erh\u00f6hung 2027 erst ab Mai gilt. Die Einmalzahlung kannst du im Tarifjahr 2027 ausw\u00e4hlen (Standard: 150 \u20ac). Beitr\u00e4ge nach dem Tarifvertrag f\u00fcr Investition und Besch\u00e4ftigung sind nicht ber\u00fccksichtigt. Sobald die offiziellen Entgelttabellen vorliegen, werden die Werte ersetzt.",
     faq2026Q: "Was \u00e4ndert sich mit dem Tarifjahr 2026?",
     faq2026A: "Zum 1. April 2026 steigen die ERA-Grundentgelte in allen 15 Tarifgebieten um 3,1 %. Au\u00dferdem wird das T-ZUG B deutlich angehoben \u2013 von 18,5 % auf 26,5 % des Eckentgelts. Die \u00fcbrigen Sonderzahlungen bleiben unver\u00e4ndert: Urlaubsgeld (69 %, in NRW 72 %), Weihnachtsgeld (25\u201355 %), T-ZUG A (27,5 %) und Transformationsgeld (18,4 %).<br><br>Neu ist au\u00dferdem der Auszahlungszeitpunkt: T-ZUG B wird k\u00fcnftig im Februar ausgezahlt (bisher Juli) \u2013 im Tausch mit dem Transformationsgeld (T-Geld), das nun im Juli kommt. Eine m\u00f6gliche \u201eDifferenzierung\u201c (K\u00fcrzung oder Verschiebung in wirtschaftlich angeschlagenen Betrieben) betrifft seither nicht mehr das T-ZUG B, sondern das T-Geld \u2013 so bleibt T-ZUG B als soziale Komponente erhalten. W\u00e4hle im Rechner einfach das Tarifjahr 2026, um die neuen Werte zu sehen.",
     faq3Q: "Welche Sonderzahlungen sind im Jahresbrutto enthalten?",
@@ -303,7 +318,7 @@ const TRANSLATIONS = {
     faq8Q: "Wie kann ich das Projekt unterst\u00fctzen?",
     faq8A: "Der Rechner ist kostenlos, werbefrei und wird in der Freizeit gepflegt. Wer das Projekt unterst\u00fctzen m\u00f6chte, kann das gerne \u00fcber eine kleine Spende via PayPal tun \u2013 das hilft, den Dienst langfristig am Laufen zu halten.",
     faq9Q: "Was ist der Unterschied zwischen T-ZUG A und T-ZUG B?",
-    faq9A: "T-ZUG A beträgt 27,5 % eines Monatsentgelts und kann wahlweise als Geldleistung oder als bis zu 8 bezahlte freie Tage genommen werden. T-ZUG B ist ein jährlicher Festbetrag, der sich nach dem Eckentgelt der jeweiligen Region richtet – dem Grundentgelt der Referenz-Entgeltgruppe (meist EG 5, in Baden-Württemberg EG 7, in Osnabrück-Emsland EG 4, in NRW EG 9). Er ist damit unabhängig von der persönlichen Entgeltgruppe. Beide Zahlungen werden einmal jährlich ausgezahlt.",
+    faq9A: "T-ZUG A beträgt 27,5 % eines Monatsentgelts und kann wahlweise als Geldleistung oder als bis zu 8 bezahlte freie Tage genommen werden. T-ZUG B ist ein jährlicher Festbetrag, der sich nach dem Eckentgelt der jeweiligen Region richtet – dem Grundentgelt der Referenz-Entgeltgruppe (meist EG 5, in Baden-Württemberg EG 7, in Osnabrück-Emsland EG 4, in NRW EG 8). Er ist damit unabhängig von der persönlichen Entgeltgruppe. Beide Zahlungen werden einmal jährlich ausgezahlt.",
     faqAnspruchQ: "Bekomme ich die Sonderzahlungen auch als Neueinsteiger?",
     faqAnspruchA: "Anspruch auf T-ZUG A, T-ZUG B und das Transformationsgeld (T-Geld) besteht erst nach sechs Monaten ununterbrochener Betriebszugeh\u00f6rigkeit. Ma\u00dfgeblich ist der jeweilige Auszahlungsmonat: T-ZUG A wird im Juli ausgezahlt (Stichtag 31. Juli, Eintritt also sp\u00e4testens 31. Januar). Bei T-Geld und T-ZUG B sind die Auszahlungsmonate ab 2026 getauscht: T-Geld kommt im Juli (Stichtag 31. Juli), T-ZUG B im Februar (Stichtag Ende Februar \u2013 Eintritt sp\u00e4testens Ende August des Vorjahres); bis 2025 war es umgekehrt. Das Urlaubsgeld funktioniert anders: Es h\u00e4ngt am Urlaubsanspruch und wird im Eintrittsjahr gezw\u00f6lftelt (1/12 je vollem Besch\u00e4ftigungsmonat). Wer z. B. am 1. September anf\u00e4ngt, hat Anspruch auf 4/12 des Urlaubsgeldes. Ausgezahlt wird dieser Anteil nicht im Juni (der pauschale Termin ist dann bereits vorbei), sondern mit den tats\u00e4chlich genommenen Urlaubstagen \u2013 z. B. im November/Dezember \u2013 oder zu Beginn des Folgejahres; bei Eintritt nach dem 1. Juli entsteht der Anspruch formal erst sechs Monate nach Eintritt, geht aber nicht verloren. Tipp: Trage dein Eintrittsdatum im Rechner ein, dann wird alles automatisch ber\u00fccksichtigt. Bleibt das Feld leer, geht der Rechner davon aus, dass du bereits l\u00e4nger als sechs Monate im Betrieb bist.",
     faq10Q: "Wie berechne ich mein ERA-Gehalt bei Teilzeit?",
@@ -335,7 +350,7 @@ const TRANSLATIONS = {
     footerPrivacy: "Datenschutz",
     footerGithub: "Quellcode auf GitHub",
     backToCalculator: "\u2190 Zur\u00fcck zum Rechner",
-    sourceNote: "Quelle: <a href=\"https://www.igmetall.de/tarif\" target=\"_blank\" rel=\"noopener noreferrer\">ERA-Tarifvertrag der Metall- und Elektroindustrie (IG Metall)</a> &middot; Zuletzt gepr&uuml;ft: <time datetime=\"2026-08\">August 2026</time>",
+    sourceNote: "Quelle: <a href=\"https://www.igmetall.de/tarif\" target=\"_blank\" rel=\"noopener noreferrer\">ERA-Tarifvertrag der Metall- und Elektroindustrie (IG Metall)</a> &middot; Zuletzt gepr&uuml;ft: <time datetime=\"2026-11\">November 2026</time>",
 
     // Glossar
     glossarTitle: "ERA Glossar",
@@ -347,7 +362,9 @@ const TRANSLATIONS = {
     gQ_betriebsz: "Betriebszugeh\u00f6rigkeit",
     gA_betriebsz: "Die Dauer der ununterbrochenen Zugeh\u00f6rigkeit zum Betrieb. Sie beeinflusst ma\u00dfgeblich den Weihnachtsgeld-Satz: Bis zu einem Jahr Zugeh\u00f6rigkeit erh\u00e4ltst du 25\u00a0%, ab einem Jahr 35\u00a0%, ab drei Jahren 45\u00a0% und ab f\u00fcnf Jahren 55\u00a0% eines Monatsentgelts. Ma\u00dfgeblicher Stichtag f\u00fcr die Berechnung ist der <strong>31.\u00a0Dezember des jeweiligen Tarifjahres</strong> \u2013 es z\u00e4hlt also die vollendete Betriebszugeh\u00f6rigkeit bis Jahresende, nicht der Auszahlungszeitpunkt im November. \u00dcber den Weihnachtsgeld-Satz hinaus entscheidet die Betriebszugeh\u00f6rigkeit auch \u00fcber den grunds\u00e4tzlichen Anspruch auf T-ZUG A, T-ZUG B und das Transformationsgeld (T-Geld): Diese gibt es erst nach sechs Monaten ununterbrochener Betriebszugeh\u00f6rigkeit. Ma\u00dfgeblich ist dabei jeweils der Auszahlungsmonat der Zahlung (T-ZUG A im Juli; T-Geld und T-ZUG B je nach Jahr im Juli bzw. Februar), nicht der 31. Dezember. Das Urlaubsgeld folgt dagegen der Zw\u00f6lftelung: Im Eintrittsjahr besteht anteiliger Anspruch von 1/12 je vollem Besch\u00e4ftigungsmonat. Im <a href=\"/\">ERA Rechner</a> wird die Betriebszugeh\u00f6rigkeit automatisch aus dem eingetragenen Eintrittsdatum berechnet.",
     gQ_eckentgelt: "Eckentgelt",
-    gA_eckentgelt: "Das Grundentgelt der Referenz-Entgeltgruppe im jeweiligen Tarifgebiet – in den meisten Tarifgebieten EG 5, in Baden-Württemberg EG 7, in Osnabrück-Emsland EG 4 und in NRW EG 9. Das Eckentgelt ist ein zentraler Referenzwert im ERA-System: T-ZUG B richtet sich nach dem Eckentgelt – unabhängig davon, in welcher EG der Beschäftigte eingruppiert ist. Das Eckentgelt wird bei jeder Tarifrunde gemeinsam mit allen anderen Entgelttabellenwerten angehoben.",
+    gA_eckentgelt: "Das Grundentgelt der Referenz-Entgeltgruppe im jeweiligen Tarifgebiet – in den meisten Tarifgebieten EG 5, in Baden-Württemberg EG 7, in Osnabrück-Emsland EG 4 und in NRW EG 8. Das Eckentgelt ist ein zentraler Referenzwert im ERA-System: T-ZUG B richtet sich nach dem Eckentgelt – unabhängig davon, in welcher EG der Beschäftigte eingruppiert ist. Das Eckentgelt wird bei jeder Tarifrunde gemeinsam mit allen anderen Entgelttabellenwerten angehoben.",
+    gQ_einmalzahlung: "Einmalzahlung",
+    gA_einmalzahlung: "Ein einmaliger Betrag, der zus\u00e4tzlich zu den tabellenwirksamen Erh\u00f6hungen gezahlt wird und die Entgelttabelle nicht dauerhaft erh\u00f6ht. Mit dem Tarifabschluss vom 26.11.2026 gibt es im M\u00e4rz 2027 eine Einmalzahlung von 150, 300 oder 450 \u20ac \u2013 je nach Nettoumsatzrendite des Unternehmens (unter 2,3 %, 2,3\u20134,6 %, \u00fcber 4,6 %). Sie kann auch ins Gesch\u00e4ftsjahr 2026 vorgezogen werden; Auszubildende und dual Studierende erhalten ebenfalls eine Einmalzahlung. Im <a href=\"/\">ERA Rechner</a> kannst du die H\u00f6he im Tarifjahr 2027 ausw\u00e4hlen; bei Teilzeit wird sie vorl\u00e4ufig anteilig gerechnet.",
     gQ_eg: "Entgeltgruppe (EG)",
     gA_eg: "Die Einstufung eines Arbeitsplatzes in das ERA-Entgeltschema nach den Anforderungen der T\u00e4tigkeit (Wissen, Denken, Handlungsspielraum). Je nach Tarifgebiet gibt es EG\u00a01 bis EG\u00a012 (Bayern) oder EG\u00a01 bis EG\u00a017 (z.\u00a0B. Baden-W\u00fcrttemberg). Die Entgeltgruppe bestimmt das tarifliche Grundentgelt. Die Eingruppierung erfolgt durch Stellenbewertung, nicht nach dem Berufsbild.",
     gQ_era: "ERA \u2013 Entgeltrahmenabkommen",
@@ -360,6 +377,8 @@ const TRANSLATIONS = {
     gA_leistung: "Ein individueller prozentualer Aufschlag auf das tarifliche Grundentgelt, den der Arbeitgeber f\u00fcr \u00fcbertarifliche Leistung gew\u00e4hrt. Tariflich m\u00f6glich sind 0\u00a0bis 30\u00a0%. Die Leistungszulage erh\u00f6ht nicht nur das monatliche Bruttogehalt, sondern wirkt sich auch auf Urlaubsgeld, Weihnachtsgeld, T-ZUG\u00a0A und Transformationsgeld aus, da diese als Prozentsatz des Monatsentgelts berechnet werden. T-ZUG\u00a0B dagegen basiert auf dem Eckentgelt und ist von der pers\u00f6nlichen Leistungszulage unabh\u00e4ngig.",
     gQ_stufe: "Stufe (A\u2013E)",
     gA_stufe: "Innerhalb einer Entgeltgruppe gibt es in vielen Tarifgebieten Erfahrungsstufen A bis E (nicht in allen Regionen). Die Einreihung h\u00e4ngt von Betriebs- und Berufserfahrung ab. Stufe\u00a0A ist die Einstiegsstufe, Stufe\u00a0E die h\u00f6chste. Der Aufstieg von Stufe zu Stufe erfolgt in der Regel automatisch nach einer definierten Anzahl von Jahren in der jeweiligen Gruppe.",
+    gQ_tarifabschluss: "Tarifabschluss 2026",
+    gA_tarifabschluss: "Das Ergebnis der Metall-Tarifrunde 2026, erzielt am 26.11.2026 als Pilotabschluss in Baden-W\u00fcrttemberg und Nordrhein-Westfalen; der IG-Metall-Vorstand empfiehlt die \u00dcbernahme in alle Tarifgebiete. Inhalt: +2,0 % ab 1.5.2027, +2,3 % ab 1.4.2028, eine Einmalzahlung von 150\u2013450 \u20ac im M\u00e4rz 2027 und ein neuer Tarifvertrag f\u00fcr Investition und Besch\u00e4ftigung (Standortinvestitionen und Verzicht auf aktiven Personalabbau gegen befristete, auf maximal 8 % begrenzte Beitr\u00e4ge der Besch\u00e4ftigten). Laufzeit: 25 Monate bis 30.11.2028. Im <a href=\"/\">ERA Rechner</a> sind 2027 und 2028 bis zur Ver\u00f6ffentlichung der offiziellen Entgelttabellen als vorl\u00e4ufig hochgerechnet.",
     gQ_tarifgebiet: "Tarifgebiet",
     gA_tarifgebiet: "Der regionale Geltungsbereich eines ERA-Tarifvertrags. In Deutschland gibt es 15 ERA-Tarifgebiete: Baden-W\u00fcrttemberg, Bayern, Berlin/Brandenburg, Hamburg/Unterweser, Hessen, Niedersachsen, Nordrhein-Westfalen, Osnabr\u00fcck-Emsland, Pfalz, Rheinland-Rheinhessen, Saarland, Sachsen, Sachsen-Anhalt, Schleswig-Holstein/MV/NW-Niedersachsen und Th\u00fcringen. Jedes Tarifgebiet verhandelt eigenst\u00e4ndig und hat eigene Entgelttabellen \u2013 daher k\u00f6nnen die Grundentgelte zwischen Regionen abweichen.",
     gQ_teilzeit: "Teilzeit im ERA",
@@ -399,6 +418,10 @@ const TRANSLATIONS = {
     labelStartDate: "Start Date",
     labelTZugADaysOff: "Take T-ZUG A as days off",
     labelBonus: "Performance Bonus",
+    labelEinmalzahlung: "One-off payment ${monat} ${year}",
+    einmalzahlungStufen: ["return below 2.3\u00a0%", "return 2.3\u20134.6\u00a0%", "return above 4.6\u00a0%"],
+    einmalzahlungKeine: "none (e.g. already paid in 2026)",
+    hintEinmalzahlung: "Depends on your company's net return on sales. At least €150; pro rata for part-time.",
     labelSonderzahlung: "Special Payment / Profit Sharing (annual)",
     labelFreiwilligeZulage: "Voluntary monthly allowance",
     labelWeihnachtsgeldManuell: "Manually override Christmas bonus rate",
@@ -432,10 +455,11 @@ const TRANSLATIONS = {
     placeholder: "Please select\u2026",
 
     // Year option
-    yearOption: "from 04/01/${year}",
+    yearOption: "from ${datum}",
 
     // Year notice
-    yearNoticePreliminary: "Values from 04/01/${year} are preliminary and may still change.",
+    yearNoticePreliminary: "Values from ${datum} are preliminary and may still change.",
+    yearNoticeAbschluss2026: "They are projected from the collective agreement of 26 Nov 2026 (pilot agreement Baden-Württemberg/NRW, assumed to be adopted in all bargaining regions). The official salary tables have not been published yet.",
 
     prelimBadge: "preliminary",
 
@@ -487,6 +511,11 @@ const TRANSLATIONS = {
     breakdownTGeldDetail: "(18.4\u00a0% of monthly)",
     breakdownTZugB: "T-ZUG B",
     breakdownTZugBDetail: "(18.5\u00a0% of base salary)",
+    breakdownEinmalzahlung: "One-off payment",
+    einmalzahlungDetail: "(${monat} ${year})",
+    einmalzahlungDetailTeilzeit: "(${monat} ${year}, pro rata)",
+    tooltipEinmalzahlung: "One-off payment from the collective agreement of 26 Nov 2026: €150, €300 or €450 depending on the company's net return on sales, paid in March 2027 (may be brought forward into financial year 2026). Preliminary assumption: pro rata for part-time, entitlement if employed in the payment month. Amount selectable under \"Show more options\".",
+    hintEinmalzahlungStichtag: "No entitlement if you join after ${datum} (preliminary assumption).",
     breakdownSonderzahlung: "Special Payment",
     breakdownFreiwilligeZulage: "12 × Voluntary Allowance",
 
@@ -514,6 +543,7 @@ const TRANSLATIONS = {
       tZugA:              "T-ZUG A",
       tGeld:              "T-Geld",
       tZugB:              "T-ZUG B",
+      einmalzahlung:      "One-off payment",
       weihnachtsgeld:     "Christmas Bonus"
     },
 
@@ -655,7 +685,7 @@ const TRANSLATIONS = {
     rpCtaBtn: "Open salary calculator for ${region} →",
     ttoColRegion: "Region",
     ttoSubtitle: "All 15 collective bargaining regions at a glance",
-    ttoIntro: "This overview shows the IG Metall salary table for ${year} for all 15 ERA collective bargaining regions at a glance: number of pay groups and the range of monthly base salaries from the lowest to the highest pay group (effective 04/01/${year}, full-time 35 hrs/week). For the full table with all pay groups, steps and special payments, select your region.",
+    ttoIntro: "This overview shows the IG Metall salary table for ${year} for all 15 ERA collective bargaining regions at a glance: number of pay groups and the range of monthly base salaries from the lowest to the highest pay group (effective ${datum}, full-time 35 hrs/week). For the full table with all pay groups, steps and special payments, select your region.",
     ttoTableHeading: "Salary table ${year} comparison",
     ttoChartHeading: "Base pay ranges by region",
     ttoChartCaption: "Base pay from the lowest to the highest pay group, excluding special payments. Sorted by highest value.",
@@ -667,7 +697,8 @@ const TRANSLATIONS = {
     ttoBreadcrumb: "Salary Tables",
     rpAllRegions: "All Collective Bargaining Regions",
     rpSubtitle: "IG Metall Tariff Table 2025 & 2026",
-    rpValidFrom: "valid from 04/01/${year}",
+    rpValidFrom: "valid from ${datum}",
+    rpPrelimSuffix: "preliminary, projected",
     rpStepInfoLabel: "Steps:",
     rpBonusLabelUrlaubsgeld: "Holiday Pay",
     rpBonusLabelTZugA: "T-ZUG A",
@@ -698,9 +729,11 @@ const TRANSLATIONS = {
     faq1Q: "What is the ERA pay system in the metal and electrical industry?",
     faq1A: "The ERA (Entgeltrahmenabkommen) is the pay framework agreement for Germany's metal and electrical industry. It regulates the classification into pay groups (EG\u00a01\u201317, depending on the region) and is negotiated between employer associations and IG Metall. The ERA salary tables set the monthly base pay for each pay group and region.",
     faq2Q: "How up to date are the salary tables in this calculator?",
-    faq2A: "The calculator contains the official ERA salary tables for 2025 and 2026 (effective 01.04.2026) for all 15 bargaining regions. Values are updated promptly after each wage round.",
+    faq2A: "The calculator contains the official ERA salary tables for 2025 and 2026 (effective 01.04.2026) for all 15 bargaining regions. For 2027 and 2028 there are preliminary values projected from the collective agreement of 26 Nov 2026. Values are updated promptly after each wage round.",
     faqTariftabelleQ: "What is the IG Metall pay table (Tariftabelle) 2026?",
     faqTariftabelleA: "\"Tariftabelle\" and \"ERA-Entgelttabelle\" (salary table) mean the same thing: the table of collectively agreed monthly pay in the metal and electrical industry, broken down by pay group (EG 1 to EG 17). It varies by federal state and bargaining region. You can find the full values for your region above in the calculator or on the individual <a href=\"#entgelttabellen\">salary table sub-pages</a>.",
+    faq2027Q: "What does the 2026 collective agreement mean for 2027 and 2028?",
+    faq2027A: "On 26 November 2026, IG Metall and the employers in Baden-W\u00fcrttemberg and North Rhine-Westphalia reached a pilot agreement. The IG Metall executive board recommends adopting it nationwide \u2013 the calculator therefore assumes it applies in all 15 bargaining regions.<br><br><strong>Key points:</strong> ERA salaries rise by 2.0% on 1 May 2027 and by a further 2.3% on 1 April 2028. In March 2027 there is a one-off payment whose amount depends on the company's net return on sales: at least \u20ac150, \u20ac300 at a return of 2.3 to 4.6%, \u20ac450 above 4.6%. It may also be brought forward into financial year 2026. Apprentices and dual students also receive a one-off payment. The agreement runs for 25 months until 30 November 2028. New is also the collective agreement on investment and employment: companies that commit to investing in German sites and refrain from active job cuts may temporarily use employees' collectively agreed benefits to a limited extent (max. 8%).<br><br><strong>How the calculator handles it (preliminary):</strong> The 2027 and 2028 tariff years are marked as \"preliminary\". Salary tables and reference salary are projected from the 2026 values (+2.0% and +2.3%, rounded as in the previous tables); the same percentages are assumed for apprentice pay. Holiday pay, Christmas bonus, T-ZUG A, T-ZUG B and T-Geld remain unchanged, as the agreement does not change them. As in every tariff year, the calculator simplifies by applying the increased values to the whole year, even though the 2027 increase only applies from May. You can select the one-off payment in the 2027 tariff year (default: \u20ac150). Contributions under the investment and employment agreement are not taken into account. The values will be replaced as soon as the official salary tables are published.",
     faq2026Q: "What changes with the 2026 tariff year?",
     faq2026A: "As of 1 April 2026, the ERA base salaries rise by 3.1% in all 15 bargaining regions. In addition, T-ZUG B is increased significantly – from 18.5% to 26.5% of the reference salary. The other special payments remain unchanged: holiday pay (69%, 72% in NRW), Christmas bonus (25–55%), T-ZUG A (27.5%) and transformation payment (18.4%).<br><br>The payout timing also changes: T-ZUG B is now paid in February (previously July) – swapped with the transformation payment (T-Geld), which is now paid in July. A possible \"differentiation\" (reduction or deferral in economically struggling companies) no longer applies to T-ZUG B but to T-Geld – so T-ZUG B is preserved as a social component. Just select the 2026 tariff year in the calculator to see the new values.",
     faq3Q: "Which special payments are included in the annual gross salary?",
@@ -746,7 +779,7 @@ const TRANSLATIONS = {
     footerPrivacy: "Privacy Policy",
     footerGithub: "Source Code on GitHub",
     backToCalculator: "\u2190 Back to Calculator",
-    sourceNote: "Source: <a href=\"https://www.igmetall.de/tarif\" target=\"_blank\" rel=\"noopener noreferrer\">ERA collective agreement for the metal and electrical industry (IG Metall)</a> &middot; Last reviewed: <time datetime=\"2026-08\">August 2026</time>",
+    sourceNote: "Source: <a href=\"https://www.igmetall.de/tarif\" target=\"_blank\" rel=\"noopener noreferrer\">ERA collective agreement for the metal and electrical industry (IG Metall)</a> &middot; Last reviewed: <time datetime=\"2026-11\">November 2026</time>",
 
     // Glossar
     glossarTitle: "ERA Glossary",
@@ -759,6 +792,8 @@ const TRANSLATIONS = {
     gA_betriebsz: "The duration of uninterrupted employment with the company. It mainly determines the Christmas bonus rate: up to one year 25\u00a0%, from one year 35\u00a0%, from three years 45\u00a0%, and from five years 55\u00a0% of one monthly salary. The relevant reference date is <strong>31 December of the respective tariff year</strong> \u2013 what counts is the completed tenure by year-end, not the payment date in November. Beyond the Christmas bonus rate, tenure also determines basic entitlement to T-ZUG A, T-ZUG B and the transformation payment (T-Geld): these are only granted after six months of uninterrupted company tenure. What matters here is the respective payout month (T-ZUG A in July; T-Geld and T-ZUG B in July or February depending on the year), not 31 December. Holiday pay, by contrast, follows the one-twelfth rule: in the year of joining there is a pro-rata entitlement of 1/12 per full month of employment. In the <a href=\"/\">ERA Pay Calculator</a>, tenure is automatically calculated from the entered start date.",
     gQ_eckentgelt: "Reference Salary (Eckentgelt)",
     gA_eckentgelt: "The base salary of the reference pay group in the respective collective bargaining region – usually EG 5, in Baden-Württemberg EG 7, in Osnabrück-Emsland EG 4 and in NRW EG 8. The reference salary is a central benchmark in the ERA system: T-ZUG B is based on it – regardless of the employee's personal pay group. It is increased with every wage round alongside all other salary table values.",
+    gQ_einmalzahlung: "One-off payment (Einmalzahlung)",
+    gA_einmalzahlung: "A single amount paid in addition to the table-effective increases; it does not permanently raise the salary table. Under the collective agreement of 26 Nov 2026, there is a one-off payment of \u20ac150, \u20ac300 or \u20ac450 in March 2027 \u2013 depending on the company's net return on sales (below 2.3%, 2.3\u20134.6%, above 4.6%). It may also be brought forward into financial year 2026; apprentices and dual students also receive a one-off payment. In the <a href=\"/\">ERA calculator</a> you can select the amount in the 2027 tariff year; for part-time it is preliminarily calculated pro rata.",
     gQ_eg: "Pay Group (EG)",
     gA_eg: "The classification of a job into the ERA pay scheme based on job requirements (knowledge, thinking, autonomy). Depending on the region, there are EG\u00a01 to EG\u00a012 (Bavaria) or EG\u00a01 to EG\u00a017 (e.g. Baden-W\u00fcrttemberg). The pay group determines the collectively agreed base salary. Classification is done through job evaluation, not by job title.",
     gQ_era: "ERA \u2013 Pay Framework Agreement",
@@ -771,6 +806,8 @@ const TRANSLATIONS = {
     gA_leistung: "An individual percentage surcharge on the collectively agreed base salary, granted by the employer for above-standard performance. Tariff-wise, 0\u201330\u00a0% is possible. It increases not only the monthly gross but also affects holiday pay, Christmas bonus, T-ZUG\u00a0A and transformation payment, as these are calculated as a percentage of the monthly salary. T-ZUG\u00a0B, however, is based on the reference salary and is independent of the personal performance allowance.",
     gQ_stufe: "Step (A\u2013E)",
     gA_stufe: "Within a pay group, many collective bargaining regions have experience steps A to E (not in all regions). Classification depends on company and professional experience. Step A is the entry level, Step E the highest. Progression from step to step typically happens automatically after a defined number of years in the respective pay group.",
+    gQ_tarifabschluss: "2026 Collective Agreement (Tarifabschluss)",
+    gA_tarifabschluss: "The result of the 2026 metal wage round, reached on 26 Nov 2026 as a pilot agreement in Baden-W\u00fcrttemberg and North Rhine-Westphalia; the IG Metall executive board recommends adopting it in all bargaining regions. Content: +2.0% from 1 May 2027, +2.3% from 1 April 2028, a one-off payment of \u20ac150\u2013450 in March 2027 and a new collective agreement on investment and employment (site investments and no active job cuts in return for temporary employee contributions capped at 8%). Term: 25 months until 30 Nov 2028. In the <a href=\"/\">ERA calculator</a>, 2027 and 2028 are projected as preliminary until the official salary tables are published.",
     gQ_tarifgebiet: "Collective Bargaining Region",
     gA_tarifgebiet: "The regional scope of an ERA collective agreement. There are 15 ERA collective bargaining regions in Germany: Baden-W\u00fcrttemberg, Bavaria, Berlin/Brandenburg, Hamburg/Lower Weser, Hesse, Lower Saxony, North Rhine-Westphalia, Osnabr\u00fcck-Emsland, Palatinate, Rhineland-Rhenish Hesse, Saarland, Saxony, Saxony-Anhalt, Schleswig-Holstein/MV/NW-Lower Saxony and Thuringia. Each region negotiates independently and has its own salary tables \u2013 so base salaries may differ between regions.",
     gQ_teilzeit: "Part-Time in ERA",
@@ -840,6 +877,14 @@ let currentLang = localStorage.getItem("era-lang") || "de";
 
 function t(key) {
   return TRANSLATIONS[currentLang]?.[key] ?? TRANSLATIONS.de[key] ?? key;
+}
+
+// Gültigkeitsdatum eines Tarifjahres für Texte ("ab 01.05.2027"). Standard ist der 01.04.;
+// abweichende Termine stehen als "gueltigAb" (JJJJ-MM-TT) im Jahr in data.js.
+function gueltigAbDatum(year) {
+  const iso = (typeof ERA_DATA !== "undefined" && ERA_DATA[year] && ERA_DATA[year].gueltigAb) || `${year}-04-01`;
+  const [y, m, d] = iso.split("-");
+  return currentLang === "en" ? `${m}/${d}/${y}` : `${d}.${m}.${y}`;
 }
 
 function tReplace(key, replacements) {

@@ -2071,6 +2071,2595 @@ const ERA_DATA = {
       "Schleswig-Holstein/MV/NW-Niedersachsen": [1373.00, 1408.00, 1443.00, 1478.00],
       "Thüringen":                              [1272.00, 1337.00, 1401.00, 1466.00]
     }
+  },
+  "2027": {
+    "preliminary": true,
+    "gueltigAb": "2027-05-01",
+    "hinweis": "yearNoticeAbschluss2026",
+    "einmalzahlung": { "monat": 3, "betraege": [150, 300, 450], "standard": 150 },
+    "salaryData": {
+      "Baden-Württemberg": {
+        "EG 1": {
+          "Grundentgelt": 2795.5
+        },
+        "EG 2": {
+          "Grundentgelt": 2871
+        },
+        "EG 3": {
+          "Grundentgelt": 3022
+        },
+        "EG 4": {
+          "Grundentgelt": 3173
+        },
+        "EG 5": {
+          "Grundentgelt": 3362
+        },
+        "EG 6": {
+          "Grundentgelt": 3550.5
+        },
+        "EG 7": {
+          "Grundentgelt": 3777.5
+        },
+        "EG 8": {
+          "Grundentgelt": 4042
+        },
+        "EG 9": {
+          "Grundentgelt": 4306.5
+        },
+        "EG 10": {
+          "Grundentgelt": 4589.5
+        },
+        "EG 11": {
+          "Grundentgelt": 4892
+        },
+        "EG 12": {
+          "Grundentgelt": 5231.5
+        },
+        "EG 13": {
+          "Grundentgelt": 5572
+        },
+        "EG 14": {
+          "Grundentgelt": 5911.5
+        },
+        "EG 15": {
+          "Grundentgelt": 6251.5
+        },
+        "EG 16": {
+          "Grundentgelt": 6667
+        },
+        "EG 17": {
+          "Grundentgelt": 7044.5
+        }
+      },
+      "Bayern": {
+        "EG 1": {
+          "Stufe A": 2796
+        },
+        "EG 2": {
+          "Stufe A": 2851,
+          "Stufe B": 2898
+        },
+        "EG 3": {
+          "Stufe A": 2994,
+          "Stufe B": 3087
+        },
+        "EG 4": {
+          "Stufe A": 3179,
+          "Stufe B": 3271,
+          "Stufe C": 3480
+        },
+        "EG 5": {
+          "Stufe A": 3567,
+          "Stufe B": 3655
+        },
+        "EG 6": {
+          "Stufe A": 3788,
+          "Stufe B": 3920
+        },
+        "EG 7": {
+          "Stufe A": 4084,
+          "Stufe B": 4250
+        },
+        "EG 8": {
+          "Stufe A": 4431,
+          "Stufe B": 4616
+        },
+        "EG 9": {
+          "Stufe A": 4852,
+          "Stufe B": 5091
+        },
+        "EG 10": {
+          "Stufe A": 5366,
+          "Stufe B": 5639
+        },
+        "EG 11": {
+          "Stufe A": 5934,
+          "Stufe B": 6226
+        },
+        "EG 12": {
+          "Stufe A": 6506,
+          "Stufe B": 6783
+        }
+      },
+      "Berlin/Brandenburg": {
+        "EG 1": {
+          "Hauptstufe": 2795
+        },
+        "EG 2": {
+          "Hauptstufe": 2845
+        },
+        "EG 3": {
+          "Eingangsstufe": 2907,
+          "Hauptstufe": 2939,
+          "1. Zusatzstufe": 3027,
+          "2. Zusatzstufe": 3115
+        },
+        "EG 4": {
+          "Eingangsstufe": 3115,
+          "Hauptstufe": 3204,
+          "1. Zusatzstufe": 3330,
+          "2. Zusatzstufe": 3457
+        },
+        "EG 5": {
+          "Eingangsstufe": 3457,
+          "Hauptstufe": 3583,
+          "1. Zusatzstufe": 3643,
+          "2. Zusatzstufe": 3703
+        },
+        "EG 6": {
+          "Eingangsstufe": 3703,
+          "Hauptstufe": 3763,
+          "1. Zusatzstufe": 3822,
+          "2. Zusatzstufe": 3882
+        },
+        "EG 7": {
+          "Eingangsstufe": 3882,
+          "Hauptstufe": 3941,
+          "1. Zusatzstufe": 4001,
+          "2. Zusatzstufe": 4061
+        },
+        "EG 8": {
+          "Eingangsstufe": 4061,
+          "Hauptstufe": 4121,
+          "1. Zusatzstufe": 4192,
+          "2. Zusatzstufe": 4265
+        },
+        "EG 9": {
+          "Eingangsstufe": 4265,
+          "Hauptstufe": 4336,
+          "1. Zusatzstufe": 4503,
+          "2. Zusatzstufe": 4671
+        },
+        "EG 10": {
+          "Eingangsstufe": 4671,
+          "Hauptstufe": 4838,
+          "1. Zusatzstufe": 5077
+        },
+        "EG 11": {
+          "Eingangsstufe": 5315,
+          "Hauptstufe": 5554,
+          "1. Zusatzstufe": 5805
+        },
+        "EG 12": {
+          "Eingangsstufe": 6056,
+          "Hauptstufe": 6307,
+          "1. Zusatzstufe": 6545
+        },
+        "EG 13": {
+          "Eingangsstufe": 6784,
+          "Hauptstufe": 7023
+        }
+      },
+      "Hamburg/Unterweser": {
+        "EG 2": {
+          "Grundstufe": 2966,
+          "Hauptstufe": 3075
+        },
+        "EG 3": {
+          "Grundstufe": 3060,
+          "Hauptstufe": 3170
+        },
+        "EG 4": {
+          "Grundstufe": 3225,
+          "Hauptstufe": 3319,
+          "Zusatzstufe 1": 3411,
+          "Zusatzstufe 2": 3503
+        },
+        "EG 5": {
+          "Grundstufe": 3552,
+          "Hauptstufe": 3643,
+          "Zusatzstufe 1": 3736,
+          "Zusatzstufe 2": 3825,
+          "Zusatzstufe 3": 3920
+        },
+        "EG 6": {
+          "Grundstufe": 3833,
+          "Hauptstufe": 3925,
+          "Zusatzstufe 1": 4066,
+          "Zusatzstufe 2": 4154,
+          "Zusatzstufe 3": 4246
+        },
+        "EG 7": {
+          "Grundstufe": 4116,
+          "Hauptstufe": 4241,
+          "Zusatzstufe 1": 4379,
+          "Zusatzstufe 2": 4503,
+          "Zusatzstufe 3": 4632
+        },
+        "EG 8": {
+          "Grundstufe": 4849,
+          "Hauptstufe": 4974,
+          "Zusatzstufe 1": 5115,
+          "Zusatzstufe 2": 5243,
+          "Zusatzstufe 3": 5365
+        },
+        "EG 9": {
+          "Grundstufe": 5615,
+          "Hauptstufe": 5777,
+          "Zusatzstufe 1": 5916,
+          "Zusatzstufe 2": 6081
+        },
+        "EG 10": {
+          "Grundstufe": 6404,
+          "Hauptstufe": 6660,
+          "Zusatzstufe 1": 6844
+        },
+        "EG 11": {
+          "Grundstufe": 7231,
+          "Hauptstufe": 7485
+        }
+      },
+      "Hessen": {
+        "EG 1": {
+          "Grundentgelt": 2817
+        },
+        "EG 2": {
+          "Grundentgelt": 2885
+        },
+        "EG 3": {
+          "Grundentgelt": 2985
+        },
+        "EG 4": {
+          "Grundentgelt": 3153,
+          "Zusatzstufe": 3219.8
+        },
+        "EG 5": {
+          "Grundentgelt": 3354,
+          "Zusatzstufe": 3465.62
+        },
+        "EG 6": {
+          "Grundentgelt": 3689,
+          "Zusatzstufe": 3823.3
+        },
+        "EG 7": {
+          "Grundentgelt": 4091,
+          "Zusatzstufe": 4259.18
+        },
+        "EG 8": {
+          "Grundentgelt": 4595,
+          "Zusatzstufe": 4796
+        },
+        "EG 9": {
+          "Grundentgelt": 5198,
+          "Zusatzstufe": 5365.88
+        },
+        "EG 10": {
+          "Grundentgelt": 5702,
+          "Zusatzstufe": 5869.42
+        },
+        "EG 11": {
+          "Grundentgelt": 6205,
+          "Zusatzstufe": 6539.83
+        }
+      },
+      "Niedersachsen": {
+        "EG 2": {
+          "Stufe A": 2755,
+          "Stufe B": 2842,
+          "Stufe C": 2863
+        },
+        "EG 3": {
+          "Stufe A": 2886,
+          "Stufe B": 2933,
+          "Stufe C": 2999
+        },
+        "EG 4": {
+          "Stufe A": 3033,
+          "Stufe B": 3073,
+          "Stufe C": 3229
+        },
+        "EG 5": {
+          "Stufe A": 3423,
+          "Stufe B": 3640,
+          "Stufe C": 3687
+        },
+        "EG 6": {
+          "Stufe A": 3730,
+          "Stufe B": 3779,
+          "Stufe C": 3862
+        },
+        "EG 7": {
+          "Stufe A": 3975,
+          "Stufe B": 4065,
+          "Stufe C": 4162
+        },
+        "EG 8": {
+          "Stufe A": 4255,
+          "Stufe B": 4395,
+          "Stufe C": 4454
+        },
+        "EG 9": {
+          "Stufe A": 4481,
+          "Stufe B": 4566,
+          "Stufe C": 4636
+        },
+        "EG 10": {
+          "Stufe A": 4724,
+          "Stufe B": 4791,
+          "Stufe C": 4845
+        },
+        "EG 11": {
+          "Stufe A": 4911,
+          "Stufe B": 5142,
+          "Stufe C": 5374
+        },
+        "EG 12": {
+          "Stufe A": 5602,
+          "Stufe B": 5831,
+          "Stufe C": 6063
+        },
+        "EG 13": {
+          "Stufe A": 6320,
+          "Stufe B": 6817,
+          "Stufe C": 7020
+        }
+      },
+      "Nordrhein-Westfalen": {
+        "EG 1": {
+          "Grundentgelt": 2845
+        },
+        "EG 2": {
+          "Grundentgelt": 2879.5
+        },
+        "EG 3": {
+          "Grundentgelt": 2912.5
+        },
+        "EG 4": {
+          "Grundentgelt": 2957.5
+        },
+        "EG 5": {
+          "Grundentgelt": 3019.5
+        },
+        "EG 6": {
+          "Grundentgelt": 3098.5
+        },
+        "EG 7": {
+          "Grundentgelt": 3194.5
+        },
+        "EG 8": {
+          "Grundentgelt": 3361
+        },
+        "EG 9": {
+          "Grundentgelt": 3632
+        },
+        "EG 10": {
+          "Grundentgelt": 3992.5
+        },
+        "EG 11": {
+          "Grundentgelt": 4477
+        },
+        "EG 12": {
+          "bis 36. Monat": 4613.5,
+          "nach 36. Monat": 5123.5
+        },
+        "EG 13": {
+          "bis 18. Monat": 5155,
+          "nach 18. Monat": 5458.5,
+          "nach 36. Monat": 6064.5
+        },
+        "EG 14": {
+          "bis 12. Monat": 5856,
+          "nach 12. Monat": 6222.5,
+          "nach 24. Monat": 6588.5,
+          "nach 36. Monat": 7322
+        }
+      },
+      "Osnabrück-Emsland": {
+        "EG 1": {
+          "Hauptstufe": 2842,
+          "Zusatzstufe 1": 2886
+        },
+        "EG 2": {
+          "Eingangsstufe": 2886,
+          "Hauptstufe": 2933,
+          "Zusatzstufe 1": 2975,
+          "Zusatzstufe 2": 3019
+        },
+        "EG 3": {
+          "Eingangsstufe": 3019,
+          "Hauptstufe": 3196,
+          "Zusatzstufe 1": 3227,
+          "Zusatzstufe 2": 3263,
+          "Zusatzstufe 3": 3292
+        },
+        "EG 4": {
+          "Eingangsstufe": 3292,
+          "Hauptstufe": 3640,
+          "Zusatzstufe 1": 3681,
+          "Zusatzstufe 2": 3718,
+          "Zusatzstufe 3": 3751
+        },
+        "EG 5": {
+          "Eingangsstufe": 3751,
+          "Hauptstufe": 3949,
+          "Zusatzstufe 1": 3989,
+          "Zusatzstufe 2": 4028,
+          "Zusatzstufe 3": 4070
+        },
+        "EG 6": {
+          "Eingangsstufe": 4070,
+          "Hauptstufe": 4126,
+          "Zusatzstufe 1": 4169,
+          "Zusatzstufe 2": 4211,
+          "Zusatzstufe 3": 4251
+        },
+        "EG 7": {
+          "Eingangsstufe": 4251,
+          "Hauptstufe": 4352,
+          "Zusatzstufe 1": 4399,
+          "Zusatzstufe 2": 4442,
+          "Zusatzstufe 3": 4484
+        },
+        "EG 8": {
+          "Eingangsstufe": 4484,
+          "Hauptstufe": 4636,
+          "Zusatzstufe 1": 4682,
+          "Zusatzstufe 2": 4729,
+          "Zusatzstufe 3": 4776
+        },
+        "EG 9": {
+          "Eingangsstufe": 4776,
+          "Hauptstufe": 4914,
+          "Zusatzstufe 1": 4963,
+          "Zusatzstufe 2": 5012,
+          "Zusatzstufe 3": 5064
+        },
+        "EG 10": {
+          "Eingangsstufe": 5064,
+          "Hauptstufe": 5266,
+          "Zusatzstufe 1": 5317,
+          "Zusatzstufe 2": 5372,
+          "Zusatzstufe 3": 5421
+        },
+        "EG 11": {
+          "Eingangsstufe": 5421,
+          "Hauptstufe": 5878,
+          "Zusatzstufe 1": 5939,
+          "Zusatzstufe 2": 6000,
+          "Zusatzstufe 3": 6059
+        },
+        "EG 12": {
+          "Eingangsstufe": 6059,
+          "Hauptstufe": 6834
+        }
+      },
+      "Pfalz": {
+        "EG 1": {
+          "Grundentgelt": 2817
+        },
+        "EG 2": {
+          "Grundentgelt": 2885
+        },
+        "EG 3": {
+          "Grundentgelt": 2985
+        },
+        "EG 4": {
+          "Grundentgelt": 3153,
+          "Zusatzstufe": 3219.8
+        },
+        "EG 5": {
+          "Grundentgelt": 3354,
+          "Zusatzstufe": 3465.62
+        },
+        "EG 6": {
+          "Grundentgelt": 3689,
+          "Zusatzstufe": 3823.3
+        },
+        "EG 7": {
+          "Grundentgelt": 4091,
+          "Zusatzstufe": 4236.74
+        },
+        "EG 8": {
+          "Grundentgelt": 4528,
+          "Zusatzstufe": 4695.4
+        },
+        "EG 9": {
+          "Grundentgelt": 5031,
+          "Zusatzstufe": 5254.36
+        },
+        "EG 10": {
+          "Grundentgelt": 5702,
+          "Zusatzstufe": 5869.42
+        },
+        "EG 11": {
+          "Grundentgelt": 6205,
+          "Zusatzstufe": 6539.83
+        }
+      },
+      "Rheinland-Rheinhessen": {
+        "EG 1": {
+          "Grundentgelt": 2817
+        },
+        "EG 2": {
+          "Grundentgelt": 2885
+        },
+        "EG 3": {
+          "Grundentgelt": 2985
+        },
+        "EG 4": {
+          "Grundentgelt": 3153,
+          "Zusatzstufe": 3219.8
+        },
+        "EG 5": {
+          "Grundentgelt": 3354,
+          "Zusatzstufe": 3465.62
+        },
+        "EG 6": {
+          "Grundentgelt": 3689,
+          "Zusatzstufe": 3823.3
+        },
+        "EG 7": {
+          "Grundentgelt": 4091,
+          "Zusatzstufe": 4259.18
+        },
+        "EG 8": {
+          "Grundentgelt": 4595,
+          "Zusatzstufe": 4796
+        },
+        "EG 9": {
+          "Grundentgelt": 5198,
+          "Zusatzstufe": 5365.88
+        },
+        "EG 10": {
+          "Grundentgelt": 5702,
+          "Zusatzstufe": 5869.42
+        },
+        "EG 11": {
+          "Grundentgelt": 6205,
+          "Zusatzstufe": 6717.91
+        }
+      },
+      "Saarland": {
+        "EG 1": {
+          "Grundentgelt": 2817
+        },
+        "EG 2": {
+          "Grundentgelt": 2885
+        },
+        "EG 3": {
+          "Grundentgelt": 2985
+        },
+        "EG 4": {
+          "Grundentgelt": 3153,
+          "Zusatzstufe": 3219.8
+        },
+        "EG 5": {
+          "Grundentgelt": 3354,
+          "Zusatzstufe": 3465.62
+        },
+        "EG 6": {
+          "Grundentgelt": 3689,
+          "Zusatzstufe": 3823.3
+        },
+        "EG 7": {
+          "Grundentgelt": 4091,
+          "Zusatzstufe": 4259.18
+        },
+        "EG 8": {
+          "Grundentgelt": 4595,
+          "Zusatzstufe": 4796
+        },
+        "EG 9": {
+          "Grundentgelt": 5198,
+          "Zusatzstufe": 5365.88
+        },
+        "EG 10": {
+          "Grundentgelt": 5702,
+          "Zusatzstufe": 5869.42
+        },
+        "EG 11": {
+          "Grundentgelt": 6205,
+          "Zusatzstufe": 6539.83
+        }
+      },
+      "Sachsen": {
+        "EG 1": {
+          "Grundentgelt": 2817,
+          "Zusatzstufe": 2851
+        },
+        "EG 2": {
+          "Grundentgelt": 2885,
+          "Zusatzstufe": 2918
+        },
+        "EG 3": {
+          "Grundentgelt": 2985,
+          "Zusatzstufe": 3052
+        },
+        "EG 4": {
+          "Grundentgelt": 3153,
+          "Zusatzstufe": 3253
+        },
+        "EG 5": {
+          "Grundentgelt": 3354,
+          "Zusatzstufe": 3521
+        },
+        "EG 6": {
+          "Grundentgelt": 3689,
+          "Zusatzstufe": 3857
+        },
+        "EG 7": {
+          "Grundentgelt": 4091,
+          "Zusatzstufe": 4260
+        },
+        "EG 8": {
+          "Grundentgelt": 4595,
+          "Zusatzstufe": 4762
+        },
+        "EG 9": {
+          "Grundentgelt": 5031,
+          "Zusatzstufe": 5198
+        },
+        "EG 10": {
+          "Grundentgelt": 5366,
+          "Zusatzstufe": 5534
+        },
+        "EG 11": {
+          "Grundentgelt": 5869,
+          "Zusatzstufe": 6036
+        },
+        "EG 12": {
+          "Grundentgelt": 6205,
+          "Zusatzstufe": 6540
+        }
+      },
+      "Sachsen-Anhalt": {
+        "EG 1": {
+          "Grundstufe": 2842,
+          "Zusatzstufe": 2899
+        },
+        "EG 2": {
+          "Grundstufe": 2936,
+          "Zusatzstufe": 2973
+        },
+        "EG 3": {
+          "Grundstufe": 3043,
+          "Zusatzstufe": 3106
+        },
+        "EG 4": {
+          "Grundstufe": 3208,
+          "Zusatzstufe": 3316
+        },
+        "EG 5": {
+          "Grundstufe": 3450,
+          "Zusatzstufe": 3585
+        },
+        "EG 6": {
+          "Grundstufe": 3730,
+          "Zusatzstufe": 3985
+        },
+        "EG 7": {
+          "Grundstufe": 4221,
+          "Zusatzstufe": 4408
+        },
+        "EG 8": {
+          "Grundstufe": 4560,
+          "Zusatzstufe": 4796
+        },
+        "EG 9": {
+          "Grundstufe": 5249,
+          "Zusatzstufe": 5491
+        },
+        "EG 10": {
+          "Grundstufe": 5956,
+          "Zusatzstufe": 6189
+        },
+        "EG 11": {
+          "Grundstufe": 6704,
+          "Zusatzstufe": 6962
+        }
+      },
+      "Schleswig-Holstein/MV/NW-Niedersachsen": {
+        "EG 2": {
+          "Grundstufe": 2966,
+          "Hauptstufe": 3075
+        },
+        "EG 3": {
+          "Grundstufe": 3060,
+          "Hauptstufe": 3170,
+          "Zusatzstufe 1": 3281
+        },
+        "EG 4": {
+          "Grundstufe": 3225,
+          "Hauptstufe": 3319,
+          "Zusatzstufe 1": 3411,
+          "Zusatzstufe 2": 3503
+        },
+        "EG 5": {
+          "Grundstufe": 3552,
+          "Hauptstufe": 3643,
+          "Zusatzstufe 1": 3736,
+          "Zusatzstufe 2": 3825,
+          "Zusatzstufe 3": 3920
+        },
+        "EG 6": {
+          "Grundstufe": 3806,
+          "Hauptstufe": 3893,
+          "Zusatzstufe 1": 4032,
+          "Zusatzstufe 2": 4126,
+          "Zusatzstufe 3": 4218
+        },
+        "EG 7": {
+          "Grundstufe": 4057,
+          "Hauptstufe": 4178,
+          "Zusatzstufe 1": 4318,
+          "Zusatzstufe 2": 4442,
+          "Zusatzstufe 3": 4568
+        },
+        "EG 8": {
+          "Grundstufe": 4726,
+          "Hauptstufe": 4845,
+          "Zusatzstufe 1": 4989,
+          "Zusatzstufe 2": 5111,
+          "Zusatzstufe 3": 5242
+        },
+        "EG 9": {
+          "Grundstufe": 5426,
+          "Hauptstufe": 5593,
+          "Zusatzstufe 1": 5733,
+          "Zusatzstufe 2": 5893
+        },
+        "EG 10": {
+          "Grundstufe": 6156,
+          "Hauptstufe": 6410,
+          "Zusatzstufe 1": 6591
+        },
+        "EG 11": {
+          "Grundstufe": 6920,
+          "Hauptstufe": 7204
+        }
+      },
+      "Thüringen": {
+        "EG 1": {
+          "Grundentgelt": 2817,
+          "Zusatzstufe": 2851
+        },
+        "EG 2": {
+          "Grundentgelt": 2885,
+          "Zusatzstufe": 2918
+        },
+        "EG 3": {
+          "Grundentgelt": 2985,
+          "Zusatzstufe": 3052
+        },
+        "EG 4": {
+          "Grundentgelt": 3153,
+          "Zusatzstufe": 3253
+        },
+        "EG 5": {
+          "Grundentgelt": 3354,
+          "Zusatzstufe": 3521
+        },
+        "EG 6": {
+          "Grundentgelt": 3689,
+          "Zusatzstufe": 3857
+        },
+        "EG 7": {
+          "Grundentgelt": 4091,
+          "Zusatzstufe": 4260
+        },
+        "EG 8": {
+          "Grundentgelt": 4595,
+          "Zusatzstufe": 4762
+        },
+        "EG 9": {
+          "Grundentgelt": 5031,
+          "Zusatzstufe": 5198
+        },
+        "EG 10": {
+          "Grundentgelt": 5366,
+          "Zusatzstufe": 5534
+        },
+        "EG 11": {
+          "Grundentgelt": 5869,
+          "Zusatzstufe": 6036
+        },
+        "EG 12": {
+          "Grundentgelt": 6205,
+          "Zusatzstufe": 6540
+        }
+      }
+    },
+    "bonusData": {
+      "Baden-Württemberg": {
+        "urlaubsgeld": 0.69,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.265,
+        "eckentgelt": 3777.5,
+        "eckentgeltEG": 7,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          {
+            "monate": 36,
+            "satz": 0.55
+          },
+          {
+            "monate": 24,
+            "satz": 0.45
+          },
+          {
+            "monate": 12,
+            "satz": 0.35
+          },
+          {
+            "monate": 6,
+            "satz": 0.25
+          }
+        ]
+      },
+      "Bayern": {
+        "urlaubsgeld": 0.69,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.265,
+        "eckentgelt": 3655,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          {
+            "monate": 36,
+            "satz": 0.55
+          },
+          {
+            "monate": 24,
+            "satz": 0.45
+          },
+          {
+            "monate": 12,
+            "satz": 0.35
+          },
+          {
+            "monate": 6,
+            "satz": 0.25
+          }
+        ]
+      },
+      "Berlin/Brandenburg": {
+        "urlaubsgeld": 0.69,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.265,
+        "eckentgelt": 3583,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          {
+            "monate": 36,
+            "satz": 0.55
+          },
+          {
+            "monate": 24,
+            "satz": 0.45
+          },
+          {
+            "monate": 12,
+            "satz": 0.35
+          },
+          {
+            "monate": 6,
+            "satz": 0.25
+          }
+        ]
+      },
+      "Hamburg/Unterweser": {
+        "urlaubsgeld": 0.69,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.265,
+        "eckentgelt": 3643,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          {
+            "monate": 36,
+            "satz": 0.55
+          },
+          {
+            "monate": 24,
+            "satz": 0.45
+          },
+          {
+            "monate": 12,
+            "satz": 0.35
+          },
+          {
+            "monate": 6,
+            "satz": 0.25
+          }
+        ]
+      },
+      "Hessen": {
+        "urlaubsgeld": 0.69,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.265,
+        "eckentgelt": 3354,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          {
+            "monate": 36,
+            "satz": 0.55
+          },
+          {
+            "monate": 24,
+            "satz": 0.45
+          },
+          {
+            "monate": 12,
+            "satz": 0.35
+          },
+          {
+            "monate": 6,
+            "satz": 0.25
+          }
+        ]
+      },
+      "Niedersachsen": {
+        "urlaubsgeld": 0.69,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.265,
+        "eckentgelt": 3640,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          {
+            "monate": 36,
+            "satz": 0.55
+          },
+          {
+            "monate": 24,
+            "satz": 0.45
+          },
+          {
+            "monate": 12,
+            "satz": 0.35
+          },
+          {
+            "monate": 6,
+            "satz": 0.25
+          }
+        ]
+      },
+      "Nordrhein-Westfalen": {
+        "urlaubsgeld": 0.72,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.265,
+        "eckentgelt": 3361,
+        "eckentgeltEG": 8,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          {
+            "monate": 36,
+            "satz": 0.55
+          },
+          {
+            "monate": 24,
+            "satz": 0.45
+          },
+          {
+            "monate": 12,
+            "satz": 0.35
+          },
+          {
+            "monate": 6,
+            "satz": 0.25
+          }
+        ]
+      },
+      "Osnabrück-Emsland": {
+        "urlaubsgeld": 0.69,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.265,
+        "eckentgelt": 3640,
+        "eckentgeltEG": 4,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          {
+            "monate": 36,
+            "satz": 0.55
+          },
+          {
+            "monate": 24,
+            "satz": 0.45
+          },
+          {
+            "monate": 12,
+            "satz": 0.35
+          },
+          {
+            "monate": 6,
+            "satz": 0.25
+          }
+        ]
+      },
+      "Pfalz": {
+        "urlaubsgeld": 0.69,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.265,
+        "eckentgelt": 3354,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          {
+            "monate": 36,
+            "satz": 0.55
+          },
+          {
+            "monate": 24,
+            "satz": 0.45
+          },
+          {
+            "monate": 12,
+            "satz": 0.35
+          },
+          {
+            "monate": 6,
+            "satz": 0.25
+          }
+        ]
+      },
+      "Rheinland-Rheinhessen": {
+        "urlaubsgeld": 0.69,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.265,
+        "eckentgelt": 3354,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          {
+            "monate": 36,
+            "satz": 0.55
+          },
+          {
+            "monate": 24,
+            "satz": 0.45
+          },
+          {
+            "monate": 12,
+            "satz": 0.35
+          },
+          {
+            "monate": 6,
+            "satz": 0.25
+          }
+        ]
+      },
+      "Saarland": {
+        "urlaubsgeld": 0.69,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.265,
+        "eckentgelt": 3354,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          {
+            "monate": 36,
+            "satz": 0.55
+          },
+          {
+            "monate": 24,
+            "satz": 0.45
+          },
+          {
+            "monate": 12,
+            "satz": 0.35
+          },
+          {
+            "monate": 6,
+            "satz": 0.25
+          }
+        ]
+      },
+      "Sachsen": {
+        "urlaubsgeld": 0.69,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.265,
+        "eckentgelt": 3354,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          {
+            "monate": 36,
+            "satz": 0.55
+          },
+          {
+            "monate": 24,
+            "satz": 0.45
+          },
+          {
+            "monate": 12,
+            "satz": 0.35
+          },
+          {
+            "monate": 6,
+            "satz": 0.25
+          }
+        ]
+      },
+      "Sachsen-Anhalt": {
+        "urlaubsgeld": 0.69,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.265,
+        "eckentgelt": 3450,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          {
+            "monate": 36,
+            "satz": 0.55
+          },
+          {
+            "monate": 24,
+            "satz": 0.45
+          },
+          {
+            "monate": 12,
+            "satz": 0.35
+          },
+          {
+            "monate": 6,
+            "satz": 0.25
+          }
+        ]
+      },
+      "Schleswig-Holstein/MV/NW-Niedersachsen": {
+        "urlaubsgeld": 0.69,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.265,
+        "eckentgelt": 3643,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          {
+            "monate": 36,
+            "satz": 0.55
+          },
+          {
+            "monate": 24,
+            "satz": 0.45
+          },
+          {
+            "monate": 12,
+            "satz": 0.35
+          },
+          {
+            "monate": 6,
+            "satz": 0.25
+          }
+        ]
+      },
+      "Thüringen": {
+        "urlaubsgeld": 0.69,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.265,
+        "eckentgelt": 3354,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          {
+            "monate": 36,
+            "satz": 0.55
+          },
+          {
+            "monate": 24,
+            "satz": 0.45
+          },
+          {
+            "monate": 12,
+            "satz": 0.35
+          },
+          {
+            "monate": 6,
+            "satz": 0.25
+          }
+        ]
+      }
+    },
+    "ausbildungData": {
+      "Baden-Württemberg": [
+        1329.5,
+        1405,
+        1518.5,
+        1594.5
+      ],
+      "Bayern": [
+        1329,
+        1392.5,
+        1473.5,
+        1527
+      ],
+      "Berlin/Brandenburg": [
+        1297,
+        1362,
+        1430,
+        1490
+      ],
+      "Hamburg/Unterweser": [
+        1400,
+        1436,
+        1472,
+        1508
+      ],
+      "Hessen": [
+        1286,
+        1355,
+        1447,
+        1495
+      ],
+      "Niedersachsen": [
+        1289,
+        1361,
+        1468,
+        1539
+      ],
+      "Nordrhein-Westfalen": [
+        1267.82,
+        1323.62,
+        1406.51,
+        1515.37
+      ],
+      "Osnabrück-Emsland": [
+        1289,
+        1361,
+        1468,
+        1539
+      ],
+      "Pfalz": [
+        1286,
+        1355,
+        1447,
+        1495
+      ],
+      "Rheinland-Rheinhessen": [
+        1286,
+        1355,
+        1447,
+        1495
+      ],
+      "Saarland": [
+        1286,
+        1355,
+        1447,
+        1495
+      ],
+      "Sachsen": [
+        1297,
+        1364,
+        1429,
+        1495
+      ],
+      "Sachsen-Anhalt": [
+        1296,
+        1365,
+        1466,
+        1534
+      ],
+      "Schleswig-Holstein/MV/NW-Niedersachsen": [
+        1400,
+        1436,
+        1472,
+        1508
+      ],
+      "Thüringen": [
+        1297,
+        1364,
+        1429,
+        1495
+      ]
+    }
+  },
+  "2028": {
+    "preliminary": true,
+    "gueltigAb": "2028-04-01",
+    "hinweis": "yearNoticeAbschluss2026",
+    "salaryData": {
+      "Baden-Württemberg": {
+        "EG 1": {
+          "Grundentgelt": 2860
+        },
+        "EG 2": {
+          "Grundentgelt": 2937
+        },
+        "EG 3": {
+          "Grundentgelt": 3091.5
+        },
+        "EG 4": {
+          "Grundentgelt": 3246
+        },
+        "EG 5": {
+          "Grundentgelt": 3439.5
+        },
+        "EG 6": {
+          "Grundentgelt": 3632
+        },
+        "EG 7": {
+          "Grundentgelt": 3864.5
+        },
+        "EG 8": {
+          "Grundentgelt": 4135
+        },
+        "EG 9": {
+          "Grundentgelt": 4405.5
+        },
+        "EG 10": {
+          "Grundentgelt": 4695
+        },
+        "EG 11": {
+          "Grundentgelt": 5004.5
+        },
+        "EG 12": {
+          "Grundentgelt": 5352
+        },
+        "EG 13": {
+          "Grundentgelt": 5700
+        },
+        "EG 14": {
+          "Grundentgelt": 6047.5
+        },
+        "EG 15": {
+          "Grundentgelt": 6395.5
+        },
+        "EG 16": {
+          "Grundentgelt": 6820.5
+        },
+        "EG 17": {
+          "Grundentgelt": 7206.5
+        }
+      },
+      "Bayern": {
+        "EG 1": {
+          "Stufe A": 2860
+        },
+        "EG 2": {
+          "Stufe A": 2917,
+          "Stufe B": 2965
+        },
+        "EG 3": {
+          "Stufe A": 3063,
+          "Stufe B": 3158
+        },
+        "EG 4": {
+          "Stufe A": 3252,
+          "Stufe B": 3346,
+          "Stufe C": 3560
+        },
+        "EG 5": {
+          "Stufe A": 3649,
+          "Stufe B": 3739
+        },
+        "EG 6": {
+          "Stufe A": 3875,
+          "Stufe B": 4010
+        },
+        "EG 7": {
+          "Stufe A": 4178,
+          "Stufe B": 4348
+        },
+        "EG 8": {
+          "Stufe A": 4533,
+          "Stufe B": 4722
+        },
+        "EG 9": {
+          "Stufe A": 4964,
+          "Stufe B": 5208
+        },
+        "EG 10": {
+          "Stufe A": 5489,
+          "Stufe B": 5769
+        },
+        "EG 11": {
+          "Stufe A": 6070,
+          "Stufe B": 6369
+        },
+        "EG 12": {
+          "Stufe A": 6656,
+          "Stufe B": 6939
+        }
+      },
+      "Berlin/Brandenburg": {
+        "EG 1": {
+          "Hauptstufe": 2859
+        },
+        "EG 2": {
+          "Hauptstufe": 2910
+        },
+        "EG 3": {
+          "Eingangsstufe": 2974,
+          "Hauptstufe": 3007,
+          "1. Zusatzstufe": 3097,
+          "2. Zusatzstufe": 3187
+        },
+        "EG 4": {
+          "Eingangsstufe": 3187,
+          "Hauptstufe": 3278,
+          "1. Zusatzstufe": 3407,
+          "2. Zusatzstufe": 3537
+        },
+        "EG 5": {
+          "Eingangsstufe": 3537,
+          "Hauptstufe": 3665,
+          "1. Zusatzstufe": 3727,
+          "2. Zusatzstufe": 3788
+        },
+        "EG 6": {
+          "Eingangsstufe": 3788,
+          "Hauptstufe": 3850,
+          "1. Zusatzstufe": 3910,
+          "2. Zusatzstufe": 3971
+        },
+        "EG 7": {
+          "Eingangsstufe": 3971,
+          "Hauptstufe": 4032,
+          "1. Zusatzstufe": 4093,
+          "2. Zusatzstufe": 4154
+        },
+        "EG 8": {
+          "Eingangsstufe": 4154,
+          "Hauptstufe": 4216,
+          "1. Zusatzstufe": 4288,
+          "2. Zusatzstufe": 4363
+        },
+        "EG 9": {
+          "Eingangsstufe": 4363,
+          "Hauptstufe": 4436,
+          "1. Zusatzstufe": 4607,
+          "2. Zusatzstufe": 4778
+        },
+        "EG 10": {
+          "Eingangsstufe": 4778,
+          "Hauptstufe": 4949,
+          "1. Zusatzstufe": 5194
+        },
+        "EG 11": {
+          "Eingangsstufe": 5437,
+          "Hauptstufe": 5682,
+          "1. Zusatzstufe": 5939
+        },
+        "EG 12": {
+          "Eingangsstufe": 6195,
+          "Hauptstufe": 6452,
+          "1. Zusatzstufe": 6696
+        },
+        "EG 13": {
+          "Eingangsstufe": 6940,
+          "Hauptstufe": 7185
+        }
+      },
+      "Hamburg/Unterweser": {
+        "EG 2": {
+          "Grundstufe": 3034,
+          "Hauptstufe": 3146
+        },
+        "EG 3": {
+          "Grundstufe": 3130,
+          "Hauptstufe": 3243
+        },
+        "EG 4": {
+          "Grundstufe": 3299,
+          "Hauptstufe": 3395,
+          "Zusatzstufe 1": 3489,
+          "Zusatzstufe 2": 3584
+        },
+        "EG 5": {
+          "Grundstufe": 3634,
+          "Hauptstufe": 3727,
+          "Zusatzstufe 1": 3822,
+          "Zusatzstufe 2": 3913,
+          "Zusatzstufe 3": 4010
+        },
+        "EG 6": {
+          "Grundstufe": 3921,
+          "Hauptstufe": 4015,
+          "Zusatzstufe 1": 4160,
+          "Zusatzstufe 2": 4250,
+          "Zusatzstufe 3": 4344
+        },
+        "EG 7": {
+          "Grundstufe": 4211,
+          "Hauptstufe": 4339,
+          "Zusatzstufe 1": 4480,
+          "Zusatzstufe 2": 4607,
+          "Zusatzstufe 3": 4739
+        },
+        "EG 8": {
+          "Grundstufe": 4961,
+          "Hauptstufe": 5088,
+          "Zusatzstufe 1": 5233,
+          "Zusatzstufe 2": 5364,
+          "Zusatzstufe 3": 5488
+        },
+        "EG 9": {
+          "Grundstufe": 5744,
+          "Hauptstufe": 5910,
+          "Zusatzstufe 1": 6052,
+          "Zusatzstufe 2": 6221
+        },
+        "EG 10": {
+          "Grundstufe": 6551,
+          "Hauptstufe": 6813,
+          "Zusatzstufe 1": 7001
+        },
+        "EG 11": {
+          "Grundstufe": 7397,
+          "Hauptstufe": 7657
+        }
+      },
+      "Hessen": {
+        "EG 1": {
+          "Grundentgelt": 2882
+        },
+        "EG 2": {
+          "Grundentgelt": 2951
+        },
+        "EG 3": {
+          "Grundentgelt": 3054
+        },
+        "EG 4": {
+          "Grundentgelt": 3226,
+          "Zusatzstufe": 3293.86
+        },
+        "EG 5": {
+          "Grundentgelt": 3431,
+          "Zusatzstufe": 3545.33
+        },
+        "EG 6": {
+          "Grundentgelt": 3774,
+          "Zusatzstufe": 3911.24
+        },
+        "EG 7": {
+          "Grundentgelt": 4185,
+          "Zusatzstufe": 4357.14
+        },
+        "EG 8": {
+          "Grundentgelt": 4701,
+          "Zusatzstufe": 4906
+        },
+        "EG 9": {
+          "Grundentgelt": 5318,
+          "Zusatzstufe": 5489.3
+        },
+        "EG 10": {
+          "Grundentgelt": 5833,
+          "Zusatzstufe": 6004.42
+        },
+        "EG 11": {
+          "Grundentgelt": 6348,
+          "Zusatzstufe": 6690.25
+        }
+      },
+      "Niedersachsen": {
+        "EG 2": {
+          "Stufe A": 2818,
+          "Stufe B": 2907,
+          "Stufe C": 2929
+        },
+        "EG 3": {
+          "Stufe A": 2952,
+          "Stufe B": 3000,
+          "Stufe C": 3068
+        },
+        "EG 4": {
+          "Stufe A": 3103,
+          "Stufe B": 3144,
+          "Stufe C": 3303
+        },
+        "EG 5": {
+          "Stufe A": 3502,
+          "Stufe B": 3724,
+          "Stufe C": 3772
+        },
+        "EG 6": {
+          "Stufe A": 3816,
+          "Stufe B": 3866,
+          "Stufe C": 3951
+        },
+        "EG 7": {
+          "Stufe A": 4066,
+          "Stufe B": 4158,
+          "Stufe C": 4258
+        },
+        "EG 8": {
+          "Stufe A": 4353,
+          "Stufe B": 4496,
+          "Stufe C": 4556
+        },
+        "EG 9": {
+          "Stufe A": 4584,
+          "Stufe B": 4671,
+          "Stufe C": 4743
+        },
+        "EG 10": {
+          "Stufe A": 4833,
+          "Stufe B": 4901,
+          "Stufe C": 4956
+        },
+        "EG 11": {
+          "Stufe A": 5024,
+          "Stufe B": 5260,
+          "Stufe C": 5498
+        },
+        "EG 12": {
+          "Stufe A": 5731,
+          "Stufe B": 5965,
+          "Stufe C": 6202
+        },
+        "EG 13": {
+          "Stufe A": 6465,
+          "Stufe B": 6974,
+          "Stufe C": 7181
+        }
+      },
+      "Nordrhein-Westfalen": {
+        "EG 1": {
+          "Grundentgelt": 2910.5
+        },
+        "EG 2": {
+          "Grundentgelt": 2945.5
+        },
+        "EG 3": {
+          "Grundentgelt": 2979.5
+        },
+        "EG 4": {
+          "Grundentgelt": 3025.5
+        },
+        "EG 5": {
+          "Grundentgelt": 3089
+        },
+        "EG 6": {
+          "Grundentgelt": 3170
+        },
+        "EG 7": {
+          "Grundentgelt": 3268
+        },
+        "EG 8": {
+          "Grundentgelt": 3438.5
+        },
+        "EG 9": {
+          "Grundentgelt": 3715.5
+        },
+        "EG 10": {
+          "Grundentgelt": 4084.5
+        },
+        "EG 11": {
+          "Grundentgelt": 4580
+        },
+        "EG 12": {
+          "bis 36. Monat": 4719.5,
+          "nach 36. Monat": 5241.5
+        },
+        "EG 13": {
+          "bis 18. Monat": 5273.5,
+          "nach 18. Monat": 5584,
+          "nach 36. Monat": 6204
+        },
+        "EG 14": {
+          "bis 12. Monat": 5990.5,
+          "nach 12. Monat": 6365.5,
+          "nach 24. Monat": 6740,
+          "nach 36. Monat": 7490.5
+        }
+      },
+      "Osnabrück-Emsland": {
+        "EG 1": {
+          "Hauptstufe": 2907,
+          "Zusatzstufe 1": 2952
+        },
+        "EG 2": {
+          "Eingangsstufe": 2952,
+          "Hauptstufe": 3000,
+          "Zusatzstufe 1": 3043,
+          "Zusatzstufe 2": 3088
+        },
+        "EG 3": {
+          "Eingangsstufe": 3088,
+          "Hauptstufe": 3270,
+          "Zusatzstufe 1": 3301,
+          "Zusatzstufe 2": 3338,
+          "Zusatzstufe 3": 3368
+        },
+        "EG 4": {
+          "Eingangsstufe": 3368,
+          "Hauptstufe": 3724,
+          "Zusatzstufe 1": 3766,
+          "Zusatzstufe 2": 3804,
+          "Zusatzstufe 3": 3837
+        },
+        "EG 5": {
+          "Eingangsstufe": 3837,
+          "Hauptstufe": 4040,
+          "Zusatzstufe 1": 4081,
+          "Zusatzstufe 2": 4121,
+          "Zusatzstufe 3": 4164
+        },
+        "EG 6": {
+          "Eingangsstufe": 4164,
+          "Hauptstufe": 4221,
+          "Zusatzstufe 1": 4265,
+          "Zusatzstufe 2": 4308,
+          "Zusatzstufe 3": 4349
+        },
+        "EG 7": {
+          "Eingangsstufe": 4349,
+          "Hauptstufe": 4452,
+          "Zusatzstufe 1": 4500,
+          "Zusatzstufe 2": 4544,
+          "Zusatzstufe 3": 4587
+        },
+        "EG 8": {
+          "Eingangsstufe": 4587,
+          "Hauptstufe": 4743,
+          "Zusatzstufe 1": 4790,
+          "Zusatzstufe 2": 4838,
+          "Zusatzstufe 3": 4886
+        },
+        "EG 9": {
+          "Eingangsstufe": 4886,
+          "Hauptstufe": 5027,
+          "Zusatzstufe 1": 5077,
+          "Zusatzstufe 2": 5127,
+          "Zusatzstufe 3": 5180
+        },
+        "EG 10": {
+          "Eingangsstufe": 5180,
+          "Hauptstufe": 5387,
+          "Zusatzstufe 1": 5439,
+          "Zusatzstufe 2": 5496,
+          "Zusatzstufe 3": 5546
+        },
+        "EG 11": {
+          "Eingangsstufe": 5546,
+          "Hauptstufe": 6013,
+          "Zusatzstufe 1": 6076,
+          "Zusatzstufe 2": 6138,
+          "Zusatzstufe 3": 6198
+        },
+        "EG 12": {
+          "Eingangsstufe": 6198,
+          "Hauptstufe": 6991
+        }
+      },
+      "Pfalz": {
+        "EG 1": {
+          "Grundentgelt": 2882
+        },
+        "EG 2": {
+          "Grundentgelt": 2951
+        },
+        "EG 3": {
+          "Grundentgelt": 3054
+        },
+        "EG 4": {
+          "Grundentgelt": 3226,
+          "Zusatzstufe": 3293.86
+        },
+        "EG 5": {
+          "Grundentgelt": 3431,
+          "Zusatzstufe": 3545.33
+        },
+        "EG 6": {
+          "Grundentgelt": 3774,
+          "Zusatzstufe": 3911.24
+        },
+        "EG 7": {
+          "Grundentgelt": 4185,
+          "Zusatzstufe": 4334.19
+        },
+        "EG 8": {
+          "Grundentgelt": 4632,
+          "Zusatzstufe": 4803.39
+        },
+        "EG 9": {
+          "Grundentgelt": 5147,
+          "Zusatzstufe": 5375.21
+        },
+        "EG 10": {
+          "Grundentgelt": 5833,
+          "Zusatzstufe": 6004.42
+        },
+        "EG 11": {
+          "Grundentgelt": 6348,
+          "Zusatzstufe": 6690.25
+        }
+      },
+      "Rheinland-Rheinhessen": {
+        "EG 1": {
+          "Grundentgelt": 2882
+        },
+        "EG 2": {
+          "Grundentgelt": 2951
+        },
+        "EG 3": {
+          "Grundentgelt": 3054
+        },
+        "EG 4": {
+          "Grundentgelt": 3226,
+          "Zusatzstufe": 3293.86
+        },
+        "EG 5": {
+          "Grundentgelt": 3431,
+          "Zusatzstufe": 3545.33
+        },
+        "EG 6": {
+          "Grundentgelt": 3774,
+          "Zusatzstufe": 3911.24
+        },
+        "EG 7": {
+          "Grundentgelt": 4185,
+          "Zusatzstufe": 4357.14
+        },
+        "EG 8": {
+          "Grundentgelt": 4701,
+          "Zusatzstufe": 4906
+        },
+        "EG 9": {
+          "Grundentgelt": 5318,
+          "Zusatzstufe": 5489.3
+        },
+        "EG 10": {
+          "Grundentgelt": 5833,
+          "Zusatzstufe": 6004.42
+        },
+        "EG 11": {
+          "Grundentgelt": 6348,
+          "Zusatzstufe": 6872.42
+        }
+      },
+      "Saarland": {
+        "EG 1": {
+          "Grundentgelt": 2882
+        },
+        "EG 2": {
+          "Grundentgelt": 2951
+        },
+        "EG 3": {
+          "Grundentgelt": 3054
+        },
+        "EG 4": {
+          "Grundentgelt": 3226,
+          "Zusatzstufe": 3293.86
+        },
+        "EG 5": {
+          "Grundentgelt": 3431,
+          "Zusatzstufe": 3545.33
+        },
+        "EG 6": {
+          "Grundentgelt": 3774,
+          "Zusatzstufe": 3911.24
+        },
+        "EG 7": {
+          "Grundentgelt": 4185,
+          "Zusatzstufe": 4357.14
+        },
+        "EG 8": {
+          "Grundentgelt": 4701,
+          "Zusatzstufe": 4906
+        },
+        "EG 9": {
+          "Grundentgelt": 5318,
+          "Zusatzstufe": 5489.3
+        },
+        "EG 10": {
+          "Grundentgelt": 5833,
+          "Zusatzstufe": 6004.42
+        },
+        "EG 11": {
+          "Grundentgelt": 6348,
+          "Zusatzstufe": 6690.25
+        }
+      },
+      "Sachsen": {
+        "EG 1": {
+          "Grundentgelt": 2882,
+          "Zusatzstufe": 2917
+        },
+        "EG 2": {
+          "Grundentgelt": 2951,
+          "Zusatzstufe": 2985
+        },
+        "EG 3": {
+          "Grundentgelt": 3054,
+          "Zusatzstufe": 3122
+        },
+        "EG 4": {
+          "Grundentgelt": 3226,
+          "Zusatzstufe": 3328
+        },
+        "EG 5": {
+          "Grundentgelt": 3431,
+          "Zusatzstufe": 3602
+        },
+        "EG 6": {
+          "Grundentgelt": 3774,
+          "Zusatzstufe": 3946
+        },
+        "EG 7": {
+          "Grundentgelt": 4185,
+          "Zusatzstufe": 4358
+        },
+        "EG 8": {
+          "Grundentgelt": 4701,
+          "Zusatzstufe": 4872
+        },
+        "EG 9": {
+          "Grundentgelt": 5147,
+          "Zusatzstufe": 5318
+        },
+        "EG 10": {
+          "Grundentgelt": 5489,
+          "Zusatzstufe": 5661
+        },
+        "EG 11": {
+          "Grundentgelt": 6004,
+          "Zusatzstufe": 6175
+        },
+        "EG 12": {
+          "Grundentgelt": 6348,
+          "Zusatzstufe": 6690
+        }
+      },
+      "Sachsen-Anhalt": {
+        "EG 1": {
+          "Grundstufe": 2907,
+          "Zusatzstufe": 2966
+        },
+        "EG 2": {
+          "Grundstufe": 3004,
+          "Zusatzstufe": 3041
+        },
+        "EG 3": {
+          "Grundstufe": 3113,
+          "Zusatzstufe": 3177
+        },
+        "EG 4": {
+          "Grundstufe": 3282,
+          "Zusatzstufe": 3392
+        },
+        "EG 5": {
+          "Grundstufe": 3529,
+          "Zusatzstufe": 3667
+        },
+        "EG 6": {
+          "Grundstufe": 3816,
+          "Zusatzstufe": 4077
+        },
+        "EG 7": {
+          "Grundstufe": 4318,
+          "Zusatzstufe": 4509
+        },
+        "EG 8": {
+          "Grundstufe": 4665,
+          "Zusatzstufe": 4906
+        },
+        "EG 9": {
+          "Grundstufe": 5370,
+          "Zusatzstufe": 5617
+        },
+        "EG 10": {
+          "Grundstufe": 6093,
+          "Zusatzstufe": 6331
+        },
+        "EG 11": {
+          "Grundstufe": 6858,
+          "Zusatzstufe": 7122
+        }
+      },
+      "Schleswig-Holstein/MV/NW-Niedersachsen": {
+        "EG 2": {
+          "Grundstufe": 3034,
+          "Hauptstufe": 3146
+        },
+        "EG 3": {
+          "Grundstufe": 3130,
+          "Hauptstufe": 3243,
+          "Zusatzstufe 1": 3356
+        },
+        "EG 4": {
+          "Grundstufe": 3299,
+          "Hauptstufe": 3395,
+          "Zusatzstufe 1": 3489,
+          "Zusatzstufe 2": 3584
+        },
+        "EG 5": {
+          "Grundstufe": 3634,
+          "Hauptstufe": 3727,
+          "Zusatzstufe 1": 3822,
+          "Zusatzstufe 2": 3913,
+          "Zusatzstufe 3": 4010
+        },
+        "EG 6": {
+          "Grundstufe": 3894,
+          "Hauptstufe": 3983,
+          "Zusatzstufe 1": 4125,
+          "Zusatzstufe 2": 4221,
+          "Zusatzstufe 3": 4315
+        },
+        "EG 7": {
+          "Grundstufe": 4150,
+          "Hauptstufe": 4274,
+          "Zusatzstufe 1": 4417,
+          "Zusatzstufe 2": 4544,
+          "Zusatzstufe 3": 4673
+        },
+        "EG 8": {
+          "Grundstufe": 4835,
+          "Hauptstufe": 4956,
+          "Zusatzstufe 1": 5104,
+          "Zusatzstufe 2": 5229,
+          "Zusatzstufe 3": 5363
+        },
+        "EG 9": {
+          "Grundstufe": 5551,
+          "Hauptstufe": 5722,
+          "Zusatzstufe 1": 5865,
+          "Zusatzstufe 2": 6029
+        },
+        "EG 10": {
+          "Grundstufe": 6298,
+          "Hauptstufe": 6557,
+          "Zusatzstufe 1": 6743
+        },
+        "EG 11": {
+          "Grundstufe": 7079,
+          "Hauptstufe": 7370
+        }
+      },
+      "Thüringen": {
+        "EG 1": {
+          "Grundentgelt": 2882,
+          "Zusatzstufe": 2917
+        },
+        "EG 2": {
+          "Grundentgelt": 2951,
+          "Zusatzstufe": 2985
+        },
+        "EG 3": {
+          "Grundentgelt": 3054,
+          "Zusatzstufe": 3122
+        },
+        "EG 4": {
+          "Grundentgelt": 3226,
+          "Zusatzstufe": 3328
+        },
+        "EG 5": {
+          "Grundentgelt": 3431,
+          "Zusatzstufe": 3602
+        },
+        "EG 6": {
+          "Grundentgelt": 3774,
+          "Zusatzstufe": 3946
+        },
+        "EG 7": {
+          "Grundentgelt": 4185,
+          "Zusatzstufe": 4358
+        },
+        "EG 8": {
+          "Grundentgelt": 4701,
+          "Zusatzstufe": 4872
+        },
+        "EG 9": {
+          "Grundentgelt": 5147,
+          "Zusatzstufe": 5318
+        },
+        "EG 10": {
+          "Grundentgelt": 5489,
+          "Zusatzstufe": 5661
+        },
+        "EG 11": {
+          "Grundentgelt": 6004,
+          "Zusatzstufe": 6175
+        },
+        "EG 12": {
+          "Grundentgelt": 6348,
+          "Zusatzstufe": 6690
+        }
+      }
+    },
+    "bonusData": {
+      "Baden-Württemberg": {
+        "urlaubsgeld": 0.69,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.265,
+        "eckentgelt": 3864.5,
+        "eckentgeltEG": 7,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          {
+            "monate": 36,
+            "satz": 0.55
+          },
+          {
+            "monate": 24,
+            "satz": 0.45
+          },
+          {
+            "monate": 12,
+            "satz": 0.35
+          },
+          {
+            "monate": 6,
+            "satz": 0.25
+          }
+        ]
+      },
+      "Bayern": {
+        "urlaubsgeld": 0.69,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.265,
+        "eckentgelt": 3739,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          {
+            "monate": 36,
+            "satz": 0.55
+          },
+          {
+            "monate": 24,
+            "satz": 0.45
+          },
+          {
+            "monate": 12,
+            "satz": 0.35
+          },
+          {
+            "monate": 6,
+            "satz": 0.25
+          }
+        ]
+      },
+      "Berlin/Brandenburg": {
+        "urlaubsgeld": 0.69,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.265,
+        "eckentgelt": 3665,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          {
+            "monate": 36,
+            "satz": 0.55
+          },
+          {
+            "monate": 24,
+            "satz": 0.45
+          },
+          {
+            "monate": 12,
+            "satz": 0.35
+          },
+          {
+            "monate": 6,
+            "satz": 0.25
+          }
+        ]
+      },
+      "Hamburg/Unterweser": {
+        "urlaubsgeld": 0.69,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.265,
+        "eckentgelt": 3727,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          {
+            "monate": 36,
+            "satz": 0.55
+          },
+          {
+            "monate": 24,
+            "satz": 0.45
+          },
+          {
+            "monate": 12,
+            "satz": 0.35
+          },
+          {
+            "monate": 6,
+            "satz": 0.25
+          }
+        ]
+      },
+      "Hessen": {
+        "urlaubsgeld": 0.69,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.265,
+        "eckentgelt": 3431,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          {
+            "monate": 36,
+            "satz": 0.55
+          },
+          {
+            "monate": 24,
+            "satz": 0.45
+          },
+          {
+            "monate": 12,
+            "satz": 0.35
+          },
+          {
+            "monate": 6,
+            "satz": 0.25
+          }
+        ]
+      },
+      "Niedersachsen": {
+        "urlaubsgeld": 0.69,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.265,
+        "eckentgelt": 3724,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          {
+            "monate": 36,
+            "satz": 0.55
+          },
+          {
+            "monate": 24,
+            "satz": 0.45
+          },
+          {
+            "monate": 12,
+            "satz": 0.35
+          },
+          {
+            "monate": 6,
+            "satz": 0.25
+          }
+        ]
+      },
+      "Nordrhein-Westfalen": {
+        "urlaubsgeld": 0.72,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.265,
+        "eckentgelt": 3438.5,
+        "eckentgeltEG": 8,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          {
+            "monate": 36,
+            "satz": 0.55
+          },
+          {
+            "monate": 24,
+            "satz": 0.45
+          },
+          {
+            "monate": 12,
+            "satz": 0.35
+          },
+          {
+            "monate": 6,
+            "satz": 0.25
+          }
+        ]
+      },
+      "Osnabrück-Emsland": {
+        "urlaubsgeld": 0.69,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.265,
+        "eckentgelt": 3724,
+        "eckentgeltEG": 4,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          {
+            "monate": 36,
+            "satz": 0.55
+          },
+          {
+            "monate": 24,
+            "satz": 0.45
+          },
+          {
+            "monate": 12,
+            "satz": 0.35
+          },
+          {
+            "monate": 6,
+            "satz": 0.25
+          }
+        ]
+      },
+      "Pfalz": {
+        "urlaubsgeld": 0.69,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.265,
+        "eckentgelt": 3431,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          {
+            "monate": 36,
+            "satz": 0.55
+          },
+          {
+            "monate": 24,
+            "satz": 0.45
+          },
+          {
+            "monate": 12,
+            "satz": 0.35
+          },
+          {
+            "monate": 6,
+            "satz": 0.25
+          }
+        ]
+      },
+      "Rheinland-Rheinhessen": {
+        "urlaubsgeld": 0.69,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.265,
+        "eckentgelt": 3431,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          {
+            "monate": 36,
+            "satz": 0.55
+          },
+          {
+            "monate": 24,
+            "satz": 0.45
+          },
+          {
+            "monate": 12,
+            "satz": 0.35
+          },
+          {
+            "monate": 6,
+            "satz": 0.25
+          }
+        ]
+      },
+      "Saarland": {
+        "urlaubsgeld": 0.69,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.265,
+        "eckentgelt": 3431,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          {
+            "monate": 36,
+            "satz": 0.55
+          },
+          {
+            "monate": 24,
+            "satz": 0.45
+          },
+          {
+            "monate": 12,
+            "satz": 0.35
+          },
+          {
+            "monate": 6,
+            "satz": 0.25
+          }
+        ]
+      },
+      "Sachsen": {
+        "urlaubsgeld": 0.69,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.265,
+        "eckentgelt": 3431,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          {
+            "monate": 36,
+            "satz": 0.55
+          },
+          {
+            "monate": 24,
+            "satz": 0.45
+          },
+          {
+            "monate": 12,
+            "satz": 0.35
+          },
+          {
+            "monate": 6,
+            "satz": 0.25
+          }
+        ]
+      },
+      "Sachsen-Anhalt": {
+        "urlaubsgeld": 0.69,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.265,
+        "eckentgelt": 3529,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          {
+            "monate": 36,
+            "satz": 0.55
+          },
+          {
+            "monate": 24,
+            "satz": 0.45
+          },
+          {
+            "monate": 12,
+            "satz": 0.35
+          },
+          {
+            "monate": 6,
+            "satz": 0.25
+          }
+        ]
+      },
+      "Schleswig-Holstein/MV/NW-Niedersachsen": {
+        "urlaubsgeld": 0.69,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.265,
+        "eckentgelt": 3727,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          {
+            "monate": 36,
+            "satz": 0.55
+          },
+          {
+            "monate": 24,
+            "satz": 0.45
+          },
+          {
+            "monate": 12,
+            "satz": 0.35
+          },
+          {
+            "monate": 6,
+            "satz": 0.25
+          }
+        ]
+      },
+      "Thüringen": {
+        "urlaubsgeld": 0.69,
+        "tZugA": 0.275,
+        "tGeld": 0.184,
+        "tZugB": 0.265,
+        "eckentgelt": 3431,
+        "minMonate": 6,
+        "weihnachtsgeldStaffel": [
+          {
+            "monate": 36,
+            "satz": 0.55
+          },
+          {
+            "monate": 24,
+            "satz": 0.45
+          },
+          {
+            "monate": 12,
+            "satz": 0.35
+          },
+          {
+            "monate": 6,
+            "satz": 0.25
+          }
+        ]
+      }
+    },
+    "ausbildungData": {
+      "Baden-Württemberg": [
+        1360,
+        1437.5,
+        1553.5,
+        1631
+      ],
+      "Bayern": [
+        1359.5,
+        1424.5,
+        1507.5,
+        1562
+      ],
+      "Berlin/Brandenburg": [
+        1327,
+        1393,
+        1463,
+        1524
+      ],
+      "Hamburg/Unterweser": [
+        1432,
+        1469,
+        1506,
+        1543
+      ],
+      "Hessen": [
+        1316,
+        1386,
+        1480,
+        1529
+      ],
+      "Niedersachsen": [
+        1319,
+        1392,
+        1502,
+        1574
+      ],
+      "Nordrhein-Westfalen": [
+        1296.98,
+        1354.06,
+        1438.86,
+        1550.22
+      ],
+      "Osnabrück-Emsland": [
+        1319,
+        1392,
+        1502,
+        1574
+      ],
+      "Pfalz": [
+        1316,
+        1386,
+        1480,
+        1529
+      ],
+      "Rheinland-Rheinhessen": [
+        1316,
+        1386,
+        1480,
+        1529
+      ],
+      "Saarland": [
+        1316,
+        1386,
+        1480,
+        1529
+      ],
+      "Sachsen": [
+        1327,
+        1395,
+        1462,
+        1529
+      ],
+      "Sachsen-Anhalt": [
+        1326,
+        1396,
+        1500,
+        1569
+      ],
+      "Schleswig-Holstein/MV/NW-Niedersachsen": [
+        1432,
+        1469,
+        1506,
+        1543
+      ],
+      "Thüringen": [
+        1327,
+        1395,
+        1462,
+        1529
+      ]
+    }
   }
 };
 

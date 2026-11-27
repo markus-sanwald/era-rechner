@@ -113,7 +113,7 @@
         "name": "Wie aktuell sind die Entgelttabellen in diesem Rechner?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Der Rechner enthält die offiziellen ERA-Entgelttabellen für 2025 und 2026 (gültig ab 01.04.2026) für alle 15 Tarifgebiete. Die Werte werden nach jeder Tarifrunde zeitnah aktualisiert."
+          "text": "Der Rechner enthält die offiziellen ERA-Entgelttabellen für 2025 und 2026 (gültig ab 01.04.2026) für alle 15 Tarifgebiete. Für 2027 und 2028 gibt es vorläufige Werte, hochgerechnet aus dem Tarifabschluss vom 26.11.2026. Die Werte werden nach jeder Tarifrunde zeitnah aktualisiert."
         }
       },
       {
@@ -122,6 +122,14 @@
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "„Tariftabelle\" und „ERA-Entgelttabelle\" bezeichnen dasselbe: die Tabelle der tariflichen Monatsentgelte in der Metall- und Elektroindustrie, gestaffelt nach Entgeltgruppe (EG 1 bis EG 17). Sie unterscheidet sich je Bundesland und Tarifgebiet. Die vollständigen Werte deines Tarifgebiets findest du oben im Rechner oder auf den einzelnen Entgelttabellen-Unterseiten."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was bringt der Tarifabschluss 2026 für 2027 und 2028?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Am 26. November 2026 haben sich IG Metall und Arbeitgeber in Baden-Württemberg und Nordrhein-Westfalen auf einen Pilotabschluss geeinigt. Der IG-Metall-Vorstand empfiehlt, das Ergebnis im ganzen Bundesgebiet zu übernehmen – der Rechner geht deshalb davon aus, dass es in allen 15 Tarifgebieten gilt. Die Eckpunkte: Die ERA-Entgelte steigen zum 1. Mai 2027 um 2,0 % und zum 1. April 2028 um weitere 2,3 %. Im März 2027 gibt es eine Einmalzahlung, deren Höhe von der Nettoumsatzrendite des Unternehmens abhängt: mindestens 150 €, bei 2,3 bis 4,6 % Rendite 300 €, bei über 4,6 % 450 €. Sie kann auch ins Geschäftsjahr 2026 vorgezogen werden. Auszubildende und dual Studierende erhalten ebenfalls eine Einmalzahlung. Die Laufzeit beträgt 25 Monate bis zum 30. November 2028. Neu ist außerdem der Tarifvertrag für Investition und Beschäftigung: Unternehmen, die sich zu Investitionen in deutsche Standorte verpflichten und auf aktiven Personalabbau verzichten, dürfen befristet tarifliche Leistungen der Beschäftigten in begrenztem Umfang (maximal 8 %) verwenden. So rechnet der Rechner (vorläufig): Die Tarifjahre 2027 und 2028 sind als „vorläufig“ gekennzeichnet. Entgelttabellen und Eckentgelt sind aus den Werten von 2026 hochgerechnet (+2,0 % bzw. +2,3 %, gerundet wie in den bisherigen Tabellen); für die Ausbildungsvergütungen sind dieselben Prozentsätze angenommen. Urlaubsgeld, Weihnachtsgeld, T-ZUG A, T-ZUG B und T-Geld bleiben unverändert, weil der Abschluss dazu nichts Neues regelt. Wie bei jedem Tarifjahr rechnet der Rechner vereinfachend das ganze Jahr mit den erhöhten Werten, obwohl die Erhöhung 2027 erst ab Mai gilt. Die Einmalzahlung kannst du im Tarifjahr 2027 auswählen (Standard: 150 €). Beiträge nach dem Tarifvertrag für Investition und Beschäftigung sind nicht berücksichtigt. Sobald die offiziellen Entgelttabellen vorliegen, werden die Werte ersetzt."
         }
       },
       {
@@ -362,6 +370,12 @@
           </div>
         </div>
 
+        <div class="form-group hidden" id="einmalzahlung-group">
+          <label for="einmalzahlung" id="einmalzahlung-label">Einmalzahlung</label>
+          <select id="einmalzahlung"></select>
+          <small class="form-hint" data-i18n="hintEinmalzahlung">H&auml;ngt von der Nettoumsatzrendite deines Unternehmens ab. Mindestens 150&nbsp;&euro;; bei Teilzeit anteilig.</small>
+        </div>
+
         <div class="form-group">
           <label for="sonderzahlung" data-i18n="labelSonderzahlung">Sonderzahlung / Gewinnbeteiligung (j&auml;hrlich)</label>
           <div class="input-euro-group">
@@ -577,6 +591,14 @@
           </span>
           <span class="breakdown-value" id="tzug-b"></span>
         </div>
+        <div class="breakdown-row has-tooltip hidden" id="einmalzahlung-row">
+          <span class="breakdown-label">
+            <span data-i18n="breakdownEinmalzahlung">Einmalzahlung</span> <small id="einmalzahlung-detail"></small>
+            <span class="tooltip" data-i18n="tooltipEinmalzahlung">Einmalzahlung aus dem Tarifabschluss vom 26.11.2026: 150, 300 oder 450&nbsp;&euro; je nach Nettoumsatzrendite des Unternehmens, Auszahlung im M&auml;rz 2027 (kann ins Gesch&auml;ftsjahr 2026 vorgezogen werden). Vorl&auml;ufige Annahme: Teilzeit anteilig, Anspruch bei Besch&auml;ftigung im Auszahlungsmonat. H&ouml;he unter &bdquo;Weitere Optionen&ldquo; w&auml;hlbar.</span>
+            <small class="breakdown-hint hidden" id="einmalzahlung-hint"></small>
+          </span>
+          <span class="breakdown-value" id="einmalzahlung-annual"></span>
+        </div>
         <div class="breakdown-row hidden" id="sonderzahlung-row">
           <span class="breakdown-label" data-i18n="breakdownSonderzahlung">Sonderzahlung</span>
           <span class="breakdown-value" id="sonderzahlung-annual"></span>
@@ -676,7 +698,7 @@
       <p data-i18n="seoText1">Kostenloser, Open-Source IG Metall Gehaltsrechner auf Basis der Tariftabellen 2026 inkl. aller tariflichen Sonderzahlungen: Weihnachtsgeld, Urlaubsgeld, T-ZUG&nbsp;A, Transformationsgeld und T-ZUG&nbsp;B. Er unterst&uuml;tzt alle 15 Tarifgebiete der Metall- und Elektroindustrie &ndash; von Baden-W&uuml;rttemberg bis Th&uuml;ringen &ndash; und wird nach jeder Tarifrunde aktualisiert.</p>
       <p data-i18n="seoText2">Die Tariftabellen unterscheiden sich je nach Bundesland und Entgeltgruppe (EG&nbsp;1 bis EG&nbsp;17). Mit unserem Rechner ermittelst du dein pers&ouml;nliches Jahresbrutto in Sekunden &ndash; inkl. anteiliger Berechnung bei Teilzeit und optionaler Leistungszulage.</p>
       <p class="seo-disclaimer" data-i18n="seoDisclaimer">Unabh&auml;ngiges Open-Source-Projekt &ndash; kein offizielles Angebot der IG Metall.</p>
-      <p class="source-note" data-i18n-html="sourceNote">Quelle: <a href="https://www.igmetall.de/tarif" target="_blank" rel="noopener noreferrer">ERA-Tarifvertrag der Metall- und Elektroindustrie (IG Metall)</a> &middot; Zuletzt gepr&uuml;ft: <time datetime="2026-08">August 2026</time></p>
+      <p class="source-note" data-i18n-html="sourceNote">Quelle: <a href="https://www.igmetall.de/tarif" target="_blank" rel="noopener noreferrer">ERA-Tarifvertrag der Metall- und Elektroindustrie (IG Metall)</a> &middot; Zuletzt gepr&uuml;ft: <time datetime="2026-11">November 2026</time></p>
     </section>
 
     <!-- Regionseiten -->
@@ -760,7 +782,12 @@
 
       <details class="faq-item" data-faq-cat="grundlagen">
         <summary data-i18n="faq2Q">Wie aktuell sind die Entgelttabellen in diesem Rechner?</summary>
-        <p data-i18n="faq2A">Der Rechner enth&auml;lt die offiziellen ERA-Entgelttabellen f&uuml;r 2025 und 2026 (g&uuml;ltig ab 01.04.2026) f&uuml;r alle 15 Tarifgebiete. Die Werte werden nach jeder Tarifrunde zeitnah aktualisiert.</p>
+        <p data-i18n="faq2A">Der Rechner enth&auml;lt die offiziellen ERA-Entgelttabellen f&uuml;r 2025 und 2026 (g&uuml;ltig ab 01.04.2026) f&uuml;r alle 15 Tarifgebiete. F&uuml;r 2027 und 2028 gibt es vorl&auml;ufige Werte, hochgerechnet aus dem Tarifabschluss vom 26.11.2026. Die Werte werden nach jeder Tarifrunde zeitnah aktualisiert.</p>
+      </details>
+
+      <details class="faq-item" data-faq-cat="grundlagen">
+        <summary data-i18n="faq2027Q">Was bringt der Tarifabschluss 2026 f&uuml;r 2027 und 2028?</summary>
+        <p data-i18n-html="faq2027A">Am 26. November 2026 haben sich IG Metall und Arbeitgeber in Baden-W&uuml;rttemberg und Nordrhein-Westfalen auf einen Pilotabschluss geeinigt. Der IG-Metall-Vorstand empfiehlt, das Ergebnis im ganzen Bundesgebiet zu &uuml;bernehmen &ndash; der Rechner geht deshalb davon aus, dass es in allen 15 Tarifgebieten gilt.<br><br><strong>Die Eckpunkte:</strong> Die ERA-Entgelte steigen zum 1. Mai 2027 um 2,0&nbsp;% und zum 1. April 2028 um weitere 2,3&nbsp;%. Im M&auml;rz 2027 gibt es eine Einmalzahlung, deren H&ouml;he von der Nettoumsatzrendite des Unternehmens abh&auml;ngt: mindestens 150&nbsp;&euro;, bei 2,3 bis 4,6&nbsp;% Rendite 300&nbsp;&euro;, bei &uuml;ber 4,6&nbsp;% 450&nbsp;&euro;. Sie kann auch ins Gesch&auml;ftsjahr 2026 vorgezogen werden. Auszubildende und dual Studierende erhalten ebenfalls eine Einmalzahlung. Die Laufzeit betr&auml;gt 25 Monate bis zum 30. November 2028. Neu ist au&szlig;erdem der Tarifvertrag f&uuml;r Investition und Besch&auml;ftigung: Unternehmen, die sich zu Investitionen in deutsche Standorte verpflichten und auf aktiven Personalabbau verzichten, d&uuml;rfen befristet tarifliche Leistungen der Besch&auml;ftigten in begrenztem Umfang (maximal 8&nbsp;%) verwenden.<br><br><strong>So rechnet der Rechner (vorl&auml;ufig):</strong> Die Tarifjahre 2027 und 2028 sind als &bdquo;vorl&auml;ufig&ldquo; gekennzeichnet. Entgelttabellen und Eckentgelt sind aus den Werten von 2026 hochgerechnet (+2,0&nbsp;% bzw. +2,3&nbsp;%, gerundet wie in den bisherigen Tabellen); f&uuml;r die Ausbildungsverg&uuml;tungen sind dieselben Prozents&auml;tze angenommen. Urlaubsgeld, Weihnachtsgeld, T-ZUG A, T-ZUG B und T-Geld bleiben unver&auml;ndert, weil der Abschluss dazu nichts Neues regelt. Wie bei jedem Tarifjahr rechnet der Rechner vereinfachend das ganze Jahr mit den erh&ouml;hten Werten, obwohl die Erh&ouml;hung 2027 erst ab Mai gilt. Die Einmalzahlung kannst du im Tarifjahr 2027 ausw&auml;hlen (Standard: 150&nbsp;&euro;). Beitr&auml;ge nach dem Tarifvertrag f&uuml;r Investition und Besch&auml;ftigung sind nicht ber&uuml;cksichtigt. Sobald die offiziellen Entgelttabellen vorliegen, werden die Werte ersetzt.</p>
       </details>
 
       <details class="faq-item" data-faq-cat="grundlagen">

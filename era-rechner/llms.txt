@@ -20,7 +20,7 @@ Kontakt: info@era-rechner.de
 
 ## Datenbasis
 
-**Tarifjahre:** 2025 (ab 01.04.2025) und 2026 (ab 01.04.2026)
+**Tarifjahre:** 2025 (ab 01.04.2025) und 2026 (ab 01.04.2026); vorläufig 2027 (ab 01.05.2027, +2,0 %, Einmalzahlung 150–450 € im März 2027) und 2028 (ab 01.04.2028, +2,3 %), hochgerechnet aus dem Tarifabschluss vom 26.11.2026 (Pilotabschluss Baden-Württemberg/NRW, Übernahme in alle Tarifgebiete angenommen)
 
 **15 Tarifgebiete:**
 Baden-Württemberg, Bayern, Berlin/Brandenburg, Hamburg/Unterweser, Hessen,

@@ -71,6 +71,13 @@ const elEintrittJahrHintSwitch = document.getElementById("eintritt-jahr-hint-swi
 const elSonderzahlung    = document.getElementById("sonderzahlung");
 const elSonderzahlungRow = document.getElementById("sonderzahlung-row");
 const elSonderzahlungAnnual = document.getElementById("sonderzahlung-annual");
+const elEinmalzahlungGroup  = document.getElementById("einmalzahlung-group");
+const elEinmalzahlungLabel  = document.getElementById("einmalzahlung-label");
+const elEinmalzahlung       = document.getElementById("einmalzahlung");
+const elEinmalzahlungRow    = document.getElementById("einmalzahlung-row");
+const elEinmalzahlungAnnual = document.getElementById("einmalzahlung-annual");
+const elEinmalzahlungDetail = document.getElementById("einmalzahlung-detail");
+const elEinmalzahlungHint   = document.getElementById("einmalzahlung-hint");
 const elWgManuellAktiv    = document.getElementById("weihnachtsgeld-manuell-aktiv");
 const elWgManuellGroup    = document.getElementById("weihnachtsgeld-manuell-group");
 const elWgManuellSatz     = document.getElementById("weihnachtsgeld-manuell");
@@ -214,6 +221,7 @@ const CHART_COLORS = {
   tZugA:              "#e67e22",
   tGeld:              "#9b59b6",
   tZugB:              "#f1c40f",
+  einmalzahlung:      "#e84393",
   weihnachtsgeld:     "#e2001a"
 };
 
@@ -263,7 +271,38 @@ function init() {
 function updateYearNotice(year) {
   const preliminary = !!(allData[year] && allData[year].preliminary);
   elYearNotice.classList.toggle("hidden", !preliminary);
-  if (preliminary) elYearNotice.textContent = tReplace("yearNoticePreliminary", { year });
+  if (!preliminary) return;
+  const hinweis = allData[year].hinweis;
+  elYearNotice.textContent = tReplace("yearNoticePreliminary", { year, datum: gueltigAbDatum(year) })
+    + (hinweis ? " " + t(hinweis) : "");
+}
+
+// Einmalzahlung (Tarifabschluss): nur in Jahren mit "einmalzahlung" in data.js. Die Höhe hängt
+// von der Nettoumsatzrendite des Unternehmens ab – daher wählbar, Standard laut data.js.
+function einmalzahlungMonatName(year, monat) {
+  return new Date(year, monat - 1, 1).toLocaleString(currentLang === "en" ? "en-GB" : "de-DE", { month: "long" });
+}
+
+function updateEinmalzahlungUI(year) {
+  const ez = allData[year] && allData[year].einmalzahlung;
+  elEinmalzahlungGroup.classList.toggle("hidden", !ez);
+  if (!ez) return;
+  elEinmalzahlungLabel.textContent = tReplace("labelEinmalzahlung", { monat: einmalzahlungMonatName(year, ez.monat), year });
+
+  const bisher = elEinmalzahlung.value;
+  const stufen = t("einmalzahlungStufen");
+  elEinmalzahlung.innerHTML = "";
+  ez.betraege.forEach((betrag, i) => {
+    const opt = document.createElement("option");
+    opt.value = String(betrag);
+    opt.textContent = compactFmt.format(betrag) + (stufen[i] ? " \u2013 " + stufen[i] : "");
+    elEinmalzahlung.appendChild(opt);
+  });
+  const keine = document.createElement("option");
+  keine.value = "0";
+  keine.textContent = t("einmalzahlungKeine");
+  elEinmalzahlung.appendChild(keine);
+  elEinmalzahlung.value = [...elEinmalzahlung.options].some(o => o.value === bisher) ? bisher : String(ez.standard);
 }
 
 function loadYear(year) {
@@ -274,6 +313,7 @@ function loadYear(year) {
   document.title = t("pageTitle").replace("{year}", year);
 
   updateYearNotice(year);
+  updateEinmalzahlungUI(year);
 
   // Reset dependent dropdowns
   resetSelect(elBundesland);
@@ -307,7 +347,7 @@ onTranslationsApplied(function () {
   for (const y of years) {
     const opt = document.createElement("option");
     opt.value = y;
-    opt.textContent = tReplace("yearOption", { year: y });
+    opt.textContent = tReplace("yearOption", { year: y, datum: gueltigAbDatum(y) });
     elJahr.appendChild(opt);
   }
   if (selectedYear) elJahr.value = selectedYear;
@@ -317,6 +357,7 @@ onTranslationsApplied(function () {
   if (year) {
     elSubtitle.textContent = tReplace("subtitleWithYear", { year });
     updateYearNotice(year);
+    updateEinmalzahlungUI(year);
   }
 
   // Update Bundesland option texts
@@ -1064,6 +1105,10 @@ elSonderzahlung.addEventListener("input", () => {
   recalcIfReady();
 });
 
+elEinmalzahlung.addEventListener("change", () => {
+  recalcIfReady();
+});
+
 // Beim Aktivieren mit dem automatisch berechneten Satz vorbelegen (auf 5 % gerundet),
 // damit der Regler nicht bei 0 % startet und das Ergebnis beim Umschalten nicht abrupt springt.
 elWgManuellAktiv.addEventListener("change", () => {
@@ -1388,11 +1433,22 @@ function calcSalary(tabellenMonthly) {
   // der Vollzeit-Grundarbeitszeit im Osten) wirkt anteilig; Mehrarbeit/längere Arbeitszeit erhöht ihn nicht.
   const tZugBFaktor     = Math.min(1, azFaktor);
   const tZugB           = hatTZugB ? bonus.eckentgelt * tZugBFaktor * bonus.tZugB : 0;
-  const total           = grundgehalt + utJaehrlich + freiwilligeZulageJaehrlich + urlaubsgeld + weihnachtsgeld + tZugA + tGeld + tZugB + sonderzahlung;
+
+  // Einmalzahlung aus dem Tarifabschluss (nur Jahre mit "einmalzahlung" in data.js). Vorläufige
+  // Annahmen, bis der Tarifvertragstext vorliegt: Anspruch, wenn man im Auszahlungsmonat beschäftigt
+  // ist (Eintritt spätestens am Monatsletzten); Teilzeit anteilig wie T-ZUG B, Mehrarbeit erhöht nicht.
+  const ezDef           = allData[elJahr.value] && allData[elJahr.value].einmalzahlung;
+  const ezStichtag      = ezDef ? new Date(jahr, ezDef.monat, 0) : null;
+  const hatEinmalzahlung = !!ezDef && (!eintrittDatum || isNaN(eintrittDatum.getTime()) || eintrittDatum <= ezStichtag);
+  const ezBetrag        = ezDef ? Math.max(0, parseFloat(elEinmalzahlung.value) || 0) : 0;
+  const einmalzahlung   = hatEinmalzahlung ? ezBetrag * Math.min(1, azFaktor) : 0;
+
+  const total           = grundgehalt + utJaehrlich + freiwilligeZulageJaehrlich + urlaubsgeld + weihnachtsgeld + tZugA + tGeld + tZugB + einmalzahlung + sonderzahlung;
 
   return {
     ...result, bonus, urlaubsgeldMonate, urlaubsgeldFaktor, hatTZugA, hatTGeld, hatTZugB, hatWeihnachtsgeld,
     wgSatz, wgDynamisch, wgIstManuell, urlaubsgeld, weihnachtsgeld, tZugA, tGeld, tZugB, total,
+    ezDef, ezBetrag, ezStichtag, hatEinmalzahlung, einmalzahlung, ezTeilzeit: azFaktor < 1,
     minMonate: bonus.minMonate, tZugAStichtag: juliStichtag, tGeldStichtag, tZugBStichtag, wgStichtag,
     istSchaetzjahr, eintrittJahrZahl, jahr
   };
@@ -1431,6 +1487,18 @@ function displayResult(r) {
     elTGeldHint.classList.toggle("hidden", r.hatTGeld);
     elTZugBHint.textContent = wartefristHint(r.tZugBStichtag);
     elTZugBHint.classList.toggle("hidden", r.hatTZugB);
+
+    // Einmalzahlung: Zeile nur in Jahren mit Einmalzahlung und wenn nicht "keine" gewählt ist;
+    // bei Eintritt nach dem Auszahlungsmonat mit Hinweis statt stiller 0 €.
+    const zeigeEz = !!r.ezDef && r.ezBetrag > 0;
+    elEinmalzahlungRow.classList.toggle("hidden", !zeigeEz);
+    if (zeigeEz) {
+      elEinmalzahlungAnnual.textContent = currencyFmt.format(r.einmalzahlung);
+      elEinmalzahlungDetail.textContent = tReplace(r.ezTeilzeit ? "einmalzahlungDetailTeilzeit" : "einmalzahlungDetail",
+        { monat: einmalzahlungMonatName(r.jahr, r.ezDef.monat), year: r.jahr });
+      elEinmalzahlungHint.textContent = tReplace("hintEinmalzahlungStichtag", { datum: fmtDatum(r.ezStichtag) });
+      elEinmalzahlungHint.classList.toggle("hidden", r.hatEinmalzahlung);
+    }
 
     // Sonderzahlung Zeile ein-/ausblenden
     if (r.sonderzahlung > 0) {
@@ -1477,8 +1545,8 @@ function displayResult(r) {
     elBreakdown.classList.remove("hidden");
 
     // Chart rendern
-    chartBruttoParams = { monthly: r.monthly, utMonatlich: r.utMonatlich, freiwilligeZulageMonatlich: r.freiwilligeZulageMonatlich, urlaubsgeld: r.urlaubsgeld, weihnachtsgeld: r.weihnachtsgeld, tZugA: r.tZugA, tGeld: r.tGeld, tZugB: r.tZugB };
-    renderChart(r.monthly, r.utMonatlich, r.freiwilligeZulageMonatlich, r.urlaubsgeld, r.weihnachtsgeld, r.tZugA, r.tGeld, r.tZugB);
+    chartBruttoParams = { monthly: r.monthly, utMonatlich: r.utMonatlich, freiwilligeZulageMonatlich: r.freiwilligeZulageMonatlich, urlaubsgeld: r.urlaubsgeld, weihnachtsgeld: r.weihnachtsgeld, tZugA: r.tZugA, tGeld: r.tGeld, tZugB: r.tZugB, einmalzahlung: r.einmalzahlung };
+    renderChart(r.monthly, r.utMonatlich, r.freiwilligeZulageMonatlich, r.urlaubsgeld, r.weihnachtsgeld, r.tZugA, r.tGeld, r.tZugB, r.einmalzahlung);
     updateChartViewToggle();
   } else {
     elBreakdown.classList.add("hidden");
@@ -1516,11 +1584,11 @@ function showResult(tabellenMonthly) {
 
 // ---------------------------------------------------------------------------
 // Chart: Bruttoverdienst nach Monaten
-// Auszahlungsmonate: Feb → T-ZUG B, Jun → Urlaubsgeld,
+// Auszahlungsmonate: Feb → T-ZUG B, (Mär → Einmalzahlung 2027), Jun → Urlaubsgeld,
 //                    Jul → T-ZUG A + T-Geld, Nov → Weihnachtsgeld
 // ---------------------------------------------------------------------------
 
-function renderChart(monthly, utMonatlich, freiwilligeZulageMonatlich, urlaubsgeld, weihnachtsgeld, tZugA, tGeld, tZugB) {
+function renderChart(monthly, utMonatlich, freiwilligeZulageMonatlich, urlaubsgeld, weihnachtsgeld, tZugA, tGeld, tZugB, einmalzahlung = 0) {
   const monthNames = t("chartMonths");
   const chartLabels = t("chartLabels");
   const baseSegCount = 1 + (utMonatlich > 0 ? 1 : 0) + (freiwilligeZulageMonatlich > 0 ? 1 : 0);
@@ -1531,6 +1599,8 @@ function renderChart(monthly, utMonatlich, freiwilligeZulageMonatlich, urlaubsge
   const chartJahr   = parseInt(elJahr.value, 10);
   const tZugBMonat  = chartJahr >= 2026 ? 1 : 6;
   const tGeldMonat  = chartJahr >= 2026 ? 6 : 1;
+  const ezDef       = allData[chartJahr] && allData[chartJahr].einmalzahlung;
+  const ezMonat     = ezDef ? ezDef.monat - 1 : -1;
   let urlaubsgeldMonat = 5;
   const eintritt = elEintrittsdatum.value ? new Date(elEintrittsdatum.value) : null;
   if (eintritt && !isNaN(eintritt.getTime()) && eintritt.getFullYear() === chartJahr && eintritt.getMonth() >= 6) {
@@ -1542,6 +1612,7 @@ function renderChart(monthly, utMonatlich, freiwilligeZulageMonatlich, urlaubsge
     if (utMonatlich > 0) segs.push({ key: "utZulage", value: utMonatlich });
     if (freiwilligeZulageMonatlich > 0) segs.push({ key: "freiwilligeZulage", value: freiwilligeZulageMonatlich });
     if (i === tZugBMonat && tZugB > 0)            segs.push({ key: "tZugB",          value: tZugB });
+    if (i === ezMonat && einmalzahlung > 0)        segs.push({ key: "einmalzahlung",  value: einmalzahlung });
     if (i === urlaubsgeldMonat && urlaubsgeld > 0) segs.push({ key: "urlaubsgeld",    value: urlaubsgeld });
     if (i === 6  && tZugA > 0)                     segs.push({ key: "tZugA",          value: tZugA });
     if (i === tGeldMonat && tGeld > 0)             segs.push({ key: "tGeld",          value: tGeld });
@@ -1577,7 +1648,7 @@ function renderChart(monthly, utMonatlich, freiwilligeZulageMonatlich, urlaubsge
   for (const month of data) {
     for (const seg of month.segs) allKeys.add(seg.key);
   }
-  const legendOrder = ["monatsentgelt", "utZulage", "freiwilligeZulage", "tZugB", "urlaubsgeld", "tZugA", "tGeld", "weihnachtsgeld"];
+  const legendOrder = ["monatsentgelt", "utZulage", "freiwilligeZulage", "tZugB", "einmalzahlung", "urlaubsgeld", "tZugA", "tGeld", "weihnachtsgeld"];
   elChartLegend.innerHTML = legendOrder
     .filter(k => allKeys.has(k))
     .map(k => `<div class="chart-legend-item"><span class="chart-legend-color" style="background:${CHART_COLORS[k]}"></span>${chartLabels[k]}</div>`)
@@ -1611,7 +1682,7 @@ function renderChartNetto() {
   const f = currentNettoFaktor;
   renderChart(
     p.monthly * f, p.utMonatlich * f, p.freiwilligeZulageMonatlich * f, p.urlaubsgeld * f,
-    p.weihnachtsgeld * f, p.tZugA * f, p.tGeld * f, p.tZugB * f
+    p.weihnachtsgeld * f, p.tZugA * f, p.tGeld * f, p.tZugB * f, p.einmalzahlung * f
   );
   elChartTitle.setAttribute("data-i18n", "chartTitleNetto");
   elChartTitle.textContent = t("chartTitleNetto");
@@ -1626,7 +1697,7 @@ function switchChartView(mode) {
     renderChartNetto();
   } else if (chartBruttoParams) {
     const p = chartBruttoParams;
-    renderChart(p.monthly, p.utMonatlich, p.freiwilligeZulageMonatlich, p.urlaubsgeld, p.weihnachtsgeld, p.tZugA, p.tGeld, p.tZugB);
+    renderChart(p.monthly, p.utMonatlich, p.freiwilligeZulageMonatlich, p.urlaubsgeld, p.weihnachtsgeld, p.tZugA, p.tGeld, p.tZugB, p.einmalzahlung);
     elChartTitle.setAttribute("data-i18n", "chartTitle");
     elChartTitle.textContent = t("chartTitle");
   }
@@ -1671,6 +1742,8 @@ function getCurrentDetails() {
   const details = [stundenText];
   if (utPct > 0) details.push("\u00dcT " + fmtDE(utPct) + "\u00a0%");
   if (sonderzahlung > 0) details.push("SZ " + compactFmt.format(sonderzahlung));
+  const ezBetrag = allData[elJahr.value] && allData[elJahr.value].einmalzahlung ? parseFloat(elEinmalzahlung.value) || 0 : 0;
+  if (ezBetrag > 0) details.push("EZ " + compactFmt.format(ezBetrag));
   return details.join(" \u00b7 ");
 }
 
