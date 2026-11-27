@@ -4663,9 +4663,12 @@ const ERA_DATA = {
   }
 };
 
-// Beitragsbemessungsgrenzen (monatlich, West) pro Jahr
+// Beitragsbemessungsgrenzen (monatlich, seit 2025 bundeseinheitlich) pro Jahr
 // RV/AV = Renten- und Arbeitslosenversicherung, KV/PV = Kranken- und Pflegeversicherung
+// Quelle: Sozialversicherungs-Rechengrößenverordnung (bundesregierung.de). Fehlt ein Jahr
+// (z. B. 2028), nutzt taxes.js das neueste vorhandene.
 const BBG_DATA = {
-  "2025": { rvAv: 7550, kvPv: 5512.50 },
-  "2026": { rvAv: 7800, kvPv: 5687.50 }
+  "2025": { rvAv: 8050, kvPv: 5512.50 },
+  "2026": { rvAv: 8450, kvPv: 5812.50 },
+  "2027": { rvAv: 8850, kvPv: 6375 }
 };
